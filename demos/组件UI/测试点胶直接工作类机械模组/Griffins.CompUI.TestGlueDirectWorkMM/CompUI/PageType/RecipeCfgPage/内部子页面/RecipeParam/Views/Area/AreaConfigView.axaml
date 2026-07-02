@@ -1,0 +1,16 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:AreaConfigViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.AreaConfigView">
+
+    <!--区域配置参数-->
+        <views:AreaListView  HorizontalAlignment="Left"
+                    DataContext="{Binding AreaListViewModel}" 
+                    Margin="2"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="1864"/>
+</UserControl>

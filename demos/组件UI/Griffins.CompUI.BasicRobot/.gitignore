@@ -1,0 +1,31 @@
+﻿## Visual Studio 2022
+## 编译生成的文件
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Tt]est[Rr]esult*/
+
+## 用户特定文件
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+
+## IDE 文件
+.vs/
+.idea/
+*.swp
+*.swo
+
+## 包目录
+packages/
+*.nupkg
+
+## 其他
+_ReSharper.*/
+*.cache
+*.log
+*.tlog
+*.lastbuildstate

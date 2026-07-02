@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             xmlns:vm="clr-namespace:GKG.UI.General"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             x:DataType="vm:HorizontalControlCardStateInitViewModel"
+             x:Class="GKG.UI.General.HorizontalControlCardStateInitView">
+
+    <Grid Margin="8"
+          ColumnDefinitions="50,*"
+          ColumnSpacing="6"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top">
+        <TextBlock Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="通道ID" />
+        <custom:ComboxControl Grid.Column="1"
+                              LabelName=""
+                              WidthLevel="Small"
+                              ViewModel="{Binding ChannelIDViewModel}" />
+    </Grid>
+
+</UserControl>

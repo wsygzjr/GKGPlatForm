@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+        xmlns:vm="clr-namespace:Griffins.Map.UIDataObjProcessDesignTime.Simple.ViewModels"
+        xmlns:conv="clr-namespace:Griffins.Map.UIDataObjProcessDesignTime.Simple.Converts"
+        x:Class="Griffins.Map.UIDataObjProcessDesignTime.Simple.Views.UIDataObjProcessSimpleCfgWindow"
+        x:DataType="vm:UIDataObjProcessSimpleCfgViewModel"
+        Width="400"
+        Height="300"
+        Title="配置"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 印刷机械别名 -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="印刷机械模组别名：" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1"
+                 Text="{Binding YS_Alias, Converter={x:Static conv:MMAliasConverter.Instance}}"
+                 Margin="0 5"/>
+
+        <!-- 备料机械别名 -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="备料机械模组别名：" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1"
+                 Text="{Binding BL_Alias, Converter={x:Static conv:MMAliasConverter.Instance}}"
+                 Margin="0 5"/>
+    </Grid>
+</Window>

@@ -1,0 +1,391 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.CompUI.LoadUnload.ControlPanel.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="768"
+             x:Class="GKG.CompUI.LoadUnload.ControlPanel.Views.SopWizardView"
+             x:DataType="vm:SopWizardViewModel"
+             x:Name="RootControl">
+
+    <UserControl.Styles>
+        <!-- 物料报警 / 空料：状态徽章持续闪烁 -->
+        <Style Selector="Border.materialStatusBlink">
+            <Style.Animations>
+                <Animation Duration="0:0:0.9" IterationCount="Infinite">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="1"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="50%">
+                        <Setter Property="Opacity" Value="0.3"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </UserControl.Styles>
+
+    <!-- 主窗体容器：采用纯净白底与柔和浅阴影 -->
+    <Border Background="#FFFFFF"
+            CornerRadius="8"
+            Width="920" MinHeight="580" MaxHeight="720"
+            BoxShadow="0 8 30 0 #15000000"
+            BorderBrush="#E5E7EB" BorderThickness="1">
+        <Grid>
+            <!-- ================= 主体内容工作区 ================= -->
+            <Grid RowDefinitions="Auto, Auto, *, Auto" Margin="32,24">
+
+                <!-- 1. 顶栏操作区 -->
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto" Margin="0,0,0,8">
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding WizardIcon}" FontSize="22" Margin="0,0,10,2" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding WizardTitle}" FontSize="20" FontWeight="Bold" Foreground="#111827" Margin="0,0,16,0" VerticalAlignment="Center"/>
+
+                        <!-- 一键展开/折叠 (极简紧凑按钮) -->
+                        <Button Command="{Binding ToggleAllContainersCommand}"
+                                Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                                CornerRadius="4" Padding="8,4" Cursor="Hand" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <TextBlock Text="↕️" FontSize="10" Foreground="#6B7280" VerticalAlignment="Center"/>
+                                <TextBlock Text="展开/折叠" FontSize="11" Foreground="#374151" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- 快速定位导航 -->
+                    <ComboBox Grid.Column="2"
+                              ItemsSource="{Binding Containers}"
+                              PlaceholderText="🔍 快速定位容器..."
+                              Width="160" Height="28" FontSize="12"
+                              CornerRadius="4" BorderThickness="1" BorderBrush="#D1D5DB"
+                              VerticalAlignment="Center"
+                              SelectionChanged="OnQuickNavSelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="vm:StorageContainerViewModel">
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+
+                <!-- 2. 状态提示横幅 (极其扁平化的微边框设计) -->
+                <Border Grid.Row="1" Margin="0,8,0,12"
+                        CornerRadius="4" Padding="16,10"
+                        BorderThickness="3,0,0,0"
+                        Opacity="{Binding MessageOpacity}"
+                        Background="{Binding IsErrorAlert, StringFormat='#FEF2F2', FallbackValue='#F0F9FF'}"
+                        BorderBrush="{Binding IsErrorAlert, StringFormat='#DC2626', FallbackValue='#0284C7'}">
+                    <Border.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:0.15" Easing="CubicEaseOut"/>
+                        </Transitions>
+                    </Border.Transitions>
+                    <TextBlock Text="{Binding SystemMessage}" FontSize="14" FontWeight="Bold"
+                               Foreground="{Binding IsErrorAlert, StringFormat='#991B1B', FallbackValue='#0369A1'}"/>
+                </Border>
+
+                <!-- 3. 步骤 0：主列表区 (紧凑型料盒面板) -->
+                <ScrollViewer x:Name="MainScrollViewer" Grid.Row="2"
+                              VerticalScrollBarVisibility="Auto" Padding="0,0,12,0">
+                    <ItemsControl x:Name="ContainersItemsControl" ItemsSource="{Binding Containers}" HorizontalAlignment="Stretch">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" Spacing="12"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:StorageContainerViewModel">
+                                <!-- 容器面板卡片：极简微边框 -->
+                                <Border Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="6">
+                                    <Grid RowDefinitions="Auto, Auto">
+
+                                        <!-- 容器标题栏 (无背景色，纯净排版) -->
+                                        <Button Grid.Row="0" Command="{Binding ToggleExpandCommand}"
+                                                Background="Transparent" BorderThickness="0" Padding="12,10"
+                                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                                CornerRadius="6">
+                                            <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+
+                                                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <TextBlock Text="▼" FontFamily="Consolas" FontSize="12" Foreground="#9CA3AF" Margin="0,0,8,0" IsVisible="{Binding IsExpanded}"/>
+                                                    <TextBlock Text="▶" FontFamily="Consolas" FontSize="12" Foreground="#9CA3AF" Margin="0,0,8,0" IsVisible="{Binding !IsExpanded}"/>
+                                                    <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="Bold" Foreground="#111827"/>
+                                                </StackPanel>
+
+                                                <!-- 容器异常状态冒泡流 (扁平化小药丸标签) -->
+                                                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6" Margin="0,0,12,0" VerticalAlignment="Center">
+                                                    <!-- 未到位标签 -->
+                                                    <Border Background="#F3F4F6" BorderThickness="0" CornerRadius="10" Padding="6,2" IsVisible="{Binding HasMissing}">
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                                                            <TextBlock Text="📦" FontSize="10"/>
+                                                            <TextBlock Text="{Binding MissingCount, StringFormat='{}{0} 未到位'}" FontSize="11" Foreground="#4B5563" FontWeight="Bold"/>
+                                                        </StackPanel>
+                                                    </Border>
+
+                                                    <!-- 已松开标签 -->
+                                                    <Border Background="#FFF7ED" BorderThickness="0" CornerRadius="10" Padding="6,2" IsVisible="{Binding HasUnclamped}">
+                                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                                                            <TextBlock Text="🔓" FontSize="10"/>
+                                                            <TextBlock Text="{Binding UnclampedCount, StringFormat='{}{0} 已松开'}" FontSize="11" Foreground="#C2410C" FontWeight="Bold"/>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </StackPanel>
+
+                                                <!-- 料盒数量统计 -->
+                                                <TextBlock Grid.Column="3" Text="{Binding Magazines.Count, StringFormat='{}共 {0} 个'}" FontSize="12" Foreground="#9CA3AF" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Button>
+
+                                        <!-- 容器内的料盒横向卡片（对齐截图 / MapCell 布局） -->
+                                        <Border Grid.Row="1" BorderBrush="#F3F4F6" BorderThickness="0,1,0,0" Padding="8" IsVisible="{Binding IsExpanded}">
+                                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                                <ItemsControl ItemsSource="{Binding Magazines}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Horizontal" Spacing="12"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate x:DataType="vm:MagazineViewModel">
+
+                                                            <!-- 单个料盒卡片 -->
+                                                            <Border Width="170" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="6">
+                                                                <Grid RowDefinitions="Auto, Auto, Auto, *, Auto">
+
+                                                                    <!-- 1. 料盒名称 -->
+                                                                    <TextBlock Grid.Row="0" Text="{Binding Name}" FontWeight="Bold" FontSize="13"
+                                                                               Foreground="#1F2937" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+
+                                                                    <!-- 2. 物料状态徽章（报警/空料持续闪烁） -->
+                                                                    <Border Grid.Row="1" Background="#F3F4F6" BorderBrush="#E5E7EB" BorderThickness="1"
+                                                                            CornerRadius="12" Padding="8,3" HorizontalAlignment="Center" Margin="0,0,0,6"
+                                                                            IsVisible="{Binding HasSlotInfo}">
+                                                                        <Classes.materialStatusBlink>
+                                                                            <ReflectionBinding Path="ShouldFlashMaterialStatus"/>
+                                                                        </Classes.materialStatusBlink>
+                                                                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                                                            <TextBlock Text="{Binding MaterialStatusLabel}" FontSize="11" Foreground="#374151" FontWeight="SemiBold"/>
+                                                                            <Ellipse Width="8" Height="8">
+                                                                                <Ellipse.Styles>
+                                                                                    <Style Selector="Ellipse"><Setter Property="Fill" Value="#D1D5DB"/></Style>
+                                                                                    <Style Selector="Ellipse.dotFull"><Setter Property="Fill" Value="#10B981"/></Style>
+                                                                                    <Style Selector="Ellipse.dotHasMaterial"><Setter Property="Fill" Value="#3B82F6"/></Style>
+                                                                                    <Style Selector="Ellipse.dotAlarm"><Setter Property="Fill" Value="#F59E0B"/></Style>
+                                                                                    <Style Selector="Ellipse.dotEmpty"><Setter Property="Fill" Value="#EF4444"/></Style>
+                                                                                </Ellipse.Styles>
+                                                                                <Classes.dotFull><ReflectionBinding Path="IsMaterialStatusFull"/></Classes.dotFull>
+                                                                                <Classes.dotHasMaterial><ReflectionBinding Path="IsMaterialStatusHasMaterial"/></Classes.dotHasMaterial>
+                                                                                <Classes.dotAlarm><ReflectionBinding Path="IsMaterialStatusAlarm"/></Classes.dotAlarm>
+                                                                                <Classes.dotEmpty><ReflectionBinding Path="IsMaterialStatusEmpty"/></Classes.dotEmpty>
+                                                                            </Ellipse>
+                                                                        </StackPanel>
+                                                                    </Border>
+
+                                                                    <!-- 3. 槽位层级条 -->
+                                                                    <Border Grid.Row="3" Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1"
+                                                                            CornerRadius="4" Padding="4,2" IsVisible="{Binding HasSlotInfo}">
+                                                                        <ScrollViewer MaxHeight="140" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                                                            <ItemsControl ItemsSource="{Binding Slots}">
+                                                                                <ItemsControl.ItemTemplate>
+                                                                                    <DataTemplate x:DataType="vm:SlotViewModel">
+                                                                                        <Grid ColumnDefinitions="Auto, *">
+                                                                                            <TextBlock Grid.Column="0" Text="{Binding SlotIndex, StringFormat='{}{0:D2}'}"
+                                                                                                       FontSize="9" Foreground="#9CA3AF" VerticalAlignment="Center" Width="16"/>
+                                                                                            <Grid Grid.Column="1" Height="10" Margin="0,1" ToolTip.Tip="{Binding StatusDescription}">
+                                                                                                <Border CornerRadius="2" BorderThickness="1">
+                                                                                                    <Border.Styles>
+                                                                                                        <Style Selector="Border">
+                                                                                                            <Setter Property="Background" Value="#FFFFFF"/>
+                                                                                                            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+                                                                                                        </Style>
+                                                                                                        <Style Selector="Border.isFilled">
+                                                                                                            <Setter Property="Background" Value="#3B82F6"/>
+                                                                                                            <Setter Property="BorderBrush" Value="#2563EB"/>
+                                                                                                        </Style>
+                                                                                                        <Style Selector="Border.isMaterialAlarm">
+                                                                                                            <Setter Property="Background" Value="#F59E0B"/>
+                                                                                                            <Setter Property="BorderBrush" Value="#D97706"/>
+                                                                                                        </Style>
+                                                                                                        <Style Selector="Border.isDisabled">
+                                                                                                            <Setter Property="BorderBrush" Value="#9CA3AF"/>
+                                                                                                            <Setter Property="Background">
+                                                                                                                <Setter.Value>
+                                                                                                                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%" SpreadMethod="Repeat">
+                                                                                                                        <GradientStop Offset="0" Color="#E5E7EB"/>
+                                                                                                                        <GradientStop Offset="0.5" Color="#E5E7EB"/>
+                                                                                                                        <GradientStop Offset="0.501" Color="#D1D5DB"/>
+                                                                                                                        <GradientStop Offset="1" Color="#D1D5DB"/>
+                                                                                                                        <LinearGradientBrush.Transform>
+                                                                                                                            <ScaleTransform ScaleX="0.2" ScaleY="0.2"/>
+                                                                                                                        </LinearGradientBrush.Transform>
+                                                                                                                    </LinearGradientBrush>
+                                                                                                                </Setter.Value>
+                                                                                                            </Setter>
+                                                                                                        </Style>
+                                                                                                    </Border.Styles>
+                                                                                                    <Classes.isFilled><ReflectionBinding Path="IsFilled"/></Classes.isFilled>
+                                                                                                    <Classes.isMaterialAlarm><ReflectionBinding Path="IsMaterialAlarm"/></Classes.isMaterialAlarm>
+                                                                                                    <Classes.isDisabled><ReflectionBinding Path="IsDisabled"/></Classes.isDisabled>
+                                                                                                </Border>
+                                                                                            </Grid>
+                                                                                        </Grid>
+                                                                                    </DataTemplate>
+                                                                                </ItemsControl.ItemTemplate>
+                                                                            </ItemsControl>
+                                                                        </ScrollViewer>
+                                                                    </Border>
+
+                                                                    <!-- 3b. 抽检：到位 / 夹紧 -->
+                                                                    <Grid Grid.Row="2" ColumnDefinitions="*, *" HorizontalAlignment="Center" Margin="0,0,0,4"
+                                                                          IsVisible="{ReflectionBinding $parent[UserControl].DataContext.IsInspectWizardMode}">
+                                                                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,12,0">
+                                                                            <Ellipse Width="6" Height="6" Margin="0,0,4,0">
+                                                                                <Ellipse.Styles>
+                                                                                    <Style Selector="Ellipse"><Setter Property="Fill" Value="#D1D5DB"/></Style>
+                                                                                    <Style Selector="Ellipse.isOn"><Setter Property="Fill" Value="#10B981"/></Style>
+                                                                                </Ellipse.Styles>
+                                                                                <Classes.isOn><ReflectionBinding Path="IsPresent"/></Classes.isOn>
+                                                                            </Ellipse>
+                                                                            <TextBlock Text="到位" FontSize="11" Foreground="#4B5563"/>
+                                                                        </StackPanel>
+                                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                                            <Ellipse Width="6" Height="6" Margin="0,0,4,0">
+                                                                                <Ellipse.Styles>
+                                                                                    <Style Selector="Ellipse"><Setter Property="Fill" Value="#D1D5DB"/></Style>
+                                                                                    <Style Selector="Ellipse.isOn"><Setter Property="Fill" Value="#10B981"/></Style>
+                                                                                </Ellipse.Styles>
+                                                                                <Classes.isOn><ReflectionBinding Path="IsClamped"/></Classes.isOn>
+                                                                            </Ellipse>
+                                                                            <TextBlock Text="夹紧" FontSize="11" Foreground="#4B5563"/>
+                                                                        </StackPanel>
+                                                                    </Grid>
+
+                                                                    <!-- 4. 操作按钮 -->
+                                                                    <Grid Grid.Row="4" Margin="0,8,0,0">
+
+                                                                        <!-- 一键上料 -->
+                                                                        <Button Command="{ReflectionBinding $parent[UserControl].DataContext.LoadFeedMagazineCommand}"
+                                                                                CommandParameter="{Binding}"
+                                                                                Content="{Binding LoadActionButtonText}"
+                                                                                IsVisible="{ReflectionBinding $parent[UserControl].DataContext.IsLoadWizardMode}"
+                                                                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                                                                Foreground="#FFFFFF" BorderThickness="0"
+                                                                                CornerRadius="6" Padding="0,8" FontSize="12" FontWeight="Bold" Cursor="Hand">
+                                                                            <Button.Styles>
+                                                                                <Style Selector="Button">
+                                                                                    <Setter Property="Background" Value="#3B82F6"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button:disabled">
+                                                                                    <Setter Property="Background" Value="#D1D5DB"/>
+                                                                                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button.awaiting">
+                                                                                    <Setter Property="Background" Value="#7C3AED"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button.finished">
+                                                                                    <Setter Property="Background" Value="#10B981"/>
+                                                                                </Style>
+                                                                            </Button.Styles>
+                                                                            <Classes.awaiting><ReflectionBinding Path="IsLoadAwaitingConfirm"/></Classes.awaiting>
+                                                                            <Classes.finished><ReflectionBinding Path="IsLoadWorkflowFinished"/></Classes.finished>
+                                                                        </Button>
+
+                                                                        <!-- 一键下料 -->
+                                                                        <Button Command="{ReflectionBinding $parent[UserControl].DataContext.UnloadFeedMagazineCommand}"
+                                                                                CommandParameter="{Binding}"
+                                                                                Content="{Binding UnloadActionButtonText}"
+                                                                                IsVisible="{ReflectionBinding $parent[UserControl].DataContext.IsUnloadWizardMode}"
+                                                                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                                                                Foreground="#FFFFFF" BorderThickness="0"
+                                                                                CornerRadius="6" Padding="0,8" FontSize="12" FontWeight="Bold" Cursor="Hand">
+                                                                            <Button.Styles>
+                                                                                <Style Selector="Button">
+                                                                                    <Setter Property="Background" Value="#3B82F6"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button:disabled">
+                                                                                    <Setter Property="Background" Value="#D1D5DB"/>
+                                                                                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button.awaiting">
+                                                                                    <Setter Property="Background" Value="#7C3AED"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button.finished">
+                                                                                    <Setter Property="Background" Value="#10B981"/>
+                                                                                </Style>
+                                                                            </Button.Styles>
+                                                                            <Classes.awaiting><ReflectionBinding Path="IsUnloadAwaitingConfirm"/></Classes.awaiting>
+                                                                            <Classes.finished><ReflectionBinding Path="IsUnloadWorkflowFinished"/></Classes.finished>
+                                                                        </Button>
+
+                                                                        <!-- 一键抽检 -->
+                                                                        <Button Command="{ReflectionBinding $parent[UserControl].DataContext.InspectFeedMagazineCommand}"
+                                                                                CommandParameter="{Binding}"
+                                                                                Content="{Binding InspectActionButtonText}"
+                                                                                IsVisible="{ReflectionBinding $parent[UserControl].DataContext.IsInspectWizardMode}"
+                                                                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                                                                Foreground="#FFFFFF" BorderThickness="0"
+                                                                                CornerRadius="6" Padding="0,8" FontSize="12" FontWeight="Bold" Cursor="Hand">
+                                                                            <Button.Styles>
+                                                                                <Style Selector="Button">
+                                                                                    <Setter Property="Background" Value="#3B82F6"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button:disabled">
+                                                                                    <Setter Property="Background" Value="#D1D5DB"/>
+                                                                                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button.awaiting">
+                                                                                    <Setter Property="Background" Value="#7C3AED"/>
+                                                                                </Style>
+                                                                                <Style Selector="Button.finished">
+                                                                                    <Setter Property="Background" Value="#10B981"/>
+                                                                                </Style>
+                                                                            </Button.Styles>
+                                                                            <Classes.awaiting><ReflectionBinding Path="IsInspectAwaitingConfirm"/></Classes.awaiting>
+                                                                            <Classes.finished><ReflectionBinding Path="IsInspectWorkflowFinished"/></Classes.finished>
+                                                                        </Button>
+                                                                    </Grid>
+                                                                </Grid>
+                                                            </Border>
+
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <!-- 4. 底部退出栏 -->
+                <Border Grid.Row="3" Margin="0,16,0,0" Padding="0,16,0,0" BorderThickness="0,1,0,0" BorderBrush="#E5E7EB">
+                    <Button Content="退出" Command="{Binding CloseCommand}"
+                            HorizontalAlignment="Left"
+                            Background="Transparent" Foreground="#DC2626" BorderBrush="#DC2626" BorderThickness="1"
+                            Padding="16,8" CornerRadius="4" FontWeight="SemiBold" FontSize="13" Cursor="Hand"/>
+                </Border>
+            </Grid>
+
+            <!-- ================= 内嵌式防逃逸安全确认弹窗层 ================= -->
+            <Border Background="#99111827" CornerRadius="8" IsVisible="{Binding IsDialogOpen}">
+                <Border Background="#FFFFFF" CornerRadius="6" Width="400"
+                        VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Padding="24" BoxShadow="0 10 25 -5 #40000000">
+                    <StackPanel>
+                        <TextBlock Text="{Binding DialogTitle}" FontSize="18" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,12"/>
+                        <TextBlock Text="{Binding DialogMessage}" FontSize="14" Foreground="#4B5563" TextWrapping="Wrap" LineHeight="22" Margin="0,0,0,24"/>
+                        <Button Content="知道了" Command="{Binding CancelDialogCommand}"
+                                Background="#DC2626" Foreground="#FFFFFF" FontWeight="Bold" FontSize="14"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Padding="0,10" CornerRadius="4" Cursor="Hand"/>
+                    </StackPanel>
+                </Border>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

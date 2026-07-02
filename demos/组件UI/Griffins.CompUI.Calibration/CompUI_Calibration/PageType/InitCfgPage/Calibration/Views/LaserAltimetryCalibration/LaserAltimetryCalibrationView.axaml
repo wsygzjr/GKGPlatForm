@@ -1,0 +1,180 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.Calibration.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.Calibration.ViewModels"
+             x:DataType="vm:LaserAltimetryCalibrationViewModel"
+                   xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI" 
+                   xmlns:converters="clr-namespace:Griffins.CompUI.Calibration.Converters" 
+    x:Class="Griffins.CompUI.Calibration.Views.LaserAltimetryCalibrationView"
+     x:Name="RootControl"
+     >
+        
+        <!-- 实例化转换器（可自定义颜色） -->
+    <UserControl.Resources>
+        <ResourceDictionary>  
+            <!-- 自定义颜色转换器（True=蓝色，False=橙色） --> 
+            <converters:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter"/> 
+            
+            <!-- bool转换形状  -->
+            <converters:CustomBoolToGeometryConverter x:Key="CustomBoolToGeometryConverter"/>
+            <!--  string转换形状  -->
+            <converters:StringToGeometryConverter x:Key="StringToGeometryConverter"/>
+
+			<!-- 圆形图标路径（给 PathControl 用的 Geometry 字符串） -->
+			<x:String x:Key="IconPath_Circle">M25,7.5 A17.5,17.5 0 1 1 25,42.5 A17.5,17.5 0 1 1 25,7.5 Z</x:String>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+     
+     
+             <!--xyz坐标位置-->
+                <!-- 公共页面： XYZ坐标调整-->
+        <StackPanel Margin="0" HorizontalAlignment="Center"  MaxWidth="450" MinWidth="450"  >
+        
+            <!-- 2. 表单内容   -->
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto"
+                  RowSpacing="0"  HorizontalAlignment="Center"    >
+                <!-- X -->
+                 <custom:NumericControl
+                Grid.Row="0"  Grid.Column="0" 
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+			    Name="AxisCountViewModel1"
+			    LabelName="X(mm)"
+			    WidthLevel="Small1"  
+			    ViewModel="{Binding XViewModel}"
+			    />
+
+       
+                 <custom:NumericControl
+                Grid.Row="1"  Grid.Column="0" 
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" 
+			    LabelName="Y(mm)"
+			    WidthLevel="Small1"  
+			    ViewModel="{Binding YViewModel }"
+			    />
+                  <!-- Z --> 
+                 <custom:NumericControl
+                Grid.Row="2"  Grid.Column="0" 
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" 
+			    LabelName="Z(mm)"
+			    WidthLevel="Small1"  
+			    ViewModel="{Binding ZViewModel }"
+			    /> 
+                <!-- 阀 -->
+                <custom:ComboxControl   Grid.Row="3"  Grid.Column="0" 
+		            HorizontalAlignment="Center"
+                    VerticalAlignment="Center" 
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center" 
+		            LabelName="阀号选择"
+		            WidthLevel="Small1"
+		            ViewModel="{Binding ValveInfoModel }" />     
+
+                    <!-- 蘑菇头 --> 
+                 <custom:NumericControl
+                Grid.Row="4"  Grid.Column="0" 
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" 
+			    LabelName="蘑菇头限制高度"
+			    WidthLevel="Small1"  
+			    ViewModel="{Binding MushroomHeadLimitHightViewModel }"
+			    /> 
+             
+            </Grid>
+
+            <!-- 3. 按钮区  -->
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="0 0 0 0">
+                <Button 
+                    Content="教导" 
+                    Command="{Binding TeachCommand}"   Classes="btn"  />
+                 <!--相机到和针头到按钮-->
+                <Button 
+                    Content="{Binding MoveBtText}"   
+                    Command="{Binding MoveCommand}"  Classes="btn"   > 
+                </Button>
+            </StackPanel> 
+
+             <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*"
+                  RowSpacing="0"  HorizontalAlignment="Center"   > 
+
+              
+                   <!-- 阀测试按钮 -->
+                <Button Content="阀测试"  Grid.Row="0"  Grid.Column="0" 
+                        Command="{Binding ValveTestingCommand}"
+                    Classes="btn"  />
+
+                   <!--激光测高值（mm）  --> 
+               <custom:TextBlockControl
+                Grid.Row="1"  Grid.Column="0"  
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" 
+			    LabelName="激光测高值(mm)" 
+			    WidthLevel="Small1"  
+			    ViewModel="{Binding LaserHightViewModel , Mode=OneWay}"
+			    />  
+                 
+                <Border 
+                     Grid.Row="2"  Grid.Column="0" 
+                     BorderBrush="#CCCCCC" 
+                     BorderThickness="1"  Margin="4,2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                     CornerRadius="4" 
+                    >
+                     <Grid ColumnDefinitions="Auto,*"  >  
+                          <TextBlock Text="测高状态" 
+                                Classes="textBlock"  
+                                Grid.Column="0"
+                                VerticalAlignment="Center" /> 
+
+                            <Panel  
+                                Classes="contentControl" 
+                                Grid.Column="1" 
+                                HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                 
+                               <!-- 绑定字符串资源 + 转换器自动转 Geometry -->  
+                                  <custom:PathControl   
+										Width="43" Height="43" 
+										IconSize="30,30" 
+										IconData="{Binding Source={StaticResource IconPath_Circle}, 
+											Converter={StaticResource StringToGeometryConverter}}" 
+											
+										FillColor="{Binding HightState, 
+											Converter={StaticResource CustomBoolToColorConverter},
+											ConverterParameter='Green,Gray'}"  
+									/> 
+                            </Panel>
+                     </Grid> 
+	           </Border>  
+                  
+                <!-- 阀到平面距离偏差报警（mm） -->
+                 <custom:NumericControl
+                Grid.Row="3"  Grid.Column="0"  
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" 
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center" 
+			    LabelName="阀到平面距离偏差报警(mm)"
+			    WidthLevel="Small1"  
+			    ViewModel="{Binding ValveToPlaneDistanceDeviationAlarmViewModel}"
+			    />
+             
+               <!-- 蘑菇头标定补偿值（mm） -->
+             <custom:NumericControl
+             Grid.Row="4"  Grid.Column="0" 
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" 
+                         HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center" 
+                 LabelName="蘑菇头标定补偿值(mm)" 
+			    WidthLevel="Small1"  
+                 ViewModel="{Binding MushroomHeadCalibrationCompensationValueViewModel}"  />
+            </Grid> 
+
+        </StackPanel>
+  
+</UserControl>

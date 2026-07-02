@@ -1,0 +1,80 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GKG.Map.ProductionInformationFuncCtlMapCell.ViewModel"
+        xmlns:cv="using:GKG.Map.ProductionInformationFuncCtlMapCell.Convert"
+        x:Class="GKG.Map.ProductionInformationFuncCtlMapCell.View.MessageDialogView"
+        x:DataType="vm:MessageDialogViewModel"
+        x:CompileBindings="True"
+        Title="{Binding Title}"
+        Background="Transparent"
+        TransparencyLevelHint="Transparent"
+        SystemDecorations="None"
+        ShowInTaskbar="False">
+
+    <Grid Background="#66000000">
+        <Border MaxWidth="500" MinWidth="340" 
+                MinHeight="220"
+                Margin="20" 
+                Background="White" 
+                BorderBrush="#CCCCCC" BorderThickness="1"
+                CornerRadius="8"
+                BoxShadow="0 10 30 0 #40000000"
+                ClipToBounds="True"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Grid RowDefinitions="40, *, 60">
+                
+                <!-- 弹窗标题栏 -->
+                <Border Grid.Row="0" Background="#0078D4">
+                    <TextBlock Text="{Binding Title}" Foreground="White" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                </Border>
+
+                <!-- 弹窗主体内容区 -->
+                <Grid Grid.Row="1" ColumnDefinitions="Auto, *" Margin="25,20,25,10">
+                    <PathIcon Grid.Column="0" 
+                              Data="{Binding IconType, Converter={x:Static cv:IconTypeToGeometryConverter.Instance}}" 
+                              Foreground="{Binding IconType, Converter={x:Static cv:IconTypeToBrushConverter.Instance}}" 
+                              Width="48" Height="48" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                        <TextBlock Text="{Binding Message}" FontSize="16" Foreground="#333333" TextWrapping="Wrap" VerticalAlignment="Center" LineHeight="24"/>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- 底部交互动作区 -->
+                <Border Grid.Row="2" Background="#F4F7F9" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
+                    <Grid ColumnDefinitions="Auto, *">
+                        <TextBlock Grid.Column="0" Text="{Binding CurrentTime, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" Foreground="#888888" FontSize="13" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="15" Margin="0,0,15,0">
+
+                            <Button Content="{Binding ButtonContentYes}"
+                                    Command="{Binding YesCommand}"
+                                    IsVisible="{Binding IsYesVisible}"
+                                    IsDefault="True"
+                                    Width="90" Height="36"
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    Background="#0078D4" Foreground="White" Cursor="Hand" CornerRadius="4"/>
+
+                            <Button Content="{Binding ButtonContentOk}"
+                                    Command="{Binding OkCommand}"
+                                    IsVisible="{Binding IsOkVisible}"
+                                    IsDefault="True"
+                                    Width="90" Height="36"
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    Background="#0078D4" Foreground="White" Cursor="Hand" CornerRadius="4"/>
+
+                            <Button Content="{Binding ButtonContentNo}"
+                                    Command="{Binding NoCommand}"
+                                    IsVisible="{Binding IsNoVisible}"
+                                    IsCancel="True"
+                                    Width="90" Height="36"
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                    Background="White" BorderBrush="#CCCCCC" BorderThickness="1"
+                                    Foreground="#333333" Cursor="Hand" CornerRadius="4"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</Window>

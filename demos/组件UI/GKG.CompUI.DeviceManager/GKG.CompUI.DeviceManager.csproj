@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Company>GKG</Company>
+		<Copyright>Copyright © GKG 2026</Copyright>
+		<AssemblyVersion>7.1.0.0</AssemblyVersion>
+		<FileVersion>7.1.0.0</FileVersion>
+		<AssemblyTitle>GKG.CompUI.DeviceManager</AssemblyTitle>
+		<Product>GKG.CompUI.DeviceManager</Product>
+		<AssemblyName>GKG.CompUI.DeviceManager</AssemblyName>
+		<RootNamespace>GKG.CompUI.DeviceManager</RootNamespace>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<OutputPath>F:\Griffins7.1\Bin\Share\CompUI\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Griffins.ImeIOT.Map" Version="7.1.0">
+			<ExcludeAssets>runtime;native</ExcludeAssets>
+		</PackageReference>
+		<PackageReference Include="Griffins.PF.RichClient" Version="7.1.0">
+			<ExcludeAssets>runtime;native</ExcludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\Icons\*.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="DeviceManagerMachineModules">
+	    <HintPath>..\..\..\Griffins7.1\Bin\Share\ImeIOT\MM\DeviceManagerMachineModules.dll</HintPath>
+	    <Private>False</Private>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="CompUI_DeviceManager\ControlPanel\Views\ExecModePanelView.axaml.cs">
+			<DependentUpon>ExecModePanelView.axaml</DependentUpon>
+		</Compile>
+		<Compile Update="ResourceA.Designer.cs">
+			<DependentUpon>ResourceA.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="ResourceA.resx">
+			<LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+
+</Project>

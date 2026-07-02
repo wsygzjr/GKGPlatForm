@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.DeviceStatusFuncCtlMapCell.MapCell_DeviceStatus.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100"
+             x:DataType="vm:DeviceStatusViewModel"
+             x:Class="GKG.Map.DeviceStatusFuncCtlMapCell.MapCell_DeviceStatus.Views.DeviceStatusView">
+    <Design.DataContext>
+        <vm:DeviceStatusViewModel/>
+    </Design.DataContext>
+
+    <Border x:Name="OuterBorder"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Opacity="{Binding Opacity}"
+            IsVisible="{Binding IsVisible}"
+            Background="White"
+            BorderBrush="CornflowerBlue"
+            BorderThickness="1">
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,*">
+            <!-- Left: Image -->
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Background="ForestGreen" Padding="10">
+                <Image Source="{Binding CurrentImage}"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Width="40" Height="40"/>
+            </Border>
+
+            <!-- Top Right: Status Name -->
+            <TextBlock Grid.Row="0" Grid.Column="1"
+                       Text="{Binding StatusName}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"/>
+
+            <!-- Bottom Right: Device Status Value -->
+            <StackPanel Grid.Row="1" Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="5">
+                <TextBlock Text="{Binding DeviceStatusValue}"
+                           Foreground="ForestGreen"
+                           FontWeight="Bold"/>
+                <TextBlock Text="{Binding DeviceStatusUnit}"
+                           Margin="5,0,0,0"
+                           Foreground="ForestGreen"
+                           FontWeight="Bold"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

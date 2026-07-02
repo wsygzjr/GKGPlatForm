@@ -1,0 +1,144 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2025</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>GKG.Map.MapCell.Generic</AssemblyTitle>
+    <Product>GKG.Map.MapCell.Generic</Product>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Bin\Share\SubSysShare\Map\ControlMapCell\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="Control\MapCell_ComboBox\**" />
+    <AvaloniaXaml Remove="Control\MapCell_IconButton\**" />
+    <AvaloniaXaml Remove="Control\MapCell_Lable\**" />
+    <AvaloniaXaml Remove="Control\MapCell_Text_Button\**" />
+    <Compile Remove="Container\**" />
+    <Compile Remove="Control\MapCell_ComboBox\**" />
+    <Compile Remove="Control\MapCell_IconButton\**" />
+    <Compile Remove="Control\MapCell_Lable\**" />
+    <Compile Remove="Control\MapCell_Text_Button\**" />
+    <Compile Remove="MapCell_Combox\**" />
+    <Compile Remove="Control\MapCell_EditList\**" />
+    <Compile Remove="UI\**" />
+    <EmbeddedResource Remove="Container\**" />
+    <EmbeddedResource Remove="Control\MapCell_ComboBox\**" />
+    <EmbeddedResource Remove="Control\MapCell_IconButton\**" />
+    <EmbeddedResource Remove="Control\MapCell_Lable\**" />
+    <EmbeddedResource Remove="Control\MapCell_Text_Button\**" />
+    <EmbeddedResource Remove="MapCell_Combox\**" />
+    <EmbeddedResource Remove="Control\MapCell_EditList\**" />
+    <EmbeddedResource Remove="UI\**" />
+    <None Remove="Container\**" />
+    <None Remove="Control\MapCell_ComboBox\**" />
+    <None Remove="Control\MapCell_IconButton\**" />
+    <None Remove="Control\MapCell_Lable\**" />
+    <None Remove="Control\MapCell_Text_Button\**" />
+    <None Remove="MapCell_Combox\**" />
+    <None Remove="Control\MapCell_EditList\**" />
+    <None Remove="UI\**" />
+  </ItemGroup>
+  <ItemGroup>
+	  <PackageReference Include="Griffins.ImeIOT" Version="7.1.0" />
+	  <PackageReference Include="Griffins.Map.UI" Version="7.1.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+    <PackageReference Include="Griffins.Map2" Version="7.1.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Griffins.PF.RichClient" Version="7.1.0" />
+    <PackageReference Include="Griffins.UI2" Version="7.1.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.JsonG.ConvertExtensions" Version="7.1.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Avalonia" Version="11.3.3">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ImageUiMapPropertyEditor.cs" />
+    <Compile Remove="MapCell_ImageCtl\MapCellImageCtlDesigntime.cs" />
+    <Compile Remove="MapCell_ImageCtl\MapCellImageCtlObj.cs" />
+    <Compile Remove="MapCell_ImageCtl\MapCellImageCtl_AMain.cs" />
+    <Compile Remove="MapCell_ImageCtl\UCtCellImageCtlView.cs" />
+    <Compile Remove="MapCell_ImageCtl\UCtCellImageCtlView.designer.cs" />
+    <Compile Remove="MapCell_ImageListCtl\FormImages.cs" />
+    <Compile Remove="MapCell_ImageListCtl\FormImages.designer.cs" />
+    <Compile Remove="MapCell_ImageListCtl\ImageListUiMapPropertyEditor.cs" />
+    <Compile Remove="MapCell_ImageListCtl\ImgKeySelUiMapPropertyEditor.cs" />
+    <Compile Remove="MapCell_ImageListCtl\MapCellImageListCtlDesigntime.cs" />
+    <Compile Remove="MapCell_ImageListCtl\MapCellImageListCtlObj.cs" />
+    <Compile Remove="MapCell_ImageListCtl\MapCellImageListCtl_AMain.cs" />
+    <Compile Remove="MapCell_ImageListCtl\UCtCellImageListCtlView.cs" />
+    <Compile Remove="MapCell_ImageListCtl\UCtCellImageListCtlView.designer.cs" />
+    <Compile Remove="MapCell_NumUpDown\MapCellNumUpDownCtlDesigntime.cs" />
+    <Compile Remove="MapCell_NumUpDown\MapCellNumUpDownCtlObj.cs" />
+    <Compile Remove="MapCell_NumUpDown\MapCellNumUpDownCtl_AMain.cs" />
+    <Compile Remove="MapCell_NumUpDown\UCtCellNumUpDownCtlView.cs" />
+    <Compile Remove="MapCell_NumUpDown\UCtCellNumUpDownCtlView.designer.cs" />
+    <Compile Remove="MapCell_ObjectValueView\MapCellObjectValueViewDesigntime.cs" />
+    <Compile Remove="MapCell_ObjectValueView\MapCellObjectValueViewObj.cs" />
+    <Compile Remove="MapCell_ObjectValueView\MapCellObjectValueView_AMain.cs" />
+    <Compile Remove="MapCell_ObjectValueView\UCtCellObjectValueView.cs" />
+    <Compile Remove="MapCell_ObjectValueView\UCtCellObjectValueView.designer.cs" />
+    <Compile Remove="MapCell_Slider\MapCellSliderDesigntime.cs" />
+    <Compile Remove="MapCell_Slider\MapCellSliderObj.cs" />
+    <Compile Remove="MapCell_Slider\MapCellSlider_Main.cs" />
+    <Compile Remove="MapCell_Slider\UCtCellSliderView.cs" />
+    <Compile Remove="MapCell_Slider\UCtCellSliderView.designer.cs" />
+    <EmbeddedResource Remove="MapCell_ImageCtl\UCtCellImageCtlView.resx" />
+    <EmbeddedResource Remove="MapCell_ImageListCtl\UCtCellImageListCtlView.resx" />
+    <EmbeddedResource Remove="MapCell_NumUpDown\UCtCellNumUpDownCtlView.resx" />
+    <EmbeddedResource Remove="MapCell_ObjectValueView\UCtCellObjectValueView.resx" />
+    <EmbeddedResource Remove="MapCell_Slider\UCtCellSliderView.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="s4q3x0kr.mad~" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\Images\ctr-*.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Control\MapCell_Lable_New\Resource_Lable.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource_Lable.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Control\MapCell_Link\Views\LinkView.axaml.cs">
+      <DependentUpon>LinkView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceA.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Control\MapCell_Lable_New\Resource_Lable.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource_Lable.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>GKG.Map.MapCell.Generic.Control.Lable</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ResourceA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Control\MapCell_ComboBox_New\MapOprtCellParamCfgView\" />
+    <Folder Include="Control\MapCell_ComboBox_New\Models\" />
+    <Folder Include="Control\MapCell_IconButton_New\MapOprtCellParamCfgView\" />
+    <Folder Include="Control\MapCell_IconButton_New\Models\" />
+  </ItemGroup>
+	
+</Project>

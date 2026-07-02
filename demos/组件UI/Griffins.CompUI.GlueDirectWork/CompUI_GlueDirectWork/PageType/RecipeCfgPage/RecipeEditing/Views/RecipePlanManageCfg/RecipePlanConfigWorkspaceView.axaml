@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="620"
+             xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+             xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.RecipePlanWorkspaces"
+             x:DataType="vm:RecipePlanConfigWorkspaceViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.RecipePlanWorkspaces.RecipePlanConfigWorkspaceView">
+
+    <TabControl TabStripPlacement="Left"
+                ItemsSource="{Binding PlanTabs}"
+                SelectedItem="{Binding SelectedPlanTab, Mode=TwoWay}">
+        <TabControl.ItemTemplate>
+            <DataTemplate DataType="vm:RecipePlanConfigTabViewModel">
+                <TextBlock Text="{Binding PlanName}" Margin="8,6" />
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+            <DataTemplate DataType="vm:RecipePlanConfigTabViewModel">
+                <Grid RowDefinitions="Auto,8,*" ColumnDefinitions="230,8,*">
+                    <Border Grid.Row="0"
+                            Grid.ColumnSpan="3"
+                            Background="#DCE9EF"
+                            BorderBrush="#C8DCE6"
+                            BorderThickness="1"
+                            CornerRadius="2"
+                            Padding="0,8">
+                        <TextBlock Text="{Binding PlanName}"
+                                   FontSize="36"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Border>
+
+                    <Border Grid.Row="2"
+                            Grid.Column="0"
+                            BorderBrush="#D0D0D0"
+                            BorderThickness="1"
+                            Padding="8"
+                            Background="#DCE9EF">
+                        <TreeView ItemsSource="{Binding RootNodes}"
+                                  SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
+                            <TreeView.Styles>
+                                <Style Selector="TreeViewItem">
+                                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                                </Style>
+                            </TreeView.Styles>
+                            <TreeView.ItemTemplate>
+                                <TreeDataTemplate ItemsSource="{Binding Children}">
+                                    <TextBlock Text="{Binding Name}" />
+                                </TreeDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
+                    </Border>
+
+                    <Border Grid.Row="2"
+                            Grid.Column="2"
+                            BorderBrush="#D0D0D0"
+                            BorderThickness="1"
+                            Padding="12"
+                            Background="#FFFFFF">
+                        <ContentControl Content="{Binding SelectedWorkspace}">
+                            <ContentControl.DataTemplates>
+                                <DataTemplate DataType="vm:RecipePlanBoardPlaceholderViewModel">
+                                    <TextBlock Text="整板 工作区占位" FontSize="20" FontWeight="SemiBold" />
+                                </DataTemplate>
+                                <DataTemplate DataType="vm:RecipePlanAreaConfigWorkspaceViewModel">
+                                    <views:RecipePlanAreaConfigWorkspaceView />
+                                </DataTemplate>
+                                <DataTemplate DataType="vm:RecipePlanSubAreaConfigPlaceholderViewModel">
+                                    <TextBlock Text="子区域配置 工作区占位" FontSize="20" FontWeight="SemiBold" />
+                                </DataTemplate>
+                                <DataTemplate DataType="vm:RecipePlanTemplateConfigPlaceholderViewModel">
+                                    <TextBlock Text="模板配置 工作区占位" FontSize="20" FontWeight="SemiBold" />
+                                </DataTemplate>
+                                <DataTemplate DataType="vm:RecipePlanBlockConfigWorkspaceViewModel">
+                                    <views:RecipePlanBlockConfigWorkspaceView />
+                                </DataTemplate>
+                                <DataTemplate DataType="vm:RecipePlanNodeFallbackPlaceholderViewModel">
+                                    <TextBlock Text="{Binding NodeName}" FontSize="20" FontWeight="SemiBold" />
+                                </DataTemplate>
+                            </ContentControl.DataTemplates>
+                        </ContentControl>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
+
+</UserControl>

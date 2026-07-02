@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.Calibration.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.Calibration.ViewModels"
+             x:DataType="vm:OffsetCalibrationViewModel"
+             x:Class="Griffins.CompUI.Calibration.Views.OffsetCalibrationView">
+
+        <TabControl Margin="0" TabStripPlacement="Top"  BorderBrush="#CCCCCC" BorderThickness="1.5"   MaxWidth="450" MinWidth="450" >
+            <TabItem Header="相机Vs胶阀">
+                <views:CameraVsGluevalveView 
+                    DataContext="{Binding CameraVsGluevalve}" 
+                  />
+            </TabItem>
+
+            <TabItem Header="相机Vs激光">
+                <views:CameraVsLaserView 
+                    DataContext="{Binding CameraVsLaser}" 
+                  />
+            </TabItem>
+        </TabControl>
+</UserControl>

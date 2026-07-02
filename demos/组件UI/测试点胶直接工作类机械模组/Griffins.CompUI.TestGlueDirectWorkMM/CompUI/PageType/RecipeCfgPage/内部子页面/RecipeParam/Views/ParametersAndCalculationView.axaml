@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels"
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:ParametersAndCalculationViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.ParametersAndCalculationView">
+
+	    <TabControl Margin="5" TabStripPlacement="Top"  BorderBrush="#CCCCCC" BorderThickness="1.5"  >
+
+            <TabItem Header="基本参数"> 
+                <views:BasicParametersView  BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    DataContext="{Binding BasicParametersViewModel}" 
+                    Margin="2"/>
+            </TabItem>
+            
+            <TabItem Header="样式"> 
+                <views:GlueDispensingStyleCfgView  BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    DataContext="{Binding GlueDispensingStyleCfgViewModel}" 
+                    Margin="2"/>
+            </TabItem>  
+            <TabItem Header="模板"> 
+                <views:TemplateCfgListView  BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    DataContext="{Binding TemplateCfgListViewModel}" 
+                    Margin="2"/>
+            </TabItem>
+
+            <TabItem Header="区域">  
+                 <views:AreaConfigView  HorizontalAlignment="Left"
+                    DataContext="{Binding AreaConfigViewModel}" 
+                    Margin="2"  BorderBrush="#CCCCCC" BorderThickness="1.5"  />
+            </TabItem>
+            <TabItem Header="方案"> 
+                 <views:PlanConfigView  HorizontalAlignment="Left"
+                    DataContext="{Binding PlanConfigViewModel}" 
+                    Margin="2"  BorderBrush="#CCCCCC" BorderThickness="1.5"   /> 
+            </TabItem>  
+
+            <TabItem Header="基准点参数配置">   
+                <views:DatumPointConfigInfoView  BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    DataContext="{Binding DatumPointConfigInfoViewModel}" 
+                    Margin="2"  Width="1830" Height="763"  />
+            </TabItem>
+        </TabControl>
+
+
+</UserControl>

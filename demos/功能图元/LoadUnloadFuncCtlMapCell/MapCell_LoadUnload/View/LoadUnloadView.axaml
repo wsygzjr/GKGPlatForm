@@ -1,0 +1,333 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:GKG.Map.LoadUnloadFuncCtlMapCell.ViewModels"
+             x:Class="GKG.Map.LoadUnloadFuncCtlMapCell.Views.LoadUnloadView"
+             x:DataType="vm:LoadUnloadViewModel">
+
+    <UserControl.Styles>
+        <!-- 离线状态：料盒整体变灰半透明，视觉降级 -->
+        <Style Selector="Border.magMissing">
+            <Setter Property="Opacity" Value="0.4"/>
+        </Style>
+    </UserControl.Styles>
+
+    <!-- 顶层主窗体边界 -->
+    <Border Background="#FFFFFF" CornerRadius="8" Padding="8" BorderBrush="#E5E7EB" BorderThickness="1" BoxShadow="0 2 10 0 #10000000">
+        <Grid RowDefinitions="Auto, *">
+
+            <!-- ================= 头部：标题与全局操作 ================= -->
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto, Auto" Margin="0,0,0,8">
+
+                <!-- 标题与展开操作 -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <!-- 矢量替换: 监控柜图标 -->
+                    <Viewbox Width="18" Height="18" Margin="0,0,6,0" VerticalAlignment="Center">
+                        <Path Fill="#4B5563" Data="M4,2H20A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2M4,4V10H20V4H4M4,12V20H20V12H4M10,6H14V8H10V6M10,14H14V16H10V14Z"/>
+                    </Viewbox>
+                    <TextBlock Text="料盒实时监控" FontSize="15" FontWeight="Bold" Foreground="#1F2937" Margin="0,0,16,0" VerticalAlignment="Center"/>
+
+                    <Button Command="{Binding ToggleAllContainersCommand}"
+                            Background="#F9FAFB" BorderBrush="#E5E7EB" BorderThickness="1"
+                            CornerRadius="4" Padding="8,4" Cursor="Hand"
+                            ToolTip.Tip="一键展开或折叠所有容器区域"
+                            VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                            <!-- 矢量替换: 上下展开折叠图标 -->
+                            <Viewbox Width="12" Height="12" VerticalAlignment="Center">
+                                <Path Fill="#6B7280" Data="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"/>
+                            </Viewbox>
+                            <TextBlock Text="展开/折叠" FontSize="11" Foreground="#4B5563" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
+
+                    <Button Command="{Binding LoadCommand}"
+                            Background="#10B981" Foreground="#FFFFFF"
+                            BorderThickness="0" CornerRadius="4"
+                            Padding="10,4" Cursor="Hand"
+                            ToolTip.Tip="向系统下发全局自动上料指令">
+                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                            <!-- 矢量替换: 上料/载入图标 -->
+                            <Viewbox Width="14" Height="14" VerticalAlignment="Center">
+                                <Path Fill="#FFFFFF" Data="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
+                            </Viewbox>
+                            <TextBlock Text="上料一次" FontSize="11" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding UnloadCommand}"
+                            Background="#3B82F6" Foreground="#FFFFFF"
+                            BorderThickness="0" CornerRadius="4"
+                            Padding="10,4" Cursor="Hand"
+                            ToolTip.Tip="向系统下发全局自动下料指令">
+                        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                            <!-- 矢量替换: 下料/排出图标 -->
+                            <Viewbox Width="14" Height="14" VerticalAlignment="Center">
+                                <Path Fill="#FFFFFF" Data="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"/>
+                            </Viewbox>
+                            <TextBlock Text="下料一次" FontSize="11" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+                <!-- 快速定位导航 -->
+                <ComboBox Grid.Column="2"
+                          ItemsSource="{Binding StorageContainers}"
+                          PlaceholderText="快速定位容器..."
+                          Width="160" Height="28" FontSize="12" CornerRadius="4"
+                          VerticalAlignment="Center" Margin="0,0,16,0"
+                          SelectionChanged="OnQuickNavSelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:StorageContainerViewModel">
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!-- 状态图例 -->
+                <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                        <Border Width="14" Height="8" Background="#3B82F6" BorderBrush="#2563EB" BorderThickness="1" CornerRadius="2"/>
+                        <TextBlock Text="有料" FontSize="11" Foreground="#6B7280"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                        <Border Width="14" Height="8" Background="#F8FAFC" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="2"/>
+                        <TextBlock Text="空槽" FontSize="11" Foreground="#6B7280"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                        <Border Width="14" Height="8" BorderBrush="#9CA3AF" BorderThickness="1" CornerRadius="2">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%" SpreadMethod="Repeat">
+                                    <GradientStop Offset="0" Color="#E5E7EB"/>
+                                    <GradientStop Offset="0.5" Color="#E5E7EB"/>
+                                    <GradientStop Offset="0.501" Color="#D1D5DB"/>
+                                    <GradientStop Offset="1" Color="#D1D5DB"/>
+                                    <LinearGradientBrush.Transform>
+                                        <ScaleTransform ScaleX="0.2" ScaleY="0.2"/>
+                                    </LinearGradientBrush.Transform>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="禁用" FontSize="11" Foreground="#6B7280"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- ================= 主体：容器列表 ================= -->
+            <ScrollViewer x:Name="MainScrollViewer" Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                <ItemsControl x:Name="ContainersItemsControl" ItemsSource="{Binding StorageContainers}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" Spacing="12"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:StorageContainerViewModel">
+                            <Border Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" BoxShadow="0 4 6 -1 #0A000000">
+                                <Grid RowDefinitions="Auto, Auto">
+
+                                    <!-- 容器标题栏 (支持折叠点击) -->
+                                    <Button Grid.Row="0" Command="{Binding ToggleExpandCommand}"
+                                            Background="Transparent" BorderThickness="0" Padding="12,8"
+                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                                        <Grid ColumnDefinitions="Auto, *, Auto, Auto">
+
+                                            <!-- 矢量替换: 折叠/展开箭头 -->
+                                            <Grid Grid.Column="0" Margin="0,0,8,0" VerticalAlignment="Center">
+                                                <Viewbox Width="14" Height="14" IsVisible="{Binding IsExpanded}">
+                                                    <Path Fill="#6B7280" Data="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                                                </Viewbox>
+                                                <Viewbox Width="14" Height="14" IsVisible="{Binding !IsExpanded}">
+                                                    <Path Fill="#6B7280" Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                                                </Viewbox>
+                                            </Grid>
+
+                                            <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="14" FontWeight="SemiBold" Foreground="#374151" VerticalAlignment="Center"/>
+
+                                            <!-- 容器异常状态冒泡 -->
+                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" Margin="0,0,12,0" VerticalAlignment="Center">
+
+                                                <!-- 未到位 -->
+                                                <Border Background="#F3F4F6" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="12" Padding="8,2" IsVisible="{Binding HasMissing}">
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                                                        <!-- 矢量替换: 料盒箱子图标 -->
+                                                        <Viewbox Width="12" Height="12" VerticalAlignment="Center">
+                                                            <Path Fill="#6B7280" Data="M21 16.5C21 16.88 20.79 17.21 20.47 17.38L12.57 21.82C12.41 21.94 12.21 22 12 22C11.79 22 11.59 21.94 11.43 21.82L3.53 17.38C3.21 17.21 3 16.88 3 16.5V7.5C3 7.12 3.21 6.79 3.53 6.62L11.43 2.18C11.59 2.06 11.79 2 12 2C12.21 2 12.41 2.06 12.57 2.18L20.47 6.62C20.79 6.79 21 7.12 21 7.5V16.5M12 4.15L6.04 7.5L12 10.85L17.96 7.5L12 4.15M5 15.91L11 19.29V12.58L5 9.21V15.91M19 15.91V9.21L13 12.58V19.29L19 15.91Z"/>
+                                                        </Viewbox>
+                                                        <TextBlock Text="{Binding MissingCount, StringFormat='{}{0} 未到位'}" FontSize="11" Foreground="#6B7280" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Border>
+
+                                                <!-- 未夹紧 -->
+                                                <Border Background="#FFF7ED" BorderBrush="#FED7AA" BorderThickness="1" CornerRadius="12" Padding="8,2" IsVisible="{Binding HasUnclamped}">
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                                                        <!-- 矢量替换: 扳手/工具图标 -->
+                                                        <Viewbox Width="12" Height="12" VerticalAlignment="Center">
+                                                            <Path Fill="#EA580C" Data="M22.7 19L13.6 9.9C14.1 8 13.6 6 12.5 4.8C10.4 2.7 7.3 2.4 5 3.9L8.2 7.1L7.1 8.2L3.9 5C2.4 7.3 2.7 10.4 4.8 12.5C6 13.6 8 14.1 9.9 13.6L19 22.7C19.5 23.2 20.3 23.2 20.8 22.7L22.7 20.8C23.2 20.3 23.2 19.5 22.7 19Z"/>
+                                                        </Viewbox>
+                                                        <TextBlock Text="{Binding UnclampedCount, StringFormat='{}{0} 未夹紧'}" FontSize="11" Foreground="#EA580C" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Border>
+
+                                                <!-- NG物料干预 -->
+                                                <Border Background="#FEE2E2" BorderBrush="#FECACA" BorderThickness="1" CornerRadius="12" Padding="8,2" IsVisible="{Binding HasAlert}">
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="4">
+                                                        <!-- 矢量替换: 异常警告图标 -->
+                                                        <Viewbox Width="12" Height="12" VerticalAlignment="Center">
+                                                            <Path Fill="#DC2626" Data="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"/>
+                                                        </Viewbox>
+                                                        <TextBlock Text="NG异常" FontSize="11" Foreground="#DC2626" FontWeight="Bold" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Border>
+
+                                            </StackPanel>
+
+                                            <!-- 料盒数量统计 -->
+                                            <TextBlock Grid.Column="3" Text="{Binding Magazines.Count, StringFormat='{}共 {0} 个'}" FontSize="12" Foreground="#9CA3AF" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Button>
+
+                                    <!-- 容器内容区：料盒列表 -->
+                                    <Border Grid.Row="1" BorderBrush="#F3F4F6" BorderThickness="0,1,0,0" Padding="8" IsVisible="{Binding IsExpanded}">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                            <ItemsControl ItemsSource="{Binding Magazines}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal" Spacing="12"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate x:DataType="vm:MagazineViewModel">
+
+                                                        <!-- 单个料盒卡片 -->
+                                                        <Border Width="170" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="6">
+                                                            <Grid RowDefinitions="Auto, *, Auto">
+
+                                                                <!-- 1. 名称与物理传感器灯 -->
+                                                                <Grid Grid.Row="0" RowDefinitions="Auto, Auto" Margin="0,0,0,6">
+                                                                    <TextBlock Grid.Row="0" Text="{Binding Name}" FontWeight="Bold" FontSize="13" Foreground="#1F2937" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+
+                                                                    <Grid Grid.Row="1" ColumnDefinitions="*, *" HorizontalAlignment="Center">
+                                                                        <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,12,0">
+                                                                            <Ellipse Width="6" Height="6" Margin="0,0,4,0">
+                                                                                <Ellipse.Styles>
+                                                                                    <Style Selector="Ellipse"><Setter Property="Fill" Value="#D1D5DB"/></Style>
+                                                                                    <Style Selector="Ellipse.isOn"><Setter Property="Fill" Value="#10B981"/></Style>
+                                                                                </Ellipse.Styles>
+                                                                                <Classes.isOn><ReflectionBinding Path="IsPresent"/></Classes.isOn>
+                                                                            </Ellipse>
+                                                                            <TextBlock Text="到位" FontSize="11" Foreground="#4B5563"/>
+                                                                        </StackPanel>
+
+                                                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                                            <Ellipse Width="6" Height="6" Margin="0,0,4,0">
+                                                                                <Ellipse.Styles>
+                                                                                    <Style Selector="Ellipse"><Setter Property="Fill" Value="#D1D5DB"/></Style>
+                                                                                    <Style Selector="Ellipse.isOn"><Setter Property="Fill" Value="#10B981"/></Style>
+                                                                                </Ellipse.Styles>
+                                                                                <Classes.isOn><ReflectionBinding Path="IsClamped"/></Classes.isOn>
+                                                                            </Ellipse>
+                                                                            <TextBlock Text="夹紧" FontSize="11" Foreground="#4B5563"/>
+                                                                        </StackPanel>
+                                                                    </Grid>
+                                                                </Grid>
+
+                                                                <!-- 2. 层级物理映射视图 -->
+                                                                <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="4" Padding="4,2">
+                                                                    <!-- 限定最大高度，防止层数太多导致卡片变形 -->
+                                                                    <Classes.magMissing>
+                                                                        <ReflectionBinding Path="!IsPresent"/>
+                                                                    </Classes.magMissing>
+                                                                    <ScrollViewer MaxHeight="140" VerticalScrollBarVisibility="Auto" Padding="0,0,6,0">
+                                                                        <ItemsControl ItemsSource="{Binding Layers}">
+                                                                            <ItemsControl.ItemTemplate>
+                                                                                <DataTemplate x:DataType="vm:LayerViewModel">
+                                                                                    <Grid ColumnDefinitions="Auto, *">
+                                                                                        <TextBlock Grid.Column="0" Text="{Binding LayerIndex, StringFormat='{}{0:D2}'}"
+                                                                                                   FontSize="9" Foreground="#9CA3AF" VerticalAlignment="Center" Width="16"/>
+
+                                                                                        <Grid Grid.Column="1" Height="10" Margin="0,1" ToolTip.Tip="{Binding StatusDescription}">
+                                                                                            <Border CornerRadius="1" BorderThickness="1">
+                                                                                                <Border.Styles>
+                                                                                                    <Style Selector="Border">
+                                                                                                        <Setter Property="Background" Value="#F8FAFC"/>
+                                                                                                        <Setter Property="BorderBrush" Value="#D1D5DB"/>
+                                                                                                    </Style>
+                                                                                                    <Style Selector="Border.isOccupied">
+                                                                                                        <Setter Property="Background" Value="#3B82F6"/>
+                                                                                                        <Setter Property="BorderBrush" Value="#2563EB"/>
+                                                                                                    </Style>
+                                                                                                    <Style Selector="Border.isDisabled">
+                                                                                                        <Setter Property="BorderBrush" Value="#9CA3AF"/>
+                                                                                                        <Setter Property="Background">
+                                                                                                            <Setter.Value>
+                                                                                                                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%" SpreadMethod="Repeat">
+                                                                                                                    <GradientStop Offset="0" Color="#E5E7EB"/>
+                                                                                                                    <GradientStop Offset="0.5" Color="#E5E7EB"/>
+                                                                                                                    <GradientStop Offset="0.501" Color="#D1D5DB"/>
+                                                                                                                    <GradientStop Offset="1" Color="#D1D5DB"/>
+                                                                                                                    <LinearGradientBrush.Transform>
+                                                                                                                        <ScaleTransform ScaleX="0.2" ScaleY="0.2"/>
+                                                                                                                    </LinearGradientBrush.Transform>
+                                                                                                                </LinearGradientBrush>
+                                                                                                            </Setter.Value>
+                                                                                                        </Setter>
+                                                                                                    </Style>
+                                                                                                </Border.Styles>
+
+                                                                                                <Classes.isOccupied><ReflectionBinding Path="IsOccupied"/></Classes.isOccupied>
+                                                                                                <Classes.isDisabled><ReflectionBinding Path="IsDisabled"/></Classes.isDisabled>
+                                                                                            </Border>
+                                                                                        </Grid>
+                                                                                    </Grid>
+                                                                                </DataTemplate>
+                                                                            </ItemsControl.ItemTemplate>
+                                                                        </ItemsControl>
+                                                                    </ScrollViewer>
+                                                                </Border>
+
+                                                                <!-- 3. 操作按钮区 -->
+                                                                <Grid Grid.Row="2" ColumnDefinitions="*, 6, *" Margin="0,8,0,0">
+
+                                                                    <!-- 夹紧按钮 -->
+                                                                    <Button Grid.Column="0" Content="夹紧"
+                                                                            Command="{ReflectionBinding $parent[UserControl].DataContext.ClampMagazineCommand}"
+                                                                            CommandParameter="{Binding}"
+                                                                            IsEnabled="{Binding CanClamp}"
+                                                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                                                            Background="#EEF2FF" Foreground="#4F46E5" BorderBrush="#C7D2FE" BorderThickness="1"
+                                                                            FontSize="11" Padding="0,6" Cursor="Hand"/>
+
+                                                                    <!-- 松开按钮 -->
+                                                                    <Button Grid.Column="2" Content="松开"
+                                                                            Command="{ReflectionBinding $parent[UserControl].DataContext.UnclampMagazineCommand}"
+                                                                            CommandParameter="{Binding}"
+                                                                            IsEnabled="{Binding CanUnclamp}"
+                                                                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                                                                            Background="#FFFBEB" Foreground="#D97706" BorderBrush="#FDE68A" BorderThickness="1"
+                                                                            FontSize="11" Padding="0,6" Cursor="Hand"/>
+                                                                </Grid>
+
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </Border>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </Grid>
+    </Border>
+</UserControl>

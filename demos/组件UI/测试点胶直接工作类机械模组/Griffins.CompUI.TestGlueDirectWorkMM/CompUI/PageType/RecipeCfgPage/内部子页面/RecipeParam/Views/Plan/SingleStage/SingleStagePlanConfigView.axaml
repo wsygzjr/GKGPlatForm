@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Plan"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:SingleStagePlanConfigViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.SingleStagePlanConfigView">
+
+   
+   <!--  单段流程 -->
+   
+       <TabControl Margin="2" TabStripPlacement="Top"  HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#CCCCCC" BorderThickness="1.5"  Height="690" Width="1466"  >
+
+            <TabItem Header="Mark设置">  
+                  <views:MarkConfigView  HorizontalAlignment="Left" VerticalAlignment="Top"
+                    DataContext="{Binding MarkConfigViewModel}" 
+                    Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5"    Height="634" /> 
+            </TabItem>
+            
+            <TabItem Header="流程制作"> 
+                <views:PlanAreaListView  BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    DataContext="{Binding PlanAreaListViewModel}" 
+                    Margin="0"    Width="1460" Height="634" />
+            </TabItem>   
+        </TabControl> 
+</UserControl>

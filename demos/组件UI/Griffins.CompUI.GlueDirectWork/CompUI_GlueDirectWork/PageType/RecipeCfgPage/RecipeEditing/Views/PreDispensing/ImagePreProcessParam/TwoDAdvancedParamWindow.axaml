@@ -1,0 +1,158 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:dispensingpagetype="using:DispensingPageType.Views.General.Control"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:views="using:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+		xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+		x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.TwoDAdvancedParamWindow"
+		x:DataType="vm:TwoDAdvancedParamWindowViewModel"
+		xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+		xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+		Title="">
+	<!-- 2D高级参数设置弹窗界面View -->
+	<!-- 弹窗右边的滚动条 -->
+	<ScrollViewer VerticalScrollBarVisibility="Auto"
+				  HorizontalScrollBarVisibility="Disabled" BorderThickness="3">
+		<Grid RowDefinitions="50,350,200" ColumnDefinitions="800">
+			<TextBlock Text="2D高级参数" FontSize="20" Background="Gray" Foreground="Black" TextAlignment="Center" Padding="0 10 0 0" Grid.Row="0" Grid.Column="0"></TextBlock>
+			<!-- 整体水平排列 有两列垂直排列 -->
+			<StackPanel Orientation="Horizontal" Margin="60 10 0 0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">
+				<!-- 第一列垂直排列：2D高级参数 -->
+				<StackPanel Orientation="Vertical" Spacing="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<!-- 滑动数字输入框：SelShapeMin -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="SelShapeMin "
+					WidthLevel="Medium"
+					ViewModel="{Binding SelShapeMinViewModel}"
+					/>
+					<!-- 滑动数字输入框：焊盘间隔消除大小 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="焊盘间隔消除大小 "
+					WidthLevel="Medium"
+					ViewModel="{Binding PadGapEliminateSizeViewModel}"
+					/>
+					<!-- 滑动数字输入框：最小阈值 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="最小阈值 "
+					WidthLevel="Medium"
+					ViewModel="{Binding MinimumThresholdViewModel}"
+					/>
+					<!-- 滑动数字输入框：X核 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="X核 "
+					WidthLevel="Medium"
+					ViewModel="{Binding XKernelViewModel}"
+					/>
+					<!-- 滑动数字输入框：标准圆面积 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					FontSize="16"
+					VerticalContentAlignment="Center"
+					LabelName="标准圆面积 "
+					WidthLevel="Medium"
+					ViewModel="{Binding StandardCircleAreaViewModel}"
+					/>
+					<!-- 滑动数字输入框：动态阈值偏移 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="动态阈值偏移 "
+					WidthLevel="Medium"
+					ViewModel="{Binding DynamicThresholdOffsetViewModel}"
+					/>
+				</StackPanel>
+				<!-- 第二列垂直排列 -->
+				<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="4">
+					<!-- 滑动数字输入框：膨胀大小2 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="膨胀大小2 "
+					WidthLevel="Medium"
+					ViewModel="{Binding DilationSize2ViewModel}"
+					/>
+					<!-- 滑动数字输入框：锡点高阈值 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="锡点高阈值 "
+					WidthLevel="Medium"
+					ViewModel="{Binding SolderHighThresholdViewModel}"
+					/>
+					<!-- 滑动数字输入框：使用动态阈值 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="使用动态阈值 "
+					WidthLevel="Medium"
+					ViewModel="{Binding UseDynamicThresholdViewModel}"
+					/>
+					<!-- 滑动数字输入框：X方向平滑度 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="X方向平滑度 "
+					WidthLevel="Medium"
+					ViewModel="{Binding SmoothnessXViewModel}"
+					/>
+					<!-- 滑动数字输入框：EmpMaskWidth -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="EmpMaskWidth "
+					WidthLevel="Medium"
+					ViewModel="{Binding EmpMaskWidthViewModel}"
+					/>
+					<!-- 滑动数字输入框：焊盘面积百分比 -->
+					<custom:SliderNumericControl
+					VerticalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					FontSize="16"
+					LabelName="焊盘面积百分比 "
+					WidthLevel="Medium"
+					ViewModel="{Binding PadAreaPercentViewModel}"
+					/>
+				</StackPanel>
+			</StackPanel>
+			<!-- 确定和取消按钮 -->
+			<StackPanel Orientation="Horizontal" Spacing="25" HorizontalAlignment="Center" Margin="0 10 0 0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top">
+				<Button Content="确定" Background="LightBlue" Foreground="White" FontSize="20" Command="{Binding SaveCommand}"></Button>
+				<Button Content="取消" Background="LightBlue" Foreground="White" FontSize="20" Command="{Binding CancelCommand}"></Button>
+			</StackPanel>
+
+
+		</Grid>
+	</ScrollViewer>
+</Window>

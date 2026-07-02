@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:ui="using:GKG.UI"
+			 xmlns:local="using:GKG.UI.General"
+			 xmlns:vision="using:AvaloniaVisionControl"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+			 x:DataType="vm:CylinderMotionMechanismViewModel"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:Class="GKG.UI.General.CylinderMotionMechanismView">
+	<!-- 气缸型移动机构参数配置界面View -->
+	<Grid Margin="5 0 5 0" HorizontalAlignment="Stretch" VerticalAlignment="Top" RowDefinitions="auto,auto,auto">
+		<!-- 标题 -->
+		<Label Grid.Row="0" Content="气缸型移动机构参数配置界面" FontSize="20" HorizontalAlignment="Left" ></Label>
+		<!-- 开关按钮：伸缩状态 -->
+		<custom:ToggleSwitchControl
+		Grid.Row="1"
+		VerticalAlignment="Center"
+		HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="伸缩状态:"
+		WidthLevel="Medium3"
+		ViewModel="{Binding ExtendStatusViewModel}"
+		/>
+		<!-- 数字输入框：位置编号 -->
+		<custom:NumericControl
+		Grid.Row="2"
+		VerticalAlignment="Center"
+		HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="位置编号:"
+		WidthLevel="Medium3"
+		ViewModel="{Binding PositionNumberViewModel}"
+		/>
+	</Grid>
+</UserControl>

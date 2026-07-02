@@ -1,0 +1,22 @@
+<BaseControlCfgList>
+  <BaseControlCfg>
+    <TotalWidthLevel>Small</TotalWidthLevel>
+    <TotalWidth>200</TotalWidth>
+    <LableTotal>100</LableTotal>
+  </BaseControlCfg>
+  <BaseControlCfg>
+    <TotalWidthLevel>Medium</TotalWidthLevel>
+    <TotalWidth>400</TotalWidth>
+    <LableTotal>150</LableTotal>
+  </BaseControlCfg>
+  <BaseControlCfg>
+    <TotalWidthLevel>Large</TotalWidthLevel>
+    <TotalWidth>600</TotalWidth>
+    <LableTotal>200</LableTotal>
+  </BaseControlCfg>
+  <BaseControlCfg>
+    <TotalWidthLevel>ExtraLarge</TotalWidthLevel>
+    <TotalWidth>800</TotalWidth>
+    <LableTotal>300</LableTotal>
+  </BaseControlCfg>
+</BaseControlCfgList>

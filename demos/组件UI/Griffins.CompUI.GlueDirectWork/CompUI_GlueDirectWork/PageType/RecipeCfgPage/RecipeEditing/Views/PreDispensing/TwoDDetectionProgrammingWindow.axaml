@@ -1,0 +1,58 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:dispensingpagetype="using:DispensingPageType.Views.General.Control"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:views="using:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+		xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+		x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.TwoDDetectionProgrammingWindow"
+		x:DataType="vm:TwoDDetectionProgrammingWindowViewModel"
+		xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+		xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+		Title="">
+	<!-- 2D检测编程弹窗（主界面） -->
+
+	<!-- IO编辑页面，主布局：垂直排列 表单、按钮区 	ViewModel="{Binding SelectedTemplateModel}"   -->
+	<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="1020" Width="1920" >
+		<!-- 左边显示：相机与光源控制  -->
+		<gkgUI:CameraLightSourceCtrView
+		DataContext="{Binding CameraLightSourceCtrViewModel}"
+		Margin="2" Height="1020"  Width="670" />
+		<!-- 右侧为DockPanel -->
+		<DockPanel LastChildFill="True" Margin="5">
+			<!-- 右上垂直排列显示：工具栏 检测结果界面 -->
+			<views:DetectionResultView  HorizontalAlignment="Left" VerticalAlignment="Top" DockPanel.Dock="Top"	DataContext="{Binding DetectionResultViewModel}"
+										Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5"  Width="1220" Height="500"/>
+			<!-- 选项卡区域 -->
+			<Grid RowDefinitions="510" ColumnDefinitions="1220" DockPanel.Dock="Bottom">
+				<TabControl TabStripPlacement="Top" BorderBrush="#CCCCCC" BorderThickness="1.5" Grid.Row="0" Grid.Column="0">
+					<TabItem Header="图像预处理">
+						<custom:GroupBoxControl HeaderStr="图像预处理" Margin="0 5 0 0" >
+							<custom:GroupBoxControl.ContentArea>
+								<views:ImagePreProcessParamView  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5 13 0 0"
+																 DataContext="{Binding ImagePreProcessParamViewModel}"
+																 BorderBrush="#CCCCCC" BorderThickness="1.5"  Width="1220" Height="510" />
+							</custom:GroupBoxControl.ContentArea>
+						</custom:GroupBoxControl>
+					</TabItem>
+
+					<TabItem Header="通过条件编辑">
+						<custom:GroupBoxControl HeaderStr="通过条件编辑" Margin="0 5 0 0" >
+							<custom:GroupBoxControl.ContentArea>
+								<views:PassConditionParamView  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5 13 0 0"
+															   DataContext="{Binding PassConditionParamViewModel}"
+															   BorderBrush="#CCCCCC" BorderThickness="1.5"  Width="1220" Height="510" />
+							</custom:GroupBoxControl.ContentArea>
+						</custom:GroupBoxControl>
+					</TabItem>
+
+				</TabControl>
+
+			</Grid>
+
+
+
+		</DockPanel>
+	</StackPanel>
+</Window>

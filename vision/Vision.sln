@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisionSubMachineModules", "VisionSubMachineModules\VisionSubMachineModules.csproj", "{BC4B03CC-64FC-4EC0-2E46-A235532E7D90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.VisionSubMachineModules", "GKG.VisionSubMachineModules\GKG.VisionSubMachineModules.csproj", "{88A45ED0-C24D-10C2-0811-4128CCC12293}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC4B03CC-64FC-4EC0-2E46-A235532E7D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4B03CC-64FC-4EC0-2E46-A235532E7D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4B03CC-64FC-4EC0-2E46-A235532E7D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4B03CC-64FC-4EC0-2E46-A235532E7D90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A45ED0-C24D-10C2-0811-4128CCC12293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A45ED0-C24D-10C2-0811-4128CCC12293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A45ED0-C24D-10C2-0811-4128CCC12293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A45ED0-C24D-10C2-0811-4128CCC12293}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BBE7831A-ACC0-4073-81E5-1096395CB388}
+	EndGlobalSection
+EndGlobal

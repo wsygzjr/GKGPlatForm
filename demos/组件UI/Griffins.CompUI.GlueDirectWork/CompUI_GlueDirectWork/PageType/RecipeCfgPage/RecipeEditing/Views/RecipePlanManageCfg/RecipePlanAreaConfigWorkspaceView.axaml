@@ -1,0 +1,183 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="520"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 x:DataType="vm:RecipePlanAreaConfigWorkspaceViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.RecipePlanWorkspaces.RecipePlanAreaConfigWorkspaceView">
+
+	<Grid ColumnDefinitions="620,12,*" MinHeight="420">
+
+		<!-- 左侧：区域列表 -->
+		<Grid Grid.Column="0" RowDefinitions="Auto,8,Auto,*">
+			<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+				<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+					<TextBlock Text="显示" VerticalAlignment="Center" />
+					<RadioButton x:Name="RbFilterAll"
+								 Content="全部"
+								 GroupName="AreaCfgFilter"
+								 Tag="0"
+								 Checked="OnFilterRadioChecked" />
+					<RadioButton x:Name="RbFilterEnabled"
+								 Content="启用"
+								 GroupName="AreaCfgFilter"
+								 Tag="1"
+								 Checked="OnFilterRadioChecked" />
+					<RadioButton x:Name="RbFilterDisabled"
+								 Content="禁用"
+								 GroupName="AreaCfgFilter"
+								 Tag="2"
+								 Checked="OnFilterRadioChecked" />
+				</StackPanel>
+				<Button Grid.Column="2"
+						Content="预览"
+						Width="88"
+						Height="30"
+						Command="{Binding PreviewCommand}"
+						VerticalAlignment="Center" />
+			</Grid>
+
+			<StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+				<Button Content="批量启用"
+						Width="84"
+						Height="30"
+						Command="{Binding BatchEnableCommand}" />
+				<Button Content="批量禁用"
+						Width="84"
+						Height="30"
+						Command="{Binding BatchDisableCommand}" />
+				<Button Content="批量上移"
+						Width="84"
+						Height="30"
+						Command="{Binding BatchMoveUpCommand}" />
+				<Button Content="批量下移"
+						Width="84"
+						Height="30"
+						Command="{Binding BatchMoveDownCommand}" />
+			</StackPanel>
+
+			<Grid Grid.Row="3" ColumnDefinitions="*,Auto" Margin="0,5,0,0">
+				<Border Grid.Column="0"
+						BorderBrush="#D0D0D0"
+						BorderThickness="1"
+						Padding="0">
+					<DataGrid ItemsSource="{Binding DisplayedRows}"
+							  SelectedItem="{Binding SelectedRow, Mode=TwoWay}"
+							  AutoGenerateColumns="False"
+							  HeadersVisibility="Column"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="False"
+							  CanUserReorderColumns="False"
+							  HorizontalScrollBarVisibility="Disabled"
+							  VerticalScrollBarVisibility="Auto"
+							  RowHeight="38"
+							  GridLinesVisibility="Horizontal">
+						<DataGrid.Styles>
+							<Style Selector="DataGridColumnHeader">
+								<Setter Property="HorizontalContentAlignment" Value="Center" />
+								<Setter Property="VerticalContentAlignment" Value="Center" />
+								<Setter Property="Padding" Value="0" />
+							</Style>
+							<Style Selector="DataGridCell">
+								<Setter Property="VerticalContentAlignment" Value="Center" />
+								<Setter Property="HorizontalContentAlignment" Value="Center" />
+								<Setter Property="Padding" Value="0" />
+							</Style>
+						</DataGrid.Styles>
+						<DataGrid.Columns>
+							<DataGridTemplateColumn Width="55" IsReadOnly="False">
+								<DataGridTemplateColumn.HeaderTemplate>
+									<DataTemplate>
+										<CheckBox IsChecked="{Binding DataContext.IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}"
+												  Click="OnHeaderSelectAllClick"
+												  HorizontalAlignment="Center"
+												  VerticalAlignment="Center" />
+									</DataTemplate>
+								</DataGridTemplateColumn.HeaderTemplate>
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate DataType="vm:RecipePlanAreaConfigRowViewModel">
+										<CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
+												  HorizontalAlignment="Center"
+												  VerticalAlignment="Center" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<DataGridTextColumn Header="序号"
+												Binding="{Binding EnableSequence}"
+												Width="85"
+												IsReadOnly="True" />
+							<DataGridTextColumn Header="区域名"
+												Binding="{Binding AreaName}"
+												Width="160"
+												IsReadOnly="True" />
+							<DataGridTemplateColumn Header="启用/禁用" Width="95" IsReadOnly="True">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate DataType="vm:RecipePlanAreaConfigRowViewModel">
+										<TextBlock Text="{Binding EnableStatusText}"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Center" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<DataGridTemplateColumn Header="操作" Width="225" IsReadOnly="True">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate DataType="vm:RecipePlanAreaConfigRowViewModel">
+										<StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+											<Button Content="启用/禁用"
+													Width="90"
+													Height="34"
+													Command="{Binding DataContext.ToggleRowEnableCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+													CommandParameter="{Binding .}" />
+											<Button Content="上移"
+													Width="55"
+													Height="34"
+													Command="{Binding DataContext.MoveRowUpCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+													CommandParameter="{Binding .}"
+													IsEnabled="{Binding CanMoveUp}" />
+											<Button Content="下移"
+													Width="55"
+													Height="34"
+													Command="{Binding DataContext.MoveRowDownCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+													CommandParameter="{Binding .}"
+													IsEnabled="{Binding CanMoveDown}" />
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+				</Border>
+			</Grid>
+		</Grid>
+
+		<!-- 右：参数区（当前仅展示功能头组） -->
+		<Border Grid.Column="2"
+				Margin="0,5,0,0"
+				Background="#DCE9EF"
+				BorderBrush="#C8DCE6"
+				BorderThickness="1">
+			<Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+				<Border BorderBrush="#D0D0D0"
+						BorderThickness="1"
+						Padding="10"
+						Margin="10,13,10,10"
+						CornerRadius="4"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Top">
+					<ScrollViewer MaxHeight="420" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+						<ItemsControl ItemsSource="{Binding FuncHeadPickItems}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate DataType="vm:RecipePlanFuncHeadPickItemViewModel">
+									<CheckBox Margin="0,6,0,0"
+											  Content="{Binding DisplayName}"
+											  IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</ScrollViewer>
+				</Border>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

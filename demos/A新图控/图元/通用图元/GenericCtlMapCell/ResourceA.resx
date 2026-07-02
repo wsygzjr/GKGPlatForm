@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Button" xml:space="preserve">
+    <value>按钮</value>
+  </data>
+  <data name="ButtonName" xml:space="preserve">
+    <value>按钮名称</value>
+  </data>
+  <data name="CurImgKey" xml:space="preserve">
+    <value>当前图像</value>
+  </data>
+  <data name="Generic" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>图像</value>
+  </data>
+  <data name="ImageControl" xml:space="preserve">
+    <value>图像控件</value>
+  </data>
+  <data name="ImageList" xml:space="preserve">
+    <value>图像组</value>
+  </data>
+  <data name="ImageListControl" xml:space="preserve">
+    <value>图像列表控件</value>
+  </data>
+  <data name="ObjectValueView" xml:space="preserve">
+    <value>对象显示</value>
+  </data>
+  <data name="ObjectMonitor" xml:space="preserve">
+    <value>对象监控</value>
+  </data>
+  <data name="NumUpDown" xml:space="preserve">
+    <value>数值编辑</value>
+  </data>
+  <data name="Event_ValueChanged" xml:space="preserve">
+    <value>值改变事件</value>
+  </data>
+  <data name="Prop_Increment" xml:space="preserve">
+    <value>步长</value>
+  </data>
+  <data name="Prop_Maximum" xml:space="preserve">
+    <value>最大值</value>
+  </data>
+  <data name="Prop_Minimum" xml:space="preserve">
+    <value>最小值</value>
+  </data>
+  <data name="Prop_Value" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="Prop_Orientation" xml:space="preserve">
+    <value>方向</value>
+  </data>
+  <data name="Slider" xml:space="preserve">
+    <value>滑块</value>
+  </data>
+  <data name="ValueList" xml:space="preserve">
+    <value>值列表</value>
+  </data>
+  <data name="ComboBoxName" xml:space="preserve">
+    <value>下拉框</value>
+  </data>
+  <data name="TextFont" xml:space="preserve">
+    <value>文本字体</value>
+  </data>
+  <data name="ButtonName_MapOprtCellName" xml:space="preserve">
+    <value>按钮名称操作原子</value>
+  </data>
+  <data name="TextColor_MapOprtCellName" xml:space="preserve">
+    <value>按钮文字颜色操作原子</value>
+  </data>
+  <data name="BackColor_MapOprtCellName" xml:space="preserve">
+    <value>按钮背景颜色操作原子</value>
+  </data>
+  <data name="BackgroundImage_MapOprtCellName" xml:space="preserve">
+    <value>按钮背景图元操作原子</value>
+  </data>
+  <data name="ImageSizeMode_MapOprtCellName" xml:space="preserve">
+    <value>按钮图片定位方式操作原子</value>
+  </data>
+  <data name="TextFont_MapOprtCellName" xml:space="preserve">
+    <value>按钮文字字体操作原子</value>
+  </data>
+  <data name="ButtonName_MapOprtName" xml:space="preserve">
+    <value>按钮名称操作</value>
+  </data>
+  <data name="TextColor_MapOprtName" xml:space="preserve">
+    <value>按钮文本颜色操作</value>
+  </data>
+  <data name="BackColor_MapOprtName" xml:space="preserve">
+    <value>按钮背景颜色操作</value>
+  </data>
+  <data name="BackgroundImage_MapOprtName" xml:space="preserve">
+    <value>按钮背景图元操作</value>
+  </data>
+  <data name="ImageSizeMode_MapOprtName" xml:space="preserve">
+    <value>按钮图片定位方式操作</value>
+  </data>
+  <data name="TextFont_MapOprtName" xml:space="preserve">
+    <value>按钮文本字体操作</value>
+  </data>
+  <data name="TextValue" xml:space="preserve">
+    <value>文本值</value>
+  </data>
+  <data name="TextValue_MapOprtCellName" xml:space="preserve">
+    <value>文本值操作原子</value>
+  </data>
+  <data name="TextValue_MapOprtName" xml:space="preserve">
+    <value>文本值操作</value>
+  </data>
+  <data name="TextButton" xml:space="preserve">
+    <value>文本按钮</value>
+  </data>
+  <data name="ColumnSpacing_MapOprtCellName" xml:space="preserve">
+    <value>列间距操作原子</value>
+  </data>
+  <data name="ColumnSpacing_MapOprtName" xml:space="preserve">
+    <value>列间距操作</value>
+  </data>
+  <data name="ColumnSpacing" xml:space="preserve">
+    <value>列间距</value>
+  </data>
+  <data name="CompTypeID" xml:space="preserve">
+    <value>组件类型</value>
+  </data>
+  <data name="ViewID" xml:space="preserve">
+    <value>界面ID</value>
+  </data>
+  <data name="Alias" xml:space="preserve">
+    <value>实例别名</value>
+  </data>
+  <data name="PageTypeID" xml:space="preserve">
+    <value>页面类型ID</value>
+  </data>
+  <data name="PanelContainer" xml:space="preserve">
+    <value>Panel容器</value>
+  </data>
+  <data name="CompTypeID_MapOprtCellName" xml:space="preserve">
+    <value>页面类型操作原子</value>
+  </data>
+  <data name="Alias_MapOprtCellName" xml:space="preserve">
+    <value>实例别名操作原子</value>
+  </data>
+  <data name="ViewID_MapOprtCellName" xml:space="preserve">
+    <value>界面ID操作原子</value>
+  </data>
+  <data name="PageTypeID_MapOprtCellName" xml:space="preserve">
+    <value>页面类型iD操作原子</value>
+  </data>
+  <data name="CompTypeID_MapOprtName" xml:space="preserve">
+    <value>组件类型操作</value>
+  </data>
+  <data name="Alias_MapOprtName" xml:space="preserve">
+    <value>别名操作</value>
+  </data>
+  <data name="ViewID_MapOprtName" xml:space="preserve">
+    <value>界面ID操作</value>
+  </data>
+  <data name="PageTypeID_MapOprtName" xml:space="preserve">
+    <value>页面类型操作</value>
+  </data>
+  <data name="ShowBorder" xml:space="preserve">
+    <value>显示边框</value>
+  </data>
+  <data name="ShowBorder_MapOprtCellName" xml:space="preserve">
+    <value>显示边框操作原子</value>
+  </data>
+  <data name="ShowBorder_MapOprtName" xml:space="preserve">
+    <value>显示边框操作</value>
+  </data>
+  <data name="Container" xml:space="preserve">
+    <value>容器</value>
+  </data>
+  <data name="Lable" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="LableValue_MapOprtCellName" xml:space="preserve">
+    <value>标签值</value>
+  </data>
+  <data name="LableValue_MapOprtName" xml:space="preserve">
+    <value>标签值操作</value>
+  </data>
+  <data name="LableColor_MapOprtCellName" xml:space="preserve">
+    <value>标签颜色操作原子</value>
+  </data>
+  <data name="LableColor_MapOprtName" xml:space="preserve">
+    <value>标签颜色操作</value>
+  </data>
+  <data name="LableBackColor_MapOprtCellName" xml:space="preserve">
+    <value>标签背景颜色操作原子</value>
+  </data>
+  <data name="LableBackColor_MapOprtName" xml:space="preserve">
+    <value>标签背景颜色操作</value>
+  </data>
+  <data name="PanelStyle1" xml:space="preserve">
+    <value>样式1</value>
+  </data>
+  <data name="ButtonStyle1" xml:space="preserve">
+    <value>样式1</value>
+  </data>
+  <data name="LableStyle1" xml:space="preserve">
+    <value>样式1</value>
+  </data>
+  <data name="TextButtonStyle1" xml:space="preserve">
+    <value>样式1</value>
+  </data>
+</root>

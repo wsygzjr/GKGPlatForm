@@ -1,0 +1,211 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.WeighingBalance.CompUI_WeighingBalance.PageType.PPCfgPage.WeighingBalancePP.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="1080" d:DesignHeight="720"
+             x:DataType="vm:WeighingBalancePPCompUIViewModel"
+             x:Class="Griffins.CompUI.WeighingBalance.CompUI_WeighingBalance.PageType.PPCfgPage.WeighingBalancePP.Views.WeighingBalancePPCompUIView">
+    <Design.DataContext>
+        <vm:WeighingBalancePPCompUIViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="Border.section">
+            <Setter Property="BorderBrush" Value="#33000000" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+        <Style Selector="TextBlock.groupTitle">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,4" />
+        </Style>
+        <Style Selector="custom|TextInputControl">
+            <Setter Property="ShowOuterBorder" Value="False" />
+        </Style>
+        <Style Selector="custom|ComboxControl">
+            <Setter Property="ShowOuterBorder" Value="False" />
+        </Style>
+        <Style Selector="custom|ToggleSwitchControl">
+            <Setter Property="ShowOuterBorder" Value="False" />
+        </Style>
+        <Style Selector="custom|NumericUpDownControl">
+            <Setter Property="ShowOuterBorder" Value="False" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Margin="10"
+          ColumnDefinitions="260,12,*"
+          RowDefinitions="Auto,*">
+        <Border Grid.Row="0" Grid.ColumnSpan="3" Classes="section" Margin="0,0,0,10">
+            <StackPanel Orientation="Vertical" Spacing="3">
+                <TextBlock Classes="title" Text="称重配方参数" />
+                <TextBlock Text="配方配置 (PPCfg)" FontWeight="SemiBold" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Classes="section">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Classes="groupTitle" Text="阀实例ID" />
+                <ListBox ItemsSource="{Binding ValveItems}"
+                         SelectedItem="{Binding SelectedValveItem, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:ValveItemViewModel">
+                            <StackPanel Orientation="Vertical" Margin="2,4">
+                                <TextBlock Text="{Binding ValveID}" FontWeight="SemiBold" />
+                                <TextBlock Text="{Binding Alias}" Opacity="0.7" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <GridSplitter Grid.Row="1" Grid.Column="1"
+                      Width="8"
+                      HorizontalAlignment="Center"
+                      Background="#22000000" />
+
+        <ScrollViewer Grid.Row="1" Grid.Column="2"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Spacing="10">
+                <ItemsControl ItemsSource="{Binding ParameterEditors}" IsEnabled="{Binding CanEdit}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:WeighingParameterEditorViewModel">
+                            <StackPanel Orientation="Vertical" Spacing="10" IsVisible="{Binding IsSelected}">
+                                <Border Classes="section">
+                                    <StackPanel Orientation="Vertical" Spacing="10">
+                                        <TextBlock Classes="groupTitle" Text="基础参数" />
+                                        <Grid ColumnDefinitions="420,420" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="16" RowSpacing="8">
+                                            <custom:TextInputControl Grid.Row="0" Grid.Column="0"
+                                                                   WidthLevel="Medium"
+                                                                   LabelName="功能头编号"
+                                                                   ViewModel="{Binding FunctionHeadIDViewModel}" />
+                                            <custom:ComboxControl Grid.Row="0" Grid.Column="1"
+                                                                 WidthLevel="Medium"
+                                                                 LabelName="称重模式"
+                                                                 ViewModel="{Binding WeighingModeViewModel}" />
+                                            <custom:ToggleSwitchControl Grid.Row="1" Grid.Column="0"
+                                                                      WidthLevel="Medium"
+                                                                      LabelName="启用"
+                                                                      ViewModel="{Binding EnabledViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="1"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="提前开阀(ms)"
+                                                                        ViewModel="{Binding PreOpenValveTimeViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="2" Grid.Column="0"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="补偿百分比"
+                                                                        ViewModel="{Binding WeightCorrectionPercentViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="2" Grid.Column="1"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="基准单点重量(mg)"
+                                                                        ViewModel="{Binding WeightReferenceViewModel}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Classes="section">
+                                    <StackPanel Orientation="Vertical" Spacing="10">
+                                        <TextBlock Classes="groupTitle" Text="称重位置" />
+                                        <Grid ColumnDefinitions="420,420" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="8">
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="0"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="X(mm)"
+                                                                        ViewModel="{Binding WeighingPositionXViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="1"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="Y(mm)"
+                                                                        ViewModel="{Binding WeighingPositionYViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="0"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="Z(mm)"
+                                                                        ViewModel="{Binding WeighingPositionZViewModel}" />
+                                            <custom:ComboxControl Grid.Row="1" Grid.Column="1"
+                                                                 WidthLevel="Medium"
+                                                                 LabelName="位置教导模式"
+                                                                 ViewModel="{Binding PositionModeViewModel}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Classes="section" IsVisible="{Binding IsSinglePointMode}">
+                                    <StackPanel Orientation="Vertical" Spacing="10">
+                                        <TextBlock Classes="groupTitle" Text="单点称重参数" />
+                                        <Grid ColumnDefinitions="420,420" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="16" RowSpacing="8">
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="0" WidthLevel="Medium" LabelName="喷胶点数" ViewModel="{Binding SinglePointPointCountViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="1" WidthLevel="Medium" LabelName="喷胶次数" ViewModel="{Binding SinglePointSprayCountViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="0" WidthLevel="Medium" LabelName="单次间隔(s)" ViewModel="{Binding SinglePointOnceIntervalViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="1" WidthLevel="Medium" LabelName="重复次数" ViewModel="{Binding SinglePointCycleCountViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="2" Grid.Column="0" WidthLevel="Medium" LabelName="单点重量上限" ViewModel="{Binding SinglePointDotUpperLimitViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="2" Grid.Column="1" WidthLevel="Medium" LabelName="单点重量下限" ViewModel="{Binding SinglePointDotLowerLimitViewModel}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Classes="section" IsVisible="{Binding IsMassFlowMode}">
+                                    <StackPanel Orientation="Vertical" Spacing="10">
+                                        <TextBlock Classes="groupTitle" Text="流量称重参数" />
+                                        <Grid ColumnDefinitions="420,420" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="8">
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="0" WidthLevel="Medium" LabelName="喷胶点数" ViewModel="{Binding MassFlowPointCountViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="1" WidthLevel="Medium" LabelName="喷胶次数" ViewModel="{Binding MassFlowSprayCountViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="0" WidthLevel="Medium" LabelName="单次间隔(s)" ViewModel="{Binding MassFlowOnceIntervalViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="1" WidthLevel="Medium" LabelName="重复次数" ViewModel="{Binding MassFlowCycleCountViewModel}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Classes="section">
+                                    <StackPanel Orientation="Vertical" Spacing="10">
+                                        <TextBlock Classes="groupTitle" Text="定量称重参数" />
+                                        <Grid ColumnDefinitions="420,420" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="16" RowSpacing="8">
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="0" WidthLevel="Medium" LabelName="喷胶重量(mg)" ViewModel="{Binding QuantitativeWeightViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="1" WidthLevel="Medium" LabelName="喷胶次数" ViewModel="{Binding QuantitativeSprayCountViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="0" WidthLevel="Medium" LabelName="单次间隔(s)" ViewModel="{Binding QuantitativeOnceIntervalViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="1" Grid.Column="1" WidthLevel="Medium" LabelName="重复次数" ViewModel="{Binding QuantitativeCycleCountViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="2" Grid.Column="0" WidthLevel="Medium" LabelName="总重量(mg)" ViewModel="{Binding QuantitativeTotalWeightViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="2" Grid.Column="1" WidthLevel="Medium" LabelName="N倍出胶系数" ViewModel="{Binding QuantitativeNRadioWeightViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="3" Grid.Column="0" WidthLevel="Medium" LabelName="重量上限" ViewModel="{Binding QuantitativeUpperLimitViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="3" Grid.Column="1" WidthLevel="Medium" LabelName="重量下限" ViewModel="{Binding QuantitativeLowerLimitViewModel}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Classes="section">
+                                    <StackPanel Orientation="Vertical" Spacing="10">
+                                        <TextBlock Classes="groupTitle" Text="定时定点称重" />
+                                        <Grid ColumnDefinitions="420,420,420" RowDefinitions="Auto" ColumnSpacing="16" RowSpacing="8">
+                                            <custom:ToggleSwitchControl Grid.Row="0" Grid.Column="0"
+                                                                      WidthLevel="Medium"
+                                                                      LabelName="启用"
+                                                                      ViewModel="{Binding WeighingTimeEnabledViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="1"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="时"
+                                                                        ViewModel="{Binding WeighingTimeHourViewModel}" />
+                                            <custom:NumericUpDownControl Grid.Row="0" Grid.Column="2"
+                                                                        WidthLevel="Medium"
+                                                                        LabelName="分"
+                                                                        ViewModel="{Binding WeighingTimeMinuteViewModel}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Border Classes="section" IsVisible="{Binding IsEmpty}">
+                    <TextBlock Text="未获取到阀实例ID" HorizontalAlignment="Center" Opacity="0.65" />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

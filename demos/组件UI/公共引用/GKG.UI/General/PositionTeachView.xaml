@@ -1,0 +1,49 @@
+ 	<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" 
+             xmlns:vm="clr-namespace:GKG.UI.General"
+             x:DataType="vm:BasePositionViewModel" 
+             x:Class="GKG.UI.General.PositionTeachView">
+
+	 
+	   <!-- 公共页面： XYZ坐标教导-->
+  <StackPanel Margin="0" HorizontalAlignment="Center"  Height="40"> 
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*,*,62,62"
+              RowSpacing="0" ColumnSpacing="2"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="466" >
+            <!-- X -->
+              <NumericUpDown   Grid.Row="0"  Grid.Column="0"  
+                                Value="{Binding XViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding XViewModel.Minimum}"
+                                Increment="{Binding XViewModel.Increment}"
+                                HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  VerticalContentAlignment="Center"
+                                Padding="2"  Width="110" />   
+            <!-- Y -->
+                <NumericUpDown   Grid.Row="0"  Grid.Column="1"  
+                                Value="{Binding YViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding YViewModel.Minimum}"
+                                Increment="{Binding YViewModel.Increment}"
+                             HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  VerticalContentAlignment="Center"
+                                Padding="2"  Width="110" />   
+           <!-- Z --> 
+                <NumericUpDown   Grid.Row="0"  Grid.Column="2"  
+                                Value="{Binding ZViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding ZViewModel.Minimum}"
+                                Increment="{Binding ZViewModel.Increment}"
+                               HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center"  VerticalContentAlignment="Center"
+                                Padding="2"  Width="110" />  
+             
+                <Button  Grid.Row="0"  Grid.Column="3"   Width="60"
+                Content="教导" 
+                Command="{Binding TeachCommand}"   Classes="btn"  />
+             
+                <Button   Grid.Row="0"  Grid.Column="4"   Width="60"
+                Content="{Binding MoveBtText}"   
+                Command="{Binding MoveCommand}"  Classes="btn"   > 
+                </Button>
+        </Grid> 
+    </StackPanel>
+			    
+
+</UserControl>

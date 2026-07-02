@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+             xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"   
+             xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+             x:DataType="vm:DispensingLineStyleCfgViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.DispensingLineStyleCfgView">
+
+      <TabControl Margin="5" TabStripPlacement="Top">
+          
+            <TabItem Header="点胶前后样式">
+			    <views:DispensingBeforeAfterLineStyleListView 
+                    DataContext="{Binding DispensingBeforeAfterLineStyleListViewModel }" 
+                    Margin="5"/>
+            </TabItem>
+              
+            <TabItem Header="点胶中样式">
+			    <views:DispensingMiddleLineStyleListView 
+                    DataContext="{Binding DispensingMiddleLineStyleListViewModel}" 
+                    Margin="5"/>
+            </TabItem>
+                
+           <!-- <TabItem Header="点胶前">
+			    <views:DispensingBeforeLineStyleListView 
+                    DataContext="{Binding DispensingBeforeLineStyleListViewModel}" 
+                    Margin="5"/>
+            </TabItem>
+            <TabItem Header="点胶后">
+			    <views:DispensingAfterLineStyleListView 
+                    DataContext="{Binding DispensingAfterLineStyleListViewModel}" 
+                    Margin="5"/>
+            </TabItem>-->
+
+        </TabControl>
+
+</UserControl>

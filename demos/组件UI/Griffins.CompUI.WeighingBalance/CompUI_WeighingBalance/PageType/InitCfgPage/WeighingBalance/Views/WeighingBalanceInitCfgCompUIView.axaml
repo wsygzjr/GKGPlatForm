@@ -1,0 +1,191 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.WeighingBalance.CompUI_WeighingBalance.PageType.InitCfgPage.WeighingBalance.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="720"
+             x:DataType="vm:WeighingBalanceInitCfgCompUIViewModel"
+             x:Class="Griffins.CompUI.WeighingBalance.CompUI_WeighingBalance.PageType.InitCfgPage.WeighingBalance.Views.WeighingBalanceInitCfgCompUIView">
+    <Design.DataContext>
+        <vm:WeighingBalanceInitCfgCompUIViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="Border.section">
+            <Setter Property="BorderBrush" Value="#33000000" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+        <Style Selector="Button.smallButton">
+            <Setter Property="Width" Value="72" />
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10" Orientation="Vertical" Spacing="12">
+            <Border Classes="section">
+                <StackPanel Orientation="Vertical" Spacing="3">
+                    <TextBlock Classes="title" Text="称重模组初始化配置" />
+                    <TextBlock Text="初始化配置 (InitCfg)" FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="section" IsEnabled="{Binding CanEdit}">
+                <StackPanel Orientation="Vertical" Spacing="12">
+                    <TextBlock Text="天平串口参数" FontWeight="Bold" />
+                    <Grid ColumnDefinitions="420,420,420"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnSpacing="16"
+                          RowSpacing="10">
+                        <custom:ComboxControl Grid.Row="0" Grid.Column="0"
+                                             WidthLevel="Medium"
+                                             LabelName="串口号"
+                                             ViewModel="{Binding PortNameViewModel}" />
+                        <custom:ComboxControl Grid.Row="0" Grid.Column="1"
+                                             WidthLevel="Medium"
+                                             LabelName="波特率"
+                                             ViewModel="{Binding BaudRateViewModel}" />
+                        <custom:ComboxControl Grid.Row="0" Grid.Column="2"
+                                             WidthLevel="Medium"
+                                             LabelName="数据位"
+                                             ViewModel="{Binding DataBitsViewModel}" />
+                        <custom:ComboxControl Grid.Row="1" Grid.Column="0"
+                                             WidthLevel="Medium"
+                                             LabelName="停止位"
+                                             ViewModel="{Binding StopBitsViewModel}" />
+                        <custom:ComboxControl Grid.Row="1" Grid.Column="1"
+                                             WidthLevel="Medium"
+                                             LabelName="校验位"
+                                             ViewModel="{Binding ParityViewModel}" />
+                        <custom:ComboxControl Grid.Row="1" Grid.Column="2"
+                                             WidthLevel="Medium"
+                                             LabelName="Modbus类型"
+                                             ViewModel="{Binding ModbusTypeViewModel}" />
+                        <custom:ToggleSwitchControl Grid.Row="2" Grid.Column="0"
+                                                  WidthLevel="Medium"
+                                                  LabelName="启用CRC16"
+                                                  ViewModel="{Binding IsEnableCRC16ViewModel}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="section" IsEnabled="{Binding CanEdit}">
+                <StackPanel Orientation="Vertical" Spacing="12">
+                    <TextBlock Text="称重动作参数" FontWeight="Bold" />
+                    <Grid ColumnDefinitions="420,420,420"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnSpacing="16"
+                          RowSpacing="10">
+                        <custom:ToggleSwitchControl Grid.Row="0" Grid.Column="0"
+                                                  WidthLevel="Medium"
+                                                  LabelName="启用回抹"
+                                                  ViewModel="{Binding BackRollingEnabledViewModel}" />
+                        <custom:NumericUpDownControl Grid.Row="0" Grid.Column="1"
+                                                    WidthLevel="Medium"
+                                                    LabelName="回抹次数"
+                                                    ViewModel="{Binding BackRollingCountViewModel}" />
+                        <custom:NumericUpDownControl Grid.Row="0" Grid.Column="2"
+                                                    WidthLevel="Medium"
+                                                    LabelName="回抹距离(mm)"
+                                                    ViewModel="{Binding BackRollingDistanceViewModel}" />
+                        <custom:NumericUpDownControl Grid.Row="1" Grid.Column="0"
+                                                    WidthLevel="Medium"
+                                                    LabelName="称重位置X(mm)"
+                                                    ViewModel="{Binding WeighingPositionXViewModel}" />
+                        <custom:NumericUpDownControl Grid.Row="1" Grid.Column="1"
+                                                    WidthLevel="Medium"
+                                                    LabelName="称重位置Y(mm)"
+                                                    ViewModel="{Binding WeighingPositionYViewModel}" />
+                        <custom:NumericUpDownControl Grid.Row="1" Grid.Column="2"
+                                                    WidthLevel="Medium"
+                                                    LabelName="称重位置Z(mm)"
+                                                    ViewModel="{Binding WeighingPositionZViewModel}" />
+                        <custom:NumericUpDownControl Grid.Row="2" Grid.Column="0"
+                                                    WidthLevel="Medium"
+                                                    LabelName="回抹速度(mm/s)"
+                                                    ViewModel="{Binding BackRollingSpeedViewModel}" />
+                        <custom:NumericUpDownControl Grid.Row="2" Grid.Column="1"
+                                                    WidthLevel="Medium"
+                                                    LabelName="回抹加速度(mm/s2)"
+                                                    ViewModel="{Binding BackRollingAccViewModel}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="section" IsEnabled="{Binding CanEdit}">
+                <StackPanel Orientation="Vertical" Spacing="12">
+                    <TextBlock Text="轴绑定" FontWeight="Bold" />
+                    <Grid ColumnDefinitions="420,420,420"
+                          RowDefinitions="Auto"
+                          ColumnSpacing="16"
+                          RowSpacing="10">
+                        <custom:ComboxControl Grid.Row="0" Grid.Column="0"
+                                             WidthLevel="Medium"
+                                             LabelName="X轴绑定"
+                                             ViewModel="{Binding XAxisBindingViewModel}" />
+                        <custom:ComboxControl Grid.Row="0" Grid.Column="1"
+                                             WidthLevel="Medium"
+                                             LabelName="Y轴绑定"
+                                             ViewModel="{Binding YAxisBindingViewModel}" />
+                        <custom:ComboxControl Grid.Row="0" Grid.Column="2"
+                                             WidthLevel="Medium"
+                                             LabelName="Z轴绑定"
+                                             ViewModel="{Binding ZAxisBindingViewModel}" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="section" IsEnabled="{Binding CanEdit}">
+                <StackPanel Orientation="Vertical" Spacing="12">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Left"
+                                   Text="阀实例ID数组"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center" />
+                        <Button DockPanel.Dock="Right"
+                                Classes="smallButton"
+                                Content="新增"
+                                Command="{Binding AddValveCommand}" />
+                    </DockPanel>
+
+                    <StackPanel Orientation="Vertical" Spacing="6">
+                        <Grid ColumnDefinitions="220,220,72" ColumnSpacing="12">
+                            <TextBlock Grid.Column="0" Text="阀实例ID" FontWeight="SemiBold" />
+                            <TextBlock Grid.Column="1" Text="别名" FontWeight="SemiBold" />
+                        </Grid>
+
+                        <ItemsControl ItemsSource="{Binding ValveItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:ValveBindingItemViewModel">
+                                    <Grid ColumnDefinitions="220,220,72"
+                                          ColumnSpacing="12"
+                                          Margin="0,0,0,6">
+                                        <custom:TextInputControl Grid.Column="0"
+                                                               WidthLevel="Small"
+                                                               LabelName=""
+                                                               ViewModel="{Binding ValveIDViewModel}" />
+                                        <custom:TextInputControl Grid.Column="1"
+                                                               WidthLevel="Small"
+                                                               LabelName=""
+                                                               ViewModel="{Binding AliasViewModel}" />
+                                        <Button Grid.Column="2"
+                                                Classes="smallButton"
+                                                Content="删除"
+                                                Command="{Binding RemoveCommand}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

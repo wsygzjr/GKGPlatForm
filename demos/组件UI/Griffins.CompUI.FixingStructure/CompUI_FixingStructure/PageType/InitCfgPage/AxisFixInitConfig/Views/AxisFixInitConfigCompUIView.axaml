@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.FixingStructure.CompUI_FixingStructure.PageType.InitCfgPage.AxisFixInitConfig.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="1200"
+             d:DesignHeight="280"
+             x:DataType="vm:AxisFixInitConfigCompUIViewModel"
+             x:Class="Griffins.CompUI.FixingStructure.CompUI_FixingStructure.PageType.InitCfgPage.AxisFixInitConfig.Views.AxisFixInitConfigCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="18"/>
+    </Style>
+    <Style Selector="Border.Card">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="14"/>
+      <Setter Property="BoxShadow" Value="0 4 12 0 #120F172A"/>
+    </Style>
+    <Style Selector="Border.ContentPanel">
+      <Setter Property="Background" Value="#F7FAFD"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="14,16"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="#1F3F75"/>
+    </Style>
+    <Style Selector="custom|ComboxControl">
+      <Setter Property="FixWidth" Value="False"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Classes="PageShell">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+      <Border Classes="Card">
+        <Grid RowDefinitions="Auto,16,Auto">
+          <TextBlock Classes="SectionTitle" Text="电机固定机构初始化配置"/>
+          <Border Grid.Row="2" Classes="ContentPanel">
+            <Grid ColumnDefinitions="160,320"
+                  RowDefinitions="Auto"
+                  ColumnSpacing="16">
+              <TextBlock Grid.Row="0"
+                         Grid.Column="0"
+                         VerticalAlignment="Center"
+                         Text="绑定轴"/>
+              <custom:ComboxControl Grid.Row="0"
+                                    Grid.Column="1"
+                                    LabelName=""
+                                    WidthLevel="Small3"
+                                    ViewModel="{Binding AxisBindingViewModel}"/>
+            </Grid>
+          </Border>
+        </Grid>
+      </Border>
+    </ScrollViewer>
+  </Border>
+</UserControl>

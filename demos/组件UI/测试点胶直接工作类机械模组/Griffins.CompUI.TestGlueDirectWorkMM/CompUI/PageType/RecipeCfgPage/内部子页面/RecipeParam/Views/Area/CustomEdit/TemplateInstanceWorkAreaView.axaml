@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:TemplateInstanceWorkAreaViewModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.TemplateInstanceWorkAreaView">
+
+        <DockPanel Margin="2" LastChildFill="True" VerticalAlignment="Top"     Height="310" Width="1470"     > 
+            <!-- 是否启用 --> 
+            <custom:ToggleSwitchControl  DockPanel.Dock="Top"   
+                    Grid.Row="1"  Grid.Column="0"  Margin="8 2 2 2"   HorizontalAlignment="Left" VerticalAlignment="Top" 
+				LabelName="是否启用"
+				WidthLevel="Small7" 
+				ViewModel="{Binding IsEnableViewModel, Mode=TwoWay}" />
+                   
+           <!-- 模版工作区 -->   
+              <views:DispensingCommandTemplateInstanceView  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    DataContext="{Binding DispensingCommandTemplateInstanceViewModel}"  
+                    Margin="2"  BorderBrush="#CCCCCC"  BorderThickness="1.5" Height="260" Width="1466"   />
+        </DockPanel>  
+
+</UserControl>

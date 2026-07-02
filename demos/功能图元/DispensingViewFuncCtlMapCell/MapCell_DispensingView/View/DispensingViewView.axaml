@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:GKG.Map.DispensingViewFuncCtlMapCell.ViewModels"
+             x:Class="GKG.Map.DispensingViewFuncCtlMapCell.Views.DispensingView"
+             x:DataType="vm:DispensingViewModel">
+
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="10">
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <Button Content="清空轨迹" Command="{Binding ClearCommand}" />
+                
+                <TextBlock Text="X轴: " VerticalAlignment="Center" Foreground="#333333"/>
+                <TextBlock Text="{Binding CurrentX}" VerticalAlignment="Center" FontWeight="Bold" Foreground="#388E3C"/>
+
+                <TextBlock Text="Y轴: " VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#333333"/>
+                <TextBlock Text="{Binding CurrentY}" VerticalAlignment="Center" FontWeight="Bold" Foreground="#388E3C"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" ClipToBounds="True" Margin="10" CornerRadius="4">
+            <Canvas x:Name="DrawingCanvas">
+                <Polyline x:Name="TrajectoryLine" 
+                          Stroke="#1976D2" 
+                          StrokeThickness="2" 
+                          StrokeJoin="Round"/>
+            </Canvas>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,227 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="820" d:DesignHeight="700"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 xmlns:gkgGeneral="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 x:Name="Root"
+			 x:DataType="vm:AreaEditingWorkspaceViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing.AreaEditingWorkspaceView">
+
+	<ScrollViewer Padding="12,10" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+		<Grid Width="748" HorizontalAlignment="Left" RowDefinitions="Auto,12,Auto,16,Auto">
+
+			<!-- 顶部按钮 -->
+			<Grid Grid.Row="0" ColumnDefinitions="88,5,100,260,100" RowDefinitions="Auto">
+				<Button Grid.Column="0" Content="新增" Width="88" Height="32" Command="{Binding AddCommand}" />
+				<Button Grid.Column="2" Content="批量删除" Width="100" Height="32" Command="{Binding BatchDeleteCommand}" />
+				<Button Grid.Column="4" Content="区域预览" Width="100" Height="32" HorizontalAlignment="Right" Command="{Binding PreviewCommand}" />
+			</Grid>
+
+			<!-- 列表 -->
+			<Border Grid.Row="2" BorderBrush="#D0D0D0" BorderThickness="1" Padding="0" HorizontalAlignment="Left" Width="600">
+				<DataGrid ItemsSource="{Binding Items}"
+						  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+						  AutoGenerateColumns="False"
+						  HeadersVisibility="Column"
+						  CanUserResizeColumns="False"
+						  CanUserSortColumns="False"
+						  CanUserReorderColumns="False"
+						  HorizontalScrollBarVisibility="Disabled"
+						  VerticalScrollBarVisibility="Auto"
+						  RowHeight="38"
+						  GridLinesVisibility="Horizontal">
+					<DataGrid.Styles>
+						<Style Selector="DataGridColumnHeader">
+							<Setter Property="HorizontalContentAlignment" Value="Center" />
+							<Setter Property="VerticalContentAlignment" Value="Center" />
+							<Setter Property="Padding" Value="0" />
+						</Style>
+						<Style Selector="DataGridCell">
+							<Setter Property="VerticalContentAlignment" Value="Center" />
+							<Setter Property="HorizontalContentAlignment" Value="Center" />
+							<Setter Property="Padding" Value="0" />
+						</Style>
+					</DataGrid.Styles>
+					<DataGrid.Columns>
+						<DataGridTemplateColumn Width="60" IsReadOnly="False">
+							<DataGridTemplateColumn.HeaderTemplate>
+								<DataTemplate>
+									<CheckBox IsChecked="{Binding DataContext.IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}"
+											  Click="OnHeaderSelectAllClick"
+											  HorizontalAlignment="Center"
+											  VerticalAlignment="Center" />
+								</DataTemplate>
+							</DataGridTemplateColumn.HeaderTemplate>
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate DataType="vm:AreaEditingRowViewModel">
+									<CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
+											  HorizontalAlignment="Center"
+											  VerticalAlignment="Center" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Width="70" IsReadOnly="True">
+							<DataGridTemplateColumn.HeaderTemplate>
+								<DataTemplate>
+									<TextBlock Text="序号" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</DataTemplate>
+							</DataGridTemplateColumn.HeaderTemplate>
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate DataType="vm:AreaEditingRowViewModel">
+									<TextBlock Text="{Binding SerialNumber}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Width="190" IsReadOnly="False">
+							<DataGridTemplateColumn.HeaderTemplate>
+								<DataTemplate>
+									<TextBlock Text="区域名" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</DataTemplate>
+							</DataGridTemplateColumn.HeaderTemplate>
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate DataType="vm:AreaEditingRowViewModel">
+									<custom:TextInputControl LabelName=""
+															 WidthLevel="Medium"
+															 FixWidth="False"
+															 HorizontalAlignment="Stretch"
+															 VerticalAlignment="Center"
+															 ViewModel="{Binding AreaNameViewModel}" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Width="190" IsReadOnly="False">
+							<DataGridTemplateColumn.HeaderTemplate>
+								<DataTemplate>
+									<TextBlock Text="使用模板" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</DataTemplate>
+							</DataGridTemplateColumn.HeaderTemplate>
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate DataType="vm:AreaEditingRowViewModel">
+									<custom:ComboxControl LabelName=""
+														  WidthLevel="Medium"
+														  FixWidth="False"
+														  HorizontalAlignment="Stretch"
+														  VerticalAlignment="Center"
+														  ViewModel="{Binding TemplateViewModel}" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Width="90" IsReadOnly="True">
+							<DataGridTemplateColumn.HeaderTemplate>
+								<DataTemplate>
+									<TextBlock Text="操作" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</DataTemplate>
+							</DataGridTemplateColumn.HeaderTemplate>
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate DataType="vm:AreaEditingRowViewModel">
+									<Button Content="删除"
+											Width="72"
+											Height="32"
+											Command="{Binding DataContext.DeleteRowCommand, RelativeSource={RelativeSource AncestorType=views:AreaEditingWorkspaceView}}"
+											CommandParameter="{Binding .}" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</Border>
+
+			<!-- 下方编辑区：随选中行变化 -->
+			<ContentControl Grid.Row="4" Content="{Binding SelectedItem}">
+				<ContentControl.DataTemplates>
+					<DataTemplate DataType="vm:AreaEditingRowViewModel">
+						<StackPanel Spacing="12">
+							<Grid ColumnDefinitions="200,200" RowDefinitions="Auto">
+								<TextBlock Grid.Column="0" Text="区域名" FontSize="16" Margin="2,0,0,0" VerticalAlignment="Center" />
+								<TextBlock Grid.Column="1"
+										   Text="{Binding AreaNameViewModel.Text}"
+										   VerticalAlignment="Center"
+										   TextWrapping="Wrap" />
+							</Grid>
+							<Grid ColumnDefinitions="200,200" RowDefinitions="Auto">
+								<TextBlock Grid.Column="0" Text="使用模板" VerticalAlignment="Center" />
+								<TextBlock Grid.Column="1"
+										   Text="{Binding TemplateDisplayText}"
+										   VerticalAlignment="Center"
+										   TextWrapping="Wrap" />
+							</Grid>
+							<Grid ColumnDefinitions="220,300" RowDefinitions="Auto">
+								<custom:ToggleSwitchControl Grid.Column="0"
+															LabelName="启用换行抬针"
+															WidthLevel="Medium"
+															FixWidth="False"
+															HorizontalAlignment="Stretch"
+															ViewModel="{Binding EnableNeedleLiftViewModel}" />
+								<custom:NumericControl Grid.Column="1"
+													   LabelName="抬针高度(mm)"
+													   WidthLevel="Medium"
+													   FixWidth="False"
+													   HorizontalAlignment="Stretch"
+													   ViewModel="{Binding NeedleLiftHeightViewModel}" />
+							</Grid>
+							<Grid ColumnDefinitions="220,300" RowDefinitions="Auto">
+								<custom:ToggleSwitchControl Grid.Column="0"
+															LabelName="启用换行清洁"
+															WidthLevel="Medium"
+															FixWidth="False"
+															HorizontalAlignment="Stretch"
+															ViewModel="{Binding EnableLineCleanViewModel}" />
+								<custom:NumericControl Grid.Column="1"
+													   LabelName="首点稳定时间(ms)"
+													   WidthLevel="Medium"
+													   FixWidth="False"
+													   HorizontalAlignment="Stretch"
+													   ViewModel="{Binding FirstPointStableTimeViewModel}" />
+							</Grid>
+
+							<!-- 区域基准点坐标 + 表头与 PositionTeachView 对齐 -->
+							<Grid ColumnDefinitions="135,466" RowDefinitions="Auto,Auto">
+								<TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+										   Text="区域基准点坐标"
+										   VerticalAlignment="Top"
+										   Margin="0,30,0,0" />
+								<Grid Grid.Row="0" Grid.Column="2"
+									  ColumnDefinitions="*,*,*,62,62"
+									  ColumnSpacing="2"
+									  Width="466"
+									  HorizontalAlignment="Left"
+									  Margin="0,0,0,6">
+									<TextBlock Grid.Column="0" Text="X (mm)" HorizontalAlignment="Center" VerticalAlignment="Center" />
+									<TextBlock Grid.Column="1" Text="Y (mm)" HorizontalAlignment="Center" VerticalAlignment="Center" />
+									<TextBlock Grid.Column="2" Text="Z (mm)" HorizontalAlignment="Center" VerticalAlignment="Center" />
+									<TextBlock Grid.Column="3" Grid.ColumnSpan="2" Text="相机操作" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</Grid>
+								<gkgGeneral:PositionTeachView Grid.Row="1" Grid.Column="1"
+															  Width="466"
+															  HorizontalAlignment="Left"
+															  DataContext="{Binding BasePointPosition}" />
+							</Grid>
+
+							<Grid ColumnDefinitions="88,36,160,36,160" RowDefinitions="Auto">
+								<TextBlock Grid.Column="0" Text="区域参数" VerticalAlignment="Center" Width="88"/>
+								<TextBlock Grid.Column="1" Text="长" VerticalAlignment="Center" HorizontalAlignment="Right" Width="36"/>
+								<custom:NumericControl Grid.Column="2"
+													   LabelName=""
+													   WidthLevel="Medium"
+													   FixWidth="False"
+													   HorizontalAlignment="Stretch"
+													   ViewModel="{Binding AreaLengthViewModel}" />
+								<TextBlock Grid.Column="3" Text="宽" VerticalAlignment="Center" HorizontalAlignment="Right" Width="36"/>
+								<custom:NumericControl Grid.Column="4"
+													   LabelName=""
+													   WidthLevel="Medium"
+													   FixWidth="False"
+													   HorizontalAlignment="Stretch"
+													   ViewModel="{Binding AreaWidthViewModel}" />
+							</Grid>
+						</StackPanel>
+					</DataTemplate>
+				</ContentControl.DataTemplates>
+			</ContentControl>
+		</Grid>
+	</ScrollViewer>
+</UserControl>

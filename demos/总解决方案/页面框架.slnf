@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "总解决方案.sln",
+    "projects": [
+      "..\\A新图控\\页面框架模板插件\\MainFrame\\MainFrame.csproj",
+      "..\\A新图控\\页面框架模板插件\\NonMainFrame\\NonMainFrame.csproj"
+    ]
+  }
+}

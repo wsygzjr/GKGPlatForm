@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.RailAdjustWidth.CompUI_RailAdjustWidth.PageType.InitCfgPage.AdjustWidthInit.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="560"
+             x:DataType="vm:AdjustWidthInitCompUIViewModel"
+             x:Class="Griffins.CompUI.RailAdjustWidth.CompUI_RailAdjustWidth.PageType.InitCfgPage.AdjustWidthInit.Views.AdjustWidthInitCompUIView">
+  <Design.DataContext>
+    <vm:AdjustWidthInitCompUIViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="10" Orientation="Vertical" Spacing="16">
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="10">
+        <StackPanel Orientation="Vertical" Spacing="3">
+          <TextBlock Text="轨道调宽初始化" FontWeight="Bold" FontSize="18" />
+          <TextBlock Text="初始化配置 (InitCfg)" FontWeight="SemiBold" />
+          <TextBlock Text="可移动轨道需在出厂配置中启用后，方可在此绑定轴向输入。" Foreground="#66000000" TextWrapping="Wrap" />
+        </StackPanel>
+      </Border>
+
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+        <StackPanel Orientation="Vertical" Spacing="12">
+          <custom:ToggleSwitchControl WidthLevel="Medium"
+                                     LabelName="启用碰撞检测"
+                                     ViewModel="{Binding IsEnableCrashDetectionViewModel}" />
+          <custom:TextInputControl WidthLevel="Medium"
+                                  LabelName="调宽速度 (mm/s)"
+                                  ViewModel="{Binding AdjustWidthSpeedViewModel}" />
+          <custom:ToggleSwitchControl WidthLevel="Medium"
+                                     LabelName="启用最大距离调宽"
+                                     ViewModel="{Binding IsEnableMaxDistanceAdjustWidthViewModel}" />
+        </StackPanel>
+      </Border>
+
+      <Border BorderBrush="#33000000"
+              BorderThickness="1"
+              CornerRadius="6"
+              Padding="12"
+              IsVisible="{Binding ShowAxisBindingSection}">
+        <StackPanel Orientation="Vertical" Spacing="12">
+          <TextBlock Text="轴向输入绑定" FontWeight="Bold" />
+          <custom:ComboxControl WidthLevel="Medium"
+                               LabelName="前轨轴向输入绑定"
+                               ViewModel="{Binding FrontRailAxisBindingViewModel}"
+                               IsVisible="{Binding ShowFrontRailAxisBinding}" />
+          <custom:ComboxControl WidthLevel="Medium"
+                               LabelName="后轨轴向输入绑定"
+                               ViewModel="{Binding BackRailAxisBindingViewModel}"
+                               IsVisible="{Binding ShowBackRailAxisBinding}" />
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,76 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!--<UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>-->
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\ImeIOT\SubMM\</OutputPath>
+	  <Company>Griffins</Company>
+	  <Copyright>Copyright © Griffins 2025</Copyright>
+	  <AssemblyVersion>7.1.0.0</AssemblyVersion>
+	  <FileVersion>7.1.0.0</FileVersion>
+	  <AssemblyTitle>TestSubMM_MaterialBox.RunTime</AssemblyTitle>
+	  <Product>TestSubMM_MaterialBox.RunTime</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GriffinsGeneralTestMM\GriffinsGeneralTestMM.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\TestSubMM_MaterialBox\TestSubMM_MaterialBox.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <!-- 自定义目标：清理输出 -->
+  <Target Name="CleanOutputDependencies" AfterTargets="Build">
+    <ItemGroup>
+      <!-- 要删除的 DLL 文件 -->
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.UI.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map2.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.UI2.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.ImeIOT.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.UI.Test.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.Controls.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.File.dll" />
+      <!-- 要删除的 PDB 文件 -->
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map.UI.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map2.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.UI2.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.ImeIOT.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.UI.Test.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.Controls.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.File.pdb" />
+      <!-- 要删除的 XML 文件 -->
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map.UI.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.UI2.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.ImeIOT.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.UI.Test.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.Controls.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.File.xml" />
+		<!-- 合并所有要删除的文件 -->
+		<AllFilesToDelete Include="@(DllsToDelete)" />
+		<AllFilesToDelete Include="@(PdbsToDelete)" />
+		<AllFilesToDelete Include="@(XmlsToDelete)" />
+    </ItemGroup>
+    <!-- 删除文件 -->
+    <Delete Files="@(AllFilesToDelete)" ContinueOnError="true" />
+  </Target>
+</Project>

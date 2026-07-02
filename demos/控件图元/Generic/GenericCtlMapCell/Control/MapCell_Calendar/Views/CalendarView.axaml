@@ -1,0 +1,58 @@
+<UserControl
+    x:Class="GKG.Map.MapCell.Generic.Control.MapCell_Calendar.Views.CalendarView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:primitives="clr-namespace:Avalonia.Controls.Primitives;assembly=Avalonia.Controls"
+    x:Name="Root">
+  <UserControl.Resources>
+    <SolidColorBrush x:Key="CalendarBackgroundBrush" Color="White" />
+    <SolidColorBrush x:Key="CalendarForegroundBrush" Color="Black" />
+  </UserControl.Resources>
+  <Border x:Name="RootBorder"
+          Background="White"
+          BorderBrush="Gray"
+          BorderThickness="1"
+          ClipToBounds="True">
+    <Grid RowDefinitions="*,Auto">
+      <Calendar x:Name="CalendarHost"
+                Grid.Row="0"
+                Background="{DynamicResource CalendarBackgroundBrush}"
+                Foreground="{DynamicResource CalendarForegroundBrush}">
+        <Calendar.Styles>
+          <Style Selector="Calendar">
+            <Setter Property="Background" Value="{DynamicResource CalendarBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalendarForegroundBrush}" />
+          </Style>
+          <Style Selector="primitives|CalendarItem">
+            <Setter Property="Background" Value="{DynamicResource CalendarBackgroundBrush}" />
+          </Style>
+          <Style Selector="primitives|CalendarButton">
+            <Setter Property="Background" Value="{DynamicResource CalendarBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalendarForegroundBrush}" />
+          </Style>
+          <Style Selector="primitives|CalendarDayButton">
+            <Setter Property="Background" Value="{DynamicResource CalendarBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource CalendarForegroundBrush}" />
+          </Style>
+        </Calendar.Styles>
+      </Calendar>
+      <Border x:Name="ButtonPanelBorder"
+              Grid.Row="1"
+              BorderThickness="1,0,0,0"
+              BorderBrush="{Binding BrushInfo.BorderColor}">
+        <StackPanel x:Name="ButtonPanel"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="8"
+                    Margin="8">
+          <Button x:Name="TodayButton"
+                  Content="今天"
+                  MinWidth="72" />
+          <Button x:Name="ConfirmButton"
+                  Content="确定"
+                  MinWidth="72" />
+        </StackPanel>
+      </Border>
+    </Grid>
+  </Border>
+</UserControl>

@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.Calibration.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.Calibration.ViewModels"
+             x:DataType="vm:LaserPositionViewModel"
+                xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+             x:Class="Griffins.CompUI.Calibration.Views.LaserPositionView">
+
+    <!--激光测高33-->
+    	<StackPanel Orientation="Vertical" >
+			
+         <views:PositionView  
+            DataContext="{Binding }" 
+            Margin="0"/> 
+
+           <!-- 校正提醒倒计时 -->
+           <custom:TextBlockControl  
+			LabelName="激光测高值"
+			WidthLevel="Small1"  
+			ViewModel="{Binding LaserHightViewModel}"
+			/>  
+        </StackPanel>
+    
+     
+
+</UserControl>

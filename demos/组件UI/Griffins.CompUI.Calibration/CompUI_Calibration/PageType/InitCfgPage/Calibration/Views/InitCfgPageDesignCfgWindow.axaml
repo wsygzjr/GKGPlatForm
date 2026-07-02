@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI" 
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Height="100"
+        Width="420"
+        xmlns:vm="clr-namespace:Griffins.CompUI.Calibration.ViewModels"
+        x:DataType="vm:CalibrationDesignCfgViewModel"
+        x:Class="Griffins.CompUI.Calibration.Views.InitCfgPageDesignCfgWindow"
+        Title="初始化设计时配置"
+
+        >
+    <Design.DataContext>
+		<vm:CalibrationDesignCfgViewModel />
+	</Design.DataContext>
+
+  <custom:TextInputControl 
+                     Grid.Row="2"  Grid.Column="0" 
+                       HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+					LabelName="标定模组别名:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding CalibrationCfgPageDesignCfgInfoViewModel.ModulesAliasViewModel}" /> 
+</Window>

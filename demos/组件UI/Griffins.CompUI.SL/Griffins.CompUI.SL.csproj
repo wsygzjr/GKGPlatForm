@@ -1,0 +1,84 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2025</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>Griffins.CompUI.SL</AssemblyTitle>
+    <Product>Griffins.CompUI.SL</Product>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Bin\Share\CompUI\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Griffins.Map2" Version="7.1.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Griffins.Map.UI" Version="7.1.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.JsonG.ConvertExtensions" Version="7.1.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Avalonia" Version="11.3.3">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="CompUI_SL\PageType\DebugPage\Views\Test1DebugCompUIView.axaml.cs">
+      <DependentUpon>Test1DebugCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI_SL\PageType\InitCfgPage\PcCommunication\Views\PcCommunicationCompUIView.axaml.cs">
+      <DependentUpon>PcCommunicationCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI_SL\PageType\InitCfgPage\SingleTrackStation\Views\SingleTrackStationCompUIView.axaml.cs">
+      <DependentUpon>SingleTrackStationCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI_SL\PageType\InitCfgPage\SingleTrackStation\Views\SingleTrackStationItemCompUIView.axaml.cs">
+      <DependentUpon>SingleTrackStationItemCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI_SL\PageType\InitCfgPage\TransportMotor\Views\TransportMotorCompUIView.axaml.cs">
+      <DependentUpon>TransportMotorCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI_SL\PageType\InitCfgPage\TrackBasicParam\Views\TrackBasicParamCompUIView.axaml.cs">
+      <DependentUpon>TrackBasicParamCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI_SL\PageType\InitCfgPage\TrackWidening\Views\TrackWideningCompUIView.axaml.cs">
+      <DependentUpon>TrackWideningCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI_SL\PageType\FactoryCfgPage\TrackWidening\Views\TrackWideningCompUIView.axaml.cs">
+      <DependentUpon>TrackWideningCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceA.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="CompUI_SL\PageType\InitCfgPage\TrackStationConfig\**\*.cs" />
+    <AvaloniaXaml Remove="CompUI_SL\PageType\InitCfgPage\TrackStationConfig\**\*.axaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Images\" />
+    <Folder Include="CompUI_SL\PageType\InitCfgPage\Models\" />
+    <Folder Include="CompUI_SL\PageType\InitCfgPage\RegularSingleTrack\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\公共引用\GKG.UI\GKG.UI.csproj" />
+  </ItemGroup>
+</Project>

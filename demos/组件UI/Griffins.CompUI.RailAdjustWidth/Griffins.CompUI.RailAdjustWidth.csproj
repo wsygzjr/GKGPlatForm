@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2026</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>Griffins.CompUI.RailAdjustWidth</AssemblyTitle>
+    <Product>Griffins.CompUI.RailAdjustWidth</Product>
+    <AssemblyName>Griffins.CompUI.RailAdjustWidth</AssemblyName>
+    <RootNamespace>Griffins.CompUI.RailAdjustWidth</RootNamespace>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Bin\Share\CompUI\</OutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="App.axaml.cs" />
+    <Compile Remove="Program.cs" />
+    <Compile Remove="ViewLocator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="App.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Griffins.ImeIOT" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.UI2" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.Map2" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.ImeIOT.Map" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.Map.UI" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Newtonsoft.JsonG" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Avalonia" Version="11.3.3" ExcludeAssets="runtime" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\公共引用\GKG.UI\GKG.UI.csproj" />
+    <ProjectReference Include="..\公共引用\GKG\GKG.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RailAdjustWidthSubMachineModules">
+      <HintPath>F:\Griffins7.1\Bin\Share\ImeIOT\SubMM\RailAdjustWidthSubMachineModules.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ResourceA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceA.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

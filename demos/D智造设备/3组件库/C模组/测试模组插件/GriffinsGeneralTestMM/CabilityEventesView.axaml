@@ -1,0 +1,30 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="282" d:DesignHeight="67"
+             x:Class="GriffinsGeneralTestMM.CabilityEventesView"
+             xmlns:vm="clr-namespace:GriffinsGeneralTestMM" 
+             x:DataType="vm:CabilityEventesViewModel" 
+        >
+
+    <!-- 布局：ComboBox（顶部） + Button（下方） -->
+    <Grid RowDefinitions="Auto, Auto"
+          Width="282" Height="67">
+        <!-- 事件选择ComboBox  -->
+        <ComboBox Grid.Row="0"
+                  ItemsSource="{Binding Events}"
+                  SelectedItem="{Binding SelectedEvent}" 
+                  HorizontalContentAlignment="Left"
+                  VerticalContentAlignment="Center"/>
+
+        <!-- 执行按钮 -->
+        <Button Grid.Row="1"
+                Content="执行"
+                Width="48" Height="23"
+                Margin="0,2,0,0"  Classes="ButtonType1" 
+                Command="{Binding ExecCommand}"
+                IsEnabled="{Binding IsExecButtonEnabled}"/>
+    </Grid>
+</UserControl>

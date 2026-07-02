@@ -1,0 +1,116 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+			 xmlns:vmseq="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:DispensingCommandTemplateInstanceViewModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.DispensingCommandTemplateInstanceView">
+
+       <DockPanel Margin="0" LastChildFill="True" VerticalAlignment="Top" HorizontalAlignment="Left"    Height="260" Width="1464"    > 
+        
+           <!--  下方左侧： 工作区：编辑   -->  
+            <Grid DockPanel.Dock="Left"   RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+                        RowSpacing="0"  HorizontalAlignment="Left"  Width="666" Margin="0"  Height="257" >
+                  
+                <!-- 模板 BelongTemplateID -->  
+                <custom:ComboxControl   Grid.Row="0"  Grid.Column="1"  
+					    LabelName="模板ID"  HorizontalAlignment="Left"  
+					    WidthLevel="Small7"  
+					    ViewModel="{Binding SelectedTemplateModel  , Mode=TwoWay }"  
+					    />  
+                 
+               <!--位置调整栏-->
+                <Grid    Grid.Row="1"  Grid.Column="0"  RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+                    RowSpacing="0"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Height="76" Width="490"   > 
+                      <!--  --><!-- 坐标表头 --><!--
+                        <gkgUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="0"  
+                            Margin="0" Height="35"  Width="490"  />   
+                        --><!-- 坐标数据  --><!--
+                        <gkgUI:PositionTeachView    Grid.Row="1"  Grid.Column="0" 
+                            DataContext="{Binding  CamreaPositionViewModel }" 
+                            Margin="0" Height="38"  Width="490" />   -->
+                </Grid>      
+            </Grid>               
+             
+             
+                <!--下方 右侧显示 选中模版对应的指令列表  --> 
+                <StackPanel  Orientation="Vertical" Spacing="0" Margin="0 0 0 0"      
+                             VerticalAlignment="Top" HorizontalAlignment="Right"  Width="815"    Height="250"  > 
+
+                    <DataGrid    ItemsSource="{Binding DispensingCommandSequenceListViewModel.ItemsSource }"
+                            SelectedItem="{Binding DispensingCommandSequenceListViewModel.SelectedItem  }"
+                            AutoGenerateColumns="False"
+                            BorderBrush="LightGray"
+                            BorderThickness="1"
+                            IsReadOnly="False" 
+                            SelectionMode="Single"
+                            RowHeight="40"  Width="815"   Height="244"
+                             VerticalAlignment="Top"
+                            CanUserSortColumns="False"  HorizontalAlignment="Left"  Margin="6,0,0,1"  Classes="StyleDataGrid"  > 
+      
+                        <DataGrid.Columns> 
+                        
+                                <!-- 1. 序号（只读） -->
+                             <DataGridTemplateColumn 
+                                Header="序号"   Width="130"   > 
+                                    <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="vmseq:CommandSequenceModel"> 
+                                               <TextBlock Text="{Binding SerialNumber}"  VerticalAlignment="Center"/>  
+                                    </DataTemplate> 
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                             
+                                <!-- 2. 指令ID（只读） -->
+                           <!--     <DataGridTextColumn   Header="指令ID"  Binding="{Binding CommandID}"   Width="340"    IsReadOnly="True"/> -->
+                        
+                                <!-- 3. 指令类型  -->
+                                <DataGridTemplateColumn 
+                                Header="指令类型"   Width="230"   > 
+                                    <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="vmseq:CommandSequenceModel"> 
+                                            <ComboBox  IsEnabled="False" 
+			                                    Width="200"  Classes="DataGrid_ComboBoxStyle"
+		                                        ItemsSource="{Binding DispensingCommandTypeModel.ItemsSource, Mode=OneWay}" 
+                                                SelectedItem="{Binding DispensingCommandTypeModel.SelectedItem, Mode=TwoWay}"  > 
+				                                    <ComboBox.ItemTemplate>
+					                                    <DataTemplate   DataType="ui:ComBoxItem">
+						                                    <StackPanel Orientation="Horizontal"  > 
+					     	                                    <TextBlock Text="{Binding DisplayName}" /> 
+					                                        </StackPanel>
+					                                    </DataTemplate>
+				                                    </ComboBox.ItemTemplate>
+                                            </ComboBox> 
+                                    </DataTemplate> 
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                         
+                                <!-- 3. 是否启用 -->
+                                <DataGridTemplateColumn 
+                                    Header="启用"  Width="90"
+                                    >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vmseq:CommandSequenceModel">
+                                            <!-- 绑定到 IsDispensingViewModel.IsChecked（双向同步） -->
+                                            <ToggleSwitch    IsEnabled="False" 
+                                                IsChecked="{Binding IsEnable , Mode=TwoWay}" 
+                                                Classes="DataGrid_ToggleSwitchStyle"    OffContent=""  OnContent=""
+                                                Width="50"   MinWidth="50"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            
+                        </DataGrid.Columns> 
+                    </DataGrid>
+                     
+               
+                </StackPanel> 
+
+        </DockPanel>  
+
+</UserControl>

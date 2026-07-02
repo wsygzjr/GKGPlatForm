@@ -1,0 +1,101 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:vm="using:GKG.Map.ProductionInformationFuncCtlMapCell.ViewModel"
+        x:Class="GKG.Map.ProductionInformationFuncCtlMapCell.View.RecipeSelectionView"
+        x:DataType="vm:RecipeSelectionViewModel"
+        x:CompileBindings="True"
+        Title="切换配方程序"
+        Width="400" Height="500"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Background="#F4F7F9">
+
+    <Window.Styles>
+        <Style Selector="ListBoxItem">
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#E6F4FF"/>
+        </Style>
+        <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#F0F8FF"/>
+        </Style>
+
+        <Style Selector="ListBoxItem:selected TextBlock.RecipeName">
+            <Setter Property="Foreground" Value="#0078D4"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style Selector="ListBoxItem:selected Path.RecipeIcon">
+            <Setter Property="Fill" Value="#0078D4"/>
+        </Style>
+
+        <Style Selector="Button:disabled">
+            <Setter Property="Opacity" Value="0.5"/>
+            <Setter Property="Background" Value="#CCCCCC"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto" Margin="25">
+
+        <!-- 标题区 -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="配方程序切换" FontSize="18" FontWeight="Bold" Foreground="#333333"/>
+            <TextBlock Text="请选择需要下发至设备的生产配方" FontSize="12" Foreground="#888888" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- 当前运行状态区 -->
+        <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E0E0E0" BorderThickness="1" Padding="15,10" CornerRadius="6" Margin="0,0,0,15" BoxShadow="0 2 4 0 #08000000">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="当前运行配方:" VerticalAlignment="Center" Foreground="#666666"/>
+                <TextBlock Text="{Binding CurrentRecipeName}" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Foreground="#0078D4" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- 供选配方列表区 -->
+        <Border Grid.Row="2" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" ClipToBounds="True">
+            <ListBox ItemsSource="{Binding RecipeList}"
+                     SelectedItem="{Binding SelectedRecipe}"
+                     Background="Transparent"
+                     BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="sys:String">
+                        <StackPanel Orientation="Horizontal" Background="Transparent">
+                            <Path Classes="RecipeIcon"
+                                  Data="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+                                  Fill="#A0AABF" Stretch="Uniform"
+                                  Width="18" Height="18" Margin="0,0,15,0"
+                                  VerticalAlignment="Center"/>
+
+                            <!-- 直接绑定字符串本身 -->
+                            <TextBlock Classes="RecipeName"
+                                       Text="{Binding}"
+                                       VerticalAlignment="Center"
+                                       FontSize="15" Foreground="#333333"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <!-- 底部交互动作区 -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0" Spacing="15">
+            <Button Content="取消"
+                    Command="{Binding CancelCommand}"
+                    Width="90" Height="36"
+                    Background="White" Foreground="#333333" BorderBrush="#CCCCCC" BorderThickness="1"
+                    CornerRadius="4" Cursor="Hand" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+            <Button Content="确认加载"
+                    Command="{Binding ConfirmCommand}"
+                    Width="110" Height="36"
+                    Background="#0078D4" Foreground="White"
+                    CornerRadius="4" Cursor="Hand" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

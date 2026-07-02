@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/运控卡插件/">
+    <Project Path="Plugins/GaoChAuto/GKG.GaoChAuto.MotionControl.csproj" />
+  </Folder>
+  <Project Path="MotionControl/MotionControl.csproj" />
+  <Project Path="MotionControlPluginDemo/MotionControlPluginDemo.csproj" />
+</Solution>

@@ -1,0 +1,25 @@
+{
+  "solution": {
+    "path": "总解决方案.sln",
+    "projects": [
+      "..\\组件UI\\GKG.CompUI.LoadUnload\\GKG.CompUI.LoadUnload.csproj",
+      "..\\组件UI\\Griffins.CompUI.BasicRobot\\Griffins.CompUI.BasicRobot.csproj",
+      "..\\组件UI\\Griffins.CompUI.Calibration\\Griffins.CompUI.Calibration.csproj",
+      "..\\组件UI\\Griffins.CompUI.CategoryARobot\\Griffins.CompUI.CategoryARobot.csproj",
+      "..\\组件UI\\Griffins.CompUI.DispensingFunctionHead\\Griffins.CompUI.DispensingFunctionHead.csproj",
+      "..\\组件UI\\Griffins.CompUI.EletronicManager\\Griffins.CompUI.EletronicManager.csproj",
+      "..\\组件UI\\Griffins.CompUI.GantryClean\\Griffins.CompUI.GantryClean.csproj",
+      "..\\组件UI\\Griffins.CompUI.GlueDirectWork\\Griffins.CompUI.GlueDirectWork.csproj",
+      "..\\组件UI\\Griffins.CompUI.MaterialBox\\Griffins.CompUI.MaterialBox.csproj",
+      "..\\组件UI\\Griffins.CompUI.PushRod\\Griffins.CompUI.PushRod.csproj",
+      "..\\组件UI\\Griffins.CompUI.RWS\\Griffins.CompUI.RWS.csproj",
+      "..\\组件UI\\Griffins.CompUI.RailAdjustWidth\\Griffins.CompUI.RailAdjustWidth.csproj",
+      "..\\组件UI\\Griffins.CompUI.RailMotor\\Griffins.CompUI.RailMotor.csproj",
+      "..\\组件UI\\Griffins.CompUI.Vision\\Griffins.CompUI.Vision.csproj",
+      "..\\组件UI\\Griffins.CompUI.WeighingBalance\\Griffins.CompUI.WeighingBalance.csproj",
+      "..\\组件UI\\公共引用\\AvaloniaVisionControl\\AvaloniaVisionControl.csproj",
+      "..\\组件UI\\公共引用\\GKG.UI\\GKG.UI.csproj",
+      "..\\组件UI\\公共引用\\GKG\\GKG.csproj"
+    ]
+  }
+}

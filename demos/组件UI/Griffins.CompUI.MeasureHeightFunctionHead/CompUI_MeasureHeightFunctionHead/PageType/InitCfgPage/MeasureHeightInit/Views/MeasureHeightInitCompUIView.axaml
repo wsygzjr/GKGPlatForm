@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.MeasureHeightFunctionHead.CompUI_MeasureHeightFunctionHead.PageType.InitCfgPage.MeasureHeightInit.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="600"
+             x:DataType="vm:MeasureHeightInitCompUIViewModel"
+             x:Class="Griffins.CompUI.MeasureHeightFunctionHead.CompUI_MeasureHeightFunctionHead.PageType.InitCfgPage.MeasureHeightInit.Views.MeasureHeightInitCompUIView">
+    <Design.DataContext>
+        <vm:MeasureHeightInitCompUIViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10" Orientation="Vertical" Spacing="16">
+            <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="10">
+                <StackPanel Orientation="Vertical" Spacing="3">
+                    <TextBlock Text="测高功能头初始化配置" FontWeight="Bold" FontSize="18" />
+                    <TextBlock Text="初始化配置 (InitCfg)" FontWeight="SemiBold" />
+                    <TextBlock Text="配置测高传感器的量程和串口通信参数。" Foreground="#66000000" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+                <StackPanel Orientation="Vertical" Spacing="12">
+                    <TextBlock Text="测高传感器配置" FontWeight="Bold" />
+                    <custom:ComboxControl WidthLevel="Medium"
+                                         LabelName="测高量程"
+                                         ViewModel="{Binding MeasureRangeViewModel}" />
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+                <StackPanel Orientation="Vertical" Spacing="12">
+                    <TextBlock Text="串口通信配置" FontWeight="Bold" />
+                    <!-- 串口号改为下拉框，数据源由视图模型动态提供。 -->
+                    <custom:ComboxControl WidthLevel="Medium"
+                                         LabelName="串口号"
+                                         ViewModel="{Binding SerialPortViewModel.PortNameViewModel}" />
+                    <!-- 波特率改为下拉框，使用预设波特率列表。 -->
+                    <custom:ComboxControl WidthLevel="Medium"
+                                         LabelName="波特率"
+                                         ViewModel="{Binding SerialPortViewModel.BaudRateViewModel}" />
+                    <!-- 数据位改为下拉框，仅提供 5/6/7/8 四个选项。 -->
+                    <custom:ComboxControl WidthLevel="Medium"
+                                         LabelName="数据位"
+                                         ViewModel="{Binding SerialPortViewModel.DataBitsViewModel}" />
+                    <custom:ComboxControl WidthLevel="Medium"
+                                         LabelName="停止位"
+                                         ViewModel="{Binding SerialPortViewModel.StopBitsViewModel}" />
+                    <custom:ComboxControl WidthLevel="Medium"
+                                         LabelName="校验位"
+                                         ViewModel="{Binding SerialPortViewModel.ParityViewModel}" />
+                    <custom:ComboxControl WidthLevel="Medium"
+                                         LabelName="Modbus类型"
+                                         ViewModel="{Binding SerialPortViewModel.ModbusTypeViewModel}" />
+                    <custom:ToggleSwitchControl WidthLevel="Medium"
+                                              LabelName="启用CRC16校验"
+                                              ViewModel="{Binding SerialPortViewModel.EnableCRC16ViewModel}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

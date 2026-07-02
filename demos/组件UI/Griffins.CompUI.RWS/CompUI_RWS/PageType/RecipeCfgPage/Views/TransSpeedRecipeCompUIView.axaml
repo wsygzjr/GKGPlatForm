@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.RWS.CompUI_RWS.PageType.RecipeCfgPage.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="180"
+             x:DataType="vm:TransSpeedRecipeCompUIViewModel"
+             x:Class="Griffins.CompUI.RWS.CompUI_RWS.PageType.RecipeCfgPage.Views.TransSpeedRecipeCompUIView">
+  <Design.DataContext>
+    <vm:TransSpeedRecipeCompUIViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="10" Orientation="Vertical" Spacing="16">
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="10">
+        <StackPanel Orientation="Vertical" Spacing="3">
+          <TextBlock Text="工位运输速度配置" FontWeight="Bold" FontSize="18" />
+          <TextBlock Text="速度档位配方参数设置" FontWeight="SemiBold" />
+          <TextBlock Text="用于选择当前工位运行时使用的运输速度档位 ID。" Foreground="#66000000" TextWrapping="Wrap" />
+        </StackPanel>
+      </Border>
+
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+        <StackPanel Orientation="Vertical" Spacing="12">
+          <TextBlock Text="速度档位选择" FontWeight="Bold" />
+
+          <Border BorderBrush="#22000000" BorderThickness="1" CornerRadius="4" Padding="10">
+            <StackPanel Orientation="Vertical" Spacing="10">
+              <StackPanel Orientation="Vertical" Spacing="4">
+                <TextBlock Text="运输速度档位 ID" FontWeight="SemiBold" />
+                <TextBlock Text="该值对应初始化页面中维护的运输速度档位列表。" Foreground="#66000000" TextWrapping="Wrap" />
+              </StackPanel>
+
+              <custom:ComboxControl WidthLevel="Large"
+                                    FixWidth="True"
+                                    LabelName="当前配方值"
+                                    ViewModel="{Binding TransSpeedGearComboViewModel}" />
+            </StackPanel>
+          </Border>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

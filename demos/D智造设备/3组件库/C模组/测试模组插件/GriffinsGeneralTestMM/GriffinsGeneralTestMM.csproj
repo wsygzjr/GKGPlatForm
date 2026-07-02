@@ -1,0 +1,230 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!--<UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>-->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Dlls\GW</OutputPath>
+    <!-- 输出应用包文件夹 -->
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <!-- Windows -->
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+    <PackageVersion>7.1.0</PackageVersion>
+    <!-- 引用包的DLL是否复制到输出类库文件夹 -->
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2025</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>GriffinsGeneralTestMM</AssemblyTitle>
+    <Product>GriffinsGeneralTestMM</Product>
+    <EnableDynamicLoading>false</EnableDynamicLoading>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>recSubSysKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="Styles\Controls\**" />
+    <Compile Remove="Styles\Controls\**" />
+    <EmbeddedResource Remove="Styles\Controls\**" />
+    <None Remove="Styles\Controls\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="JsonInputWindow.axaml" />
+    <AvaloniaXaml Remove="Styles\BasicControlStyle.axaml" />
+    <AvaloniaXaml Remove="Styles\GriffinsGeneralTestMMStyle.axaml" />
+    <AvaloniaXaml Remove="UctlParamDateTimeView.axaml" />
+    <AvaloniaXaml Remove="UctlParamGuidView.axaml" />
+    <AvaloniaXaml Remove="UctlParamIntView.axaml" />
+    <AvaloniaXaml Remove="UctlParamJsonView.axaml" />
+    <AvaloniaXaml Remove="UctlParamListView.axaml" />
+    <AvaloniaXaml Remove="UctlParamTextView.axaml" />
+    <AvaloniaXaml Remove="UctlTestMMCfgView.axaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="FormEventParamWindow.axaml.cs">
+      <DependentUpon>FormEventParamWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="FormTestMMMainWindow.axaml.cs">
+      <DependentUpon>FormTestMMMainWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="FormMessageDetailWindow.axaml.cs">
+      <DependentUpon>FormMessageDetailWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="UctlCabilityEventesView.axaml.cs">
+      <DependentUpon>UctlCabilityEventesView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="UctlNormalEventesView.axaml.cs">
+      <DependentUpon>UctlNormalEventesView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CabilityEventesView.axaml.cs">
+      <DependentUpon>CabilityEventesView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="子机械模组\组件\FormAllSubMMWindow.axaml.cs">
+      <DependentUpon>FormAllSubMMWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="子机械模组\组件\UctlTestSubMMView.axaml.cs">
+      <DependentUpon>UctlTestSubMMView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="机械模组\组件\FormAllMMWindow.axaml.cs">
+      <DependentUpon>FormAllMMWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="机械模组\组件\UctlTestMMView.axaml.cs">
+      <DependentUpon>UctlTestMMView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+
+
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.3.3" />
+
+    <!-- 确保包含Avalonia.Controls包，版本与Avalonia一致 -->
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="FormEventParam.cs" />
+    <Compile Remove="FormEventParam.Designer.cs" />
+    <Compile Remove="FormMessageDetail.cs" />
+    <Compile Remove="FormMessageDetail.Designer.cs" />
+    <Compile Remove="FormTestMMMain.cs" />
+    <Compile Remove="FormTestMMMain.Designer.cs" />
+    <Compile Remove="IParamUI.cs" />
+    <Compile Remove="JsonInputWindow.axaml.cs" />
+    <Compile Remove="MachineModulesCmdFactoryCFg.cs" />
+    <Compile Remove="MachineModulesCmdInitCFg.cs" />
+    <Compile Remove="MachineModulesCmdPPCFg.cs" />
+    <Compile Remove="UctlCabilityEventes.cs" />
+    <Compile Remove="UctlCabilityEventes.Designer.cs" />
+    <Compile Remove="UctlNormalEventes.cs" />
+    <Compile Remove="UctlNormalEventes.Designer.cs" />
+    <Compile Remove="UctlParamDateTimeView.axaml.cs" />
+    <Compile Remove="UctlParamGuidView.axaml.cs" />
+    <Compile Remove="UctlParamInt.cs" />
+    <Compile Remove="UctlParamInt.Designer.cs" />
+    <Compile Remove="UctlParamIntView.axaml.cs" />
+    <Compile Remove="UctlParamJsonView.axaml.cs" />
+    <Compile Remove="UctlParamList.cs" />
+    <Compile Remove="UctlParamList.Designer.cs" />
+    <Compile Remove="UctlParamListView.axaml.cs" />
+    <Compile Remove="UctlParamText.cs" />
+    <Compile Remove="UctlParamText.Designer.cs" />
+    <Compile Remove="UctlParamTextView.axaml.cs" />
+    <Compile Remove="UctlTestMMCfg.cs" />
+    <Compile Remove="UctlTestMMCfg.Designer.cs" />
+    <Compile Remove="UctlTestMMCfgView.axaml.cs" />
+    <Compile Remove="ViewModel\TestMMCfgViewModel.cs" />
+    <Compile Remove="ViewModel\UctlParamListViewModel.cs" />
+    <Compile Remove="ViewModel\ViewModelBase.cs" />
+    <Compile Remove="子机械模组\组件\FormAllSubMM.cs" />
+    <Compile Remove="子机械模组\组件\FormAllSubMM.Designer.cs" />
+    <Compile Remove="子机械模组\组件\UctlTestSubMM.cs" />
+    <Compile Remove="子机械模组\组件\UctlTestSubMM.Designer.cs" />
+    <Compile Remove="机械模组\组件\FormAllMM.cs" />
+    <Compile Remove="机械模组\组件\FormAllMM.Designer.cs" />
+    <Compile Remove="机械模组\组件\UctlTestMM.cs" />
+    <Compile Remove="机械模组\组件\UctlTestMM.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="FormEventParam.resx" />
+    <EmbeddedResource Remove="FormMessageDetail.resx" />
+    <EmbeddedResource Remove="FormTestMMMain.resx" />
+    <EmbeddedResource Remove="UctlCabilityEventes.resx" />
+    <EmbeddedResource Remove="UctlNormalEventes.resx" />
+    <EmbeddedResource Remove="UctlParamInt.resx" />
+    <EmbeddedResource Remove="UctlParamList.resx" />
+    <EmbeddedResource Remove="UctlParamText.resx" />
+    <EmbeddedResource Remove="UctlTestMMCfg.resx" />
+    <EmbeddedResource Remove="子机械模组\组件\FormAllSubMM.resx" />
+    <EmbeddedResource Remove="子机械模组\组件\UctlTestSubMM.resx" />
+    <EmbeddedResource Remove="机械模组\组件\FormAllMM.resx" />
+    <EmbeddedResource Remove="机械模组\组件\UctlTestMM.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="GriffinsGeneralTestMM.csproj.Backup.tmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\1核心平台\2公共\A基础框架\Griffins.Theme\Griffins.Theme.csproj" />
+    <ProjectReference Include="..\..\..\..\..\1核心平台\2公共\A基础框架\Griffins.UI.Test\Griffins.UI.Test.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\1核心平台\2公共\A基础框架\Griffins.UI2\Griffins.UI2.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\1核心平台\A新图控\Griffins.Map.UI\Griffins.Map.UI.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\1核心平台\A新图控\Griffins.Map2\Griffins.Map2.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\智造设备管理平台\A智造设备数字底座\Griffins.ImeIOT.Map\Griffins.ImeIOT.Map.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\智造设备管理平台\A智造设备数字底座\Griffins.ImeIOT\Griffins.ImeIOT.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <!-- 自定义目标：清理输出 -->
+  <Target Name="CleanOutputDependencies" AfterTargets="Build">
+    <ItemGroup>
+      <!-- 要删除的 DLL 文件 -->
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.UI.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map2.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.UI2.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.Controls.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.File.dll" />
+      <!-- 要删除的 PDB 文件 -->
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map.UI.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map2.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.UI2.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.Controls.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.File.pdb" />
+      <!-- 要删除的 XML 文件 -->
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map.UI.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map2.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.UI2.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.Controls.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.File.xml" />
+      <!-- 合并所有要删除的文件 -->
+      <AllFilesToDelete Include="@(DllsToDelete)" />
+      <AllFilesToDelete Include="@(PdbsToDelete)" />
+      <AllFilesToDelete Include="@(XmlsToDelete)" />
+    </ItemGroup>
+    <!-- 删除文件 -->
+    <Delete Files="@(AllFilesToDelete)" ContinueOnError="true" />
+  </Target>
+</Project>

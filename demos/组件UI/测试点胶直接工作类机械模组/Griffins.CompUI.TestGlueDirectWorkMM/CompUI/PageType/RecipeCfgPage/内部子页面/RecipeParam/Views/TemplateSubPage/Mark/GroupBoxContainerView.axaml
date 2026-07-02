@@ -1,0 +1,57 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:DispensingPageType.ViewModels.RecipeParamCfgPage.ParametersAndCalculation"
+             xmlns:griffinsUI="clr-namespace:Griffins.UI.Common;assembly=Griffins.UI"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.GroupBoxContainerView">
+
+ <!-- 组框 --> 
+
+<Grid 
+    x:Name="GroupBoxContainer"
+    Margin="5"   
+        Width="400"  Height="300"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch">
+
+    <!-- 底层边框（保留原有样式，去除顶部内边距让标题贴合边框）    Background="red" -->
+    <Border 
+        BorderBrush="LightGray"
+        BorderThickness="1.5" 
+        Padding="3 0 3 3"  
+        CornerRadius="10"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"/>
+
+    <!-- 标题（绝对定位在边框顶部，覆盖边框线） -->
+    <TextBlock 
+        x:Name="GroupTitleText"
+        Text="{Binding GroupName }" 
+        FontSize="14"
+        FontWeight="SemiBold"
+        Foreground="#BBE3F3"
+        Background="White"  
+        Padding="8 0"  
+        Margin="20 -7 0 0"  
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        MinWidth="80"/>   
+
+    <!-- 内容区域（顶部 Margin 避开标题，防止重叠） -->
+    <ContentControl
+        Margin="3 15 3 3"  
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+
+        <!-- 组框实际内容（可替换为任意控件） -->
+        <StackPanel Spacing="4">
+            <TextBlock Text="方法1：点击确认按钮提交" Foreground="#333"/> 
+        </StackPanel>
+    </ContentControl>
+</Grid>
+     
+
+</UserControl>

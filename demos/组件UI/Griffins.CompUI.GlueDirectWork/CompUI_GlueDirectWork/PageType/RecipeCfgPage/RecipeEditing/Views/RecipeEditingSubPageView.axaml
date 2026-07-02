@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="1600" d:DesignHeight="900"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:RecipeEditingSubPageViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.RecipeEditingSubPageView">
+
+	<Grid RowDefinitions="Auto,*" ColumnDefinitions="*">
+
+		<TabControl Grid.Row="1" TabStripPlacement="Top" Margin="12">
+			<TabItem Header="点胶样式">
+				<views:GlueDispensingStyleCfgView DataContext="{Binding GlueDispensingStyleCfgViewModel}" />
+			</TabItem>
+			<TabItem Header="预点胶管理">
+				<views:PreDispensingView DataContext="{Binding PreDispensingViewModel}" />
+			</TabItem>
+			<TabItem Header="指令编辑">
+				<views:ProgramEditingView DataContext="{Binding ProgramEditingViewModel}" />
+			</TabItem>
+			<TabItem Header="方案界面">
+				<views:RecipePlanManageCfgView DataContext="{Binding RecipePlanManageCfgViewModel}" />
+			</TabItem>
+		</TabControl>
+	</Grid>
+
+</UserControl>

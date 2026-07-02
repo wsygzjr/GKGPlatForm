@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <Company>GKG</Company>
+	  <Copyright>Copyright © GKG 2026</Copyright>
+	  <AssemblyVersion>1.0.0.0</AssemblyVersion>
+	  <FileVersion>1.0.0.0</FileVersion>
+	  <TargetFramework>net9.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <OutputType>Library</OutputType>
+	  <AssemblyTitle>GKG.WeighingBalanceSubMachineModules</AssemblyTitle>
+	  <Product>GKG.WeighingBalanceSubMachineModules</Product>
+	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\ImeIOT\SubMM\</OutputPath>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GF_Gereric" Version="7.1.0" />
+		<PackageReference Include="GKG" Version="1.0.0" />
+		<PackageReference Include="GKG.ElectronicControl" Version="1.0.0" />
+		<PackageReference Include="Griffins" Version="7.1.0" />
+		<PackageReference Include="Griffins.ImeIOT" Version="7.1.0" />
+		<PackageReference Include="Griffins.PF.Server" Version="7.1.0" />
+		<PackageReference Include="Newtonsoft.JsonG" Version="7.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\WeighingBalanceSubMachineModules\WeighingBalanceSubMachineModules.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="DispensingFunctionHeadSubMachineModules">
+	    <HintPath>F:\Griffins7.1\Bin\Share\ImeIOT\SubMM\DispensingFunctionHeadSubMachineModules.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	
+</Project>

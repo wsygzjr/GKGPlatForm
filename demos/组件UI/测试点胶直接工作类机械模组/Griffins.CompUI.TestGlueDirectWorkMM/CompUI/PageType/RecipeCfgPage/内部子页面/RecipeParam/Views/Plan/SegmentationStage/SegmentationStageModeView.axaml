@@ -1,0 +1,23 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Plan"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:SegmentationStageModeViewModel"
+			 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.SegmentationStageModeView">
+
+    
+    <!--分段模式设置参数-->
+    <StackPanel Orientation="Vertical"  HorizontalAlignment="Left"   Margin="10 10 0 0"   Height="690" Width="1460"    >
+              <!-- 分段模式 -->  
+                <custom:ComboxControl   Grid.Row="0"  Grid.Column="1"  
+					    LabelName="分段模式"  HorizontalAlignment="Left"  
+					    WidthLevel="Medium"  
+					    ViewModel="{Binding SegmentModeComboBox  , Mode=TwoWay }"  
+					    />  
+   </StackPanel>
+</UserControl>

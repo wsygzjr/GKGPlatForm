@@ -1,0 +1,52 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:MainFrame.ViewModels;assembly=MainFrame"
+			 xmlns:vmcfg="clr-namespace:MainFrame.ViewModels.ConfigViewModels;assembly=MainFrame"
+             xmlns:converter="clr-namespace:MainFrame.Converter"
+			 xmlns:view="using:MainFrameView.Views.Menu"
+             x:Class="MainFrameView.Views.PreviewView"
+             mc:Ignorable="d"
+             x:DataType="vm:PreviewViewModel"
+             d:DesignWidth="1024" d:DesignHeight="768">
+	<Design.DataContext>
+		<vm:PreviewViewModel />
+	</Design.DataContext>
+	<!-- 引入转换器 -->
+	<UserControl.Resources>
+	</UserControl.Resources>
+	<UserControl.Styles>
+		<FluentTheme />
+		<StyleInclude Source="avares://MainFrame/Assets/Icons.axaml" />
+	</UserControl.Styles>
+
+	<!-- 主布局容器 - 新增一列用于右侧工具栏 -->
+	<Grid RowDefinitions="40,*,60,40" ColumnDefinitions="200,*,80">
+		<!-- 顶部区域 -->
+		<view:TopMenuView DataContext="{Binding TopMenuViewModel}"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+					BorderThickness="1" BorderBrush="LightGray" Margin="0"/>
+
+		<!-- 左侧导航菜单栏 -->
+		<view:NavigationMenuView DataContext="{Binding NavigationMenuViewModel}" Grid.RowSpan="2" Grid.Column="0" 
+						   BorderThickness="1" BorderBrush="LightGray" Margin="0"/>
+
+		<!-- 左下信息块区域 -->
+		<view:LeftBottomInfoBlockView DataContext="{Binding LeftBottomInfoBlockViewModel}" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" 
+						   BorderThickness="1" BorderBrush="LightGray" Margin="0"/>
+		
+		<!-- 中间主工作区内容容器 - 根据导航显示不同用户控件 -->
+		<ContentControl   Content="{Binding MainWorkAreaContent}"  Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+					BorderThickness="1" BorderBrush="LightGray" Margin="0"/>
+
+		<!-- 右侧快捷工具栏 - 垂直排列在最右侧 -->
+		<view:ToolbarMenuView   DataContext="{Binding ToolbarMenuViewModel}" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+						  BorderThickness="1" BorderBrush="LightGray" Margin="0"/>
+		
+		<!-- 底部栏-->
+		<view:ButtomColumnView DataContext="{Binding ButtomColumnViewModel}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
+						 BorderThickness="1" BorderBrush="LightGray" Margin="0"/>
+
+
+	</Grid>
+</UserControl>

@@ -1,0 +1,125 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:YourNamespace.ViewModels"
+		x:Class="GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.View.MachineCalibrationSetView"
+		Width="{Binding WindowWidth}" Height="600"
+		SystemDecorations="None"
+		ShowInTaskbar="False"
+		CanResize="False"
+		WindowStartupLocation="CenterScreen"
+		Background="Transparent"
+		TransparencyLevelHint="Transparent">
+
+	<Window.Styles>
+		<Style Selector="Button.BlueBtn">
+			<Setter Property="Background" Value="#5B9BD5"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Width" Value="150"/>
+			<Setter Property="Height" Value="50"/>
+		</Style>
+		<Style Selector="Button.BlueBtn:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="#4A88C5"/>
+		</Style>
+
+		<Style Selector="Border.HeaderBorder">
+			<Setter Property="Background" Value="#E2F0D9"/> <Setter Property="BorderBrush" Value="#C6E0B4"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Margin" Value="2"/>
+		</Style>
+		<Style Selector="TextBlock.HeaderText">
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+
+		<Style Selector="TextBlock.ValueText">
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="TextBlock.ValueText.alarm">
+			<Setter Property="Foreground" Value="Red"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+	</Window.Styles>
+
+	<Border Background="White" Margin="20" BoxShadow="0 0 15 2 #CC0C80E8" CornerRadius="4">
+		<Grid RowDefinitions="60, *, 80">
+
+			<Border Grid.Row="0" Background="#EAEAEA" CornerRadius="4,4,0,0">
+				<TextBlock Text="校正监控" FontSize="28"
+						   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Border>
+
+			<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="30" Margin="0,20,0,0">
+
+				<Border Width="400" IsVisible="{Binding IsDoubleValve}"
+						BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="10">
+
+					<Grid DataContext="{Binding LeftValve}" RowDefinitions="40, 40, 50, 50">
+
+						<TextBlock Grid.Row="0" Text="{Binding ValveName}" FontSize="18" FontWeight="Bold"
+								   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#5B9BD5"/>
+
+						<Grid Grid.Row="1" ColumnDefinitions="2*, 1*">
+							<Border Grid.Column="0" Classes="HeaderBorder"><TextBlock Text="选项设置" Classes="HeaderText"/></Border>
+							<Border Grid.Column="1" Classes="HeaderBorder"><TextBlock Text="参数余量" Classes="HeaderText"/></Border>
+						</Grid>
+
+						<Grid Grid.Row="2" ColumnDefinitions="1*, 1*, 1*">
+							<CheckBox Grid.Column="0" Content="时间(S)" IsChecked="{Binding IsTimeModeEnabled}" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
+							<TextBox Grid.Column="1" Text="{Binding TargetTimeText}" IsEnabled="{Binding IsTimeModeEnabled}" Width="90" Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+							<TextBlock Grid.Column="2" Text="{Binding CurrentTimeStr}" Classes="ValueText" Classes.alarm="{Binding IsTimeAlarm}"/>
+						</Grid>
+
+						<Grid Grid.Row="3" ColumnDefinitions="1*, 1*, 1*">
+							<CheckBox Grid.Column="0" Content="重量(mg)" IsChecked="{Binding IsWeightModeEnabled}" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
+							<TextBox Grid.Column="1" Text="{Binding TargetWeightText}" IsEnabled="{Binding IsWeightModeEnabled}" Width="90" Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+							<TextBlock Grid.Column="2" Text="{Binding CurrentWeightStr}" Classes="ValueText" Classes.alarm="{Binding IsWeightAlarm}"/>
+						</Grid>
+					</Grid>
+				</Border>
+
+				<Border Width="400"
+						BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="10">
+
+					<Grid DataContext="{Binding RightValve}" RowDefinitions="40, 40, 50, 50">
+
+						<TextBlock Grid.Row="0" Text="{Binding ValveName}" FontSize="18" FontWeight="Bold"
+								   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#5B9BD5"/>
+
+						<Grid Grid.Row="1" ColumnDefinitions="2*, 1*">
+							<Border Grid.Column="0" Classes="HeaderBorder"><TextBlock Text="选项设置" Classes="HeaderText"/></Border>
+							<Border Grid.Column="1" Classes="HeaderBorder"><TextBlock Text="参数余量" Classes="HeaderText"/></Border>
+						</Grid>
+
+						<Grid Grid.Row="2" ColumnDefinitions="1*, 1*, 1*">
+							<CheckBox Grid.Column="0" Content="时间(S)" IsChecked="{Binding IsTimeModeEnabled}" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
+							<TextBox Grid.Column="1" Text="{Binding TargetTimeText}" IsEnabled="{Binding IsTimeModeEnabled}" Width="90" Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+							<TextBlock Grid.Column="2" Text="{Binding CurrentTimeStr}" Classes="ValueText" Classes.alarm="{Binding IsTimeAlarm}"/>
+						</Grid>
+
+						<Grid Grid.Row="3" ColumnDefinitions="1*, 1*, 1*">
+							<CheckBox Grid.Column="0" Content="重量(mg)" IsChecked="{Binding IsWeightModeEnabled}" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
+							<TextBox Grid.Column="1" Text="{Binding TargetWeightText}" IsEnabled="{Binding IsWeightModeEnabled}" Width="90" Height="35" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+							<TextBlock Grid.Column="2" Text="{Binding CurrentWeightStr}" Classes="ValueText" Classes.alarm="{Binding IsWeightAlarm}"/>
+						</Grid>
+					</Grid>
+				</Border>
+
+			</StackPanel>
+
+			<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="60">
+				<Button Classes="BlueBtn" Content="💾 保存" Command="{Binding SaveCommand}"/>
+				<Button Classes="BlueBtn" Content="✖ 取消" Command="{Binding CloseCommand}"/>
+			</StackPanel>
+
+		</Grid>
+	</Border>
+</Window>

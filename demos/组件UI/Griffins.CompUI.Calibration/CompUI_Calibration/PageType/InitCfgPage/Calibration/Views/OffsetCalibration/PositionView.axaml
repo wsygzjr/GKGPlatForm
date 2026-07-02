@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.Calibration.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.Calibration.ViewModels"
+             xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"  
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+             x:DataType="gkgUI:BasePositionViewModel"
+           x:Class="Griffins.CompUI.Calibration.Views.PositionView">
+
+    <!-- 公共页面： XYZ坐标调整-->
+  <StackPanel Margin="0" HorizontalAlignment="Center" >
+
+        <!-- 2. 表单内容   -->
+        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto"
+              RowSpacing="0"  HorizontalAlignment="Center" >
+            <!-- X -->
+             <custom:NumericControl
+            Grid.Row="0"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+			Name="AxisCountViewModel1"
+			LabelName="X(mm)"
+			WidthLevel="Small1"  
+			ViewModel="{Binding XViewModel}"
+			/>
+
+       
+             <custom:NumericControl
+            Grid.Row="1"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="Y(mm)"
+			WidthLevel="Small1"  
+			ViewModel="{Binding YViewModel }"
+			/>
+              <!-- Z --> 
+             <custom:NumericControl
+            Grid.Row="2"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="Z(mm)"
+			WidthLevel="Small1"  
+			ViewModel="{Binding ZViewModel }"
+			/> 
+             
+        </Grid>
+
+        <!-- 3. 按钮区  -->
+        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="0 0 0 0">
+            <Button 
+                Content="教导" 
+                Command="{Binding TeachCommand}"   Classes="btn"  />
+             
+            <Button 
+                Content="{Binding MoveBtText}"   
+                Command="{Binding MoveCommand}"  Classes="btn"   > 
+            </Button>
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>

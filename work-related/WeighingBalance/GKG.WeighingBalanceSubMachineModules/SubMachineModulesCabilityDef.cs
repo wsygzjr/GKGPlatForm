@@ -1,0 +1,24 @@
+﻿using Griffins;
+using Griffins.ImeIOT;
+
+namespace GKG.SubMM.Dispenser
+{
+    internal class SubMachineModulesCabilityDef : ISubMachineModulesCabilityDef
+    {
+
+        ImeCompEventDefInfoList ISubMachineModulesCabilityDef.Events => WeighingBalanceSubMachineModulesConst.Events;
+
+        ImeCompMethodDefInfoList ISubMachineModulesCabilityDef.Methods => WeighingBalanceSubMachineModulesConst.Methods;
+
+        ImeCompPropDefInfoList ISubMachineModulesCabilityDef.UIDataObjProps => null!;
+
+        ImeCompMethodDefInfoList ISubMachineModulesCabilityDef.UICommands => null!;
+
+        DevicePropertyInfoList ISubMachineModulesCabilityDef.DeviceProps => null!;
+
+        ISubMachineModulesDefSvr ISubMachineModulesCabilityDef.CreateISubMachineModulesDefSvr(SubMMAlias alias, byte[] factoryCfgInfo, GFBaseTypePropValueList devicePropValues)
+        {
+            return null!;
+        }
+    }
+}

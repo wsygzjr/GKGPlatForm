@@ -1,0 +1,28 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+              xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels.Axis"
+             x:DataType="vm:EncoderTypeParamViewModel"
+           x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.EncoderTypeParamView" 
+                 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  >
+
+<!--	<TextBlock Text="编码器类型配置界面" VerticalAlignment="Top"/>-->
+
+   <Grid Margin="0,0,0,0"
+      RowDefinitions="*"  RowSpacing="0" ColumnSpacing="0"  >  <!-- 显式定义1行，自适应控件高度（可选但推荐） -->
+
+        <!-- 编码器类型 --> 
+	    <custom:ComboxControl 
+                     Grid.Row="0"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     VerticalAlignment="Center"
+					LabelName="编码器类型:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding EncoderTypeViewModel}" />
+              
+    </Grid>
+
+</UserControl>

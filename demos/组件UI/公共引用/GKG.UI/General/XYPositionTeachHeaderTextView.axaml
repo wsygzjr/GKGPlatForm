@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:GKG.UI.General"
+             xmlns:ui="clr-namespace:GKG.UI"
+             x:DataType="vm:BasePositionViewModel"
+             x:Class="GKG.UI.General.XYPositionTeachHeaderTextView">
+    <Grid RowDefinitions="Auto"
+          ColumnDefinitions="76,76,*,*"
+          ColumnSpacing="8"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Center"
+          Height="38"
+          MinWidth="400"
+          Background="#C5DFFB">
+        <ui:TextBlockControl x:Name="XHeaderLabel"
+                             Grid.Row="0" Grid.Column="0"
+                             LabelName="" WidthLevel="Small"  
+                             Classes="flatTable"
+                             FixWidth="False"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center" />
+        <ui:TextBlockControl x:Name="YHeaderLabel"
+                             Grid.Row="0" Grid.Column="1"
+                             LabelName="" WidthLevel="Small"  
+                             FixWidth="False"
+                             Classes="flatTable"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center" />
+    </Grid>
+</UserControl>

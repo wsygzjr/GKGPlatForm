@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GF_Gereric" Version="7.1.0" />
+    <PackageReference Include="Griffins.ImeIOT" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FunctionHeader\function-header\Valve\DispensingFunctionHeadSubMachineModules\DispensingFunctionHeadSubMachineModules.csproj" />
+    <ProjectReference Include="..\..\MotionCompute\motion-compute\MotionCalculate\MotionCalculateSubMachineModules\MotionCalculateSubMachineModules.csproj" />
+    <ProjectReference Include="..\..\MotionControl\motion-control\CategoryARobot\CategoryARobotSubMachineModules\CategoryARobotSubMachineModules.csproj" />
+    <ProjectReference Include="..\..\Vision\VisionSubMachineModules\VisionSubMachineModules.csproj" />
+  </ItemGroup>
+
+</Project>

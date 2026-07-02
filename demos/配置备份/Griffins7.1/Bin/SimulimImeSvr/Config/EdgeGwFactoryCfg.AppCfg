@@ -1,0 +1,11 @@
+<GWFactoryCfgInfo>
+  <WorkMode>1</WorkMode>
+  <SupportRichCliCollector>True</SupportRichCliCollector>
+  <GatewayType>1</GatewayType>
+  <GatewayModel />
+  <EnabledTpOnRamp>False</EnabledTpOnRamp>
+  <EnabledTpOffRamp>True</EnabledTpOffRamp>
+  <GatewayID>Oo185y88mdD7W3pnxInxp</GatewayID>
+  <GatewaySecret>5iwWtOX64lz3XRHAm0Lfb</GatewaySecret>
+  <AdminUserID>142046a3-467a-451a-91d6-e852d1b4d6ad</AdminUserID>
+</GWFactoryCfgInfo>

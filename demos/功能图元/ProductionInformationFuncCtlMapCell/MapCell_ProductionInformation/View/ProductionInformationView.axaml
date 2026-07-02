@@ -1,0 +1,279 @@
+﻿<UserControl x:Class="GKG.Map.ProductionInformationFuncCtlMapCell.View.ProductionInformationView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="using:GKG.Map.ProductionInformationFuncCtlMapCell.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:GKG.Map.ProductionInformationFuncCtlMapCell.ViewModel"
+             d:DesignHeight="410"
+             d:DesignWidth="1100"
+             mc:Ignorable="d"
+             Background="#F4F6F9"
+             x:DataType="vm:ProductionInformationViewModel"
+             x:CompileBindings="True">
+
+    <Design.DataContext>
+        <vm:ProductionInformationViewModel/>    
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="Border.Card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="16,12,16,12"/>
+            <Setter Property="BoxShadow" Value="0 2 6 0 #08000000"/>
+        </Style>
+
+        <Style Selector="TextBlock.SectionTitle">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#111111"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+
+        <Style Selector="TextBlock.SubTitle">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#0078D4"/>
+        </Style>
+
+        <Style Selector="Border.RowContainer">
+            <Setter Property="BorderBrush" Value="#F0F2F5"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Padding" Value="0,6"/>
+        </Style>
+
+        <Style Selector="TextBlock.LabelText">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#737373"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI, Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="TextBlock.DataText">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI, Arial"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        </Style>
+
+        <Style Selector="Button.Blue">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+        <Style Selector="Button.Blue:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#106EBE"/>
+        </Style>
+
+        <Style Selector="Button.EmptyBlue">
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#0078D4"/>
+            <Setter Property="BorderBrush" Value="#0078D4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.EmptyBlue:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#F3F9FD"/>
+        </Style>
+
+        <Style Selector="Button.MiniRed">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Padding" Value="4,0"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#D32F2F"/>
+            <Setter Property="BorderBrush" Value="#D32F2F"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.MiniRed:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#FDEDED"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Margin="12" RowDefinitions="1.4*, 1*">
+
+        <!-- 上半部分 -->
+        <Grid Grid.Row="0" ColumnDefinitions="*, *" Margin="0,0,0,10">
+
+            <!-- 基础运行状态看板 -->
+            <Border Grid.Column="0" Classes="Card" Margin="0,0,6,0">
+                <StackPanel>
+                    <TextBlock Text="基础运行状态" Classes="SectionTitle"/>
+
+                    <Border Classes="RowContainer">
+                        <Grid ColumnDefinitions="100,*,Auto">
+                            <TextBlock Grid.Column="0" Classes="LabelText" Text="程序名称" />
+                            <TextBlock Grid.Column="1" Classes="DataText" Text="{Binding CurrentRecipeName}" ToolTip.Tip="{Binding CurrentRecipeName}" Margin="0,0,8,0" />
+                            <Button Grid.Column="2" Name="LoadRecipeButton" Classes="EmptyBlue" Content="切换配方" Command="{Binding SwitchRecipeCommand}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="RowContainer">
+                        <Grid ColumnDefinitions="100,*,Auto">
+                            <TextBlock Grid.Column="0" Classes="LabelText" Text="配方运行时间" />
+                            <TextBlock Grid.Column="1" Classes="DataText" Text="{Binding MachineRunTime}" Margin="0,0,8,0" />
+                            <Button Grid.Column="2" Name="RefillCompleteButton" Classes="Blue" Content="换料完成" Command="{Binding ZipChangeProgramCommand}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="RowContainer">
+                        <Grid ColumnDefinitions="100,*,Auto">
+                            <TextBlock Grid.Column="0" Classes="LabelText" Text="设备使用率(%)" />
+                            <TextBlock Grid.Column="1" Classes="DataText" Text="{Binding UtilizationRate}" Foreground="#0078D4" Margin="0,0,8,0" />
+                            <Button Grid.Column="2" Classes="EmptyBlue" Content="查询生产信息" Command="{Binding QueryProductionInfoCommand}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="RowContainer" BorderThickness="0">
+                        <Grid ColumnDefinitions="100,*,Auto">
+                            <TextBlock Grid.Column="0" Classes="LabelText" Text="UPH (产能/H)"/>
+                            <TextBlock Grid.Column="1" Classes="DataText" Text="{Binding Uph}" Foreground="#0078D4" Margin="0,0,8,0" />
+                            <Button Grid.Column="2" Classes="EmptyBlue" Content="查看运行数据" Command="{Binding ShowMachineRunningStatisticsCommand}" />
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- 生产统计与动态轨道看板 -->
+            <Border Grid.Column="1" Classes="Card" Margin="6,0,0,0">
+                <Grid RowDefinitions="Auto, *">
+                    <TextBlock Grid.Row="0" Text="生产统计与计数" Classes="SectionTitle" Margin="0,0,0,12"/>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0,0,16,0">
+                        <ItemsControl ItemsSource="{Binding LaneProductionList}">
+                            <ItemsControl.ItemTemplate>
+                                <!-- 架构优化：为子级 DataTemplate 添加数据类型约束，保证编译时安全与性能 -->
+                                <DataTemplate x:DataType="vm:LaneProductionModel">
+                                    <Border Classes="RowContainer" Padding="0,16">
+                                        <Grid ColumnDefinitions="26, *, Auto, 8, *, Auto">
+                                            
+                                            <TextBlock Grid.Column="0" Classes="SubTitle" Text="{Binding LaneName}" VerticalAlignment="Center" Margin="0"/>
+                                            
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="2" VerticalAlignment="Center" Margin="0,0,4,0">
+                                                <TextBlock Classes="LabelText" Text="总:" FontSize="12"/>
+                                                <TextBlock Classes="DataText" Text="{Binding TotalBigBoardCount}" Foreground="#0078D4"/>
+                                                <TextBlock Classes="LabelText" Text="/" FontSize="12"/>
+                                                <TextBlock Classes="DataText" Text="{Binding TotalSmallBoardCount}" Foreground="#0078D4"/>
+                                            </StackPanel>
+                                            
+                                            <Button Grid.Column="2" Classes="MiniRed" Content="清空" Command="{Binding ClearTotalCommand}"/>
+
+                                            <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="2" VerticalAlignment="Center" Margin="0,0,4,0">
+                                                <TextBlock Classes="LabelText" Text="当:" FontSize="12"/>
+                                                <TextBlock Classes="DataText" Text="{Binding CurrentBigBoardCount}"/>
+                                                <TextBlock Classes="LabelText" Text="/" FontSize="12"/>
+                                                <TextBlock Classes="DataText" Text="{Binding CurrentSmallBoardCount}"/>
+                                            </StackPanel>
+                                            
+                                            <Button Grid.Column="5" Classes="MiniRed" Content="清空" Command="{Binding ClearCurrentCommand}"/>
+                                            
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+        </Grid>
+
+        <!-- 下半部分：生产节拍 -->
+        <Border Grid.Row="1" Classes="Card">
+            <Grid RowDefinitions="Auto, *, *">
+                <TextBlock Grid.Row="0" Text="生产节拍时间 (s)" Classes="SectionTitle" Margin="0,0,0,4"/>
+
+                <Border Grid.Row="1" Classes="RowContainer" Padding="0">
+                    <Grid ColumnDefinitions="100, *, *, *, *, *, *" VerticalAlignment="Center">
+                        <TextBlock Grid.Column="0" Text="▶ 当前板" Classes="SubTitle" Margin="0" VerticalAlignment="Center"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="周期:" />
+                            <TextBlock Classes="DataText" Text="{Binding CurrentCycleTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="进板:" />
+                            <TextBlock Classes="DataText" Text="{Binding CurrentLoadTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="出板:" />
+                            <TextBlock Classes="DataText" Text="{Binding CurrentUnloadTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="单板:" />
+                            <TextBlock Classes="DataText" Text="{Binding CurrentBoardProcessTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="5" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="Mark:" />
+                            <TextBlock Classes="DataText" Text="{Binding CurrentMarkTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="6" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="点胶:" />
+                            <TextBlock Classes="DataText" Text="{Binding CurrentDispenseTime}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="2" Classes="RowContainer" Padding="0" BorderThickness="0">
+                    <Grid ColumnDefinitions="100, *, *, *, *, *, *" VerticalAlignment="Center">
+                        <TextBlock Grid.Column="0" Text="▶ 平均时间" Classes="SubTitle" Foreground="#888888" Margin="0" VerticalAlignment="Center"/>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="周期:" />
+                            <TextBlock Classes="DataText" Text="{Binding AverageCycleTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="进板:" />
+                            <TextBlock Classes="DataText" Text="{Binding AverageLoadTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="出板:" />
+                            <TextBlock Classes="DataText" Text="{Binding AverageUnloadTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="单板:" />
+                            <TextBlock Classes="DataText" Text="{Binding AverageBoardProcessTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="5" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="Mark:" />
+                            <TextBlock Classes="DataText" Text="{Binding AverageMarkTime}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="6" Orientation="Horizontal" Spacing="4">
+                            <TextBlock Classes="LabelText" Text="点胶:" />
+                            <TextBlock Classes="DataText" Text="{Binding AverageDispenseTime}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

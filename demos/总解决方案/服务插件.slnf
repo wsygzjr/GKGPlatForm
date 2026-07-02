@@ -1,0 +1,16 @@
+{
+  "solution": {
+    "path": "总解决方案.sln",
+    "projects": [
+      "..\\服务插件\\工位服务插件\\GKG.Station.DB\\GKG.Station.DB.csproj",
+      "..\\服务插件\\工位服务插件\\GKG.Station.Server\\GKG.Station.Server.csproj",
+      "..\\服务插件\\工位服务插件\\GKG.Station\\GKG.Station.csproj",
+      "..\\服务插件\\日志服务插件\\GKG.Log.DB\\GKG.Log.DB.csproj",
+      "..\\服务插件\\日志服务插件\\GKG.Log.Server\\GKG.Log.Server.csproj",
+      "..\\服务插件\\日志服务插件\\GKG.Log\\GKG.Log.csproj",
+      "..\\服务插件\\点胶服务插件\\GKG.Dispense.DB\\GKG.Dispense.DB.csproj",
+      "..\\服务插件\\点胶服务插件\\GKG.Dispense.Server\\GKG.Dispense.Server.csproj",
+      "..\\服务插件\\点胶服务插件\\GKG.Dispense\\GKG.Dispense.csproj"
+    ]
+  }
+}

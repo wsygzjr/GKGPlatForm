@@ -1,0 +1,13 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="GKG.Vision.GVisionDriverParameterEditorView">
+  <StackPanel Margin="12" Spacing="8">
+    <TextBlock Text="GVision 参数编辑器" FontSize="16" FontWeight="Bold" />
+    <TextBlock Text="参数数据（Base64）" />
+    <TextBox x:Name="DataTextBox"
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             MinHeight="120" />
+    <Button x:Name="ApplyButton" Content="应用修改" HorizontalAlignment="Left" />
+  </StackPanel>
+</UserControl>

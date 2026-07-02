@@ -1,0 +1,68 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.PushRod.CompUI_PushRod.PageType.RecipeCfgPage.CylinderPushRodRecipe.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="420"
+             x:DataType="vm:CylinderPushRodRecipeCompUIViewModel"
+             x:Class="Griffins.CompUI.PushRod.CompUI_PushRod.PageType.RecipeCfgPage.CylinderPushRodRecipe.Views.CylinderPushRodRecipeCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="16"/>
+    </Style>
+    <Style Selector="Border.Card">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="6"/>
+    </Style>
+    <Style Selector="Border.ContentPanel">
+      <Setter Property="Background" Value="#F8FBFE"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="14,16"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="Foreground" Value="#20407B"/>
+    </Style>
+    <Style Selector="Button.PrimaryAction">
+      <Setter Property="Background" Value="#1C5ED6"/>
+      <Setter Property="Foreground" Value="#FFF"/>
+      <Setter Property="BorderBrush" Value="#1C5ED6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="16,8"/>
+      <Setter Property="MinWidth" Value="108"/>
+      <Setter Property="Height" Value="36"/>
+    </Style>
+    <Style Selector="custom|TextInputControl">
+      <Setter Property="FixWidth" Value="False"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Classes="PageShell">
+    <Border Classes="Card">
+      <Border Classes="ContentPanel" Margin="12">
+        <Grid RowDefinitions="Auto,16,Auto,*">
+          <TextBlock Classes="SectionTitle" Text="推料操作"/>
+          <StackPanel Grid.Row="2"
+                      Spacing="16"
+                      MaxWidth="520"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" Spacing="16">
+              <Button Classes="PrimaryAction" Content="推料一次" Command="{Binding PushOnceCommand}"/>
+              <Button Classes="PrimaryAction" Content="推杆伸出" Command="{Binding PushRodForwardCommand}"/>
+              <Button Classes="PrimaryAction" Content="推杆缩回" Command="{Binding PushRodBackwardCommand}"/>
+            </StackPanel>
+          </StackPanel>
+        </Grid>
+      </Border>
+    </Border>
+  </Border>
+</UserControl>

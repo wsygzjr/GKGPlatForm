@@ -1,0 +1,44 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:NonMainFrameViewModel.ViewModels;assembly=NonMainFrame"
+		xmlns:customMenuCmdConfig="clr-namespace:Griffins.Map.UI.CustomMenuCmdConfig;assembly=Griffins.Map.UI"
+		xmlns:view="using:NonMainFrameView.Views.ConfigViews"
+        x:Class="NonMainFrameView.Views.ConfigWindow"
+        mc:Ignorable="d"
+        x:DataType="vm:ConfigViewModel"
+        Title="插件配置"
+		WindowStartupLocation="CenterScreen"
+        Width="800" Height="600">
+	<Design.DataContext>
+		<vm:ConfigViewModel />
+	</Design.DataContext>
+	<Grid Margin="10">
+		<!-- Tab控件，包含四个配置页面 -->
+		<TabControl x:Name="ConfigTabControl">
+			<!-- 常规配置 -->
+			<TabItem Header="常规配置">
+			<view:GeneralConfigView DataContext="{Binding GeneralConfigViewModel}" />
+			</TabItem>
+
+			<!-- 工作区配置 -->
+			<TabItem Header="工作区配置">
+				<StackPanel Margin="10">
+					<customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding WorkAreaConfigVM}" />
+				</StackPanel>
+			</TabItem>
+		
+		</TabControl>
+
+		<!-- 底部按钮区域 -->
+		<StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            Spacing="10"
+            Margin="0,10,0,0"
+            VerticalAlignment="Bottom">
+			<Button Content="关闭" Command="{Binding CloseCommand}" Width="80"/>
+		</StackPanel>
+	</Grid>
+</Window>

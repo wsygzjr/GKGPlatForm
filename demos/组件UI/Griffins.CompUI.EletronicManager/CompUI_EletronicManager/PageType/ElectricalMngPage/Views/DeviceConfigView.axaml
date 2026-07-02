@@ -1,0 +1,89 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="1500"
+             d:DesignHeight="900"
+             xmlns:cardviews="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.Views"
+             xmlns:ioviews="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.IODevice.Views"
+             xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ViewModels"
+             x:DataType="vm:ElectricalMngPageViewModel"
+             x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.Views.DeviceConfigView">
+
+    <UserControl.Styles>
+        <Style Selector="Border.page-shell">
+            <Setter Property="Background" Value="#F1F4F8" />
+            <Setter Property="Padding" Value="16" />
+        </Style>
+        <Style Selector="Border.content-shell">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+        <Style Selector="TabControl.root-tabs TabItem">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="18,10" />
+        </Style>
+        <Style Selector="TabControl.root-tabs TabItem:selected">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="Foreground" Value="#1C5ED6" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TabControl.inner-tabs TabItem">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Padding" Value="16,8" />
+        </Style>
+        <Style Selector="TabControl.inner-tabs TabItem:selected">
+            <Setter Property="Foreground" Value="#1C5ED6" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Classes="page-shell">
+        <TabControl Classes="root-tabs"
+                    Background="#FFFFFF">
+            <TabItem Header="运控卡">
+                <Border Classes="content-shell">
+                    <TabControl Classes="inner-tabs">
+                        <TabItem Header="轴管理">
+                            <cardviews:AxisConfigView DataContext="{Binding AxisConfigViewModel}" />
+                        </TabItem>
+
+                        <TabItem Header="状态量管理">
+                            <ioviews:IODeviceCfgView PageMode="State"
+                                                     DataContext="{Binding StateIODeviceCfgViewModel}" />
+                        </TabItem>
+
+                        <TabItem Header="模拟量管理">
+                            <ioviews:IODeviceCfgView PageMode="Analog"
+                                                     DataContext="{Binding AnalogIODeviceCfgViewModel}" />
+                        </TabItem>
+                    </TabControl>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="IO设备">
+                <Border Classes="content-shell">
+                    <Border Background="#F8FCFE"
+                            BorderBrush="#E0E3E9"
+                            BorderThickness="1"
+                            CornerRadius="6">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="#6C8796"
+                                   Text="IO设备页面暂未开发" />
+                    </Border>
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Border>
+</UserControl>

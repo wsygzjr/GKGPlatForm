@@ -1,0 +1,95 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.SL.InitCfgPage.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+             x:DataType="vm:TrackStationConfigCompUIViewModel"
+             x:Class="Griffins.CompUI.SL.InitCfgPage.Views.TrackStationConfigCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+  <Design.DataContext>
+    <vm:TrackStationConfigCompUIViewModel />
+  </Design.DataContext>
+
+  <Grid Margin="10" RowDefinitions="*,Auto" ColumnDefinitions="*">
+
+    <Border Grid.Row="0" BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+      <StackPanel Orientation="Vertical" Spacing="10">
+        <TextBlock Text="工位预览" FontWeight="Bold" />
+        <Border CornerRadius="6" BorderThickness="1" BorderBrush="#33000000" Background="Transparent" Padding="0">
+          <Grid ColumnDefinitions="1*,3*,1*" RowDefinitions="*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="70" Width="240">
+            <Image Grid.Column="0"
+                   IsVisible="{Binding StationPreview.LeftSensorVisible}"
+                   Source="{Binding StationPreview.LeftSensorImage}"
+                   Margin="6,6"
+                   Stretch="Uniform"
+                   StretchDirection="Both"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"/>
+
+            <Image Grid.Column="1"
+                   Source="{Binding StationPreview.StationImage}"
+                   Stretch="Uniform"
+                   StretchDirection="Both"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"/>
+
+            <Image Grid.Column="2"
+                   IsVisible="{Binding StationPreview.RightSensorVisible}"
+                   Source="{Binding StationPreview.RightSensorImage}"
+                   Margin="6,6"
+                   Stretch="Uniform"
+                   StretchDirection="Both"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"/>
+          </Grid>
+        </Border>
+      </StackPanel>
+    </Border>
+
+    <StackPanel Grid.Row="1" Orientation="Vertical" Spacing="12" Margin="0,12,0,0">
+
+      <Grid ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="12">
+        <TextBlock Grid.Column="0" Text="是否有左感应器" VerticalAlignment="Center" />
+        <ToggleSwitch Grid.Column="1"
+                      IsChecked="{Binding HasLeftSensor}"
+                      OnContent="ON"
+                      OffContent="OFF"
+                      Margin="5,0" />
+        <Button Grid.Column="2" Content="配置" Command="{Binding ConfigLeftSensorCommand}" IsEnabled="{Binding HasLeftSensor}" />
+      </Grid>
+
+      <Grid ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="12">
+        <TextBlock Grid.Column="0" Text="是否有右感应器" VerticalAlignment="Center" />
+        <ToggleSwitch Grid.Column="1"
+                      IsChecked="{Binding HasRightSensor}"
+                      OnContent="ON"
+                      OffContent="OFF"
+                      Margin="5,0" />
+        <Button Grid.Column="2" Content="配置" Command="{Binding ConfigRightSensorCommand}" IsEnabled="{Binding HasRightSensor}" />
+      </Grid>
+
+      <Grid ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="12">
+        <TextBlock Grid.Column="0" Text="是否有左气缸" VerticalAlignment="Center" />
+        <ToggleSwitch Grid.Column="1"
+                      IsChecked="{Binding HasLeftCylinder}"
+                      OnContent="ON"
+                      OffContent="OFF"
+                      Margin="5,0" />
+        <Button Grid.Column="2" Content="配置" Command="{Binding ConfigLeftCylinderCommand}" IsEnabled="{Binding HasLeftCylinder}" />
+      </Grid>
+
+      <Grid ColumnDefinitions="Auto,Auto,Auto" ColumnSpacing="12">
+        <TextBlock Grid.Column="0" Text="是否有右气缸" VerticalAlignment="Center" />
+        <ToggleSwitch Grid.Column="1"
+                      IsChecked="{Binding HasRightCylinder}"
+                      OnContent="ON"
+                      OffContent="OFF"
+                      Margin="5,0" />
+        <Button Grid.Column="2" Content="配置" Command="{Binding ConfigRightCylinderCommand}" IsEnabled="{Binding HasRightCylinder}" />
+      </Grid>
+
+    </StackPanel>
+
+  </Grid>
+</UserControl>

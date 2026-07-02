@@ -1,0 +1,341 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.DispensingFunctionHead.CompUI_DispensingFunctionHead.PageType.PPPage.DispensingFunctionHeadPP.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="900"
+             x:DataType="vm:DispensingFunctionHeadPPCompUIViewModel"
+             x:Class="Griffins.CompUI.DispensingFunctionHead.CompUI_DispensingFunctionHead.PageType.PPPage.DispensingFunctionHeadPP.Views.DispensingFunctionHeadPPCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="18"/>
+    </Style>
+    <Style Selector="Border.Card">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="14"/>
+      <Setter Property="BoxShadow" Value="0 4 12 0 #120F172A"/>
+    </Style>
+    <Style Selector="Border.ContentPanel">
+      <Setter Property="Background" Value="#F7FAFD"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="14,16"/>
+    </Style>
+    <Style Selector="TextBlock.FormLabel">
+      <Setter Property="Foreground" Value="#3C4652"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="#1F3F75"/>
+    </Style>
+    <Style Selector="Button.AddButton">
+      <Setter Property="Background" Value="#4A90E2"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Padding" Value="12,6"/>
+      <Setter Property="Margin" Value="0,0,10,10"/>
+    </Style>
+    <Style Selector="Button.EditButton">
+      <Setter Property="Background" Value="#F5A623"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Padding" Value="6,3"/>
+      <Setter Property="Margin" Value="2,0"/>
+      <Setter Property="FontSize" Value="12"/>
+    </Style>
+    <Style Selector="Button.DeleteButton">
+      <Setter Property="Background" Value="#D0021B"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Padding" Value="6,3"/>
+      <Setter Property="Margin" Value="2,0"/>
+      <Setter Property="FontSize" Value="12"/>
+    </Style>
+    <Style Selector="Border.DialogMask">
+      <Setter Property="Background" Value="#99000000"/>
+    </Style>
+    <Style Selector="Border.DialogPanel">
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="BorderBrush" Value="#D5DAE2"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="20"/>
+      <Setter Property="Width" Value="560"/>
+      <Setter Property="BoxShadow" Value="0 12 28 0 #3A0F172A"/>
+    </Style>
+    <Style Selector="TextBox.EditInput">
+      <Setter Property="Height" Value="32"/>
+      <Setter Property="Padding" Value="8,4"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.DialogPrimary">
+      <Setter Property="Background" Value="#2F80ED"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Padding" Value="18,7"/>
+      <Setter Property="MinWidth" Value="78"/>
+    </Style>
+    <Style Selector="Button.DialogSecondary">
+      <Setter Property="Background" Value="#EEF2F7"/>
+      <Setter Property="Foreground" Value="#334155"/>
+      <Setter Property="Padding" Value="18,7"/>
+      <Setter Property="MinWidth" Value="78"/>
+    </Style>
+    <Style Selector="DataGrid">
+      <Setter Property="RowHeight" Value="35"/>
+      <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <Style Selector="DataGridColumnHeader">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Foreground" Value="#3C4652"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="Padding" Value="8,6"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Grid>
+    <Border Classes="PageShell">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16">
+        
+        <!-- 阀参数列表 -->
+        <Border Classes="Card">
+          <Grid RowDefinitions="Auto,16,Auto">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Classes="SectionTitle" Text="阀参数列表" VerticalAlignment="Center"/>
+              <Button Classes="AddButton" 
+                      Content="➕ 添加行" 
+                      Command="{Binding AddValveParamsCommand}"
+                      Margin="16,0,0,0"/>
+            </StackPanel>
+            
+            <Border Grid.Row="2" Classes="ContentPanel">
+              <DataGrid ItemsSource="{Binding ValveParamsList}"
+                        AutoGenerateColumns="False"
+                        IsReadOnly="True"
+                        Height="230"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Auto"
+                        GridLinesVisibility="All"
+                        BorderThickness="1"
+                        BorderBrush="#E0E3E9">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="序号" Binding="{Binding Index}" Width="70"/>
+                  <DataGridTextColumn Header="上升时间(ms)" Binding="{Binding UpriseTimeMs}" Width="120"/>
+                  <DataGridTextColumn Header="点胶时间(ms)" Binding="{Binding DispenseTimeMs}" Width="120"/>
+                  <DataGridTextColumn Header="撞击时间(ms)" Binding="{Binding ImpactTimeMs}" Width="120"/>
+                  <DataGridTextColumn Header="间歇时间(ms)" Binding="{Binding IntervalTimeMs}" Width="120"/>
+                  <DataGridTextColumn Header="电压比(%)" Binding="{Binding PressureControlParam}" Width="110"/>
+                  <DataGridTextColumn Header="打点数量" Binding="{Binding PointCount}" Width="100"/>
+                  <DataGridTextColumn Header="点胶模式" Binding="{Binding DispenseMode}" Width="100"/>
+                  <DataGridTextColumn Header="启停状态" Binding="{Binding StartStopState}" Width="100"/>
+                  <DataGridTemplateColumn Header="操作" Width="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                      <DataTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                          <Button Classes="EditButton" 
+                                  Content="编辑"
+                                  Command="{Binding $parent[UserControl].((vm:DispensingFunctionHeadPPCompUIViewModel)DataContext).EditValveParamsCommand}"
+                                  CommandParameter="{Binding}"/>
+                          <Button Classes="DeleteButton" 
+                                  Content="删除"
+                                  Command="{Binding $parent[UserControl].((vm:DispensingFunctionHeadPPCompUIViewModel)DataContext).DeleteValveParamsCommand}"
+                                  CommandParameter="{Binding}"/>
+                        </StackPanel>
+                      </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                  </DataGridTemplateColumn>
+                </DataGrid.Columns>
+              </DataGrid>
+            </Border>
+          </Grid>
+        </Border>
+
+        <!-- 胶量感应参数配置 -->
+        <Border Classes="Card">
+          <Grid RowDefinitions="Auto,16,Auto">
+            <TextBlock Classes="SectionTitle" Text="胶量感应参数配置"/>
+            <Border Grid.Row="2" Classes="ContentPanel">
+              <Grid ColumnDefinitions="140,200,140,200,140,200"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                    ColumnSpacing="16"
+                    RowSpacing="12">
+                
+                <!-- 时间检测参数标题 -->
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           Grid.ColumnSpan="6" 
+                           FontWeight="SemiBold" 
+                           Foreground="#5A6C7D"
+                           Text="时间检测参数"/>
+                
+                <!-- 启用时间检测 -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="启用时间检测"/>
+                <custom:ToggleSwitchControl Grid.Row="1" Grid.Column="1"
+                                            ViewModel="{Binding GlueAmountViewModel.TimeEnableViewModel}"
+                                            LabelName=""
+                                            WidthLevel="Small3"/>
+                
+                <!-- 总时间 -->
+                <TextBlock Grid.Row="1" Grid.Column="2" Classes="FormLabel" Text="总时间(h)"/>
+                <custom:TextInputControl Grid.Row="1" Grid.Column="3"
+                                         ViewModel="{Binding GlueAmountViewModel.TotalTimeViewModel}"
+                                         LabelName=""
+                                         WidthLevel="Small3"/>
+                
+                <!-- 剩余时间 -->
+                <TextBlock Grid.Row="1" Grid.Column="4" Classes="FormLabel" Text="剩余时间(h)"/>
+                <custom:TextInputControl Grid.Row="1" Grid.Column="5"
+                                         ViewModel="{Binding GlueAmountViewModel.RemainingTimeViewModel}"
+                                         LabelName=""
+                                         WidthLevel="Small3"/>
+
+                <!-- 分隔线 -->
+                <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Height="1" Background="#E0E3E9"/>
+
+                <!-- 重量检测参数标题 -->
+                <TextBlock Grid.Row="3" Grid.Column="0" 
+                           Grid.ColumnSpan="6" 
+                           FontWeight="SemiBold" 
+                           Foreground="#5A6C7D"
+                           Text="重量检测参数"/>
+                
+                <!-- 启用重量检测 -->
+                <TextBlock Grid.Row="4" Grid.Column="0" Classes="FormLabel" Text="启用重量检测"/>
+                <custom:ToggleSwitchControl Grid.Row="4" Grid.Column="1"
+                                            ViewModel="{Binding GlueAmountViewModel.WeightEnableViewModel}"
+                                            LabelName=""
+                                            WidthLevel="Small3"/>
+                
+                <!-- 总重量 -->
+                <TextBlock Grid.Row="4" Grid.Column="2" Classes="FormLabel" Text="总重量(mg)"/>
+                <custom:TextInputControl Grid.Row="4" Grid.Column="3"
+                                         ViewModel="{Binding GlueAmountViewModel.TotalWeightViewModel}"
+                                         LabelName=""
+                                         WidthLevel="Small3"/>
+                
+                <!-- 剩余重量 -->
+                <TextBlock Grid.Row="4" Grid.Column="4" Classes="FormLabel" Text="剩余重量(mg)"/>
+                <custom:TextInputControl Grid.Row="4" Grid.Column="5"
+                                         ViewModel="{Binding GlueAmountViewModel.RemainingWeightViewModel}"
+                                         LabelName=""
+                                         WidthLevel="Small3"/>
+                
+                <!-- 报警类型 -->
+                <TextBlock Grid.Row="5" Grid.Column="0" Classes="FormLabel" Text="报警类型"/>
+                <custom:ComboxControl Grid.Row="5" Grid.Column="1"
+                                      ViewModel="{Binding GlueAmountViewModel.WeightAlarmTypeViewModel}"
+                                      LabelName=""
+                                      WidthLevel="Small3"/>
+                
+                <!-- 报警阈值 -->
+                <TextBlock Grid.Row="5" Grid.Column="2" Classes="FormLabel" Text="报警阈值"/>
+                <custom:TextInputControl Grid.Row="5" Grid.Column="3"
+                                         ViewModel="{Binding GlueAmountViewModel.WeightAlarmValueViewModel}"
+                                         LabelName=""
+                                         WidthLevel="Small3"/>
+
+                <!-- 分隔线 -->
+                <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Height="1" Background="#E0E3E9"/>
+
+                <!-- 板数检测参数标题 -->
+                <TextBlock Grid.Row="7" Grid.Column="0" 
+                           Grid.ColumnSpan="6" 
+                           FontWeight="SemiBold" 
+                           Foreground="#5A6C7D"
+                           Text="板数检测参数"/>
+                
+                <!-- 启用板数检测 -->
+                <TextBlock Grid.Row="8" Grid.Column="0" Classes="FormLabel" Text="启用板数检测"/>
+                <custom:ToggleSwitchControl Grid.Row="8" Grid.Column="1"
+                                            ViewModel="{Binding GlueAmountViewModel.PcsEnableViewModel}"
+                                            LabelName=""
+                                            WidthLevel="Small3"/>
+                
+                <!-- 总板数 -->
+                <TextBlock Grid.Row="8" Grid.Column="2" Classes="FormLabel" Text="总板数"/>
+                <custom:TextInputControl Grid.Row="8" Grid.Column="3"
+                                         ViewModel="{Binding GlueAmountViewModel.TotalPcsViewModel}"
+                                         LabelName=""
+                                         WidthLevel="Small3"/>
+                
+                <!-- 剩余板数 -->
+                <TextBlock Grid.Row="8" Grid.Column="4" Classes="FormLabel" Text="剩余板数"/>
+                <custom:TextInputControl Grid.Row="8" Grid.Column="5"
+                                         ViewModel="{Binding GlueAmountViewModel.RemainingPcsViewModel}"
+                                         LabelName=""
+                                         WidthLevel="Small3"/>
+                
+              </Grid>
+            </Border>
+          </Grid>
+        </Border>
+        
+        </StackPanel>
+      </ScrollViewer>
+    </Border>
+
+    <Border Classes="DialogMask"
+            IsVisible="{Binding IsEditDialogOpen}"
+            ZIndex="10">
+      <Border Classes="DialogPanel"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+        <Grid RowDefinitions="Auto,18,Auto,18,Auto">
+          <TextBlock Text="编辑阀参数"
+                     FontSize="18"
+                     FontWeight="SemiBold"
+                     Foreground="#1F2A37"/>
+
+          <Grid Grid.Row="2"
+                ColumnDefinitions="120,*"
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                ColumnSpacing="12"
+                RowSpacing="12">
+            <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="上升时间(ms)"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.UpriseTimeMs, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="点胶时间(ms)"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.DispenseTimeMs, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Classes="FormLabel" Text="撞击时间(ms)"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.ImpactTimeMs, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Classes="FormLabel" Text="间歇时间(ms)"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.IntervalTimeMs, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Classes="FormLabel" Text="电压比(%)"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.PressureControlParam, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Classes="FormLabel" Text="打点数量"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.PointCount, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Classes="FormLabel" Text="点胶模式"/>
+            <TextBox Grid.Row="6" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.DispenseMode, Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="7" Grid.Column="0" Classes="FormLabel" Text="启停状态"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Classes="EditInput" Text="{Binding EditingValveParams.StartStopState, Mode=TwoWay}"/>
+          </Grid>
+
+          <StackPanel Grid.Row="4"
+                      Orientation="Horizontal"
+                      HorizontalAlignment="Right"
+                      Spacing="10">
+            <Button Classes="DialogSecondary"
+                    Content="取消"
+                    Command="{Binding CancelEditingValveParamsCommand}"/>
+            <Button Classes="DialogPrimary"
+                    Content="保存"
+                    Command="{Binding SaveEditingValveParamsCommand}"/>
+          </StackPanel>
+        </Grid>
+      </Border>
+    </Border>
+  </Grid>
+</UserControl>

@@ -1,0 +1,22 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.Views.ControlCardBlankConfigWindow"
+        Title="运控卡配置"
+        Width="900"
+        Height="620"
+        MinWidth="760"
+        MinHeight="520">
+
+    <Grid Background="#FFFFFF">
+        <Border Margin="16"
+                Padding="16"
+                CornerRadius="8"
+                BorderBrush="#D0D7E2"
+                BorderThickness="1"
+                Background="#F8FBFD" />
+    </Grid>
+</Window>
+

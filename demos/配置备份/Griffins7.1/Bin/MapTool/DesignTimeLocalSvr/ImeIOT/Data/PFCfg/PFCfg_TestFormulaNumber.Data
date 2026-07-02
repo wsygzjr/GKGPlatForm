@@ -1,0 +1,13 @@
+{
+    "FormulaNumber": "TestFormulaNumber",
+    "MTNo": 1,
+    "CFNumber": "TestCFNumber",
+    "ImeModel": "TestImeModel",
+    "MMs": [
+	{
+            "Alias": "test_bl1",
+            "MMNumber": "test_GlueDirectWork",
+            "CfgInfo": "W3siSUQiOiJQYXJhbTEiLCJWYWx1ZSI6IntcIkRhdGFUeXBlXCI6NCxcIkRhdGFcIjpcIjBcIn0ifSx7IklEIjoiUGFyYW0yIiwiVmFsdWUiOiJ7XCJEYXRhVHlwZVwiOjUsXCJEYXRhXCI6XCJcIn0ifV0="
+        }],
+    "SubMMs": []
+}

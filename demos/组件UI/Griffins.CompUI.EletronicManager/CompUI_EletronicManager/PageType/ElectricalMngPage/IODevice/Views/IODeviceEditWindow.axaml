@@ -1,0 +1,108 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.IODevice.ViewModels"
+        xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+        mc:Ignorable="d"
+        x:DataType="vm:IODeviceEditWindowViewModel"
+        x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.IODevice.Views.IODeviceEditWindow"
+        Title="IO配置"
+        Width="460"
+        Height="440"
+        MinWidth="430"
+        MinHeight="420">
+
+    <StackPanel Margin="16,24"
+                HorizontalAlignment="Center"
+                Spacing="12">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+              ColumnDefinitions="400"
+              HorizontalAlignment="Center"
+              RowSpacing="12">
+            <Grid Grid.Row="0"
+                  Grid.Column="0"
+                  ColumnDefinitions="110,*"
+                  ColumnSpacing="10">
+                <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="IO名称" />
+                <custom:TextInputControl Grid.Column="1"
+                                         LabelName=""
+                                         Width="220"
+                                         WidthLevel="Small"
+                                         ViewModel="{Binding EditCopy.IONameViewModel, Mode=TwoWay}" />
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  ColumnDefinitions="110,*"
+                  ColumnSpacing="10">
+                <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="设备ID" />
+                <ComboBox Grid.Column="1"
+                          Width="220"
+                          VerticalAlignment="Center"
+                          ItemsSource="{Binding EditCopy.DeviceIdModel.ItemsSource}"
+                          SelectedItem="{Binding EditCopy.DeviceIdModel.SelectedItem, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+
+            <Grid Grid.Row="2"
+                  Grid.Column="0"
+                  ColumnDefinitions="110,*"
+                  ColumnSpacing="10">
+                <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="通道选择" />
+                <ComboBox Grid.Column="1"
+                          Width="220"
+                          VerticalAlignment="Center"
+                          ItemsSource="{Binding EditCopy.ChannelSelectionModel.ItemsSource}"
+                          SelectedItem="{Binding EditCopy.ChannelSelectionModel.SelectedItem, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+
+            <Grid Grid.Row="3"
+                  Grid.Column="0"
+                  ColumnDefinitions="110,*"
+                  ColumnSpacing="10">
+                <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="状态逻辑" />
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="18"
+                            VerticalAlignment="Center">
+                    <CheckBox Content="状态取反"
+                              IsChecked="{Binding EditCopy.StateReverse, Mode=TwoWay}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal"
+                    Spacing="10"
+                    HorizontalAlignment="Center">
+            <Button Content="取消"
+                    Command="{Binding CancelCommand}"
+                    Classes="btnCancel" />
+
+            <Button Content="保存"
+                    Command="{Binding SaveCommand}"
+                    Classes="btnSave"
+                    Cursor="Hand" />
+        </StackPanel>
+    </StackPanel>
+</Window>
+

@@ -1,0 +1,83 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:GKG.Map.Page.UIContainer.TabControlContainer.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="768"
+			 x:Class="GKG.Map.Page.UIContainer.TabControlContainer.Views.WorkAreaView"
+			 x:DataType="vm:WorkAreaViewModel" >
+	<Design.DataContext>
+		<vm:WorkAreaViewModel />
+	</Design.DataContext>
+
+	<!-- 主容器 -->
+	<Border BorderBrush="#CCCCCC" BorderThickness="1" Margin="0" CornerRadius="3">
+		<TabControl ItemsSource="{Binding WorkAreaInfoItems}"
+					SelectedItem="{Binding SelectedWorkArea}"
+					Margin="0">
+
+			<TabControl.Styles>
+				<Style Selector="TabItem">
+					<Setter Property="Background" Value="Transparent"/>
+					<Setter Property="Foreground" Value="#333333"/>
+					<Setter Property="FontSize" Value="14"/>
+					<Setter Property="Padding" Value="16,10"/> <Setter Property="Template">
+						<ControlTemplate>
+							<Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+								<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+									<ContentPresenter ContentTemplate="{TemplateBinding HeaderTemplate}"
+													  Content="{TemplateBinding Header}"
+													  HorizontalAlignment="Center"
+													  VerticalAlignment="Center"/>
+
+									<Border Name="PART_SelectedLine"
+											Background="#2B68E8"
+											Height="3"
+											Width="24"  CornerRadius="1.5"
+											Margin="0,6,0,0" Opacity="0">
+											<Border.Transitions>
+												<Transitions>
+													<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+												</Transitions>
+											</Border.Transitions>
+									</Border>
+								</StackPanel>
+							</Border>
+						</ControlTemplate>
+					</Setter>
+				</Style>
+
+				<Style Selector="TabItem:pointerover">
+					<Setter Property="Foreground" Value="#2B68E8"/>
+				</Style>
+
+				<Style Selector="TabItem:selected">
+					<Setter Property="Foreground" Value="#2B68E8"/>
+				</Style>
+
+				<Style Selector="TabItem:selected /template/ Border#PART_SelectedLine">
+					<Setter Property="Opacity" Value="1"/>
+				</Style>
+			</TabControl.Styles>
+
+			<TabControl.ItemTemplate>
+				<DataTemplate DataType="vm:TabWorkAreaModel">
+					<TextBlock Text="{Binding Name}" FontWeight="Medium"/>
+				</DataTemplate>
+			</TabControl.ItemTemplate>
+
+			<TabControl.ContentTemplate>
+				<DataTemplate DataType="vm:TabWorkAreaModel">
+					<Border BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
+						<ContentControl Content="{Binding CachedContent}"
+										HorizontalAlignment="Stretch"
+										VerticalAlignment="Stretch"
+										VerticalContentAlignment="{Binding VerticalContentAlignment}"
+										HorizontalContentAlignment="{Binding HorizontalContentAlignment}"/>
+					</Border>
+				</DataTemplate>
+			</TabControl.ContentTemplate>
+		</TabControl>
+	</Border>
+</UserControl>

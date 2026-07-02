@@ -1,0 +1,180 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             mc:Ignorable="d" d:DesignWidth="1806" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+             xmlns:m ="clr-namespace:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"   
+             x:DataType="vm:DispensingBeforePointStyleListViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.DispensingBeforePointStyleListView"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+             xmlns:convert="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Converters" >
+    
+    <!-- 转换器 -->
+    <UserControl.Resources>		
+        <convert:ListCountToBoolConverter x:Key="ListCountToBoolConverter"/> 
+        <convert:BoolToDisplayNameConverter x:Key="BoolToDisplayNameConverter"  /> <!-- 添加默认显示文本 --> 
+    </UserControl.Resources>  
+
+    <!-- 点样式-点胶前 -->
+    <DockPanel Margin="0" LastChildFill="True">  
+        <!--1. 顶部操作菜单（添加按钮）--> 
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="1" Margin="1 0 0 1"> 
+             <Button 
+                Content="新增" 
+                Command="{Binding AddCommand}" 
+                Classes="DataGrid_btnAddStyle" Width="80"/>   
+            <Button 
+                Content="删除" 
+                Command="{Binding BatchDeleteCommand}" 
+                Classes="DataGrid_btnAddStyle" Width="80" 
+                IsEnabled="{Binding CanBatchDelete}"/> <!-- 绑定批量删除可用状态 -->
+        </StackPanel>
+
+        <!-- DataGrid 配置（应用修复后的样式） DataGrid#StyleDataGrid    Classes="{StaticResource DataGridRowStyle}" -->
+       <ScrollViewer DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <DataGrid  Classes="StyleDataGrid"
+                ItemsSource="{Binding ItemsSource}"
+               AutoGenerateColumns="False"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                IsReadOnly="False" 
+                SelectionMode="Extended"  
+                RowHeight="40"
+                CanUserResizeColumns="True"
+                CanUserSortColumns="True"
+            >  
+      
+            <DataGrid.Columns> 
+                <!-- 全选列（不变） -->
+                <DataGridTemplateColumn Width="130" IsReadOnly="True">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox Classes="DataGrid_CheckBoxStyle"  
+                                      IsChecked="{Binding DataContext.IsSelectAll, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                      Content="全选"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel">
+                            <CheckBox Classes="DataGrid_CheckBoxStyle" 
+                                      IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn> 
+
+                <!-- 样式名称 -->
+                <DataGridTemplateColumn    Header="样式名称"   Width="180"   > 
+                     <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel">  
+                            <TextBox Text="{Binding StyleNameViewModel.Text , Mode=TwoWay}"  
+                                     Height="24"  Width="160"     Classes="DataGrid_TextBoxStyle"  /> 
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <!-- 旋转角度 -->
+                <DataGridTemplateColumn 
+                    Header="旋转角度(°)"   Width="180" 
+                   > 
+                     <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel">
+                              <NumericUpDown 
+                                Value="{Binding RotationAngleViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding RotationAngleViewModel.Minimum}"
+                                Increment="{Binding RotationAngleViewModel.Increment}"
+                                 Classes="DataGrid_NumericUpDownStyle"   Width="160" />  
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- 倾斜角度（°） -->
+                <DataGridTemplateColumn 
+                    Header="倾斜角度(°)"  Width="180"
+                   >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding TiltAngleViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding TiltAngleViewModel.Minimum}"
+                                Increment="{Binding TiltAngleViewModel.Increment}"
+                                  Classes="DataGrid_NumericUpDownStyle"    Width="160" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- 点胶高度（mm）（修复单位） -->
+                <DataGridTemplateColumn 
+                    Header="点胶高度(mm)"   Width="180"
+                   >
+                    <DataGridTemplateColumn.CellTemplate  >
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel" >
+                             <NumericUpDown 
+                                Value="{Binding DispensingHeightViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding DispensingHeightViewModel.Minimum}"
+                                Increment="{Binding DispensingHeightViewModel.Increment}"
+                                 Classes="DataGrid_NumericUpDownStyle"    Width="160" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- 稳定时间(ms) -->
+                <DataGridTemplateColumn 
+                    Header="稳定时间(ms)"   Width="180">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel">  
+                             <NumericUpDown 
+                                Value="{Binding StabilizationTimeViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding StabilizationTimeViewModel.Minimum}"
+                                Increment="{Binding StabilizationTimeViewModel.Increment}"
+                                 Classes="DataGrid_NumericUpDownStyle"   Width="160" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- 提前开阀时间(ms) -->
+                <DataGridTemplateColumn 
+                    Header="提前开阀时间(ms)" 
+                    Width="180">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding AdvanceValveOpeningTimeViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding AdvanceValveOpeningTimeViewModel.Minimum}"
+                                Increment="{Binding AdvanceValveOpeningTimeViewModel.Increment}"
+                                 Classes="DataGrid_NumericUpDownStyle"    Width="160"  />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                                        
+                <!-- 操作列（删除按钮） -->
+                <DataGridTemplateColumn 
+                    Header="操作" 
+                    Width="115" 
+                    IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforePointStyleCfgInfoModel">
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="5 0">
+                                <Button 
+                                    Content="删除" 
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}" 
+                                    Classes="DataGrid_btnDeleteStyle" >
+                                 <!--   <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource ListCountToBoolConverter}">
+                                            <Binding Path="DataContext.StyleList.Count" RelativeSource="{RelativeSource AncestorType=DataGrid}"/>
+                                            <Binding Path="IsDummy" FallbackValue="False"/>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>-->
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns> 
+        </DataGrid>
+        </ScrollViewer>
+    </DockPanel>  
+
+</UserControl>

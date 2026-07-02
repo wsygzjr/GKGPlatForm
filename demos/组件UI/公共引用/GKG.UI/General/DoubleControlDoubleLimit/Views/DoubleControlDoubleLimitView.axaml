@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:GKG.UI.General"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             x:DataType="vm:DoubleControlDoubleLimitViewModel"
+             xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+             x:Class="GKG.UI.General.DoubleControlDoubleLimitView">
+    <StackPanel Orientation="Vertical" Spacing="10" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="控制1" FontSize="18" Background="Transparent" Foreground="Gray" Margin="2 15 0 0"/>
+            <gkgUI:HorizontalControlCardStateInitView DataContext="{Binding FirstControlViewModel}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="控制2" FontSize="18" Background="Transparent" Foreground="Gray" Margin="0 15 0 0"/>
+            <gkgUI:HorizontalControlCardStateInitView DataContext="{Binding SecondControlViewModel}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="限位1" FontSize="18" Background="Transparent" Foreground="Gray" Margin="2 15 0 0"/>
+            <gkgUI:HorizontalControlCardStateInitView DataContext="{Binding FirstLimitViewModel}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="限位2" FontSize="18" Background="Transparent" Foreground="Gray" Margin="0 15 0 0"/>
+            <gkgUI:HorizontalControlCardStateInitView DataContext="{Binding SecondLimitViewModel}"/>
+        </StackPanel>
+
+        <gkgUI:CylinderDelayView DataContext="{Binding CylinderDelayViewModel}"/>
+    </StackPanel>
+</UserControl>

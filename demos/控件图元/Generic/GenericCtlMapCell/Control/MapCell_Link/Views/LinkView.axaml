@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.Link"
+             mc:Ignorable="d"
+             d:DesignWidth="160"
+             d:DesignHeight="40"
+             x:Class="GKG.Map.MapCell.Generic.Link.LinkView"
+             x:Name="This"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <Design.DataContext>
+        <vm:LinkViewModel />
+    </Design.DataContext>
+
+    <Border x:Name="RootBorder"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent"
+            BorderBrush="Transparent">
+        <Button x:Name="LinkButton"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                Padding="0"
+                Cursor="Hand"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch">
+            <Button.Styles>
+                <Style Selector="Button#LinkButton">
+                    <Setter Property="Template">
+                        <ControlTemplate>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Padding="{TemplateBinding Padding}"
+                                    Cursor="{TemplateBinding Cursor}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    IsHitTestVisible="True">
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Margin="0"
+                                                  Padding="0"
+                                                  Cursor="{TemplateBinding Cursor}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter>
+                </Style>
+            </Button.Styles>
+            <TextBlock x:Name="LinkTextBlock"
+                       TextDecorations="Underline"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Center" />
+        </Button>
+    </Border>
+</UserControl>

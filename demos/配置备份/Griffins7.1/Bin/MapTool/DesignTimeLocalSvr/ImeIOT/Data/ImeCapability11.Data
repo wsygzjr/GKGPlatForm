@@ -1,0 +1,34 @@
+{
+    "CustomUIDataObjInsts": [{
+            "Alias": "Simple_1",
+            "InstName": "示例1",
+            "ObjKind": "Simple"
+        }
+    ],
+    "FoolProofObjDatas": [],
+    "ImeModel": "TestImeModel",
+    "IsMutilMT": false,
+    "MMs": [{
+            "Alias": "test_GlueDirectWork1",
+            "InstanceName": "测试点胶直接工作类机械模组1",
+            "MMNumber": "test_GlueDirectWork",
+            "IsProxy": false,
+            "MMDevCategory": 0,
+            "UsesSubMMs": []
+        }
+    ],
+    "MTCapabilityDatas": [{
+            "Aliases": ["test_GlueDirectWork1"],
+            "MTNo": 1
+        }
+    ],
+    "SubMMs": [{
+            "Alias": "Test_ElectricalMngObj1",
+            "InstanceName": "电气管理对象子机械模组1",
+            "IsProxy": false,
+            "SubMMDevCategory": 0,
+            "SubMMModel": "MotionControlCardCfg",
+            "SubMMObjID": "12112c0c-8edb-4723-95ad-6bf876bf8629"
+        }
+    ]
+}

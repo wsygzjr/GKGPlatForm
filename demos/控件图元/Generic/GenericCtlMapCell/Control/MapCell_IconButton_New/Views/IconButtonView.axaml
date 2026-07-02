@@ -1,0 +1,108 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.IconButton.ViewModels"
+             xmlns:iconbtn="clr-namespace:GKG.Map.MapCell.Generic.IconButton"
+             xmlns:converts="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_ComboBox.Converts"
+             xmlns:lableconverts="clr-namespace:GKG.Map.MapCell.Generic.Control.Lable.Converts"
+             xmlns:btnconverts="clr-namespace:GKG.Map.MapCell.Generic.IconButton.Converts"
+             x:Class="GKG.Map.MapCell.Generic.IconButton.Views.IconButtonView"
+             x:DataType="vm:IconButtonViewModel"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Opacity="{Binding Opacity}"> <UserControl.Resources>
+    <converts:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    <converts:StringToThicknessConverter x:Key="StringToThicknessConverter"/>
+    <converts:StringToFontFamilyConverter x:Key="StringToFontFamilyConverter"/>
+    <converts:BoolToFontStyleConverter x:Key="BoolToFontStyleConverter"/>
+    <converts:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter"/>
+    <lableconverts:CursorTypeConverter x:Key="CursorTypeConverter" />
+    <lableconverts:HorizontalAlignConverter x:Key="HorizontalAlignConverter" />
+    <lableconverts:BoolToTextDecorationConverter x:Key="BoolToTextDecorationConverter" />
+    
+    <btnconverts:Base64ToBitmapConverter x:Key="Base64ToBitmapConverter" />
+    <btnconverts:StringToCornerRadiusConverter x:Key="StringToCornerRadiusConverter" />
+    <btnconverts:SpacingToThicknessConverter x:Key="SpacingToThicknessConverter" />
+  </UserControl.Resources>
+
+  <UserControl.Styles>
+    <Style Selector="Border.InteractiveBtn">
+      <Setter Property="RenderTransform" Value="scale(1)" /> <Setter Property="Transitions">
+        <Transitions>
+          <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.05" Easing="SineEaseOut"/>
+        </Transitions>
+      </Setter>
+    </Style>
+    
+    <Style Selector="Border.InteractiveBtn:pointerover">
+      <Setter Property="Opacity" Value="0.85" />
+    </Style>
+    
+    <Style Selector="Border.InteractiveBtn.pressed">
+      <Setter Property="Opacity" Value="0.6" />
+      <Setter Property="RenderTransform" Value="scale(0.96)" />
+    </Style>
+    
+    <Style Selector="Border.InteractiveBtn:disabled">
+      <Setter Property="Opacity" Value="0.4" />
+      <Setter Property="RenderTransform" Value="scale(1)" />
+    </Style>
+  </UserControl.Styles>
+
+  <Border x:Name="RootBorder" Classes="InteractiveBtn"
+          ToolTip.Tip="{Binding ToolTip}"
+          RenderTransformOrigin="50%,50%" 
+          Cursor="{Binding CursorType, Converter={StaticResource CursorTypeConverter}}"
+          Background="{Binding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
+          BorderBrush="{Binding BorderBrush, Converter={StaticResource ColorToBrushConverter}}"
+          BorderThickness="{Binding BorderThickness, Converter={StaticResource StringToThicknessConverter}}"
+          CornerRadius="{Binding CornerRadius, Converter={StaticResource StringToCornerRadiusConverter}}"
+          Margin="{Binding Margin, Converter={StaticResource StringToThicknessConverter}}"
+          IsEnabled="{Binding IsEnabled}"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          ClipToBounds="True">
+          
+      <Panel HorizontalAlignment="{Binding HorizontalAlign, Converter={StaticResource HorizontalAlignConverter}}" VerticalAlignment="Center">
+          <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
+              
+              <TextBlock Grid.Row="1" Grid.Column="1"
+                         IsVisible="{Binding ShowText}"
+                         Text="{Binding ButtonText}"
+                         Foreground="{Binding ForegroundColor, Converter={StaticResource ColorToBrushConverter}}"
+                         FontSize="{Binding FontSize}"
+                         FontFamily="{Binding FontFamily, Converter={StaticResource StringToFontFamilyConverter}}"
+                         FontWeight="{Binding IsBold, Converter={StaticResource BoolToFontWeightConverter}}"
+                         FontStyle="{Binding IsItalic, Converter={StaticResource BoolToFontStyleConverter}}"
+                         TextDecorations="{Binding IsUnderline, Converter={StaticResource BoolToTextDecorationConverter}}"
+                         Padding="{Binding Padding, Converter={StaticResource StringToThicknessConverter}}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+              <Panel Grid.Row="1" Grid.Column="0" IsVisible="{Binding ShowIcon}">
+                  <Image Source="{Binding IconBase64, Converter={StaticResource Base64ToBitmapConverter}}" Width="{Binding IconSize}" Height="{Binding IconSize}" 
+                         Margin="{Binding IconMarginLeftStr, Converter={StaticResource StringToThicknessConverter}}"
+                         IsVisible="{Binding IconPlacement, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static iconbtn:IconPlacementType.Left}}" />
+              </Panel>
+
+              <Panel Grid.Row="1" Grid.Column="2" IsVisible="{Binding ShowIcon}">
+                  <Image Source="{Binding IconBase64, Converter={StaticResource Base64ToBitmapConverter}}" Width="{Binding IconSize}" Height="{Binding IconSize}" 
+                         Margin="{Binding IconMarginRightStr, Converter={StaticResource StringToThicknessConverter}}"
+                         IsVisible="{Binding IconPlacement, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static iconbtn:IconPlacementType.Right}}" />
+              </Panel>
+
+              <Panel Grid.Row="0" Grid.Column="1" IsVisible="{Binding ShowIcon}">
+                  <Image Source="{Binding IconBase64, Converter={StaticResource Base64ToBitmapConverter}}" Width="{Binding IconSize}" Height="{Binding IconSize}" 
+                         Margin="{Binding IconMarginTopStr, Converter={StaticResource StringToThicknessConverter}}" HorizontalAlignment="Center"
+                         IsVisible="{Binding IconPlacement, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static iconbtn:IconPlacementType.Top}}" />
+              </Panel>
+
+              <Panel Grid.Row="2" Grid.Column="1" IsVisible="{Binding ShowIcon}">
+                  <Image Source="{Binding IconBase64, Converter={StaticResource Base64ToBitmapConverter}}" Width="{Binding IconSize}" Height="{Binding IconSize}" 
+                         Margin="{Binding IconMarginBottomStr, Converter={StaticResource StringToThicknessConverter}}" HorizontalAlignment="Center"
+                         IsVisible="{Binding IconPlacement, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:Static iconbtn:IconPlacementType.Bottom}}" />
+              </Panel>
+
+          </Grid>
+      </Panel>
+  </Border>
+</UserControl>

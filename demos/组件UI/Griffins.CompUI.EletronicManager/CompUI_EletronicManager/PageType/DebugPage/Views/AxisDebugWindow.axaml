@@ -1,0 +1,491 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.DebugPage.ViewModels"
+        xmlns:convert="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.Converters"
+        xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+        mc:Ignorable="d"
+        x:DataType="vm:AxisDebugWindowViewModel"
+        x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.DebugPage.Views.AxisDebugWindow">
+
+  <UserControl.Resources>
+    <convert:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter" />
+  </UserControl.Resources>
+
+  <UserControl.Styles>
+    <Style Selector="Border.panel">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#E0E3E9" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Padding" Value="12" />
+    </Style>
+    <Style Selector="DataGridColumnHeader">
+      <Setter Property="Background" Value="#F1F4F8" />
+      <Setter Property="BorderBrush" Value="#E0E3E9" />
+      <Setter Property="BorderThickness" Value="0,0,1,1" />
+      <Setter Property="Foreground" Value="#5C5F63" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Button.axis-action">
+      <Setter Property="Background" Value="#1C5ED6" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#1C5ED6" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Padding" Value="12,6" />
+    </Style>
+    <Style Selector="Button.axis-action:disabled">
+      <Setter Property="Background" Value="#D5DDE3" />
+      <Setter Property="Foreground" Value="#7A8A95" />
+      <Setter Property="BorderBrush" Value="#B8C4CC" />
+      <Setter Property="Opacity" Value="1" />
+    </Style>
+
+    <Style Selector="ToggleButton.io-toggle">
+      <Setter Property="MinWidth" Value="28" />
+      <Setter Property="MinHeight" Value="28" />
+      <Setter Property="Background" Value="#BDBDBD" />
+      <Setter Property="BorderBrush" Value="#9E9E9E" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid>
+            <Border Width="16"
+                    Height="16"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="8"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="ToggleButton.io-toggle:checked">
+      <Setter Property="Background" Value="#2ECC71" />
+      <Setter Property="BorderBrush" Value="#27AE60" />
+    </Style>
+    <Style Selector="ToggleButton.io-toggle:disabled">
+      <Setter Property="Opacity" Value="0.4" />
+    </Style>
+
+    <Style Selector="Border.io-row-overlay">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="Border.io-row-overlay.selected">
+      <Setter Property="Background" Value="#F2F7FF" />
+    </Style>
+    <Style Selector="TabControl">
+      <Setter Property="Background" Value="#F1F4F8" />
+    </Style>
+    <Style Selector="TabItem">
+      <Setter Property="Padding" Value="18,8" />
+      <Setter Property="Foreground" Value="#5C5F63" />
+      <Setter Property="Background" Value="#E8EDF3" />
+    </Style>
+    <Style Selector="TabItem:selected">
+      <Setter Property="Foreground" Value="#1C5ED6" />
+      <Setter Property="Background" Value="#FFFFFF" />
+    </Style>
+  </UserControl.Styles>
+
+  <Border Background="#F1F4F8" Padding="10">
+  <TabControl>
+    <TabItem Header="轴调试">
+      <Grid ColumnDefinitions="2*,*" ColumnSpacing="12" Background="#F1F4F8">
+        <Border Grid.Column="0" Classes="panel">
+          <DataGrid
+            ItemsSource="{Binding AxisStatusList}"
+            SelectedItem="{Binding SelectedAxisStatus, Mode=TwoWay}"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            GridLinesVisibility="All"
+            HeadersVisibility="All"
+            Background="#FFFFFF"
+            BorderBrush="#E0E3E9"
+            BorderThickness="1">
+            <DataGrid.Columns>
+              <DataGridTemplateColumn Width="2*">
+                <DataGridTemplateColumn.Header>
+                  <Border Background="#F2F2F2" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" />
+                </DataGridTemplateColumn.Header>
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                  <Border Background="#F8FBFF" BorderBrush="#E8EAEE" BorderThickness="0,0,1,1">
+                      <TextBlock Text="{Binding AxisName}"
+                                 Margin="8,0"
+                                 VerticalAlignment="Center" />
+                    </Border>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+              <DataGridTemplateColumn Header="当前位置" Width="*">
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                  <Border Background="#F8FBFF" BorderBrush="#E8EAEE" BorderThickness="0,0,1,1">
+                      <TextBlock Text="{Binding Position, StringFormat=0.000}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 TextAlignment="Center" />
+                    </Border>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+              <DataGridTemplateColumn Header="正限位(+)" Width="*">
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Ellipse Width="10" Height="10"
+                             Fill="{Binding IsPosLimit, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                             HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+              <DataGridTemplateColumn Header="原点" Width="*">
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Ellipse Width="10" Height="10"
+                             Fill="{Binding IsHome, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                             HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+              <DataGridTemplateColumn Header="负限位(-)" Width="*">
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Ellipse Width="10" Height="10"
+                             Fill="{Binding IsNegLimit, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                             HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+              <DataGridTemplateColumn Header="报警" Width="*">
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Ellipse Width="10" Height="10"
+                             Fill="{Binding IsAlarm, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Red,LightGray'}"
+                             HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+              <DataGridTemplateColumn Header="使能" Width="*">
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <Ellipse Width="10" Height="10"
+                             Fill="{Binding IsEnabled, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                             HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+            </DataGrid.Columns>
+          </DataGrid>
+        </Border>
+
+        <Border Grid.Column="1" Classes="panel">
+          <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="110,*" RowSpacing="0" ColumnSpacing="0">
+            <Border Grid.Row="0" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,1" Padding="8 6" Background="#F1F4F8">
+              <TextBlock Text="运动轴" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="8 6" Background="#FFFFFF">
+              <custom:ComboxControl LabelName=""
+                                    WidthLevel="Medium"
+                                    HorizontalAlignment="Stretch"
+                                    ViewModel="{Binding AxisSelectionComboxViewModel}" />
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,1" Padding="8 6" Background="#F1F4F8">
+              <TextBlock Text="运动模式" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="8 6" Background="#FFFFFF">
+              <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <RadioButton Grid.Column="0" Content="点动/反转" IsChecked="{Binding IsJogMode, Mode=TwoWay}" GroupName="MotionMode" HorizontalAlignment="Center" />
+                <RadioButton Grid.Column="1" Content="定位运动" IsChecked="{Binding IsPointMode, Mode=TwoWay}" GroupName="MotionMode" HorizontalAlignment="Center" />
+              </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,1" Padding="8 6" Background="#F1F4F8">
+              <TextBlock Text="运动方向" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="8 6" Background="#FFFFFF">
+              <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <RadioButton Grid.Column="0" Content="CW" IsChecked="{Binding IsCw, Mode=TwoWay}" GroupName="RotationDirection" HorizontalAlignment="Center" />
+                <RadioButton Grid.Column="1" Content="CCW" IsChecked="{Binding IsCcw, Mode=TwoWay}" GroupName="RotationDirection" HorizontalAlignment="Center" />
+              </Grid>
+            </Border>
+
+            <Border Grid.Row="3" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,1" Padding="8 6" Background="#F1F4F8">
+              <TextBlock Text="运动速度" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="8 6" Background="#FFFFFF">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <custom:TextInputControl WidthLevel="Small" LabelName="" ViewModel="{Binding VelocityInputViewModel}" />
+                <TextBlock Text="(mm/s)" VerticalAlignment="Center" />
+                <Button Content="{Binding JogButtonText}"
+                        Width="90"
+                        Margin="20 0 0 0"
+                        Classes="axis-action"
+                        Command="{Binding JogToggleCommand}"
+                        IsEnabled="{Binding CanMove}"
+                        IsVisible="{Binding IsJogMode}" />
+                <Button Content="运动"
+                        Width="90"
+                        Margin="20 0 0 0"
+                        Classes="axis-action"
+                        Command="{Binding MoveCommand}"
+                        IsEnabled="{Binding CanMove}"
+                        IsVisible="{Binding IsPointMode}" />
+              </StackPanel>
+            </Border>
+
+            <Border Grid.Row="4" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,1" Padding="8 6" Background="#F1F4F8">
+              <TextBlock Text="加速度" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="8 6" Background="#FFFFFF">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <custom:TextInputControl WidthLevel="Small" LabelName="" ViewModel="{Binding AccelerationInputViewModel}" />
+                <TextBlock Text="(mm/s虏)" VerticalAlignment="Center" />
+              </StackPanel>
+            </Border>
+
+            <Border Grid.Row="5" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,1" Padding="8 6" Background="#F1F4F8">
+              <TextBlock Text="位移量" VerticalAlignment="Center" />
+            </Border>
+            <Border Grid.Row="5" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="8 6" Background="#FFFFFF">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <custom:TextInputControl WidthLevel="Small" LabelName="" ViewModel="{Binding DistanceInputViewModel}" />
+                <TextBlock Text="(mm)" VerticalAlignment="Center" />
+                <Button Content="停止" Width="90" Margin="20 0 0 0" Classes="axis-action" Command="{Binding StopCommand}" IsEnabled="{Binding CanAxisCommand}" />
+              </StackPanel>
+            </Border>
+
+            <Border Grid.Row="6" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,1" Padding="8 6" Background="#F1F4F8" />
+            <Border Grid.Row="6" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="8 6" Background="#FFFFFF">
+              <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Grid.Column="0" Content="使能" Width="140" Classes="axis-action" Command="{Binding EnableCommand}" IsEnabled="{Binding CanAxisCommand}" />
+                <Button Grid.Column="1" Content="断使能" Width="140" Classes="axis-action" Command="{Binding DisableCommand}" IsEnabled="{Binding CanAxisCommand}" />
+              </Grid>
+            </Border>
+
+            <Border Grid.Row="7" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,0" Padding="8 6" Background="#F1F4F8" />
+            <Border Grid.Row="8" Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="0,0,1,0" Background="#F1F4F8" />
+            <Border Grid.Row="7" Grid.Column="1" BorderBrush="#E0E3E9" BorderThickness="0,0,0,0" Padding="8 6" Background="#FFFFFF">
+              <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Grid.Column="0" Content="回零" Width="140" Classes="axis-action" Command="{Binding HomeCommand}" IsEnabled="{Binding CanMove}" />
+                <Button Grid.Column="1" Content="清除状态" Width="140" Classes="axis-action" Command="{Binding ClearStatusCommand}" IsEnabled="{Binding CanAxisCommand}" />
+              </Grid>
+            </Border>
+          </Grid>
+        </Border>
+      </Grid>
+    </TabItem>
+
+    <TabItem Header="IO输入">
+      <Grid RowDefinitions="Auto,*" Background="#F1F4F8">
+        <Grid Grid.Row="0" ColumnDefinitions="Auto" Margin="10,10,10,20" ColumnSpacing="12">
+          <CheckBox Grid.Column="0" Content="是否显示B轨" IsChecked="{Binding IsTrackBVisible, Mode=TwoWay}" HorizontalAlignment="Left" />
+        </Grid>
+        <Grid Grid.Row="1" ColumnDefinitions="*, 16, *, 16, *" Margin="12,0,12,12">
+          <Border Grid.Column="0" BorderBrush="#E0E3E9" BorderThickness="1" Background="White" CornerRadius="6">
+            <Grid RowDefinitions="Auto, *">
+              <Border Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="0">
+                <Grid ColumnDefinitions="*,60">
+                  <Border Background="#F1F4F8" />
+                  <Border Grid.Column="1" Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="1,0,0,0" />
+                  <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                  <TextBlock Grid.Column="1" Text="感应器" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+                </Grid>
+              </Border>
+              <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding CommonSensors}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Border BorderBrush="#E8EAEE" BorderThickness="0,0,0,1" Padding="0" Background="Transparent">
+                        <Grid ColumnDefinitions="*,60" MinHeight="34">
+                          <Border Background="#F8FBFF" />
+                          <Border Grid.Column="1" Background="White" BorderBrush="#E8EAEE" BorderThickness="1,0,0,0" />
+                          <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,6" Foreground="#333333" />
+                          <Ellipse Grid.Column="1" Width="14" Height="14" Fill="{Binding StatusColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+            </Grid>
+          </Border>
+
+          <Border Grid.Column="2" BorderBrush="#E0E3E9" BorderThickness="1" Background="White" CornerRadius="6">
+            <Grid RowDefinitions="Auto, *">
+              <Border Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="0">
+                <Grid ColumnDefinitions="*,60">
+                  <Border Background="#F1F4F8" />
+                  <Border Grid.Column="1" Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="1,0,0,0" />
+                  <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                  <TextBlock Grid.Column="1" Text="A轨感应器" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+                </Grid>
+              </Border>
+              <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding TrackASensors}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Border BorderBrush="#E8EAEE" BorderThickness="0,0,0,1" Padding="0" Background="Transparent">
+                        <Grid ColumnDefinitions="*,60" MinHeight="34">
+                          <Border Background="#F8FBFF" />
+                          <Border Grid.Column="1" Background="White" BorderBrush="#E8EAEE" BorderThickness="1,0,0,0" />
+                          <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,6" Foreground="#333333" />
+                          <Ellipse Grid.Column="1" Width="14" Height="14" Fill="{Binding StatusColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+            </Grid>
+          </Border>
+
+          <Panel Grid.Column="3" IsVisible="{Binding IsTrackBVisible}" />
+
+          <Border Grid.Column="4" BorderBrush="#E0E3E9" BorderThickness="1" Background="White" CornerRadius="6" IsVisible="{Binding IsTrackBVisible}">
+            <Grid RowDefinitions="Auto, *">
+              <Border Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="0,0,0,1" Padding="0">
+                <Grid ColumnDefinitions="*,60">
+                  <Border Background="#F1F4F8" />
+                  <Border Grid.Column="1" Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="1,0,0,0" />
+                  <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                  <TextBlock Grid.Column="1" Text="B轨感应器" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+                </Grid>
+              </Border>
+              <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding TrackBSensors}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Border BorderBrush="#E8EAEE" BorderThickness="0,0,0,1" Padding="0" Background="Transparent">
+                        <Grid ColumnDefinitions="*,60" MinHeight="34">
+                          <Border Background="#F8FBFF" />
+                          <Border Grid.Column="1" Background="White" BorderBrush="#E8EAEE" BorderThickness="1,0,0,0" />
+                          <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,6" Foreground="#333333" />
+                          <Ellipse Grid.Column="1" Width="14" Height="14" Fill="{Binding StatusColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+            </Grid>
+          </Border>
+        </Grid>
+      </Grid>
+    </TabItem>
+
+    <TabItem Header="IO输出">
+      <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Background="#F1F4F8">
+        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="16" Margin="12">
+          <Grid Grid.Column="0" RowDefinitions="Auto,*">
+            <Border BorderBrush="#E0E3E9" BorderThickness="1" Padding="0" Background="#F1F4F8" CornerRadius="6">
+              <Grid ColumnDefinitions="*,60">
+                <Border Background="#F1F4F8" />
+                <Border Grid.Column="1" Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="1,0,0,0" />
+                <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                <TextBlock Grid.Column="1" Text="开关" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+              </Grid>
+            </Border>
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding IOOutColumn1Items}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#E0E3E9" BorderThickness="1" Padding="0" Background="Transparent">
+                    <Grid ColumnDefinitions="*,60" MinHeight="34">
+                      <Border Background="#F8FBFF" />
+                      <Border Grid.Column="1" Background="White" BorderBrush="#E8EAEE" BorderThickness="1,0,0,0" />
+                      <Border Classes="io-row-overlay" Classes.selected="{Binding IsSelected}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                      <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="8,6" />
+                      <ToggleButton Grid.Column="1"
+                                   Classes="io-toggle"
+                                   IsChecked="{Binding IsOn}"
+                                   IsEnabled="{Binding IsEnabled}"
+                                   VerticalAlignment="Stretch"
+                                   HorizontalAlignment="Stretch" />
+                    </Grid>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </Grid>
+
+          <Grid Grid.Column="1" RowDefinitions="Auto,*">
+            <Border BorderBrush="#E0E3E9" BorderThickness="1" Padding="0" Background="#F1F4F8" CornerRadius="6">
+              <Grid ColumnDefinitions="*,60">
+                <Border Background="#F1F4F8" />
+                <Border Grid.Column="1" Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="1,0,0,0" />
+                <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                <TextBlock Grid.Column="1" Text="开关" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+              </Grid>
+            </Border>
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding IOOutColumn2Items}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#E0E3E9" BorderThickness="1" Padding="0" Background="Transparent">
+                    <Grid ColumnDefinitions="*,60" MinHeight="34">
+                      <Border Background="#F8FBFF" />
+                      <Border Grid.Column="1" Background="White" BorderBrush="#E8EAEE" BorderThickness="1,0,0,0" />
+                      <Border Classes="io-row-overlay" Classes.selected="{Binding IsSelected}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                      <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="8,6" />
+                      <ToggleButton Grid.Column="1"
+                                   Classes="io-toggle"
+                                   IsChecked="{Binding IsOn}"
+                                   IsEnabled="{Binding IsEnabled}"
+                                   VerticalAlignment="Stretch"
+                                   HorizontalAlignment="Stretch" />
+                    </Grid>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </Grid>
+
+          <Grid Grid.Column="2" RowDefinitions="Auto,*">
+            <Border BorderBrush="#E0E3E9" BorderThickness="1" Padding="0" Background="#F1F4F8" CornerRadius="6">
+              <Grid ColumnDefinitions="*,60">
+                <Border Background="#F1F4F8" />
+                <Border Grid.Column="1" Background="#F1F4F8" BorderBrush="#E0E3E9" BorderThickness="1,0,0,0" />
+                <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                <TextBlock Grid.Column="1" Text="开关" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+              </Grid>
+            </Border>
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding IOOutColumn3Items}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border BorderBrush="#E0E3E9" BorderThickness="1" Padding="0" Background="Transparent">
+                    <Grid ColumnDefinitions="*,60" MinHeight="34">
+                      <Border Background="#F8FBFF" />
+                      <Border Grid.Column="1" Background="White" BorderBrush="#E8EAEE" BorderThickness="1,0,0,0" />
+                      <Border Classes="io-row-overlay" Classes.selected="{Binding IsSelected}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                      <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="8,6" />
+                      <ToggleButton Grid.Column="1"
+                                   Classes="io-toggle"
+                                   IsChecked="{Binding IsOn}"
+                                   IsEnabled="{Binding IsEnabled}"
+                                   VerticalAlignment="Stretch"
+                                   HorizontalAlignment="Stretch" />
+                    </Grid>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </Grid>
+        </Grid>
+      </ScrollViewer>
+    </TabItem>
+
+  </TabControl>
+  </Border>
+</UserControl>
+
+
+
+

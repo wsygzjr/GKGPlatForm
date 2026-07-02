@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <!-- NuGet 包信息 -->
+    <PackageId>AvaloniaVisionControl</PackageId>
+    <Version>7.1.0</Version>
+    <Authors>lupeng25</Authors>
+    <Company>AVAVision</Company>
+    <Description>Avalonia image viewer control with zoom/pan and editable overlay elements in pure pixel mode.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/lupeng25/temp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lupeng25/temp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>avalonia;image;control;vision;display;ui;graphics</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\ImeIOT\MM</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="temple\**\*.cs" />
+    <AvaloniaXaml Remove="temple\**\*.axaml" />
+  </ItemGroup>
+
+  <!-- 包含 README 文件到 NuGet 包 -->
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.3" />
+  </ItemGroup>
+
+</Project>
+

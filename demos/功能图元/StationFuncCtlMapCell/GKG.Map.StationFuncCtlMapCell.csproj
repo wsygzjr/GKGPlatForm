@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Company>GKG</Company>
+		<Copyright>Copyright © GKG 2025</Copyright>
+		<AssemblyVersion>7.1.0.0</AssemblyVersion>
+		<FileVersion>7.1.0.0</FileVersion>
+		<AssemblyTitle>GKG.Map.StationFuncCtlMapCell</AssemblyTitle>
+		<Product>GKG.Map.StationFuncCtlMapCell</Product>
+		<TargetFramework>net9.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<Nullable>enable</Nullable>
+		<OutputPath>F:\Griffins7.1\Bin\Share\SubSysShare\Map\FuncMapCell\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Griffins.Map2" Version="7.1.0" />
+		<PackageReference Include="Griffins.Map.UI" Version="7.1.0" />
+		<PackageReference Include="Newtonsoft.JsonG.ConvertExtensions" Version="7.1.0" />
+		<PackageReference Include="Avalonia" Version="11.3.3" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3" />
+	</ItemGroup>
+
+	<Target Name="OnlyCopySpecificDlls" AfterTargets="ResolveReferences">
+		<ItemGroup>
+			<!--<_DllsToKeep Include="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'ReactiveUI.Fody.Helpers'" />-->
+
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" />
+
+			<ReferenceCopyLocalPaths Include="@(_DllsToKeep)" />
+		</ItemGroup>
+	</Target>
+
+	<ItemGroup>
+		<None Remove="Assets\Images\**" />
+
+		<AvaloniaResource Include="Assets\Images\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="ResourceA.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ResourceA.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="ResourceA.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+	
+</Project>

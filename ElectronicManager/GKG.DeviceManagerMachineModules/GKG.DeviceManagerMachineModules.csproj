@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2025</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>GKG.LoadUnloadMachineModules</AssemblyTitle>
+    <Product>GKG.LoadUnloadMachineModules</Product>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Bin\Share\ImeIOT\MM</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GF_Gereric" Version="7.1.0" />
+    <PackageReference Include="GKG" Version="1.0.0" />
+    <PackageReference Include="GKG.ElectronicControl" Version="1.0.0" />
+    <PackageReference Include="GKG.MotionControl" Version="1.0.0" />
+    <PackageReference Include="GKG.Robot" Version="1.0.0" />
+    <PackageReference Include="Griffins" Version="7.1.0" />
+    <PackageReference Include="Griffins.ImeIOT" Version="7.1.0" />
+    <PackageReference Include="Griffins.IOT" Version="7.1.0" />
+    <PackageReference Include="Newtonsoft.JsonG" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DeviceManagerMachineModules\DeviceManagerMachineModules.csproj" />
+    <ProjectReference Include="..\EletronicManagerSubMachineModules\EletronicManagerSubMachineModules.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>GKG.MM</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

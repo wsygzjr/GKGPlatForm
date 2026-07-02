@@ -1,0 +1,311 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.MaterialBox.CompUI_MaterialBox.PageType.InitCfgPage.MaterialBoxInitConfig.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             xmlns:general="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="1200"
+             d:DesignHeight="1100"
+             x:DataType="vm:MaterialBoxInitConfigCompUIViewModel"
+             x:Class="Griffins.CompUI.MaterialBox.CompUI_MaterialBox.PageType.InitCfgPage.MaterialBoxInitConfig.Views.MaterialBoxInitConfigCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="18"/>
+    </Style>
+    <Style Selector="Border.SectionCard">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="14"/>
+      <Setter Property="BoxShadow" Value="0 4 12 0 #120F172A"/>
+    </Style>
+    <Style Selector="Border.InnerPanel">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="Background" Value="#F7FAFD"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="14"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="#1F3F75"/>
+    </Style>
+    <Style Selector="TextBlock.TableHeader">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Foreground" Value="#445166"/>
+    </Style>
+    <Style Selector="custom|TextInputControl">
+      <Setter Property="FixWidth" Value="False"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+    <Style Selector="custom|ComboxControl">
+      <Setter Property="FixWidth" Value="True"/>
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Classes="PageShell">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+      <StackPanel Spacing="16">
+        <Border Classes="SectionCard">
+          <Grid RowDefinitions="Auto,16,Auto">
+            <TextBlock Classes="SectionTitle" Text="&#36724;&#37197;&#32622;" />
+
+            <Grid Grid.Row="2"
+                  RowDefinitions="Auto,16,Auto"
+                  ColumnDefinitions="*,24,*">
+              <custom:ComboxControl Grid.Row="0"
+                                    Grid.Column="0"
+                                    LabelName="&#19978;&#26009;Z&#36724;"
+                                    WidthLevel="Small"
+                                    ViewModel="{Binding LoadAxisViewModel}" />
+              <custom:ComboxControl Grid.Row="0"
+                                    Grid.Column="2"
+                                    LabelName="&#19979;&#26009;Z&#36724;"
+                                    WidthLevel="Small"
+                                    ViewModel="{Binding UnloadAxisViewModel}" />
+
+              <Border Grid.Row="2"
+                      Grid.Column="0"
+                      Classes="InnerPanel">
+                <Grid RowDefinitions="Auto,12,Auto,12,Auto"
+                      ColumnDefinitions="*,12,*">
+                  <TextBlock Grid.ColumnSpan="3"
+                             Classes="SectionTitle"
+                             Text="&#19978;&#26009;Z&#36724;&#36712;&#36857;&#21442;&#25968;" />
+                  <custom:TextInputControl Grid.Row="2"
+                                           Grid.Column="0"
+                                           LabelName="&#36215;&#22987;&#36895;&#24230;(mm/s)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding LoadStartSpeedViewModel}" />
+                  <custom:TextInputControl Grid.Row="2"
+                                           Grid.Column="2"
+                                           LabelName="&#26368;&#22823;&#36895;&#24230;(mm/s)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding LoadMaxSpeedViewModel}" />
+                  <custom:TextInputControl Grid.Row="4"
+                                           Grid.Column="0"
+                                           LabelName="&#21152;&#36895;&#24230;(mm/s&#178;)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding LoadAccelerationViewModel}" />
+                  <custom:TextInputControl Grid.Row="4"
+                                           Grid.Column="2"
+                                           LabelName="&#20943;&#36895;&#24230;(mm/s&#178;)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding LoadDecelerationViewModel}" />
+                </Grid>
+              </Border>
+
+              <Border Grid.Row="2"
+                      Grid.Column="2"
+                      Classes="InnerPanel">
+                <Grid RowDefinitions="Auto,12,Auto,12,Auto"
+                      ColumnDefinitions="*,12,*">
+                  <TextBlock Grid.ColumnSpan="3"
+                             Classes="SectionTitle"
+                             Text="&#19979;&#26009;Z&#36724;&#36712;&#36857;&#21442;&#25968;" />
+                  <custom:TextInputControl Grid.Row="2"
+                                           Grid.Column="0"
+                                           LabelName="&#36215;&#22987;&#36895;&#24230;(mm/s)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding UnloadStartSpeedViewModel}" />
+                  <custom:TextInputControl Grid.Row="2"
+                                           Grid.Column="2"
+                                           LabelName="&#26368;&#22823;&#36895;&#24230;(mm/s)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding UnloadMaxSpeedViewModel}" />
+                  <custom:TextInputControl Grid.Row="4"
+                                           Grid.Column="0"
+                                           LabelName="&#21152;&#36895;&#24230;(mm/s&#178;)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding UnloadAccelerationViewModel}" />
+                  <custom:TextInputControl Grid.Row="4"
+                                           Grid.Column="2"
+                                           LabelName="&#20943;&#36895;&#24230;(mm/s&#178;)"
+                                           WidthLevel="Medium"
+                                           ViewModel="{Binding UnloadDecelerationViewModel}" />
+                </Grid>
+              </Border>
+            </Grid>
+          </Grid>
+        </Border>
+
+        <Border Classes="SectionCard">
+          <Grid RowDefinitions="Auto,16,*">
+            <TextBlock Classes="SectionTitle" Text="&#26009;&#21475;IO&#32465;&#23450;" />
+
+            <TabControl Grid.Row="2">
+              <TabItem Header="&#36865;&#26009;&#21475;">
+                <Border Classes="InnerPanel">
+                  <Grid RowDefinitions="Auto,12,*">
+                    <Grid ColumnDefinitions="120,220"
+                          ColumnSpacing="8">
+                      <TextBlock Grid.Column="0"
+                                 Classes="TableHeader"
+                                 Text="&#26009;&#21475;" />
+                      <TextBlock Grid.Column="1"
+                                 Classes="TableHeader"
+                                 Text="IO&#21475;" />
+                    </Grid>
+
+                    <ItemsControl Grid.Row="2"
+                                  ItemsSource="{Binding FeedingPortRows}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:MaterialBoxPortBindingRowViewModel">
+                          <Grid ColumnDefinitions="120,220"
+                                ColumnSpacing="8"
+                                Margin="0,0,0,10">
+                            <TextBlock Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding PortName}" />
+                            <custom:ComboxControl Grid.Column="1"
+                                                  LabelName=""
+                                                  WidthLevel="Small"
+                                                  ViewModel="{Binding IOViewModel}" />
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Grid>
+                </Border>
+              </TabItem>
+
+              <TabItem Header="&#20986;&#26009;&#21475;">
+                <Border Classes="InnerPanel">
+                  <Grid RowDefinitions="Auto,12,*">
+                    <Grid ColumnDefinitions="120,220"
+                          ColumnSpacing="8">
+                      <TextBlock Grid.Column="0"
+                                 Classes="TableHeader"
+                                 Text="&#26009;&#21475;" />
+                      <TextBlock Grid.Column="1"
+                                 Classes="TableHeader"
+                                 Text="IO&#21475;" />
+                    </Grid>
+
+                    <ItemsControl Grid.Row="2"
+                                  ItemsSource="{Binding ReceivePortRows}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:MaterialBoxPortBindingRowViewModel">
+                          <Grid ColumnDefinitions="120,220"
+                                ColumnSpacing="8"
+                                Margin="0,0,0,10">
+                            <TextBlock Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding PortName}" />
+                            <custom:ComboxControl Grid.Column="1"
+                                                  LabelName=""
+                                                  WidthLevel="Small"
+                                                  ViewModel="{Binding IOViewModel}" />
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Grid>
+                </Border>
+              </TabItem>
+            </TabControl>
+          </Grid>
+        </Border>
+
+        <Border Classes="SectionCard"
+                IsEnabled="{Binding CanEditCylinderConfig}">
+          <Grid RowDefinitions="Auto,16,Auto,16,Auto">
+            <TextBlock Classes="SectionTitle" Text="&#26009;&#30418;&#20301;IO&#19982;&#27668;&#32568;&#37197;&#32622;" />
+
+            <Grid Grid.Row="2" ColumnDefinitions="*,24,*">
+              <Border Grid.Column="0" Classes="InnerPanel">
+                <Grid RowDefinitions="Auto,8,Auto,8,*">
+                  <TextBlock Classes="SectionTitle" Text="&#19978;&#26009;&#19978;&#23618;&#26009;&#30418;&#20301;" />
+                  <Grid Grid.Row="2"
+                        ColumnDefinitions="60,*"
+                        ColumnSpacing="6"
+                        HorizontalAlignment="Left">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="&#20256;&#24863;&#22120;IO" />
+                    <custom:ComboxControl Grid.Column="1"
+                                          LabelName=""
+                                          WidthLevel="Small"
+                                          ViewModel="{Binding LoadUpperSensorViewModel}" />
+                  </Grid>
+                  <general:CylinderConfigView Grid.Row="4"
+                                              DataContext="{Binding LoadUpperCylinderViewModel}" />
+                </Grid>
+              </Border>
+
+              <Border Grid.Column="2" Classes="InnerPanel">
+                <Grid RowDefinitions="Auto,8,Auto,8,*">
+                  <TextBlock Classes="SectionTitle" Text="&#19978;&#26009;&#19979;&#23618;&#26009;&#30418;&#20301;" />
+                  <Grid Grid.Row="2"
+                        ColumnDefinitions="60,*"
+                        ColumnSpacing="6"
+                        HorizontalAlignment="Left">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="&#20256;&#24863;&#22120;IO" />
+                    <custom:ComboxControl Grid.Column="1"
+                                          LabelName=""
+                                          WidthLevel="Small"
+                                          ViewModel="{Binding LoadLowerSensorViewModel}" />
+                  </Grid>
+                  <general:CylinderConfigView Grid.Row="4"
+                                              DataContext="{Binding LoadLowerCylinderViewModel}" />
+                </Grid>
+              </Border>
+            </Grid>
+
+            <Grid Grid.Row="4" ColumnDefinitions="*,24,*">
+              <Border Grid.Column="0" Classes="InnerPanel">
+                <Grid RowDefinitions="Auto,8,Auto,8,*">
+                  <TextBlock Classes="SectionTitle" Text="&#19979;&#26009;&#19978;&#23618;&#26009;&#30418;&#20301;" />
+                  <Grid Grid.Row="2"
+                        ColumnDefinitions="60,*"
+                        ColumnSpacing="6"
+                        HorizontalAlignment="Left">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="&#20256;&#24863;&#22120;IO" />
+                    <custom:ComboxControl Grid.Column="1"
+                                          LabelName=""
+                                          WidthLevel="Small"
+                                          ViewModel="{Binding UnloadUpperSensorViewModel}" />
+                  </Grid>
+                  <general:CylinderConfigView Grid.Row="4"
+                                              DataContext="{Binding UnloadUpperCylinderViewModel}" />
+                </Grid>
+              </Border>
+
+              <Border Grid.Column="2" Classes="InnerPanel">
+                <Grid RowDefinitions="Auto,8,Auto,8,*">
+                  <TextBlock Classes="SectionTitle" Text="&#19979;&#26009;&#19979;&#23618;&#26009;&#30418;&#20301;" />
+                  <Grid Grid.Row="2"
+                        ColumnDefinitions="60,*"
+                        ColumnSpacing="6"
+                        HorizontalAlignment="Left">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="&#20256;&#24863;&#22120;IO" />
+                    <custom:ComboxControl Grid.Column="1"
+                                          LabelName=""
+                                          WidthLevel="Small"
+                                          ViewModel="{Binding UnloadLowerSensorViewModel}" />
+                  </Grid>
+                  <general:CylinderConfigView Grid.Row="4"
+                                              DataContext="{Binding UnloadLowerCylinderViewModel}" />
+                </Grid>
+              </Border>
+            </Grid>
+          </Grid>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+  </Border>
+</UserControl>

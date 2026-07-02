@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:GriffinsGeneralTestMM"
+             x:Class="GriffinsGeneralTestMM.UctlCabilityEventesView"
+             x:DataType="vm:UctlCabilityEventesViewModel" 
+             >
+
+    <!-- 绑定ViewModel（MVVM核心：View仅依赖ViewModel） -->
+   <Grid ColumnDefinitions="Auto,Auto,Auto"  Margin="20,10,0,5"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" >
+                                     
+        <TextBlock Grid.Column="0"  Grid.Row="0" 
+                Text="能力事件：" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Right"
+                Margin="0 0 5 0"/>
+        <!-- 事件下拉框： （禁用编辑） -->
+        <ComboBox Grid.Column="1" Grid.Row="0"
+                  x:Name="comboBoxEvents" 
+                  ItemsSource="{Binding Events}"    
+                  SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"  
+                  IsEnabled="True"              
+                  Width="282"/>
+
+        <!-- 执行按钮：绑定命令和启用状态 -->
+        <Button Grid.Column="2"  Grid.Row="0"
+                x:Name="buttonExec"
+                Content="执行"    Width="110"
+                Command="{Binding ExecCommand}"       
+                IsEnabled="{Binding IsButtonExecEnabled}" 
+                Classes="ButtonType1" 
+                Margin="10 0 0 0" />
+    </Grid>
+</UserControl>

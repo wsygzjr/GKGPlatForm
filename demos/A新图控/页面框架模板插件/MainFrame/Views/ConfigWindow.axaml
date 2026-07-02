@@ -1,0 +1,68 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:vm="clr-namespace:MainFrame.ViewModels;assembly=MainFrame"
+		xmlns:customMenuCmdConfig="clr-namespace:Griffins.Map.UI.CustomMenuCmdConfig;assembly=Griffins.Map.UI"
+		xmlns:view="using:MainFrameView.Views.ConfigViews"
+		x:Class="MainFrameView.Views.ConfigWindow"
+		mc:Ignorable="d"
+		x:DataType="vm:ConfigViewModel"
+		Title="插件配置"
+		WindowStartupLocation="CenterScreen"
+		Width="800" Height="600">
+	<Design.DataContext>
+		<vm:ConfigViewModel />
+	</Design.DataContext>
+	<Grid Margin="10" RowDefinitions="* 80">
+		<!-- Tab控件，包含四个配置页面 -->
+		<TabControl x:Name="ConfigTabControl"
+					Grid.Row="0" >
+			<!-- 常规配置 -->
+			<TabItem Header="常规配置">
+				<view:GeneralConfigView DataContext="{Binding GeneralConfigViewModel}" />
+			</TabItem>
+			<!-- 中间工作区配置 -->
+			<TabItem Header="中间工作区">
+				<StackPanel Margin="10">
+					<customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding WorkAreaConfigVM}" />
+				</StackPanel>
+			</TabItem>
+			<!-- 左侧导航栏配置 -->
+			<TabItem Header="左侧导航栏">
+				<customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding NavigationMenuConfigVM}" />
+			</TabItem>
+
+			<!-- 顶部菜单栏配置 -->
+			<TabItem Header="顶部菜单栏">
+				<customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding TopMenuConfigVM}" />
+			</TabItem>
+
+			<!-- 右侧工具栏配置 -->
+			<TabItem Header="右侧工具栏">
+				<customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding ToolbarButtonsConfigVM}" />
+			</TabItem>
+
+			<!-- 底部信息栏配置 -->
+			<TabItem Header="底部信息栏">
+				<customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding ButtomColumnConfigVM}" />
+			</TabItem>
+
+			<!-- 左下信息块配置 -->
+			<TabItem Header="左下信息块">
+				<customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding LeftBottomInfoBlockConfigVM}" />
+			</TabItem>
+		</TabControl>
+
+		<!-- 底部按钮区域 -->
+		<StackPanel
+		Grid.Row="1"
+		Orientation="Horizontal"
+		HorizontalAlignment="Right"
+		Spacing="10"
+		Margin="0,10,0,0"
+		VerticalAlignment="Bottom">
+			<Button Content="关闭" Command="{Binding CloseCommand}" Width="80"/>
+		</StackPanel>
+	</Grid>
+</Window>

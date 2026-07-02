@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:StandardCylinderDoubleControlSingleLimitTextViewModel"
+			 x:Class="GKG.UI.General.StandardCylinderDoubleControlSingleLimitTextView">
+	<StackPanel Orientation="Vertical" Spacing="10" HorizontalAlignment="Left" VerticalAlignment="Top">
+		<custom:TextInputControl LabelName="开控制" WidthLevel="Medium3" ViewModel="{Binding OpenControlInputViewModel}"/>
+		<custom:TextInputControl LabelName="关控制" WidthLevel="Medium3" ViewModel="{Binding CloseControlInputViewModel}"/>
+	</StackPanel>
+</UserControl>

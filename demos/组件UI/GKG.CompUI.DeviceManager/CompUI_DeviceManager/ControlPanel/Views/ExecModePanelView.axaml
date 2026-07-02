@@ -1,0 +1,145 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.CompUI.DeviceManager.ControlPanel.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="860" d:DesignHeight="360"
+             x:Class="GKG.CompUI.DeviceManager.ControlPanel.Views.ExecModePanelView"
+             x:DataType="vm:ExecModePanelViewModel"
+             x:Name="RootControl">
+    <UserControl.Styles>
+        <!-- 禁用按钮悬停时的背景颜色变化 -->
+        <Style Selector="Button.ModeCard:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{TemplateBinding Background}"/>
+        </Style>
+        <Style Selector="Button.ModeCard:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{TemplateBinding Background}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="#FFFFFF"
+            CornerRadius="12"
+            Width="820"
+            Padding="28,24"
+            BoxShadow="0 8 30 0 #15000000"
+            BorderBrush="#E5E7EB"
+            BorderThickness="1">
+        <Grid RowDefinitions="Auto, Auto, Auto" RowSpacing="20">
+
+            <!-- 标题栏 -->
+            <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                <TextBlock Text="执行模式"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Foreground="#111827"
+                           VerticalAlignment="Center"/>
+                <Button Grid.Column="1"
+                        Command="{Binding CloseCommand}"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="8"
+                        Cursor="Hand">
+                    <TextBlock Text="✕" FontSize="18" Foreground="#6B7280"/>
+                </Button>
+            </Grid>
+
+            <!-- 模式卡片和状态文字 -->
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding ModeCards}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ExecModeCardViewModel">
+                        <Grid RowDefinitions="Auto, Auto, Auto" RowSpacing="12" Margin="0,0,20,0">
+                            <!-- 模式按钮 -->
+                            <Button Grid.Row="0"
+                                    Classes="ModeCard"
+                                    Command="{Binding #RootControl.DataContext.SelectModeCommand}"
+                                    CommandParameter="{Binding}"
+                                    Background="{Binding BackgroundBrush}"
+                                    BorderThickness="0"
+                                    CornerRadius="10"
+                                    Width="200"
+                                    Height="100"
+                                    HorizontalAlignment="Center"
+                                    HorizontalContentAlignment="Stretch"
+                                    Cursor="Hand"
+                                    IsEnabled="{Binding IsEnabled}">
+                                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="14">
+                                    <Border Grid.Column="0"
+                                            Width="36"
+                                            Height="36"
+                                            CornerRadius="10"
+                                            Background="Transparent"
+                                            VerticalAlignment="Center">
+                                        <Image Source="{Binding CurrentIcon}"
+                                               Width="36"
+                                               Height="36"
+                                               Stretch="Uniform"/>
+                                    </Border>
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding Title}"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Foreground="{Binding ForegroundBrush}"
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap"/>
+                                </Grid>
+                            </Button>
+                           
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- 操作按钮区域 -->
+            <Grid Grid.Row="2" ColumnDefinitions="Auto, Auto, Auto" ColumnSpacing="20">
+                <!-- 开始按钮 -->
+                <Button Grid.Column="0"
+                        Command="{Binding StartCommand}"
+                        Background="#10B981"
+                        Foreground="#FFFFFF"
+                        BorderThickness="0"
+                        CornerRadius="8"
+                        Width="120"
+                        Height="44"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Cursor="Hand">
+                    开始
+                </Button>
+                <!-- 下一步按钮 -->
+                <Button Grid.Column="1"
+                        Command="{Binding NextStepCommand}"
+                        Background="#3B82F6"
+                        Foreground="#FFFFFF"
+                        BorderThickness="0"
+                        CornerRadius="8"
+                        Width="120"
+                        Height="44"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Cursor="Hand">
+                    下一步
+                </Button>
+                <!-- 停止按钮 -->
+                <Button Grid.Column="2"
+                        Command="{Binding StopCommand}"
+                        Background="#EF4444"
+                        Foreground="#FFFFFF"
+                        BorderThickness="0"
+                        CornerRadius="8"
+                        Width="120"
+                        Height="44"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Cursor="Hand">
+                    停止
+                </Button>
+            </Grid>
+
+        </Grid>
+    </Border>
+</UserControl>

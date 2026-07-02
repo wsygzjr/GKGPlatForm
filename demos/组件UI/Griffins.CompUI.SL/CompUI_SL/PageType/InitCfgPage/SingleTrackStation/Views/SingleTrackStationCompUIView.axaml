@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.SL.InitCfgPage.ViewModels"
+			 xmlns:local="clr-namespace:Griffins.CompUI.SL.InitCfgPage.Views"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Class="Griffins.CompUI.SL.InitCfgPage.Views.SingleTrackStationCompUIView"
+			 x:DataType="vm:SingleTrackStationCompUIViewModel">
+	<Design.DataContext>
+		<vm:SingleTrackStationCompUIViewModel />
+	</Design.DataContext>
+	<DockPanel LastChildFill="True">
+		<!-- 工位选项卡 -->
+		<TabControl ItemsSource="{Binding Stations}" Margin="10">
+			<TabControl.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding StationName}" />
+				</DataTemplate>
+			</TabControl.ItemTemplate>
+			<TabControl.ContentTemplate>
+				<DataTemplate>
+					<local:SingleTrackStationItemCompUIView DataContext="{Binding}" />
+				</DataTemplate>
+			</TabControl.ContentTemplate>
+		</TabControl>
+	</DockPanel>
+</UserControl>

@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Dlls</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RJCP.SerialPortStream" Version="3.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GKG\GKG.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="IO\IOErr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IOErr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MeasureHeight\MeasureHeightErr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MeasureHeightErr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="MotionControlCard\MotionErr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MotionErr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PressureControl\PressureControlErr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PressureControlErr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="WeighingBalance\WeighingBalanceErr.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WeighingBalanceErr.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="IO\IOErr.resx">
+      <CustomToolNamespace>GKG.ElectronicControl.General</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IOErr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MeasureHeight\MeasureHeightErr.resx">
+      <CustomToolNamespace>GKG.ElectronicControl.General</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MeasureHeightErr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MotionControlCard\MotionErr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MotionErr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PressureControl\PressureControlErr.resx">
+      <CustomToolNamespace>GKG.ElectronicControl.General</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PressureControlErr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="WeighingBalance\WeighingBalanceErr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WeighingBalanceErr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

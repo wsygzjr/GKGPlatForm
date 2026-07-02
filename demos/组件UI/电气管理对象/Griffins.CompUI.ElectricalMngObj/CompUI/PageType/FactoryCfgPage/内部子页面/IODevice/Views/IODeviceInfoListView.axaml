@@ -1,0 +1,107 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+              xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels"
+             x:DataType="vm:IODeviceInfoListViewModel"
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.IODeviceInfoListView"             
+             xmlns:convert="clr-namespace:Griffins.CompUI.ElectricalMngObj.Converters" 
+             xmlns:vm1="clr-namespace:Griffins.CompUI.ElectricalMngObj.Models.FactoryCfgPage">
+ 
+    <!-- 转换器 -->
+    <UserControl.Resources> 
+		<convert:ListCountToBoolConverter x:Key="ListCountToBoolConverter"/> 
+		<convert:IODeviceIDToNameConverter x:Key="IODeviceIDToNameConverter"/> 
+		<convert:IODeviceModelToNameConverter x:Key="IODeviceModelToNameConverter"/>
+	</UserControl.Resources>  
+
+      <!-- 运控卡配置页面 -->
+    <DockPanel Margin="10" LastChildFill="True" Height="840" > 
+        <!-- 1. 顶部操作菜单（添加按钮） -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0 0 0 10">
+            <Button 
+                Content="添加" 
+                Command="{Binding AddCommand}" 
+                Classes="DataGrid_btnAddStyle" 
+              />
+        </StackPanel>
+
+        <!-- 2. 运控卡列表（带编辑/删除按钮） -->
+        <DataGrid 
+            ItemsSource="{Binding IODeviceInfoList}"
+            AutoGenerateColumns="False"
+            BorderBrush="LightGray"
+            BorderThickness="2"
+            IsReadOnly="False" 
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedIODevice, Mode=TwoWay}"  Classes="StyleDataGrid" >
+              
+            <DataGrid.Columns> 
+                    <!-- 序号 -->
+               <!-- <DataGridTextColumn 
+                    Header="序号" 
+                    Binding="{Binding SerialNumber}" 
+                    Width="100"
+                    IsReadOnly="True"/> -->
+
+                    <!-- IO设备型号  -->  
+           <DataGridTextColumn Header="IO设备型号" Width="150" IsReadOnly="True">
+                <DataGridTextColumn.Binding>
+                    <MultiBinding Converter="{StaticResource IODeviceIDToNameConverter}"> 
+                        <Binding Path="IODeviceModelModel.ItemsSource" Mode="OneWay" />
+                        <Binding Path="SelectedIODeviceModel" Mode="OneWay" /> 
+                    </MultiBinding>
+                </DataGridTextColumn.Binding>
+            </DataGridTextColumn>
+
+           <DataGridTextColumn Header="IO设备ID" Width="150" IsReadOnly="True">
+                <DataGridTextColumn.Binding>
+                    <MultiBinding Converter="{StaticResource IODeviceModelToNameConverter}"> 
+                        <Binding Path="IODeviceIDModel.ItemsSource" Mode="OneWay" />
+                        <Binding Path="SelectedIODeviceID" Mode="OneWay" /> 
+                    </MultiBinding>
+                </DataGridTextColumn.Binding>
+            </DataGridTextColumn>
+                  
+                <!-- 操作列（编辑+删除按钮） -->
+                <DataGridTemplateColumn 
+                    Header="操作" 
+                    Width="215" 
+                    IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                     <!-- 定义表头样式，设置文本居中 --> 
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:IODeviceInfoViewModel">
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="5 0">
+                                <!-- 编辑按钮：绑定ViewModel的EditCommand，传递当前行数据 -->
+                                <Button 
+                                    Content="编辑" 
+                                    Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"  
+                                    Classes="btnSave"  />
+
+                                <!-- 删除按钮：绑定ViewModel的DeleteCommand，传递当前行数据 + 禁用控制 -->
+                                <Button 
+                                    Content="删除" 
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}" 
+                                    Classes="DataGrid_btnDeleteStyle" >
+                                    <!-- 禁用条件：当列表只有1条数据时，禁用当前行的删除按钮 -->
+                                <!--    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource ListCountToBoolConverter}">
+                                            --><!-- 绑定1：当前列表总数 --><!--
+                                            <Binding Path="DataContext.IODeviceInfoList.Count" RelativeSource="{RelativeSource AncestorType=DataGrid}"/>
+                                            --><!-- 绑定2：是否强制禁用（此处固定为false，仅用列表总数判断） --><!--
+                                            <Binding Path="IsDummy" FallbackValue="False"/>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>-->
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                 
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

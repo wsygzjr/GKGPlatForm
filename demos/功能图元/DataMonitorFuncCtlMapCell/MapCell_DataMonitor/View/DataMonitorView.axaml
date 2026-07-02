@@ -1,0 +1,165 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:GKG.Map.DataMonitorFuncCtlMapCell.ViewModel"
+			 xmlns:device="clr-namespace:GKG.Map.DeviceStatusFuncCtlMapCell.MapCell_DeviceStatus.Views;assembly=GKG.Map.DeviceStatusFuncCtlMapCell"
+			 xmlns:res="clr-namespace:GKG.Map.DataMonitorFuncCtlMapCell"
+			 xmlns:conv="clr-namespace:GKG.Map.DataMonitorFuncCtlMapCell.Convert"
+			 xmlns:convMain="clr-namespace:GKG.Map.DataMonitorFuncCtlMapCell"
+			 mc:Ignorable="d" d:DesignWidth="520" d:DesignHeight="400"
+			 x:Class="GKG.Map.DataMonitorFuncCtlMapCell.View.DataMonitorView"
+			 x:DataType="vm:DataMonitorViewModel">
+	<UserControl.Resources>
+		<conv:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+		<convMain:StatusToGreenGrayImageConverter x:Key="StatusToGreenGrayImageConverter"/>
+		<convMain:WaterToCloseImageConverter x:Key="WaterToCloseImageConverter"/>
+		<convMain:StatusToColorConverter x:Key="StatusToColorConverter"/>
+		<conv:BitmapDataToImageSourceConverter x:Key="BitmapDataToImageSourceConverter"/>
+	</UserControl.Resources>
+	<Border x:Name="MainBorder" BorderBrush="#D0D0D0" BorderThickness="1" Background="#FFFFFF" Padding="10">
+		<DockPanel>
+			<!-- 顶部：供阀气压、供胶气压、喷嘴加热使用DeviceStatusCtlMapCell水平排列 -->
+			<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="5">
+				<!-- 供阀气压 -->
+				<device:DeviceStatusView x:Name="SupplyValvePressureControl" Width="200" Height="80" DataContext="{Binding SupplyValvePressureDeviceStatusVm}" />
+				
+				<!-- 供胶气压 -->
+				<device:DeviceStatusView x:Name="SupplyGluePressureControl" Width="200" Height="80" DataContext="{Binding SupplyGluePressureDeviceStatusVm}" />
+				
+				<!-- 喷嘴加热 -->
+				<device:DeviceStatusView x:Name="NozzleHeatingControl" Width="200" Height="80" DataContext="{Binding NozzleHeatingDeviceStatusVm}" />
+			</StackPanel>
+
+			<!-- 监控信息栏（底部） -->
+			<Grid DockPanel.Dock="Bottom" RowDefinitions="Auto,Auto" RowSpacing="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+				<!-- 第一行：上外边距加大；安全门(列0/1)与下方监控/阀列对齐；总气压/清洁布不要求与下方对齐，但宽度规格与安全门一致 -->
+				<Grid Grid.Row="0" ColumnDefinitions="60,60,80,60,60,60,60,60,60,*" ColumnSpacing="0" Margin="0,30,0,0" HorizontalAlignment="Stretch">
+					<Border Grid.Column="0" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="安全门" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Column="1" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#FFFFFF" Padding="4">
+						<Grid Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<Image x:Name="ImgSafetyDoorOk" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" />
+							<Image x:Name="ImgSafetyDoorNg" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" />
+						</Grid>
+					</Border>
+					<Border Grid.Column="2" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="总气压" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Column="3" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#FFFFFF" Padding="4">
+						<Grid Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<Image x:Name="ImgTotalPressureOk" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" />
+							<Image x:Name="ImgTotalPressureNg" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" />
+						</Grid>
+					</Border>
+					<Border Grid.Column="4" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="清洁布" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Column="5" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#FFFFFF" Padding="4">
+						<Grid Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<Image x:Name="ImgCleaningClothOk" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" />
+							<Image x:Name="ImgCleaningClothNg" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" />
+						</Grid>
+					</Border>
+					<Border Grid.Column="6" Grid.ColumnSpan="4" BorderBrush="#D0D0D0" BorderThickness="1,1,1,0" Background="#FFFFFF" />
+				</Grid>
+
+				<!-- 第二行：表格监控信息，左侧“监控”两份；标题灰底，其它白底 -->
+				<Grid Grid.Row="1"
+					  RowDefinitions="Auto,Auto"
+					  ColumnDefinitions="60,60,80,180,60,*,60,60,60,60"
+					  RowSpacing="0"
+					  ColumnSpacing="0"
+					  HorizontalAlignment="Stretch">
+
+					<Border Grid.Row="0" Grid.Column="0" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="监控" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="0" Grid.Column="1" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#FFFFFF" Padding="4">
+						<TextBlock Text="右阀" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="0" Grid.Column="2" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="胶水余量" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="0" Grid.Column="3" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#FFFFFF" Padding="4">
+						<Grid x:Name="RightGlueRemainingBarContainer" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+							<Border Background="#E0E0E0" />
+							<Border x:Name="RightGlueRemainingFillBorder" Background="#2F6FDB" HorizontalAlignment="Left" />
+							<TextBlock x:Name="RightGlueRemainingPercentText" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" />
+						</Grid>
+					</Border>
+					<Border Grid.Row="0" Grid.Column="4" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="校正" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="0" Grid.Column="5" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#FFFFFF" Padding="4">
+						<TextBlock Text="{Binding Calibration}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" />
+					</Border>
+					<Border Grid.Row="0" Grid.Column="6" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="阀体" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="0" Grid.Column="7" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#FFFFFF" Padding="4">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<TextBlock Text="{Binding ValveBodyValue}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,3,0"/>
+							<Image x:Name="ImgValveBodyCustom" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" 
+								   Source="{Binding ValveBodyIcon, Converter={StaticResource BitmapDataToImageSourceConverter}}" />
+						</StackPanel>
+					</Border>
+					<Border Grid.Row="0" Grid.Column="8" BorderBrush="#D0D0D0" BorderThickness="1,1,0,0" Background="#E0E0E0" Padding="4">
+						<TextBlock Text="密封圈" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="0" Grid.Column="9" BorderBrush="#D0D0D0" BorderThickness="1,1,1,0" Background="#FFFFFF" Padding="4">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<TextBlock Text="{Binding SealingRingValue}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,3,0"/>
+							<Image x:Name="ImgSealingRingCustom" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" 
+								   Source="{Binding SealingRingIcon, Converter={StaticResource BitmapDataToImageSourceConverter}}" />
+						</StackPanel>
+					</Border>
+
+					<Border Grid.Row="1" Grid.Column="0" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#E0E0E0" Padding="4" IsVisible="{Binding IsDualValve}">
+						<TextBlock Text="监控" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="1" Grid.Column="1" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#FFFFFF" Padding="4" IsVisible="{Binding IsDualValve}">
+						<TextBlock Text="左阀" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="1" Grid.Column="2" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#E0E0E0" Padding="4" IsVisible="{Binding IsDualValve}">
+						<TextBlock Text="胶水余量" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="1" Grid.Column="3" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#FFFFFF" Padding="4" IsVisible="{Binding IsDualValve}">
+						<Grid x:Name="LeftGlueRemainingBarContainer" Height="22" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+							<Border Background="#E0E0E0" />
+							<Border x:Name="LeftGlueRemainingFillBorder" Background="#2F6FDB" HorizontalAlignment="Left" />
+							<TextBlock x:Name="LeftGlueRemainingPercentText" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" />
+						</Grid>
+					</Border>
+					<Border Grid.Row="1" Grid.Column="4" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#E0E0E0" Padding="4" IsVisible="{Binding IsDualValve}">
+						<TextBlock Text="校正" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="1" Grid.Column="5" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#FFFFFF" Padding="4" IsVisible="{Binding IsDualValve}">
+						<TextBlock Text="{Binding LeftCalibration}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" />
+					</Border>
+					<Border Grid.Row="1" Grid.Column="6" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#E0E0E0" Padding="4" IsVisible="{Binding IsDualValve}">
+						<TextBlock Text="阀体" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="1" Grid.Column="7" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#FFFFFF" Padding="4" IsVisible="{Binding IsDualValve}">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<TextBlock Text="{Binding LeftValveBodyValue}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,3,0"/>
+							<Image Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" 
+								   Source="{Binding LeftValveBodyIcon, Converter={StaticResource BitmapDataToImageSourceConverter}}" />
+						</StackPanel>
+					</Border>
+					<Border Grid.Row="1" Grid.Column="8" BorderBrush="#D0D0D0" BorderThickness="1,1,0,1" Background="#E0E0E0" Padding="4" IsVisible="{Binding IsDualValve}">
+						<TextBlock Text="密封圈" VerticalAlignment="Center" HorizontalAlignment="Center" />
+					</Border>
+					<Border Grid.Row="1" Grid.Column="9" BorderBrush="#D0D0D0" BorderThickness="1,1,1,1" Background="#FFFFFF" Padding="4" IsVisible="{Binding IsDualValve}">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<TextBlock Text="{Binding LeftSealingRingValue}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,3,0"/>
+							<Image Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" 
+								   Source="{Binding LeftSealingRingIcon, Converter={StaticResource BitmapDataToImageSourceConverter}}" />
+						</StackPanel>
+					</Border>
+				</Grid>
+			</Grid>
+		</DockPanel>
+	</Border>
+</UserControl>

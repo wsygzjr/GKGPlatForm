@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.HeatingControlFuncCtlMapCell.ViewModel"
+             xmlns:res="clr-namespace:GKG.Map.HeatingControlFuncCtlMapCell"
+             xmlns:conv="clr-namespace:GKG.Map.HeatingControlFuncCtlMapCell.Convert"
+             xmlns:models="clr-namespace:GKG.Map.HeatingControlFuncCtlMapCell"
+             mc:Ignorable="d" d:DesignWidth="1080" d:DesignHeight="750"
+             x:Class="GKG.Map.HeatingControlFuncCtlMapCell.View.HeatingControlView"
+             >
+  <Border x:Name="MainBorder" BorderBrush="#D0D0D0" BorderThickness="1" Background="#F2F2F2" Padding="10">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+      <Grid RowDefinitions="Auto,Auto" RowSpacing="10">
+        <!-- 标题行 -->
+        <Grid Grid.Row="0" ColumnDefinitions="90,150,100,100,120,120,100,100,100,100,100" ColumnSpacing="5">
+          <TextBlock Grid.Column="0" Text="关/开" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="1" Text="模块名称" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="2" Text="当前温度(°C)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="3" Text="设置温度(°C)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="4" Text="温度范围±(°C‌)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="5" Text="空闲关闭间隔(s)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="6" Text="预热时间(s)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="7" Text="加热时间(s)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="8" Text="检测开启" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="9" Text="工作开启" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Grid.Column="10" Text="延迟时间(s)" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+        </Grid>
+        
+        <!-- 数据行 -->
+          <ItemsControl Grid.Row="1" ItemsSource="{Binding HeatingModules}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Grid ColumnDefinitions="90,150,100,100,120,120,100,100,100,100,100" ColumnSpacing="5" Margin="0,2,0,2">
+                <ToggleSwitch Grid.Column="0" IsChecked="{Binding Switch}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Text="{Binding ModuleName}" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="2" Text="{Binding CurrentTemperature}" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" Width="60" />
+                <TextBox Grid.Column="3" Text="{Binding SetTemperature}" Height="24" HorizontalAlignment="Center" Width="60" />
+                <TextBox Grid.Column="4" Text="{Binding TemperatureRange}" Height="24" HorizontalAlignment="Center" Width="60" />
+                <TextBox Grid.Column="5" Text="{Binding IdleCloseInterval}" Height="24" HorizontalAlignment="Center" Width="80" />
+                <TextBox Grid.Column="6" Text="{Binding PreheatTime}" Height="24" HorizontalAlignment="Center" Width="60" />
+                <TextBox Grid.Column="7" Text="{Binding HeatingTime}" Height="24" HorizontalAlignment="Center" Width="60" />
+                <CheckBox Grid.Column="8" IsChecked="{Binding DetectionEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <CheckBox Grid.Column="9" IsChecked="{Binding WorkEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBox Grid.Column="10" Text="{Binding DelayTime}" Height="24" HorizontalAlignment="Center" Width="60" />
+              </Grid>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </Grid>
+    </ScrollViewer>
+  </Border>
+</UserControl>

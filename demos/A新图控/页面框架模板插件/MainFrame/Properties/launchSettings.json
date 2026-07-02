@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "MainFrame": {
+      "commandName": "Project"
+    },
+    "配置文件 1": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\MapTool\\MapTool.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\MapTool"
+    },
+    "Profile 1": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\MapTml\\MapTml.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\MapTml\\"
+    }
+  }
+}

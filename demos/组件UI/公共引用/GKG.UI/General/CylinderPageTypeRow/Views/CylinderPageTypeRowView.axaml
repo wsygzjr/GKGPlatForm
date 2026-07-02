@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:CylinderPageTypeRowViewModel"
+			 x:Class="GKG.UI.General.CylinderPageTypeRowView">
+	<Grid ColumnDefinitions="Auto,* ,*" ColumnSpacing="10" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+		<custom:TextBlockControl Grid.Column="0" WidthLevel="Small" ViewModel="{Binding LabelViewModel}"/>
+		<custom:ComboxControl Grid.Column="1" LabelName="卡类型" WidthLevel="Medium3" ViewModel="{Binding ComboViewModel}"/>
+		<custom:TextInputControl Grid.Column="2" LabelName="IO号" WidthLevel="Medium3" ViewModel="{Binding TextInputViewModel}"/>
+	</Grid>
+</UserControl>

@@ -1,0 +1,250 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="900"
+             d:DesignHeight="640"
+             x:DataType="vm:MotionControlFactoryParameterViewModel"
+             x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.Views.MotionControlAxisEditorView">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.group-title">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#20407B" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+        <Style Selector="custom|TextInputControl Border.borderName">
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Margin" Value="2,1" />
+        </Style>
+        <Style Selector="custom|TextInputControl TextBox#TextBox1">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#111111" />
+            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <Style Selector="ComboBox">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="#111111" />
+        </Style>
+        <Style Selector="Border.section-frame">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+        </Style>
+        <Style Selector="Border.section-header">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Padding" Value="10,8" />
+        </Style>
+        <Style Selector="Border.section-body">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="#F1F4F8" Padding="4">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid ColumnDefinitions="1.3*,0.8*"
+              RowDefinitions="Auto,Auto,Auto"
+              ColumnSpacing="10"
+              RowSpacing="10">
+            <Border Grid.Row="0" Grid.Column="0" Classes="section-frame">
+                <Grid RowDefinitions="Auto,*">
+                    <Border Grid.Row="0" Classes="section-header">
+                        <TextBlock Text="回零参数" Classes="group-title" />
+                    </Border>
+                    <Border Grid.Row="1" Classes="section-body">
+                        <StackPanel Spacing="12">
+                            <Grid ColumnDefinitions="90,*" ColumnSpacing="6">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="回零模式" />
+                                <ComboBox Grid.Column="1"
+                                          Width="220"
+                                          ItemsSource="{Binding HomingModeComboxViewModel.ItemsSource}"
+                                          SelectedItem="{Binding HomingModeComboxViewModel.SelectedItem, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                            <Grid ColumnDefinitions="90,*" ColumnSpacing="6">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="回零方向" />
+                                <ComboBox Grid.Column="1"
+                                          Width="220"
+                                          ItemsSource="{Binding HomingDirectionComboxViewModel.ItemsSource}"
+                                          SelectedItem="{Binding HomingDirectionComboxViewModel.SelectedItem, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="24" RowSpacing="12">
+                                <Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="90,*" ColumnSpacing="6">
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="加速时间" />
+                                    <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding HomingAccelerationTimeViewModel}" />
+                                </Grid>
+                                <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="90,*" ColumnSpacing="6">
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="减速时间" />
+                                    <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding HomingDecelerationTimeViewModel}" />
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="0" ColumnDefinitions="90,*" ColumnSpacing="6">
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="初速度" />
+                                    <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding HomingInitialSpeedViewModel}" />
+                                </Grid>
+                                <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="90,*" ColumnSpacing="6">
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="最小速度" />
+                                    <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding HomingMinimumSpeedViewModel}" />
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="0" ColumnDefinitions="90,*" ColumnSpacing="6">
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="最大速度" />
+                                    <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding HomingMaximumSpeedViewModel}" />
+                                </Grid>
+                                <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="90,*" ColumnSpacing="6">
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="后撞距离" />
+                                    <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding HomingRetractDistanceViewModel}" />
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Spacing="10" VerticalAlignment="Top">
+                <Border Classes="section-frame">
+                    <Grid RowDefinitions="Auto,*">
+                        <Border Grid.Row="0" Classes="section-header">
+                            <TextBlock Text="轴状态逻辑参数" Classes="group-title" />
+                        </Border>
+                        <Border Grid.Row="1" Classes="section-body">
+                            <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="8">
+                                <CheckBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Content="状态启用" IsChecked="{Binding StateEnable, Mode=TwoWay}" />
+                                <CheckBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Content="状态取反" IsChecked="{Binding StateReverse, Mode=TwoWay}" />
+                                <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Text="停止反应(0/1)" />
+                                <custom:TextInputControl Grid.Column="1" Grid.Row="1" LabelName="" WidthLevel="Small" Width="180" ViewModel="{Binding StopReactionViewModel}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Classes="section-frame">
+                    <Grid RowDefinitions="Auto,*">
+                        <Border Grid.Row="0" Classes="section-header">
+                            <TextBlock Text="编码器类型" Classes="group-title" />
+                        </Border>
+                        <Border Grid.Row="1" Classes="section-body">
+                            <Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="编码器类型" />
+                                <ComboBox Grid.Column="1"
+                                          Width="220"
+                                          ItemsSource="{Binding EncoderTypeComboxViewModel.ItemsSource}"
+                                          SelectedItem="{Binding EncoderTypeComboxViewModel.SelectedItem, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Classes="section-frame">
+                    <Grid RowDefinitions="Auto,*">
+                        <Border Grid.Row="0" Classes="section-header">
+                            <TextBlock Text="脉冲模式" Classes="group-title" />
+                        </Border>
+                        <Border Grid.Row="1" Classes="section-body">
+                            <Grid ColumnDefinitions="100,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="输入模式" />
+                                <ComboBox Grid.Column="1"
+                                          Grid.Row="0"
+                                          Width="220"
+                                          ItemsSource="{Binding PulseInputModeComboxViewModel.ItemsSource}"
+                                          SelectedItem="{Binding PulseInputModeComboxViewModel.SelectedItem, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Text="输出模式" />
+                                <ComboBox Grid.Column="1"
+                                          Grid.Row="1"
+                                          Width="220"
+                                          ItemsSource="{Binding PulseOutputModeComboxViewModel.ItemsSource}"
+                                          SelectedItem="{Binding PulseOutputModeComboxViewModel.SelectedItem, Mode=TwoWay}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <Border Grid.Row="1" Grid.Column="0" Classes="section-frame">
+                <Grid RowDefinitions="Auto,*">
+                    <Border Grid.Row="0" Classes="section-header">
+                        <TextBlock Text="脉冲比参数" Classes="group-title" />
+                    </Border>
+                    <Border Grid.Row="1" Classes="section-body">
+                        <StackPanel Spacing="12">
+                            <Grid ColumnDefinitions="90,*" ColumnSpacing="6">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="脉冲当量" />
+                                <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding PulseRatioViewModel}" />
+                            </Grid>
+                            <Grid ColumnDefinitions="90,*" ColumnSpacing="6">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="每转脉冲" />
+                                <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding PulsesPerRevolutionViewModel}" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Grid.Column="0" Classes="section-frame">
+                <Grid RowDefinitions="Auto,*">
+                    <Border Grid.Row="0" Classes="section-header">
+                        <TextBlock Text="软限位参数" Classes="group-title" />
+                    </Border>
+                    <Border Grid.Row="1" Classes="section-body">
+                        <StackPanel Spacing="12">
+                            <Grid ColumnDefinitions="90,*" ColumnSpacing="6">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="正向软限位" />
+                                <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding PositiveLimitViewModel}" />
+                            </Grid>
+                            <Grid ColumnDefinitions="90,*" ColumnSpacing="6">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="负向软限位" />
+                                <custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" Width="220" ViewModel="{Binding NegativeLimitViewModel}" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+    </Border>
+</UserControl>
+

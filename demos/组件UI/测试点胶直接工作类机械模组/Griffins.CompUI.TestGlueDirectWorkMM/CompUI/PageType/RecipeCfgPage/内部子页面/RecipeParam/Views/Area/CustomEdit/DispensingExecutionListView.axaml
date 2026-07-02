@@ -1,0 +1,177 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:DispensingExecutionListViewModel" 
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  
+             xmlns:convert="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters" x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.DispensingExecutionListView">
+
+      <UserControl.Resources> 
+		    <convert:IODeviceIDToNameConverter x:Key="IODeviceIDToNameConverter"/>     
+  
+            <convert:IntToBoolConverter x:Key="IntToBoolConverter"/> 
+            <convert:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter"/> 
+            
+            <!-- bool转换形状  -->
+            <convert:CustomBoolToGeometryConverter x:Key="CustomBoolToGeometryConverter"/>
+            <!--  string转换形状  -->
+            <convert:StringToGeometryConverter x:Key="StringToGeometryConverter"/> 
+    </UserControl.Resources>
+
+    <!--【区域编辑子页面】-->
+       <!--纵向排列 -->
+ <StackPanel Orientation="Vertical"  Width="1476"  HorizontalAlignment="Center" VerticalAlignment="Stretch"   Margin="2 0 0 0"  >
+    
+     
+    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Stretch"   Margin="2 0 0 0"  Width="1470"  >
+           <DockPanel Margin="0" LastChildFill="True" VerticalAlignment="Top"   Height="412" Width="655"   > 
+             <!--1. 上方 左侧：模板列表栏 --> 
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Spacing="1" Margin="1 0 0 1" Height="412" > 
+                        <!--1. 顶部操作菜单（添加按钮）--> 
+                        <StackPanel Orientation="Horizontal" Spacing="1" Margin="1 0 0 1"  > 
+			                    <Button 
+                                Content="添加模板"
+                                Command="{Binding AddTemplateInstanceCommand }" 
+                                Classes="DataGrid_btnAddStyle" Width="80" 
+                                />  
+
+                                <ComboBox  IsEnabled="True" 
+			                        Width="78"  Classes="DataGrid_ComboBoxStyle"
+		                            ItemsSource="{Binding DispensingCommandTypeModel.ItemsSource , Mode=OneWay}" 
+                                    SelectedItem="{Binding DispensingCommandTypeModel.SelectedItem, Mode=TwoWay}"  > 
+				                        <ComboBox.ItemTemplate>
+					                        <DataTemplate   DataType="ui:ComBoxItem">
+						                        <StackPanel Orientation="Horizontal"  > 
+					     	                        <TextBlock Text="{Binding DisplayName}" /> 
+					                            </StackPanel>
+					                        </DataTemplate>
+				                        </ComboBox.ItemTemplate>
+                                </ComboBox> 
+
+                                <Button 
+                                    Content="添加基础指令"
+                                    Command="{Binding AddBasicCommandCommand }" 
+                                    Classes="DataGrid_btnAddStyle" Width="80" />  
+
+                                <Button 
+                                    Content="删除" 
+                                    Command="{Binding BatchDeleteCommand}" 
+                                    Classes="DataGrid_btnAddStyle" Width="80" /> 
+                        </StackPanel> 
+
+                    <!-- 模板列表栏    --> 
+                        <DataGrid    ItemsSource="{Binding ItemsSource}"
+                            SelectedItem="{Binding  SelectedItem , Mode=TwoWay}"
+                            AutoGenerateColumns="False"
+                            BorderBrush="LightGray"
+                            BorderThickness="1"
+                            IsReadOnly="False" 
+                            SelectionMode="Extended"
+                            RowHeight="40"  Width="654" Height="370" 
+                            CanUserSortColumns="False"  Classes="StyleDataGrid" > 
+      
+                            <DataGrid.Columns> 
+                                <!-- 全选列（不变） -->
+                                <DataGridTemplateColumn Width="40" IsReadOnly="True">
+                                    <DataGridTemplateColumn.HeaderTemplate  >
+                                        <DataTemplate>
+                                            <CheckBox Classes="DataGrid_CheckBoxStyle"  
+                                                        IsChecked="{Binding DataContext.IsSelectAll, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                        Content="全选"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate DataType="vm:DispensingExecutionObjectModel">
+                                            <CheckBox Classes="DataGrid_CheckBoxStyle" 
+                                                        IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn> 
+
+
+                                <!-- 1. 序号（只读） -->
+                                <DataGridTextColumn 
+                                    Header="序号" 
+                                    Binding="{Binding SerialNumber}" 
+                                    Width="68"
+                                    IsReadOnly="True"/> 
+                                    
+                                <!-- 2. 执行指令类型（只读） -->
+                               <DataGridTextColumn Header="执行指令类型" Width="150" IsReadOnly="True">
+                                    <DataGridTextColumn.Binding>
+                                        <MultiBinding Converter="{StaticResource IODeviceIDToNameConverter}"> 
+                                            <Binding Path="CommandTypeModel.ItemsSource" Mode="OneWay" />
+                                            <Binding Path="CommandType" Mode="OneWay" /> 
+                                        </MultiBinding>
+                                    </DataGridTextColumn.Binding>
+                                </DataGridTextColumn>
+                                 
+                               <!-- 2. 模板实例ID（只读） -->
+                                 <DataGridTextColumn   Header="模板实例ID"  Binding="{Binding ID }"   Width="100"    IsReadOnly="True"/> 
+ 
+                                    <!-- 操作列（编辑+删除按钮） -->
+                                <DataGridTemplateColumn 
+                                    Header="操作" 
+                                    Width="214" 
+                                    IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                        <!-- 定义表头样式，设置文本居中 --> 
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:DispensingExecutionObjectModel">
+                                            <StackPanel Orientation="Horizontal" Spacing="2" > 
+                                                <Button 
+                                                    Content="上移"  
+                                                    Command="{Binding DataContext.UpMoveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                CommandParameter="{Binding}"  
+                                                Classes="btnEdit_DataGrid"  />
+
+                                                <Button 
+                                                    Content="下移"  
+                                                    Command="{Binding DataContext.DownMoveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                CommandParameter="{Binding}"  
+                                                Classes="btnEdit_DataGrid"  /> 
+
+                                                    <!-- 删除按钮：绑定ViewModel的DeleteCommand，传递当前行数据 + 禁用控制   -->
+                                                <Button 
+                                                    Content="删除" 
+                                                    Command="{Binding  DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}" 
+                                                    Classes="DataGrid_btnDeleteStyle" > 
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn> 
+                            </DataGrid.Columns> 
+                        </DataGrid> 
+                </StackPanel>  
+           </DockPanel> 
+            <!--1. 上方 右侧：轨迹成像区 -->  
+            <StackPanel    Spacing="1" Margin="1 0 0 1" Height="412" Width="815" Background="LightGray" >
+                       <!--垂直排列: 轨迹成像框     --> 
+                 <StackPanel Orientation="Horizontal"   
+                        Height="412" Width="815"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top"  
+                        IsVisible="{Binding ItemsSource.Count, Converter={StaticResource IntToBoolConverter}, FallbackValue=False}"> 
+
+                        <!-- Path2Control：保留原有属性 -->
+                        <custom:PathRenderControl UseLayoutRounding="True"
+                            IconSize="220,220"
+                            IconDataPath="{Binding Source={StaticResource CircleGeometry}}" 
+                            FillColor="Transparent" 
+                            StrokeThickness="6"/> 
+
+                 </StackPanel>
+            </StackPanel>
+        </StackPanel>
+       
+       <!--1. 下方  ：模版工作区 -->   
+        <ContentControl Content="{Binding SelectedItem.WorkAreaView}"   BorderBrush="#CCCCCC" BorderThickness="1.5"  VerticalAlignment="Top"  HorizontalAlignment="Left"   Height="305" Width="1470"   />  
+                  
+   </StackPanel>
+</UserControl>

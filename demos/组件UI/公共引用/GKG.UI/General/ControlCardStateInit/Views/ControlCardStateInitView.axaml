@@ -1,0 +1,37 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:ControlCardStateInitViewModel"
+			 x:Class="GKG.UI.General.ControlCardStateInitView">
+
+	<!-- 控制卡状态初始化参数配置界面View -->
+	<Grid Margin="8" HorizontalAlignment="Stretch" VerticalAlignment="Top" RowDefinitions="auto,auto,auto">
+		<!-- 标题 -->
+		<Label Grid.Row="0" Content="控制卡状态初始化参数配置界面" FontSize="20" HorizontalAlignment="Left" Margin="0 0 0 10" />
+
+		<!-- 下拉框：运控卡 ID -->
+		<custom:ComboxControl
+		Grid.Row="1"
+		HorizontalAlignment="Center"
+		HorizontalContentAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="卡类型:"
+		WidthLevel="Medium3"
+		ViewModel="{Binding ControlCardIDViewModel}" />
+
+		<!-- 下拉框：IO 通道号 -->
+		<custom:ComboxControl
+		Grid.Row="2"
+		HorizontalAlignment="Center"
+		HorizontalContentAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="IO通道号:"
+		WidthLevel="Medium3"
+		ViewModel="{Binding IOChannelViewModel}" />
+	</Grid>
+
+</UserControl>

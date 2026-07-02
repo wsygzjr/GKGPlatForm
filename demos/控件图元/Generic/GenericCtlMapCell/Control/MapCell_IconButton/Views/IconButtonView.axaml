@@ -1,0 +1,205 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.IconButton"
+             xmlns:local="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_IconButton.Converts"
+             mc:Ignorable="d"
+             d:DesignWidth="120"
+             d:DesignHeight="40"
+             x:Class="GKG.Map.MapCell.Generic.IconButton.IconButtonView"
+             x:Name="This"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <Design.DataContext>
+        <vm:IconButtonViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <local:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <local:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter"/>
+        <local:IconMarginToTranslateTransformConverter x:Key="IconMarginToTranslateTransformConverter"/>
+        <local:IconPositionToColumnConverter x:Key="IconPositionToColumnConverter"/>
+        <local:IconPositionToRowConverter x:Key="IconPositionToRowConverter"/>
+        <local:IconPositionToTextColumnConverter x:Key="IconPositionToTextColumnConverter"/>
+        <local:IconPositionToTextRowConverter x:Key="IconPositionToTextRowConverter"/>
+        <local:BoolToTextDecorationsConverter x:Key="BoolToTextDecorationsConverter"/>
+        <local:TextAlignmentEnumToTextAlignmentConverter x:Key="TextAlignmentEnumToTextAlignmentConverter"/>
+        <local:BitmapDataToImageSourceConverter x:Key="BitmapDataToImageSourceConverter"/>
+        <local:BitmapDataAndColorToTintedImageSourceConverter x:Key="BitmapDataAndColorToTintedImageSourceConverter"/>
+        <local:ImageSizeModeToStretchConverter x:Key="ImageSizeModeToStretchConverter"/>
+        <local:BackgroundMultiConverter x:Key="BackgroundMultiConverter"/>
+        <local:BitmapDataToVisibilityConverter x:Key="BitmapDataToVisibilityConverter"/>
+        <local:HorizontalAlignmentEnumToHorizontalAlignmentConverter x:Key="HorizontalAlignmentConverter"/>
+        <local:VerticalAlignmentEnumToVerticalAlignmentConverter x:Key="VerticalAlignmentConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Border x:Name="LeftClickBorder"
+                Width="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                IsHitTestVisible="False"/>
+        <Border x:Name="TopClickBorder"
+                Height="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                IsHitTestVisible="False"/>
+        <Border x:Name="RightClickBorder"
+                Width="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                IsHitTestVisible="False"/>
+        <Border x:Name="BottomClickBorder"
+                Height="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
+                Background="Transparent"
+                IsHitTestVisible="False"/>
+        <Button x:Name="CustomButton"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                IsHitTestVisible="True"
+                IsEnabled="{Binding CommonInfo.Enabled}"
+                Opacity="{Binding OpacityValue}">
+            <Button.Content>
+                <Grid x:Name="ContentLayoutGrid"
+                      ColumnDefinitions="Auto,Auto"
+                      RowDefinitions="Auto,Auto"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+                    <!-- 图标区域叠两层：普通态显示原图，鼠标按下态或平台组选中态显示像素级重绘后的染色图，避免整张位图被整块铺色。 -->
+                    <!-- IconMargin 现在统一作为图标偏移量使用，只移动图标自身，不再推动文字重新排版。 -->
+                    <Border x:Name="IconVisualHost"
+                            Background="Transparent"
+                            Padding="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0"
+                            RenderTransform="{Binding MiscInfo, Converter={StaticResource IconMarginToTranslateTransformConverter}}">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image x:Name="CustomIcon"
+                                   Width="{Binding MiscInfo.IconWidth}"
+                                   Height="{Binding MiscInfo.IconHeight}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource BitmapDataAndColorToTintedImageSourceConverter}">
+                                        <Binding Path="MiscInfo.IconSource"/>
+                                        <Binding Path="BrushInfo.ForegroundColor"/>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
+                            <!-- 悬停态图标也使用像素级染色图，让图标线条颜色和悬停前景色保持一致。 -->
+                            <Image x:Name="HoverTintedIcon"
+                                   IsVisible="False"
+                                   Width="{Binding MiscInfo.IconWidth}"
+                                   Height="{Binding MiscInfo.IconHeight}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource BitmapDataAndColorToTintedImageSourceConverter}">
+                                        <Binding Path="MiscInfo.IconSource"/>
+                                        <Binding Path="BrushInfo.HoverForegroundColor"/>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
+                            <Image x:Name="ClickTintedIcon"
+                                   IsVisible="False"
+                                   Width="{Binding MiscInfo.IconWidth}"
+                                   Height="{Binding MiscInfo.IconHeight}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                                <Image.Source>
+                                    <MultiBinding Converter="{StaticResource BitmapDataAndColorToTintedImageSourceConverter}">
+                                        <Binding Path="MiscInfo.IconSource"/>
+                                        <Binding Path="BrushInfo.ClickForegroundColor"/>
+                                    </MultiBinding>
+                                </Image.Source>
+                            </Image>
+                        </Grid>
+                    </Border>
+                    <!-- 文本单独放到可拉伸宿主里，让对齐基于整块文本区域生效，段前/段后间距也能直接落到这个宿主上。 -->
+                    <Border x:Name="TextParagraphHost"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                        <TextBlock x:Name="CustomTextBlock"
+                                   Text="{Binding CommonInfo.ButtonText}"
+                                   FontSize="{Binding FontInfo.FontSize}"
+                                   FontFamily="{Binding FontInfo.FontFamily}"
+                                   FontWeight="{Binding FontInfo.FontWeight}"
+                                   FontStyle="{Binding FontInfo.FontStyle}"
+                                   TextDecorations="{Binding FontInfo.IsUnderline, Converter={StaticResource BoolToTextDecorationsConverter}}"
+                                   LineHeight="{Binding ParagraphInfo.LineHeight}"
+                                   TextAlignment="{Binding ParagraphInfo.TextAlignment, Converter={StaticResource TextAlignmentEnumToTextAlignmentConverter}}"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Center"
+                                   Margin="0"/>
+                    </Border>
+                </Grid>
+            </Button.Content>
+            <Button.Styles>
+                <Style Selector="Button#CustomButton">
+                    <Setter Property="BorderBrush" Value="{Binding BrushInfo.BorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+                    <Setter Property="Foreground" Value="{Binding BrushInfo.ForegroundColor, Converter={StaticResource ColorToBrushConverter}}"/>
+                    <Setter Property="Template">
+                        <ControlTemplate>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Padding="{TemplateBinding Padding}"
+                                    Cursor="{TemplateBinding Cursor}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    IsHitTestVisible="True">
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Cursor="{TemplateBinding Cursor}"
+                                                  Margin="0"
+                                                  Padding="0"
+                                                  IsHitTestVisible="False"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource BackgroundMultiConverter}">
+                                <Binding Path="MiscInfo.BackgroundImage"/>
+                                <Binding Path="BrushInfo.BackgroundColor"/>
+                                <Binding Path="MiscInfo.ImageSizeMode"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style Selector="Button#CustomButton:pointerover">
+                    <Setter Property="Foreground" Value="{Binding BrushInfo.HoverForegroundColor, Converter={StaticResource ColorToBrushConverter}}"/>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource BackgroundMultiConverter}">
+                                <Binding Path="MiscInfo.BackgroundImage"/>
+                                <Binding Path="BrushInfo.HoverBackgroundColor"/>
+                                <Binding Path="MiscInfo.ImageSizeMode"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style Selector="Button#CustomButton:pressed">
+                    <Setter Property="Foreground" Value="{Binding BrushInfo.ClickForegroundColor, Converter={StaticResource ColorToBrushConverter}}"/>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource BackgroundMultiConverter}">
+                                <Binding Path="MiscInfo.BackgroundImage"/>
+                                <Binding Path="BrushInfo.ClickBackgroundColor"/>
+                                <Binding Path="MiscInfo.ImageSizeMode"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Styles>
+        </Button>
+    </Grid>
+</UserControl>

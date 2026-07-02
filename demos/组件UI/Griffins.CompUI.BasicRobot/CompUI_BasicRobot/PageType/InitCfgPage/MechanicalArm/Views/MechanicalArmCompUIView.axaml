@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+             xmlns:vm="clr-namespace:Griffins.CompUI.BasicRobot.CompUI_BasicRobot.PageType.InitCfgPage.MechanicalArm.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             xmlns:views="clr-namespace:Griffins.CompUI.BasicRobot.CompUI_BasicRobot.PageType.InitCfgPage.MechanicalArm.Views"
+             x:DataType="vm:MechanicalArmCompUIViewModel"
+             x:Class="Griffins.CompUI.BasicRobot.CompUI_BasicRobot.PageType.InitCfgPage.MechanicalArm.Views.MechanicalArmCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+
+  <UserControl.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://GKG.UI/Styles/Styles.axaml" />
+  </UserControl.Styles>
+
+  <Grid Margin="6" ColumnDefinitions="Auto,*" ColumnSpacing="6" RowDefinitions="Auto,*" RowSpacing="6">
+
+    <StackPanel Grid.Row="0" Grid.Column="0" Spacing="6">
+      <custom:ComboxControl
+        HorizontalAlignment="Stretch"
+        HorizontalContentAlignment="Left"
+        VerticalContentAlignment="Center"
+        WidthLevel="Medium"
+        LabelName="点位运动模式"
+        ViewModel="{Binding PointMoveModeViewModel}" />
+
+      <custom:NumericControl
+        HorizontalAlignment="Stretch"
+        HorizontalContentAlignment="Left"
+        VerticalContentAlignment="Center"
+        WidthLevel="Medium"
+        LabelName="轴号"
+        ViewModel="{Binding AxisNumberViewModel}" />
+
+      <custom:ComboxControl
+        HorizontalAlignment="Stretch"
+        HorizontalContentAlignment="Left"
+        VerticalContentAlignment="Center"
+        WidthLevel="Medium"
+        LabelName="分段速度模式"
+        ViewModel="{Binding SegmentSpeedModeViewModel}" />
+    </StackPanel>
+
+    <views:MechanicalArmCommandListCompUIView Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding}" />
+
+  </Grid>
+</UserControl>

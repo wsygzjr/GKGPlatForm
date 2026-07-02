@@ -1,0 +1,164 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2025</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>Griffins.CompUI.ElectricalMngObj</AssemblyTitle>
+    <Product>Griffins.CompUI.ElectricalMngObj</Product>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Bin\Share\CompUI\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+	  
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.JsonG.ConvertExtensions" Version="7.1.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Avalonia" Version="11.3.3">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="CompUI\PageType\DebugPage\Views\Test1DebugCompUIView.axaml.cs">
+      <DependentUpon>Test1DebugCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI\PageType\InitCfgPage\Views\Test1InitCfgCompUIView.axaml.cs">
+      <DependentUpon>Test1InitCfgCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI\PageType\InitCfgPage\Views\TestInitCfgCompUIView.axaml.cs">
+      <DependentUpon>TestInitCfgCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI\PageType\RecipeCfgPage\Views\Test1RecipeCfgCompUIView.axaml.cs">
+      <DependentUpon>Test1RecipeCfgCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="CompUI\PageType\RecipeCfgPage\Views\TestRecipeCfgCompUIView.axaml.cs">
+      <DependentUpon>TestRecipeCfgCompUIView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceA.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\1核心平台\2公共\A基础框架\Griffins.UI2\Griffins.UI2.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\1核心平台\A新图控\Griffins.Map.UI\Griffins.Map.UI.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\1核心平台\A新图控\Griffins.Map2\Griffins.Map2.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\智造设备管理平台\A智造设备数字底座\Griffins.ImeIOT.Map\Griffins.ImeIOT.Map.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\智造设备管理平台\A智造设备数字底座\Griffins.ImeIOT\Griffins.ImeIOT.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GriffinsGeneralTestMM\GriffinsGeneralTestMM.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\TestGlueDirectWorkMM\TestGlueDirectWorkMM.csproj">
+      <Private>True</Private>
+      <IncludeAssets>runtime</IncludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\CalibrationSubPageView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\CalibrationView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\CameraRatioCalibration\CameraRatioCalibrationView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\FlyingPhotoCalibration\FlyingPhotoCalibrationView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\LaserAltimetryCalibration\LaserAltimetryCalibrationView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\CameraPositionView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\CameraVsGluevalveComView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\CameraVsGluevalveView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\CameraVsLaserView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\LaserPositionView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\NinetyDegreevalvePositionView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\OffsetCalibrationView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\PositionView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Update="CompUI\PageType\InitCfgPage\内部子页面\Calibration\Views\OffsetCalibration\ZeroDegreevalvePositionView.axaml">
+      <Generator></Generator>
+    </AvaloniaXaml>
+  </ItemGroup>
+	<!-- 自定义目标：清理输出 -->
+	<Target Name="CleanOutputDependencies" AfterTargets="Build">
+		<ItemGroup>
+			<!-- 要删除的 DLL 文件 -->
+			<DllsToDelete Include="$(OutputPath)Griffins.Commu.dll" />
+			<DllsToDelete Include="$(OutputPath)Griffins.Map.UI.dll" />
+			<DllsToDelete Include="$(OutputPath)Griffins.Map2.dll" />
+			<DllsToDelete Include="$(OutputPath)Griffins.UI2.dll" />
+			<DllsToDelete Include="$(OutputPath)Griffins.ImeIOT.dll" />
+			<DllsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.dll" />
+			<DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.dll" />
+			<!-- 要删除的 PDB 文件 -->
+			<DllsToDelete Include="$(OutputPath)Griffins.Commu.pdb" />
+			<PdbsToDelete Include="$(OutputPath)Griffins.Map.UI.pdb" />
+			<PdbsToDelete Include="$(OutputPath)Griffins.Map2.pdb" />
+			<PdbsToDelete Include="$(OutputPath)Griffins.UI2.pdb" />
+			<PdbsToDelete Include="$(OutputPath)Griffins.ImeIOT.pdb" />
+			<PdbsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.pdb" />
+			<DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.pdb" />
+			<!-- 要删除的 XML 文件 -->
+			<DllsToDelete Include="$(OutputPath)Griffins.Commu.xml" />
+			<XmlsToDelete Include="$(OutputPath)Griffins.Map.UI.xml" />
+			<XmlsToDelete Include="$(OutputPath)Griffins.Map2.xml" />
+			<XmlsToDelete Include="$(OutputPath)Griffins.UI2.xml" />
+			<XmlsToDelete Include="$(OutputPath)Griffins.ImeIOT.xml" />
+			<XmlsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.xml" />
+			<DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.xml" />
+			<!-- 合并所有要删除的文件 -->
+			<AllFilesToDelete Include="@(DllsToDelete)" />
+			<AllFilesToDelete Include="@(PdbsToDelete)" />
+			<AllFilesToDelete Include="@(XmlsToDelete)" />
+		</ItemGroup>
+		<!-- 删除文件 -->
+		<Delete Files="@(AllFilesToDelete)" ContinueOnError="true" />
+	</Target>
+</Project>

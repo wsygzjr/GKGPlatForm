@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:MissingGlueDetectionParamViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.MissingGlueDetectionParamView">
+	<!-- 检测漏点胶界面View -->
+	<StackPanel Orientation="Vertical" Spacing="4" Height="310" Width="1220">
+		<!-- 外部为DockPanel，LastChildFill为true时最后一个子元素自动填充空间 -->
+		<DockPanel LastChildFill="True" Margin="2">
+			<StackPanel Orientation="Horizontal" Margin="0 0 200 0" DockPanel.Dock="Top">
+				<!-- 数字输入框：点胶个数下限 -->
+				<custom:NumericControl
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				WidthLevel="Medium3"
+				LabelName="点胶个数下限 "
+				ViewModel="{Binding MinDispensingCountViewModel}"
+				/>
+				<!-- 数字输入框：点胶个数上限 -->
+				<custom:NumericControl
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				WidthLevel="Medium3"
+				LabelName="点胶个数上限 "
+				ViewModel="{Binding MaxDispensingCountViewModel}"
+				/>
+			</StackPanel>
+			<Border BorderBrush="#E0E0E0"
+					BorderThickness="1"
+					CornerRadius="4"
+					Background="Gray">
+				<!--定义内容区域-->
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="205"/>
+					</Grid.RowDefinitions>
+					<!--数据列表区域-->
+					<ScrollViewer Grid.Row="0"
+								  VerticalScrollBarVisibility="Visible">
+						<!--脚本结果展示 ListBox-->
+						<ListBox ItemsSource="{Binding }"
+								 Classes="StyleListBoxCard">
+						</ListBox>
+					</ScrollViewer>
+				</Grid>
+			</Border>
+		</DockPanel>
+	</StackPanel>
+
+
+</UserControl>

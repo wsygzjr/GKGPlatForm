@@ -1,0 +1,12 @@
+<GriffinsAppCfgInfo>
+  <Svr2CliTcpIpPort>9920</Svr2CliTcpIpPort>
+  <UdpAnswerPort>16601</UdpAnswerPort>
+  <DefaultDBCmdTimeout>60</DefaultDBCmdTimeout>
+  <LanNorthHTTPPort>9921</LanNorthHTTPPort>
+  <GCWebSocketPort>9922</GCWebSocketPort>
+  <MaxGCCliCount>500</MaxGCCliCount>
+  <CldTcpipAddress>127.0.0.1</CldTcpipAddress>
+  <CldTcpipPort>9903</CldTcpipPort>
+  <WriteDebug>True</WriteDebug>
+  <LanNorthHTTPS>False</LanNorthHTTPS>
+</GriffinsAppCfgInfo>

@@ -1,0 +1,38 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GriffinsGeneralTestMM"
+        mc:Ignorable="d"
+        x:Class="GriffinsGeneralTestMM.FormAllMMWindow"
+        x:DataType="vm:FormAllMMViewModel"
+        Title="机械模组" 
+        Width="647" Height="382"
+        MinWidth="624" MinHeight="365"
+        ShowInTaskbar="False">
+
+    <!-- 滚动容器  -->
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+
+        <!-- ItemsControl：撑满容器  -->
+        <ItemsControl ItemsSource="{Binding TestMMViewModels}"
+                      HorizontalAlignment="Stretch">
+
+            <!-- 原生WrapPanel -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"
+                               VerticalAlignment="Top"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+             
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <vm:UctlTestMMView Margin="10"/>  
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36811.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispensingFunctionHeadSubMachineModules", "Valve\DispensingFunctionHeadSubMachineModules\DispensingFunctionHeadSubMachineModules.csproj", "{14A86264-1337-86C2-0315-F1074241076E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.DispensingFunctionHeadSubMachineModules", "Valve\GKG.DispensingFunctionHeadSubMachineModules\GKG.DispensingFunctionHeadSubMachineModules.csproj", "{C2DDDAB3-33FB-B83D-EE9B-CD49D8441390}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlueDispensingDevice", "Valve\GlueDispensingDevice\GlueDispensingDevice.csproj", "{C800B3F5-480B-5385-8EF1-64FDF9A9A008}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Valve", "Valve\Valve\Valve.csproj", "{DD2F0226-2B82-3FE7-0308-9BB53E11A88D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ValveHeader", "ValveHeader", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeasureHeight", "MeasureHeight", "{7AB8AB56-12FB-4904-AE8F-2873CA8BBBEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.MeasureHeightFunctionHeadSubMachineModules", "MesureHeight\GKG.MeasureHeightFunctionHeadSubMachineModules\GKG.MeasureHeightFunctionHeadSubMachineModules.csproj", "{D0A74315-B4A9-C75F-1546-B8F0C037CFDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeasureHeightFunctionHeadSubMachineModules", "MesureHeight\MeasureHeightFunctionHeadSubMachineModules\MeasureHeightFunctionHeadSubMachineModules.csproj", "{C65029B6-D16D-DA4A-1441-44D330D61E84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14A86264-1337-86C2-0315-F1074241076E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A86264-1337-86C2-0315-F1074241076E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A86264-1337-86C2-0315-F1074241076E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A86264-1337-86C2-0315-F1074241076E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2DDDAB3-33FB-B83D-EE9B-CD49D8441390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DDDAB3-33FB-B83D-EE9B-CD49D8441390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DDDAB3-33FB-B83D-EE9B-CD49D8441390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DDDAB3-33FB-B83D-EE9B-CD49D8441390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C800B3F5-480B-5385-8EF1-64FDF9A9A008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C800B3F5-480B-5385-8EF1-64FDF9A9A008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C800B3F5-480B-5385-8EF1-64FDF9A9A008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C800B3F5-480B-5385-8EF1-64FDF9A9A008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD2F0226-2B82-3FE7-0308-9BB53E11A88D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD2F0226-2B82-3FE7-0308-9BB53E11A88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD2F0226-2B82-3FE7-0308-9BB53E11A88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD2F0226-2B82-3FE7-0308-9BB53E11A88D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A74315-B4A9-C75F-1546-B8F0C037CFDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A74315-B4A9-C75F-1546-B8F0C037CFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A74315-B4A9-C75F-1546-B8F0C037CFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A74315-B4A9-C75F-1546-B8F0C037CFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65029B6-D16D-DA4A-1441-44D330D61E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65029B6-D16D-DA4A-1441-44D330D61E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65029B6-D16D-DA4A-1441-44D330D61E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65029B6-D16D-DA4A-1441-44D330D61E84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14A86264-1337-86C2-0315-F1074241076E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C2DDDAB3-33FB-B83D-EE9B-CD49D8441390} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C800B3F5-480B-5385-8EF1-64FDF9A9A008} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DD2F0226-2B82-3FE7-0308-9BB53E11A88D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D0A74315-B4A9-C75F-1546-B8F0C037CFDF} = {7AB8AB56-12FB-4904-AE8F-2873CA8BBBEC}
+		{C65029B6-D16D-DA4A-1441-44D330D61E84} = {7AB8AB56-12FB-4904-AE8F-2873CA8BBBEC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC2DBB1E-38B3-4ED1-A93C-0364A3CA39EF}
+	EndGlobalSection
+EndGlobal

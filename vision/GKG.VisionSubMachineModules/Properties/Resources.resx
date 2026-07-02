@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="VisionBindingAxesNotConfigured" xml:space="preserve">
+    <value>未配置视觉模组绑定轴，无法获取RobotDriver。</value>
+  </data>
+  <data name="VisionRobotDriverAcquireFailed" xml:space="preserve">
+    <value>通过交互消息获取RobotDriver失败。</value>
+  </data>
+  <data name="AxisInfosAcquireFailed" xml:space="preserve">
+    <value>通过交互消息获取轴信息失败。</value>
+  </data>
+  <data name="BindingAxisXInfoNotFound" xml:space="preserve">
+    <value>未找到绑定X轴信息: {0}</value>
+  </data>
+  <data name="BindingAxisYInfoNotFound" xml:space="preserve">
+    <value>未找到绑定Y轴信息: {0}</value>
+  </data>
+  <data name="BindingAxisZInfoNotFound" xml:space="preserve">
+    <value>未找到绑定Z轴信息: {0}</value>
+  </data>
+  <data name="ChangeCCDOrJetIOGuidNotConfigured" xml:space="preserve">
+    <value>未配置 ChangeCCDOrJetIOGuid，无法获取视觉IO实例。</value>
+  </data>
+  <data name="TriggerCCDIOGuidNotConfigured" xml:space="preserve">
+    <value>未配置 TriggerCCDIOGuid，无法获取视觉IO实例。</value>
+  </data>
+  <data name="VisionIOAcquireFailed" xml:space="preserve">
+    <value>通过交互消息获取视觉IO实例失败。</value>
+  </data>
+  <data name="VisionIOListEmpty" xml:space="preserve">
+    <value>视觉IO实例列表为空。</value>
+  </data>
+  <data name="InvalidAxisIdForField" xml:space="preserve">
+    <value>{0} 的轴ID无效: {1}</value>
+  </data>
+  <data name="VisionDriverNotInitialized" xml:space="preserve">
+    <value>视觉驱动未初始化</value>
+  </data>
+  <data name="RobotDriverNotInitialized" xml:space="preserve">
+    <value>机器人驱动未初始化</value>
+  </data>
+  <data name="RuntimeCtlCmdParamRequired" xml:space="preserve">
+    <value>运行时控制命令参数不能为空</value>
+  </data>
+  <data name="RuntimeCtlCmdImagePointRequired" xml:space="preserve">
+    <value>运行时控制命令缺少 ImagePoint 参数</value>
+  </data>
+  <data name="RuntimeCtlCmdNotSupported" xml:space="preserve">
+    <value>不支持的运行时控制命令: {0}</value>
+  </data>
+</root>

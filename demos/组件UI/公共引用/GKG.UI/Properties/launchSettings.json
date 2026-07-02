@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GKG.UI": {
+      "commandName": "Project",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\FrameAppHost"
+    }
+  }
+}

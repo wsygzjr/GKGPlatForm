@@ -1,0 +1,137 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:recipeparamcfgpage="using:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.Models.Area"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+		x:DataType="vm:ViewSchematicDiagramWindowViewModel" 
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+                   xmlns:converters="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters" 
+        x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.ViewSchematicDiagramWindow"
+        Title=""> 
+     
+     <!-- 资源：转换器+样式+圆形几何 -->
+    <Window.Resources>
+       <ResourceDictionary> 
+            <!--  string转换形状  -->
+            <converters:StringToGeometryConverter x:Key="StringToGeometryConverter"/> 
+            <!--  bool转换颜色  -->
+            <converters:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter"/> 
+     </ResourceDictionary> 
+        
+    </Window.Resources>
+
+
+     <!-- 区域示意图弹窗: 垂直排列 --> 
+ <StackPanel Orientation="Vertical"  HorizontalAlignment="Center"   Margin="0 0 0 0"   Width="600"   Height="720" > 
+       <!-- 2行3列  -->  
+        <Grid    RowDefinitions="30,230,230,230"  ColumnDefinitions="60,250,250"
+                        RowSpacing="0" ColumnSpacing="0"  HorizontalAlignment="Center" VerticalAlignment="Center"  Width="600"              
+                Height="720"  >
+            
+             <!-- ============= 顶部表头（动态生成） ============= -->
+        <!-- 第一行第一列：空占位 -->
+        <Grid Grid.Row="0" Grid.Column="0" Classes="CellGrid" >
+            <TextBlock Text="" Classes="HeaderText" />
+        </Grid>
+        
+        <!-- 第一行第二/三列：动态表头（绑定TopHeaders） -->
+        <ItemsControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding TopHeaders.Count}"
+                      ItemsSource="{Binding TopHeaders}"
+                      Classes="StyleItemsControl"
+                      Width="500" Height="30" >
+            <!-- 表头项布局：2列（和数据列数一致） -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="{Binding ColumnCount}" Rows="1"   RowSpacing="2"   ColumnSpacing="2"  />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            
+            <!-- 单个表头项模板 -->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Classes="HeaderItemGrid" Width="250" Height="30" >
+                        <TextBlock Text="{Binding}" Classes="HeaderText"  />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate> 
+        </ItemsControl>
+  
+             <!-- ============= 左侧表头（动态生成：A、B、C） ============= -->
+        <ItemsControl Grid.Row="1" Grid.Column="0" Grid.RowSpan="3"
+                      ItemsSource="{Binding LeftHeaders}"
+                      Classes="StyleItemsControl"
+                      Width="60" Height="700">
+            <!-- 表头项布局：3行1列（和数据行数一致） -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding RowCount}" Columns="1" RowSpacing="2"   ColumnSpacing="2"   />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <!-- 单个左侧表头项模板 -->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Classes="HeaderItemGrid" Width="60" Height="230">
+                        <TextBlock Text="{Binding}" Classes="HeaderText"   />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate> 
+        </ItemsControl>
+
+        <!-- ============= 核心数据区域（3行2列） ============= -->
+            <ItemsControl   Grid.Row="1"  Grid.Column="1"   Grid.ColumnSpan="2"  Grid.RowSpan="3"
+                ItemsSource="{Binding Instances}"     
+                Width="500"              
+                Height="700"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="0,2,2,2"
+                Classes="StyleItemsControl"> 
+
+                <!-- 关键：ItemsPanel设为UniformGrid，一行2列 -->
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <!-- Avalonia的UniformGrid语法和WPF一致，Columns="2"强制一行2项 -->
+                        <UniformGrid Rows="{Binding RowCount}" Columns="{Binding ColumnCount}" VerticalAlignment="Top" HorizontalAlignment="Center" /> 
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <!-- 单个数据项模板（圆形+数字） -->
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="recipeparamcfgpage:DispensingTemplateInstanceExecutionObject"> 
+                              <!-- Grid：无内边距，ClipToBounds仅作最后兜底 -->
+                        <Grid Width="240" Height="240"   UseLayoutRounding="True"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              ClipToBounds="True"  Margin="0" >
+                             <!--Path2Control：完全填充Grid，无需额外定位--> 
+                            <custom:PathRenderControl UseLayoutRounding="True"
+                                                  IconSize="220,220"
+						                          IconDataPath="{Binding Source={StaticResource CircleGeometry}}" 
+                                                  FillColor="Transparent"
+                                                  StrokeColor="{Binding IsEnabled , Converter={StaticResource CustomBoolToColorConverter},ConverterParameter='Green,Gray'}"
+                                                  StrokeThickness="2"/>
+
+                             <!--数字文本：居中，偏移适配--> 
+                            <TextBlock Text="{Binding SerialNumber}" UseLayoutRounding="True"
+                                       FontSize="20" FontWeight="Bold" Foreground="Blue"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       TextAlignment="Center" 
+                                       Margin="-15,-10"    />
+                        </Grid> 
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+	  
+        </Grid>
+
+             <!-- 3. 按钮区（保存/取消）  -->
+        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="30">
+            <Button 
+                Content="关闭" 
+                Command="{Binding CancelCommand}"  
+                Classes="btnCancel"  /> 
+        </StackPanel>
+  </StackPanel>
+
+</Window>

@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.GlueDispensingStyle"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:DispensingPointStyleCfgViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.DispensingPointStyleCfgView">
+
+            <TabControl Margin="5" TabStripPlacement="Top">
+
+            <TabItem Header="点胶前样式"> 
+                <views:DispensingBeforePointStyleListView 
+                    DataContext="{Binding DispensingBeforePointStyleListViewModel}" 
+                    Margin="5"/>
+            </TabItem>
+
+                
+            <TabItem Header="点胶后样式"> 
+                <views:DispensingAfterPointStyleListView 
+                    DataContext="{Binding DispensingAfterPointStyleListViewModel}" 
+                    Margin="5"/>
+            </TabItem>
+
+        </TabControl>
+
+</UserControl>

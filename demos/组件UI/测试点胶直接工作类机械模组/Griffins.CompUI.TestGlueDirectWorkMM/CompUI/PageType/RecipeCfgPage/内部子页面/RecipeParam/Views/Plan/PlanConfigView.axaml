@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Plan"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:PlanConfigViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.PlanConfigView">
+
+
+
+
+       <TabControl Margin="5" TabStripPlacement="Top"  BorderBrush="#CCCCCC" BorderThickness="1.5"  Width="1855" Height="830" >
+
+            <TabItem Header="点胶方案">  
+                  <views:DispensingPlanConfigView  HorizontalAlignment="Left"
+                    DataContext="{Binding DispensingPlanConfigViewModel}" 
+                    Margin="2"  BorderBrush="#CCCCCC" BorderThickness="1.5"  Width="1838" Height="763" /> 
+            </TabItem>
+            
+            <TabItem Header="其他参数"> 
+                <views:DispensingPlanOtherConfigInfoView  BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    DataContext="{Binding DispensingPlanOtherConfigInfoViewModel}" 
+                    Margin="2"  Width="1838" Height="763"  />
+            </TabItem>  
+            
+        </TabControl>
+
+</UserControl>

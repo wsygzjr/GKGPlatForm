@@ -1,0 +1,283 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="720"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 xmlns:gkgGeneral="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 x:DataType="vm:BatchAreaGenerationWorkspaceViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing.BatchAreaGenerationWorkspaceView">
+
+	<ScrollViewer Padding="16,12" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+		<Grid Width="748" HorizontalAlignment="Left"
+			  RowDefinitions="Auto,4,Auto,4,Auto,4,Auto,4,Auto,4,Auto,*"
+			  ColumnDefinitions="*">
+			<!-- 标题靠左 -->
+			<TextBlock Grid.Row="0"
+					   Text="区域批量生成"
+					   FontSize="22"
+					   FontWeight="Bold"
+					   HorizontalAlignment="Left"
+					   VerticalAlignment="Center" />
+
+			<!-- 区域批量生成名 -->
+			<Grid Grid.Row="2" ColumnDefinitions="168,200" RowDefinitions="Auto">
+				<TextBlock Grid.Column="0"
+						   Text="区域批量生成名"
+						   VerticalAlignment="Center"
+						   TextWrapping="Wrap"
+						   Width="168" />
+				<custom:TextInputControl Grid.Column="1"
+										 LabelName=""
+										 WidthLevel="Small"
+										 FixWidth="False"
+										 HorizontalAlignment="Stretch"
+										 VerticalAlignment="Center"
+										 ViewModel="{Binding NameViewModel}" />
+			</Grid>
+
+			<!-- 使用模板 -->
+			<Grid Grid.Row="4" ColumnDefinitions="168,200" RowDefinitions="Auto">
+				<TextBlock Grid.Column="0"
+						   Text="区域批量生成使用模板"
+						   VerticalAlignment="Top"
+						   TextWrapping="Wrap"
+						   Width="168" />
+				<custom:ComboxControl Grid.Column="1"
+									  LabelName=""
+									  WidthLevel="Small"
+									  FixWidth="False"
+									  HorizontalAlignment="Stretch"
+									  VerticalAlignment="Center"
+									  ViewModel="{Binding TemplateViewModel}" />
+			</Grid>
+
+			<!-- 区域起始点坐标：左侧说明 + 中间 X/Y/Z + 右侧教导/相机到（跨前两行） -->
+			<Grid Grid.Row="6"
+				  ColumnDefinitions="168,300,84"
+				  RowDefinitions="Auto,4,Auto,4,Auto">
+				<TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"
+						   Text="区域起始点坐标"
+						   VerticalAlignment="Top"
+						   Margin="0,4,0,0"
+						   TextWrapping="Wrap"
+						   Width="168" />
+				<custom:NumericControl Grid.Row="0" Grid.Column="1"
+									   LabelName="X"
+									   WidthLevel="Medium"
+									   FixWidth="False"
+									   HorizontalAlignment="Left"
+									   ViewModel="{Binding StartX}" />
+				<custom:NumericControl Grid.Row="2" Grid.Column="1"
+									   LabelName="Y"
+									   WidthLevel="Medium"
+									   FixWidth="False"
+									   HorizontalAlignment="Left"
+									   ViewModel="{Binding StartY}" />
+				<custom:NumericControl Grid.Row="4" Grid.Column="1"
+									   LabelName="Z"
+									   WidthLevel="Medium"
+									   FixWidth="False"
+									   HorizontalAlignment="Left"
+									   ViewModel="{Binding StartZ}" />
+
+				<Button Content="教导" Grid.Row="0" Grid.Column="2"
+						Width="76"
+						Height="32"
+						HorizontalAlignment="Left"
+						Command="{Binding TeachStartCommand}" />
+				<Button Content="相机到" Grid.Row="2" Grid.Column="2"
+						Width="76"
+						Height="32"
+						HorizontalAlignment="Left"
+						Command="{Binding MoveCameraToStartCommand}" />
+			</Grid>
+
+			<!-- 生成方式 + 生成按钮 -->
+			<Grid Grid.Row="8" ColumnDefinitions="168,200,120" RowDefinitions="Auto">
+				<TextBlock Grid.Column="0"
+						   Text="区域批量生成方式"
+						   VerticalAlignment="Center"
+						   TextWrapping="Wrap"
+						   Width="168" />
+				<custom:ComboxControl Grid.Column="1"
+									  LabelName=""
+									  WidthLevel="Small"
+									  FixWidth="False"
+									  HorizontalAlignment="Stretch"
+									  ViewModel="{Binding GenerationModeViewModel}" />
+				<Button Grid.Column="2"
+						Content="生成"
+						Width="88"
+						Height="34"
+						HorizontalAlignment="Right"
+						Command="{Binding GenerateCommand}" />
+			</Grid>
+
+			<Border Grid.Row="10"
+					Background="#FFFFFF"
+					BorderBrush="#FFFFFF"
+					BorderThickness="1"
+					CornerRadius="4"
+					Padding="12,4,12,14"
+					HorizontalAlignment="Left"
+					Width="748">
+				<Grid RowDefinitions="Auto,4,Auto,4,Auto,4,Auto,4,Auto,4,Auto,4,Auto"
+					  ColumnDefinitions="*">
+
+					<!-- 区域参数 / 长宽 -->
+					<Grid Grid.Row="0" ColumnDefinitions="88,36,160,36,160" RowDefinitions="Auto">
+						<TextBlock Grid.Column="0" Text="区域参数" VerticalAlignment="Center" Width="88" />
+						<TextBlock Grid.Column="1" Text="长" VerticalAlignment="Center" HorizontalAlignment="Right" Width="36" />
+						<custom:NumericControl Grid.Column="2"
+											   LabelName=""
+											   WidthLevel="Medium"
+											   FixWidth="False"
+											   HorizontalAlignment="Stretch"
+											   ViewModel="{Binding AreaLength}" />
+						<TextBlock Grid.Column="3" Text="宽" VerticalAlignment="Center" HorizontalAlignment="Right" Width="36" />
+						<custom:NumericControl Grid.Column="4"
+											   LabelName=""
+											   WidthLevel="Medium"
+											   FixWidth="False"
+											   HorizontalAlignment="Stretch"
+											   ViewModel="{Binding AreaWidth}" />
+					</Grid>
+
+					<!-- 区域数量 / 行列 -->
+					<Grid Grid.Row="2" ColumnDefinitions="88,36,160,36,160" RowDefinitions="Auto">
+						<TextBlock Grid.Column="0" Text="区域数量" VerticalAlignment="Center" Width="88" />
+						<TextBlock Grid.Column="1" Text="行数" VerticalAlignment="Center" HorizontalAlignment="Right" Width="36" />
+						<custom:NumericControl Grid.Column="2"
+											   LabelName=""
+											   WidthLevel="Medium"
+											   FixWidth="False"
+											   HorizontalAlignment="Stretch"
+											   ViewModel="{Binding RowCount}" />
+						<TextBlock Grid.Column="3" Text="列数" VerticalAlignment="Center" HorizontalAlignment="Right" Width="36" />
+						<custom:NumericControl Grid.Column="4"
+											   LabelName=""
+											   WidthLevel="Medium"
+											   FixWidth="False"
+											   HorizontalAlignment="Stretch"
+											   ViewModel="{Binding ColCount}" />
+					</Grid>
+
+					<!-- 起始点 / 矩阵方向 / 路径形状 -->
+					<Grid Grid.Row="4" ColumnDefinitions="200,200,200" RowDefinitions="Auto">
+						<custom:ComboxControl Grid.Column="0"
+											  LabelName="起始点"
+											  WidthLevel="Small"
+											  FixWidth="False"
+											  HorizontalAlignment="Left"
+											  ViewModel="{Binding StartPointViewModel}" />
+						<custom:ComboxControl Grid.Column="1"
+											  LabelName="矩阵方向"
+											  WidthLevel="Small"
+											  FixWidth="False"
+											  HorizontalAlignment="Left"
+											  ViewModel="{Binding MatrixDirectionViewModel}" />
+						<custom:ComboxControl Grid.Column="2"
+											  LabelName="路径形状"
+											  WidthLevel="Small"
+											  FixWidth="False"
+											  HorizontalAlignment="Left"
+											  ViewModel="{Binding PathShapeViewModel}" />
+					</Grid>
+
+					<!-- 角点表格：表头与 PositionTeachView 内 Grid（*,*,*,62,62 + ColumnSpacing=2）同轴对齐 -->
+					<Border Grid.Row="6"
+							Background="#FFFFFF"
+							BorderBrush="#FFFFFF"
+							BorderThickness="1"
+							CornerRadius="2"
+							Padding="8,8,8,8"
+							HorizontalAlignment="Left"
+							Width="600">
+						<Grid RowDefinitions="Auto,Auto">
+							<Grid Grid.Row="0"
+								  ColumnDefinitions="96,466"
+								  RowDefinitions="Auto"
+								  Margin="0,0,0,6">
+								<Grid Grid.Column="1"
+									  Width="466"
+									  ColumnDefinitions="*,*,*,62,62"
+									  ColumnSpacing="2"
+									  HorizontalAlignment="Left"
+									  VerticalAlignment="Center">
+									<TextBlock Grid.Column="0"
+											   Text="X (mm)"
+											   HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+									<TextBlock Grid.Column="1"
+											   Text="Y (mm)"
+											   HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+									<TextBlock Grid.Column="2"
+											   Text="Z (mm)"
+											   HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+									<TextBlock Grid.Column="3"
+											   Grid.ColumnSpan="2"
+											   Text="相机操作"
+											   HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+								</Grid>
+							</Grid>
+							<ItemsControl Grid.Row="1" ItemsSource="{Binding CornerPositions}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Grid ColumnDefinitions="96,466" RowDefinitions="Auto" Margin="0,0,0,8">
+											<TextBlock Grid.Column="0"
+													   Text="{Binding Name}"
+													   VerticalAlignment="Center"
+													   HorizontalAlignment="Left"
+													   Width="96" />
+											<gkgGeneral:PositionTeachView Grid.Column="1"
+																		  Width="466"
+																		  HorizontalAlignment="Left"
+																		  DataContext="{Binding Position}" />
+										</Grid>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</Grid>
+					</Border>
+
+					<!-- 启用换行抬针 -->
+					<Grid Grid.Row="8" ColumnDefinitions="220,300" RowDefinitions="Auto">
+						<custom:ToggleSwitchControl Grid.Column="0"
+													LabelName="启用换行抬针"
+													WidthLevel="Medium"
+													FixWidth="False"
+													HorizontalAlignment="Stretch"
+													ViewModel="{Binding EnableNeedleCompensationViewModel}" />
+						<custom:NumericControl Grid.Column="1"
+											   LabelName="抬针高度(mm)"
+											   WidthLevel="Medium"
+											   FixWidth="False"
+											   HorizontalAlignment="Stretch"
+											   ViewModel="{Binding NeedleCompensationHeight}" />
+					</Grid>
+
+					<!-- 启用换行清洁 -->
+					<Grid Grid.Row="10" ColumnDefinitions="220,300" RowDefinitions="Auto">
+						<custom:ToggleSwitchControl Grid.Column="0"
+													LabelName="启用换行清洁"
+													WidthLevel="Medium"
+													FixWidth="False"
+													HorizontalAlignment="Stretch"
+													ViewModel="{Binding EnableFirstPointWaitViewModel}" />
+						<custom:NumericControl Grid.Column="1"
+											   LabelName="首点稳定时间(ms)"
+											   WidthLevel="Medium"
+											   FixWidth="False"
+											   HorizontalAlignment="Stretch"
+											   ViewModel="{Binding FirstPointWaitMs}" />
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+	</ScrollViewer>
+</UserControl>

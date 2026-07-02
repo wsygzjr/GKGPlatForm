@@ -1,0 +1,22 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.SL.InitCfgPage.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+			 xmlns:conv="clr-namespace:Avalonia.Data.Converters;assembly=Avalonia.Base"
+			 x:DataType="vm:TrackWideningCompUIViewModel"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:Class="Griffins.CompUI.SL.InitCfgPage.Views.TrackWideningCompUIView"
+			 Tag="{Binding ViewTag, Mode=TwoWay}">
+	<StackPanel Orientation="Vertical" Spacing="20" Margin="0 30 0 0">
+
+		<StackPanel Orientation="Horizontal" Spacing="12">
+			<custom:ToggleSwitchControl WidthLevel="Medium2"
+										LabelName="是否启用防撞检测"
+										ViewModel="{Binding CollisionDetectionViewModel}"/>
+		</StackPanel>
+
+	</StackPanel>
+	
+</UserControl>

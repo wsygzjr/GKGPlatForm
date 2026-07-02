@@ -1,0 +1,90 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:OneDMatrixParamViewModel"	  
+			 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.OneDMatrixParamView">
+
+
+          <StackPanel Orientation="Vertical" Spacing="4" Margin="2" VerticalAlignment="Top"  HorizontalAlignment="Left"  Height="390"  Width="660">        
+				<TextBlock Text="矩阵指令参数" VerticalAlignment="Center" HorizontalAlignment="Left"   Width="200" />
+           
+              	<!-- 矩阵指令参数 2行2列 -->
+				 <Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto"
+						RowSpacing="0"  HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+					 
+					<!-- 选中的模板ID --> 
+					<custom:ComboxControl
+						Grid.Row="0"  Grid.Column="0" 
+						HorizontalAlignment="Left"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						VerticalContentAlignment="Center"
+						LabelName="模板ID"
+						WidthLevel="Small8"
+						ViewModel="{Binding SelectedTemplateModel }" />  
+
+					<!-- 启用换行抬针 -->
+					<custom:ToggleSwitchControl
+						Grid.Row="0"  Grid.Column="1"
+						HorizontalAlignment="Left"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						VerticalContentAlignment="Center"
+						LabelName="启用换行抬针"
+						WidthLevel="Small8" 
+						ViewModel="{Binding EnableLiftNeedleOnNewLineViewModel}" /> 
+					 
+              				<!-- 抬针高度  -->
+					<custom:NumericControl
+						Grid.Row="0"  Grid.Column="2"
+						HorizontalAlignment="Left"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						VerticalContentAlignment="Center"
+						LabelName="抬针高度"  
+						WidthLevel="Small8" 
+						ViewModel="{Binding LiftNeedleHeightViewModel }"
+					/> 
+					 
+					<!-- 启用换行清洁 -->
+					<custom:ToggleSwitchControl
+						Grid.Row="1"  Grid.Column="0" 
+						HorizontalAlignment="Left"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						VerticalContentAlignment="Center"
+						LabelName="启用换行清洁"
+						WidthLevel="Small8" 
+						ViewModel="{Binding EnableCleanOnNewLineViewModel}" />
+
+
+				 	<!-- 换行首点稳定时间  -->
+					<custom:NumericControl
+						Grid.Row="1"  Grid.Column="1" 
+						HorizontalAlignment="Left"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						VerticalContentAlignment="Center"
+						LabelName="首点稳定时间s"
+						WidthLevel="Small8" 
+						ViewModel="{Binding NewLineFirstPointStableTimeViewModel }"
+						/> 
+				</Grid>
+
+			  
+			<!--一维矩阵参数-->
+				<TextBlock Text="一维矩阵参数栏" VerticalAlignment="Center" HorizontalAlignment="Left"   Width="200" />
+                
+				<views:DMatrixParamView  HorizontalAlignment="Left"
+							DataContext="{Binding OneOfDMatrixParamViewModel}" 
+							Margin="2"  BorderBrush="#CCCCCC" BorderThickness="1.5"  Width="660" />
+			  	
+
+       </StackPanel>
+</UserControl>

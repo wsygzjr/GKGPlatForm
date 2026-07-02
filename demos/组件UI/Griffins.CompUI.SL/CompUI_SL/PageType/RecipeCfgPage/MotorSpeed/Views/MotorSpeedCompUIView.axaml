@@ -1,0 +1,36 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:ui="using:GKG.UI"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.SL.RecipeCfgPage.ViewModels"
+			 x:DataType="vm:MotorSpeedCompUIViewModel"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:Class="Griffins.CompUI.SL.RecipeCfgPage.Views.MotorSpeedCompUIView"
+			 Tag="{Binding ViewTag, Mode=TwoWay}">
+	<TabControl TabStripPlacement="Top" BorderBrush="#CCCCCC" BorderThickness="1.5">
+		<TabItem Header="前边轨">
+			<StackPanel Orientation="Horizontal" Spacing="20" Margin="0 10 0 0">
+				<!--<TextBlock Text="皮带电机速度" FontSize="18" Foreground="Gray"></TextBlock>
+				<TextBox Text="{Binding FrontMotorSpeed}" Watermark="请输入" Height="20" VerticalAlignment="Top"></TextBox>
+				<TextBlock Text="mm/s" Margin="0 6 0 0"></TextBlock>-->
+				<custom:NumericWithLableControl WidthLevel="Medium3"
+												LabelName="皮带电机速度"
+												ViewModel="{Binding FrontMotorSpeedViewModel}"
+												/>
+			</StackPanel>
+		</TabItem>
+		<TabItem Header="后边轨">
+			<StackPanel Orientation="Horizontal" Spacing="20" Margin="0 10 0 0">
+				<!--<TextBlock Text="皮带电机速度" FontSize="18" Foreground="Gray"></TextBlock>
+				<TextBox Text="{Binding BehindMotorSpeed}" Watermark="请输入" Height="20" VerticalAlignment="Top"></TextBox>
+				<TextBlock Text="mm/s" Margin="0 6 0 0"></TextBlock>-->
+				<custom:NumericWithLableControl WidthLevel="Medium3"
+												LabelName="皮带电机速度"
+												ViewModel="{Binding BehindMotorSpeedViewModel}"
+												/>
+			</StackPanel>
+		</TabItem>
+	</TabControl>
+</UserControl>

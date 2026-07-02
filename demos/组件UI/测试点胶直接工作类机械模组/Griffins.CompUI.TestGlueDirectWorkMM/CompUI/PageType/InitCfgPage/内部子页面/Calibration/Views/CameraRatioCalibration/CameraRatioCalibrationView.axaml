@@ -1,0 +1,53 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.ViewModels.CameraRatioCalibration"
+             x:DataType="vm:CameraRatioCalibrationViewModel"
+              xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  x:Class="Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views.CameraRatioCalibrationView">
+
+
+ <!-- 相机比例标定选项卡-->
+	<StackPanel Orientation="Vertical"     MaxWidth="450" MinWidth="450" > 
+         <!--xyz坐标位置-->
+         <views:PositionView     DataContext="{Binding }"    Margin="0"/> 
+
+         <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*"
+              RowSpacing="0"  HorizontalAlignment="Center"   >
+             
+                 
+            <!-- 阀 -->
+          <custom:ComboxControl   Grid.Row="0"  Grid.Column="0" 
+		        HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center" 
+		        LabelName="阀号选择"
+		        WidthLevel="Small1"
+		        ViewModel="{Binding ValveInfoModel }" />     
+             
+            <!-- 运动步距 -->
+             <custom:NumericControl
+            Grid.Row="1"  Grid.Column="0"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center" 
+			LabelName="运动步距（mm）"
+			WidthLevel="Small1"  
+			ViewModel="{Binding SportsStrideViewModel}"
+			/> 
+             
+           <!-- 标定 -->
+           <Button Content="标定"   Grid.Row="2"  Grid.Column="0" 
+                   Command="{Binding CalibrationCommand}"
+                Classes="btn"  /> 
+        </Grid>
+
+    </StackPanel>
+
+
+        
+</UserControl>

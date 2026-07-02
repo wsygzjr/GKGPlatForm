@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!--<UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>-->
+	  <Company>Griffins</Company>
+	  <Copyright>Copyright © Griffins 2025</Copyright>
+	  <AssemblyVersion>7.1.0.0</AssemblyVersion>
+	  <FileVersion>7.1.0.0</FileVersion>
+	  <AssemblyTitle>TestGlueDirectWorkMM</AssemblyTitle>
+	  <Product>TestGlueDirectWorkMM</Product>
+  </PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\GriffinsGeneralTestMM\GriffinsGeneralTestMM.csproj">
+			<Private>False</Private>
+			<ExcludeAssets>runtime</ExcludeAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\..\子机械模组\电气管理对象\TestSubMM_ElectricalMngObj\TestSubMM_ElectricalMngObj.csproj">
+		  <Private>True</Private>
+		</ProjectReference>
+	</ItemGroup>
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="MachineModulesCabilityDef.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="ResourceNames.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceNames.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

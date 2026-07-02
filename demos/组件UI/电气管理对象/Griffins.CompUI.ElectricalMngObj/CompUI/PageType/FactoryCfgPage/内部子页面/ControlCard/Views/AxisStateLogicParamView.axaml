@@ -1,0 +1,63 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+              xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels.Axis"
+             x:DataType="vm:AxisStateLogicParamViewModel"
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.AxisStateLogicParamView"
+              xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2" >
+
+	<!--<TextBlock Text="【轴状态逻辑参数配置界面】" VerticalAlignment="Top"/>-->
+     
+     <Grid  Margin="0,0,0,0"  RowDefinitions="*,*,*,*"  RowSpacing="0" ColumnSpacing="0"  >
+   
+            <!--运控卡轴状态类型 下拉框--> 
+       <custom:ComboxControl 
+                     Grid.Row="0"  Grid.Column="0" 
+                      HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+					LabelName="运控卡轴状态类型:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding AxisStateTypeModel}" />  
+
+       <custom:ComboxControl 
+                     Grid.Row="0"  Grid.Column="0" 
+                      HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+					LabelName="运控卡轴状态类型:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding AxisStateTypeModel}" /> 
+                    
+      
+        <!-- 状态是否启用	开关按钮 --> 
+	  <custom:ToggleSwitchControl Name="toggleSwitchIsStateEnabled"
+            Grid.Row="1"  Grid.Column="0" 
+		    LabelName="状态是否启用:"
+		    WidthLevel="Medium" 
+		    ViewModel="{Binding IsStateEnabledViewModel}"
+		/>  
+       
+        <!-- 状态是否取反	开关按钮 --> 
+	    <custom:ToggleSwitchControl 
+                     Grid.Row="2"  Grid.Column="0"  
+					LabelName="状态是否取反:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding IsStateInvertedViewModel}" />
+         <!-- 感应到信号后反应	下拉框 -->  
+           <custom:ComboxControl 
+                     Grid.Row="3"  Grid.Column="0" 
+                      HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+					LabelName="感应到信号后反应:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding SignalReactionModel}" /> 
+          
+    </Grid>
+</UserControl>

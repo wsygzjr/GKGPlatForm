@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.MeasureHeightFunctionHead.CompUI_MeasureHeightFunctionHead.PageType.FactoryCfgPage.MeasureHeightFactory.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="360"
+             x:DataType="vm:MeasureHeightFactoryCompUIViewModel"
+             x:Class="Griffins.CompUI.MeasureHeightFunctionHead.CompUI_MeasureHeightFunctionHead.PageType.FactoryCfgPage.MeasureHeightFactory.Views.MeasureHeightFactoryCompUIView">
+  <Design.DataContext>
+    <vm:MeasureHeightFactoryCompUIViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="10" Orientation="Vertical" Spacing="16">
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="10">
+        <StackPanel Orientation="Vertical" Spacing="3">
+          <TextBlock Text="测高功能头出厂配置" FontWeight="Bold" FontSize="18" />
+          <TextBlock Text="测高传感器类型配置" FontWeight="SemiBold" />
+          <TextBlock Text="选择测高传感器的类型以进行出厂配置。" Foreground="#66000000" TextWrapping="Wrap" />
+        </StackPanel>
+      </Border>
+
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+        <StackPanel Orientation="Vertical" Spacing="12">
+          <TextBlock Text="测高传感器配置" FontWeight="Bold" />
+          <custom:ComboxControl WidthLevel="Medium"
+                               LabelName="测高传感器类型"
+                               ViewModel="{Binding MeasureHeightTypeViewModel}" />
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

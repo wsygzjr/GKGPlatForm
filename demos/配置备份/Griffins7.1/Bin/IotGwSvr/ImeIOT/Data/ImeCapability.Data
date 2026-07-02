@@ -1,0 +1,20 @@
+{
+    "ImeModel": "TestImeModel",
+    "DefaultCepfNumber": "TestCepfNumber",
+    "IsMutilMT": false,
+    "MMs": [],
+    "SubMMs": [
+    ],
+    "MTCapabilityDatas": [{
+            "MTNo": 1,
+            "Aliases": []
+        }
+    ],
+    "FoolProofObjDatas": [],
+    "CustomUIDataObjInsts": [ {
+            "Alias": "ProductionInfo_1",
+            "InstName": "生产信息",
+            "ObjKind": "ProductionInfo"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+  "solution": {
+    "path": "总解决方案.sln",
+    "projects": [
+      "..\\界面数据对象\\GKG.Map.UIDataObj.AuxiliaryInfo\\GKG.Map.UIDataObj.AuxiliaryInfo.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.Chart\\GKG.Map.UIDataObj.Chart.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.Communication\\GKG.Map.UIDataObj.Communication.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.DataMonitor\\GKG.Map.UIDataObj.DataMonitor.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.DispensingView\\GKG.Map.UIDataObj.DispensingView.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.HeatingControl\\GKG.Map.UIDataObj.HeatingControl.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.IconButton\\GKG.Map.UIDataObj.IconButton.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.Label\\GKG.Map.UIDataObj.Label.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.Log\\GKG.Map.UIDataObj.Log.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.ProductionInformation\\GKG.Map.UIDataObj.ProductionInfo.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.StatusInfo\\GKG.Map.UIDataObj.StatusInfo.csproj",
+      "..\\界面数据对象\\GKG.Map.UIDataObj.TwoDDetection\\GKG.Map.UIDataObj.TwoDDetection.csproj",
+      "..\\界面数据对象\\Griffins.Map.UIDataObj.Simple\\Griffins.Map.UIDataObj.Simple.csproj",
+      "..\\界面数据对象\\Griffins.Map.UIDataObjProcess.Simple\\GKG.Map.UIDataObjProcess.ProductionInfo.csproj"
+    ]
+  }
+}

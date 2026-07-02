@@ -1,0 +1,51 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:NonMainFrameViewModel.ViewModels.TopMenu;assembly=NonMainFrame"
+             x:Class="NonMainFrameView.Views.Menu.TopMenuView"
+             x:DataType="vm:TopMenuViewModel"
+             Background="#F5F5F5"> 
+    
+    <Design.DataContext>
+        <vm:TopMenuViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="*" ColumnDefinitions="Auto, *"
+          VerticalAlignment="Stretch">
+        
+        <StackPanel Grid.Column="0" Orientation="Horizontal" 
+                    Spacing="8" VerticalAlignment="Center">
+          
+            <Button Command="{Binding GotoRootPageCommand}"
+                    ToolTip.Tip="返回首页"
+                    Width="40" Height="40" Padding="0"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="Transparent" Cursor="Hand">
+                <Image Source="{Binding GotoRootPageIconBitmap}"
+                       Width="30" Height="30"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            </Button>
+
+            <Button Command="{Binding GotoParentPageCommand}"
+                    ToolTip.Tip="返回上级页面"
+                    Width="40" Height="40" Padding="0"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="Transparent" Cursor="Hand">
+                <Image Source="{Binding GotoParentPageIconBitmap}"
+                       Width="30" Height="30"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+
+        <TextBlock Grid.Column="1" Text="{Binding TileName}"
+                   FontSize="18" FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#333333"/>
+    </Grid>
+</UserControl>

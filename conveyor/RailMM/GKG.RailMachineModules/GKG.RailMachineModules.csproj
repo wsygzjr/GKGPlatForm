@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <Company>Griffins</Company>
+	  <Copyright>Copyright © Griffins 2025</Copyright>
+	  <AssemblyVersion>7.1.0.0</AssemblyVersion>
+	  <FileVersion>7.1.0.0</FileVersion>
+	  <AssemblyTitle>GKG.RailMachineModules</AssemblyTitle>
+	  <Product>GKG.RailMachineModules</Product>
+	  <TargetFramework>net9.0</TargetFramework>
+	  <OutputType>Library</OutputType>
+	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\ImeIOT\MM</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="GKG" Version="1.0.0" />
+	  <PackageReference Include="GKG.ElectronicControl" Version="1.0.0" />
+	  <PackageReference Include="Griffins" Version="7.1.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Griffins.ImeIOT" Version="7.1.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Griffins.IOT" Version="7.1.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Griffins.PF" Version="7.1.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+	  <!--<PackageReference Include="Griffins.WorkFlow" Version="7.1.0">
+	    <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>-->
+	  <PackageReference Include="Newtonsoft.JsonG" Version="7.1.0">
+		  <ExcludeAssets>runtime</ExcludeAssets>
+	  </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\RailAdjustWidthSubMM\RailAdjustWidthSubMachineModules\RailAdjustWidthSubMachineModules.csproj" />
+    <ProjectReference Include="..\..\RailMotorSubMM\RailMotorSubMachineModules\RailMotorSubMachineModules.csproj" />
+    <ProjectReference Include="..\..\RailWorkStation\RailWorkStationSubMachineModules\RailWorkStationSubMachineModules.csproj" />
+    <ProjectReference Include="..\RailMachineModules\RailMachineModules.csproj" />
+  </ItemGroup>
+	
+	
+</Project>

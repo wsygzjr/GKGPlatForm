@@ -1,0 +1,157 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:GKG.UI.General"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+             x:DataType="vm:PreDispensingViewModel" 
+             xmlns:griffinsUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"   
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+             x:Class="GKG.UI.General.PreDispensingCfgView">
+    
+    <!--预点胶-->
+       <!-- 公共页面： XYZ坐标调整-->
+  <StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Center" >
+
+        <!-- 2. 表单内容   -->
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
+              RowSpacing="0"  HorizontalAlignment="Left" >
+            <!-- 功能头编号 -->
+             <custom:NumericControl
+            Grid.Row="0"  Grid.Column="0"  Grid.ColumnSpan="2"
+                     HorizontalAlignment="Left"   HorizontalContentAlignment="Left"
+			Name="AxisCountViewModel1"
+			LabelName="功能头编号"
+			WidthLevel="Medium2"  
+			ViewModel="{Binding FunctionHeadNumberViewModel}" />
+
+       <!--开启预点胶 EnablePreDispensingViewModel -->
+         <custom:ToggleSwitchControl 
+                     Grid.Row="1"  Grid.Column="0"  
+					LabelName="开启预点胶"
+					WidthLevel="Medium2" 
+					ViewModel="{Binding EnablePreDispensingViewModel}" />
+
+       <!--开启实时测高 EnableRealTimeHeightMeasurementViewModel -->
+          <custom:ToggleSwitchControl 
+                     Grid.Row="1"  Grid.Column="1"  
+					LabelName="开启实时测高"
+					WidthLevel="Medium2" 
+					ViewModel="{Binding EnableRealTimeHeightMeasurementViewModel}" />
+       <!--开启2D Enable2DViewModel  -->
+          <custom:ToggleSwitchControl 
+                     Grid.Row="2"  Grid.Column="0"  
+					LabelName="开启2D"
+					WidthLevel="Medium2" 
+					ViewModel="{Binding Enable2DViewModel}" />
+       <!--开启自动重置 EnableAutoResetViewModel -->
+          <custom:ToggleSwitchControl 
+                     Grid.Row="2"  Grid.Column="1"  
+					LabelName="开启自动重置"
+					WidthLevel="Medium2" 
+					ViewModel="{Binding EnableAutoResetViewModel}" />
+
+       <!--单次预点胶个数-->
+             <custom:NumericControl
+            Grid.Row="3"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="单次预点胶个数"
+			WidthLevel="Medium2"  
+			ViewModel="{Binding SinglePreDispensingCountViewModel }" />
+
+            <!--预点胶类型  PreDispensingTypeViewModel -->
+               <custom:ComboxControl 
+                     Grid.Row="3"  Grid.Column="1" 
+                      HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+					LabelName="预点胶类型"
+					WidthLevel="Medium2" 
+					ViewModel="{Binding PreDispensingTypeViewModel}" /> 
+
+            <!--预点胶点数X个数  PreDispensingPointCountXViewModel--> 
+             <custom:NumericControl
+            Grid.Row="4"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="预点胶点数X个数"
+			WidthLevel="Medium2"  
+			ViewModel="{Binding PreDispensingPointCountXViewModel }" /> 
+             
+            <!--预点胶点数Y个数  PreDispensingPointCountYViewModel--> 
+             <custom:NumericControl
+            Grid.Row="4"  Grid.Column="1" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="预点胶点数Y个数"
+			WidthLevel="Medium2"  
+			ViewModel="{Binding PreDispensingPointCountYViewModel }" /> 
+
+      <!--点胶样式 ComboxViewModel DispensingStyleViewModel -->
+
+          <!--点胶重量   --> 
+             <custom:NumericControl
+            Grid.Row="5"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="点胶重量"
+			WidthLevel="Medium2"  
+			ViewModel="{Binding DispensingWeightViewModel }" /> 
+
+
+          <!--缓存测高值  --> 
+             <custom:NumericControl
+            Grid.Row="5"  Grid.Column="1" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="缓存测高值"
+			WidthLevel="Medium2"  
+			ViewModel="{Binding CachedHeightValueViewModel }" />  
+   </Grid>
+ 
+      <!-- 2D平面点位 -->
+           <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,Auto"
+                              RowSpacing="0"  HorizontalAlignment="Left"  Height="160" Width="660" >
+               
+                       <TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Left"    VerticalAlignment="Top" 
+                                 FontFamily="SimSun"     FontSize="14"   Text="2D平面点位" Margin="0"/>
+
+                       <Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="60,Auto"
+                          RowSpacing="0"  HorizontalAlignment="Center"  Height="160" Width="660" > 
+                          
+                           <!--位置点位-->
+                             <TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Right"    VerticalAlignment="Center" 
+                                    Text="" Margin="0"/>
+                              <!-- 坐标表头 -->
+                             <griffinsUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="1"  
+                                    Margin="2" Height="38" Width="580"  />   
+                           
+                             <TextBlock  Grid.Row="1"  Grid.Column="0"  HorizontalAlignment="Right"    VerticalAlignment="Center"  TextAlignment="Center"
+                                  Text="左上角"   FontSize="14"   Margin="0" Height="38" />
+                             <!-- 点阵左上位置-视图模型   -->
+                             <griffinsUI:PositionTeachView    Grid.Row="1"  Grid.Column="1"  VerticalAlignment="Center"  
+                                    DataContext="{Binding DotMatrix_LeftUpperPositionViewModel}" 
+                                    Margin="2" Height="38" Width="580"  />   
+
+                             <TextBlock  Grid.Row="2"  Grid.Column="0"  HorizontalAlignment="Right"    VerticalAlignment="Center" TextAlignment="Center"
+                                  Text="右上角"   FontSize="14"  Margin="0" Height="38" />
+                             <!--点阵右上位置-视图模型    -->
+                             <griffinsUI:PositionTeachView    Grid.Row="2"  Grid.Column="1"   VerticalAlignment="Center" 
+                                    DataContext="{Binding DotMatrix_RightUpperPositionViewModel}" 
+                                    Margin="2" Height="38" Width="580"  />   
+
+                             <TextBlock  Grid.Row="3"  Grid.Column="0"  HorizontalAlignment="Right"    VerticalAlignment="Center" TextAlignment="Center"
+                                  Text="右下角"   FontSize="14"  Margin="0" Height="38"  />
+                             <!--点阵右下位置-视图模型    -->
+                             <griffinsUI:PositionTeachView    Grid.Row="3"  Grid.Column="1"   VerticalAlignment="Center" 
+                                    DataContext="{Binding DotMatrix_RightLowerPositionViewModel}" 
+                                    Margin="2" Height="38" Width="580"  />   
+                        </Grid>
+             </Grid>
+     
+    </StackPanel>
+
+</UserControl>

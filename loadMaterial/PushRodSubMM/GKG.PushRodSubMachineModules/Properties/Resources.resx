@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PushRodRobotDriverResponseMissing" xml:space="preserve">
+    <value>未获取到推杆机械手驱动响应。</value>
+  </data>
+  <data name="PushRodRobotDriverUnavailable" xml:space="preserve">
+    <value>推杆机械手驱动响应中未包含可用的 RobotDriver。</value>
+  </data>
+  <data name="PushDistanceInvalid" xml:space="preserve">
+    <value>缺少或无效的 PushDistance</value>
+  </data>
+  <data name="MaxSpeedInvalid" xml:space="preserve">
+    <value>缺少或无效的 MaxSpeed</value>
+  </data>
+  <data name="PushRodPositionCacheNotInitialized" xml:space="preserve">
+    <value>推杆轴位置缓存尚未初始化，请先等待 PositionChanged 事件更新位置。</value>
+  </data>
+  <data name="PushRodRetractTimeout" xml:space="preserve">
+    <value>推杆缩回超时</value>
+  </data>
+  <data name="PushRodExtendTimeout" xml:space="preserve">
+    <value>推杆推出超时</value>
+  </data>
+</root>

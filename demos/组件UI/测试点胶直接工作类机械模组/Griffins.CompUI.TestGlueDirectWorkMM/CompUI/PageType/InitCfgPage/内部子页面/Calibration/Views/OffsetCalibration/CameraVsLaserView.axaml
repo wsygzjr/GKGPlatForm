@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.ViewModels.OffsetCalibration"
+             x:DataType="vm:CameraVsLaserViewModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  
+             x:Class="Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views.CameraVsLaserView">
+     
+ <!--  垂直排列 -->
+	<StackPanel Orientation="Vertical"  >
+		   <!-- 阀 -->
+            <custom:ComboxControl   Grid.Row="3"  Grid.Column="0" 
+		        HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center" 
+		        LabelName="阀号选择"
+		        WidthLevel="Small1"
+		        ViewModel="{Binding ValveInfoModel }" />     
+
+	      
+        <TabControl Margin="5" TabStripPlacement="Top">
+            <TabItem Header="激光位置">
+                <views:LaserPositionView 
+                    DataContext="{Binding LaserPosition}" 
+                     />
+            </TabItem>
+
+            <TabItem Header="相机位置">
+                <views:CameraPositionView 
+                    DataContext="{Binding CameraPosition}" 
+                   />
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+
+</UserControl>

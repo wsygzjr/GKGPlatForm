@@ -1,0 +1,278 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+             xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"   
+             xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+             x:DataType="vm:DispensingBeforeAfterLineStyleListViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.DispensingBeforeAfterLineStyleListView"
+               
+             xmlns:m ="clr-namespace:DispensingPageType.Models.RecipeParamCfgPage"  
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+             xmlns:convert="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Converters" >
+    
+     <!--转换器--> 
+    <UserControl.Resources>		
+        <convert:ListCountToBoolConverter x:Key="ListCountToBoolConverter"/> 
+        <convert:BoolToDisplayNameConverter x:Key="BoolToDisplayNameConverter"  />   
+    </UserControl.Resources>  
+
+     <!-- 线样式-点胶前后  -->
+    <DockPanel Margin="0" LastChildFill="True">    
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="1" Margin="1 0 0 1"> 
+             <Button 
+                Content="新增"  
+                Command="{Binding AddCommand}" 
+                Classes="DataGrid_btnAddStyle" Width="80"/>   
+            <Button 
+                Content="删除" 
+                Command="{Binding BatchDeleteCommand}" 
+                Classes="DataGrid_btnAddStyle" Width="80" 
+                IsEnabled="{Binding CanBatchDelete}"/>  
+        </StackPanel>
+         
+       <ScrollViewer DockPanel.Dock="Bottom" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <DataGrid  Classes="StyleDataGrid"
+                ItemsSource="{Binding ItemsSource}"
+                AutoGenerateColumns="False"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                IsReadOnly="False" 
+                SelectionMode="Extended"  
+                RowHeight="40"
+                CanUserResizeColumns="True"
+                CanUserSortColumns="True"
+            >  
+      
+            <DataGrid.Columns> 
+                 <!-- 全选列--> 
+                 <DataGridTemplateColumn Width="70" IsReadOnly="True">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox Classes="DataGrid_CheckBoxStyle"  
+                                      IsChecked="{Binding DataContext.IsSelectAll, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                      Content="全选"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <CheckBox Classes="DataGrid_CheckBoxStyle" 
+                                      IsChecked="{Binding IsSelected, Mode=TwoWay}" /> 
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn> 
+
+                 <!--样式名称--> 
+                <DataGridTemplateColumn    Header="样式名称"   Width="136"   > 
+                     <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">  
+                            <TextBox Text="{Binding StyleNameViewModel.Text , Mode=TwoWay}"  
+                                     Width="132"   Classes="DataGrid_TextBoxStyle"   /> 
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                 <!-- 3. 是否要点胶 -->
+                <DataGridTemplateColumn 
+                    Header="是否点胶"  Width="95"
+                    >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <!-- 绑定到 IsDispensingViewModel.IsChecked（双向同步） -->
+                            <ToggleSwitch  
+                                IsChecked="{Binding ExtendLineStyleCfgInfoViewModel.EnableViewModel.IsChecked, Mode=TwoWay}" 
+                                Classes="DataGrid_ToggleSwitchStyle"   OffContent=""  OnContent=""
+                                Width="50"   MinWidth="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+             
+                 <!-- 提前距离(mm) --> 
+                <DataGridTemplateColumn 
+                    Header="提前距离(mm)"   Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">  
+                             <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceDistanceViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceDistanceViewModel.Minimum}"
+                                Increment="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceDistanceViewModel.Increment}"
+                                HorizontalAlignment="Stretch"  Width="122"   Classes="DataGrid_NumericUpDownStyle" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                
+                  <!--   提前加工距离(mm) -->
+                <DataGridTemplateColumn 
+                    Header="提前加工距离(mm)"   Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">  
+                             <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceProcessingDistanceViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceProcessingDistanceViewModel.Minimum}"
+                                Increment="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceProcessingDistanceViewModel.Increment}"
+                                HorizontalAlignment="Stretch" Width="122"   Classes="DataGrid_NumericUpDownStyle" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                  <!--   提前加工时间(ms) -->
+                <DataGridTemplateColumn 
+                    Header="提前加工时间(ms)"   Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">  
+                             <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceProcessingTimeViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceProcessingTimeViewModel.Minimum}"
+                                Increment="{Binding ExtendLineStyleCfgInfoViewModel.AdvanceProcessingTimeViewModel.Increment}"
+                                HorizontalAlignment="Stretch" Width="122"   Classes="DataGrid_NumericUpDownStyle" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+               <!--  延后距离（mm） -->
+                <DataGridTemplateColumn 
+                    Header="延后距离(mm)"   Width="126"
+                   >
+                    <DataGridTemplateColumn.CellTemplate  >
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel" >
+                             <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.DelayDistanceViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding  ExtendLineStyleCfgInfoViewModel.DelayDistanceViewModel.Minimum}"
+                                Increment="{Binding  ExtendLineStyleCfgInfoViewModel.DelayDistanceViewModel.Increment}"
+                                HorizontalAlignment="Stretch"   Width="122"   Classes="DataGrid_NumericUpDownStyle" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                 
+                <!-- 延迟停止加工距离（mm）--> 
+                <DataGridTemplateColumn 
+                    Header="延迟停止加工距离(mm)"   Width="126"
+                   >
+                    <DataGridTemplateColumn.CellTemplate  >
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel" >
+                             <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.DelayStopProcessingDistanceViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding ExtendLineStyleCfgInfoViewModel.DelayStopProcessingDistanceViewModel.Minimum}"
+                                Increment="{Binding ExtendLineStyleCfgInfoViewModel.DelayStopProcessingDistanceViewModel.Increment}" 
+                                Width="122"   Classes="DataGrid_NumericUpDownStyle" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn> 
+
+                 <!--回走距离(mm)--> 
+                <DataGridTemplateColumn 
+                    Header="回走距离(mm)" 
+                    Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.BackDistanceViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding  ExtendLineStyleCfgInfoViewModel.BackDistanceViewModel.Minimum}"
+                                Increment="{Binding  ExtendLineStyleCfgInfoViewModel.BackDistanceViewModel.Increment}" 
+                                Width="122"    Classes="DataGrid_NumericUpDownStyle"   />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn> 
+                
+                 <!--回走高度(mm)--> 
+                <DataGridTemplateColumn 
+                    Header="回走高度(mm)" 
+                    Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.BackHeightViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding  ExtendLineStyleCfgInfoViewModel.BackHeightViewModel.Minimum}"
+                                Increment="{Binding  ExtendLineStyleCfgInfoViewModel.BackHeightViewModel.Increment}" 
+                                Width="122"    Classes="DataGrid_NumericUpDownStyle"   />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                              <!--回拉速度(mm/s)--> 
+                <DataGridTemplateColumn 
+                    Header="回拉速度(mm/s)" 
+                    Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.PullBackSpeedViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding  ExtendLineStyleCfgInfoViewModel.PullBackSpeedViewModel.Minimum}"
+                                Increment="{Binding  ExtendLineStyleCfgInfoViewModel.PullBackSpeedViewModel.Increment}" 
+                                Width="122"    Classes="DataGrid_NumericUpDownStyle"   />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                              <!--回走速度(mm/s)--> 
+                <DataGridTemplateColumn 
+                    Header="回走速度(mm/s)" 
+                    Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.BackSpeedViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding  ExtendLineStyleCfgInfoViewModel.BackSpeedViewModel.Minimum}"
+                                Increment="{Binding  ExtendLineStyleCfgInfoViewModel.BackSpeedViewModel.Increment}" 
+                                Width="122"    Classes="DataGrid_NumericUpDownStyle"   />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                              <!--回拉高度(mm)--> 
+                <DataGridTemplateColumn 
+                    Header="回拉高度(mm)" 
+                    Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.PullBackHeightViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding  ExtendLineStyleCfgInfoViewModel.PullBackHeightViewModel.Minimum}"
+                                Increment="{Binding  ExtendLineStyleCfgInfoViewModel.PullBackHeightViewModel.Increment}" 
+                                Width="122"    Classes="DataGrid_NumericUpDownStyle"   />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                              <!--点胶高度(mm)--> 
+                <DataGridTemplateColumn 
+                    Header="点胶高度(mm)" 
+                    Width="126">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <NumericUpDown 
+                                Value="{Binding ExtendLineStyleCfgInfoViewModel.DispensingHeightViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding  ExtendLineStyleCfgInfoViewModel.DispensingHeightViewModel.Minimum}"
+                                Increment="{Binding  ExtendLineStyleCfgInfoViewModel.DispensingHeightViewModel.Increment}" 
+                                Width="122"    Classes="DataGrid_NumericUpDownStyle"   />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                                    
+                <DataGridTemplateColumn 
+                    Header="操作" 
+                    Width="70" 
+                    IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:DispensingBeforeAfterLineStyleCfgInfoModel">
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="5 0">
+                                <Button 
+                                    Content="删除" 
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}" 
+                                    Classes="DataGrid_btnDeleteStyle" >
+                                
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns> 
+        </DataGrid>
+        </ScrollViewer>
+    </DockPanel>  
+
+</UserControl>

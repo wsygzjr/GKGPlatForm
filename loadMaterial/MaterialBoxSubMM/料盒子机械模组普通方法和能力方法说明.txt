@@ -1,0 +1,582 @@
+料盒子机械模组普通方法和能力方法说明
+
+一、模组概览
+1. 模组名称
+   - 料盒子机械模组
+2. 模组标识
+   - MaterialBox
+3. 方法分类
+   - 能力方法：模组自身对外流程方法
+   - 普通方法：储料装置、运输机构、送料口/接料口相关方法
+   - 运行时命令：RtCmd / 历史协议命令，主要用于运行时调试和联调
+
+二、全局参数约定
+1. MaterialRack
+   - 类型：int
+   - 可选值：
+     - 0 = 上料上层
+     - 1 = 上料下层
+     - 2 = 下料上层
+     - 3 = 下料下层
+
+2. ZAxisSelect
+   - 类型：int
+   - 可选值：
+     - 0 = 上料运输轴
+     - 1 = 下料运输轴
+
+3. SlotIndex
+   - 类型：int
+   - 重要说明：
+     - 这里是 0 基槽号
+     - 第 1 槽 = 0
+     - 第 2 槽 = 1
+     - 第 3 槽 = 2
+   - 适用方法：
+     - StorageGetSlotMaterialState
+     - StorageSetSlotMaterialState
+     - MoveTo
+
+4. CurrentSlotIndex
+   - 类型：int
+   - 重要说明：
+     - 在 MoveNextSlot 相关流程里，界面按 1 基槽号传入
+     - 第 1 槽 = 1
+     - 第 2 槽 = 2
+   - 适用方法：
+     - UpfeedMoveNextSlot
+     - DownfeedMoveNextSlot
+     - MoveToNextSlot
+
+5. Position / Pos
+   - 类型：double
+   - 含义：运输轴目标绝对位置
+
+6. MaxSpeed
+   - 类型：double
+   - 含义：运输轴速度
+   - 说明：不传时回退到当前运输轴运动参数
+
+7. Acc
+   - 类型：double
+   - 含义：运输轴加速度
+   - 说明：不传时回退到当前运输轴运动参数
+
+8. Step
+   - 类型：double
+   - 含义：相对移动步距
+   - 说明：
+     - Step > 0：执行一次相对移动
+     - Step <= 0 或不传：进入连续运动
+
+9. HasMaterial
+   - 类型：bool
+   - 可选值：
+     - True = 有料
+     - False = 空槽
+
+10. CylinderIndex
+    - 类型：int
+    - 含义：气缸索引
+    - 说明：可选，不传时使用默认索引
+
+11. bState
+    - 类型：bool
+    - 含义：气缸动作状态
+    - 可选值：
+      - True
+      - False
+
+12. Type / Index
+    - 类型：int
+    - 含义：送料口/接料口状态查询参数
+
+三、能力方法
+1. 上料移动到下一料槽
+   - 方法名：UpfeedMoveNextSlot
+   - MethodID：UpfeedMoveNextSlot
+   - 作用：
+     - 执行上料料盒一次切换到下一槽位流程
+   - 前置条件：
+     - 对应料盒位槽位已经初始化
+     - 当前槽位之后至少还有一个启用且有料的槽位
+     - 如槽位状态不对，需要先调用 StorageSetSlotMaterialState 把目标槽位设为 HasMaterial=True
+   - 建议参数值：
+     - MaterialRack = 0
+     - ZAxisSelect = 0
+     - CurrentSlotIndex = 1
+   - 成功后的槽位状态：
+     - 移动到的新当前槽位会自动改成 HasMaterial=False
+     - 含义：上料流程从该槽取走物料
+   - 返回关注项：
+     - Result
+     - errorMsg
+     - data
+   - 相关事件：
+     - UpfeedMoveCompleted
+     - UpfeedMoveFailed
+     - UpfeedCassetteEmpty
+     - UpfeedNoCassette
+     - UpfeedMaterialInsufficientWarning
+   - 常见失败：
+     - 料盒不存在或槽位未初始化
+     - 槽位列表未初始化
+     - 已经是最后一个启用且有料槽位，无法继续移动到下一槽
+
+2. 下料移动到下一料槽
+   - 方法名：DownfeedMoveNextSlot
+   - MethodID：DownfeedMoveNextSlot
+   - 作用：
+     - 执行下料料盒一次切换到下一槽位流程
+   - 前置条件：
+     - 对应料盒位槽位已经初始化
+     - 当前槽位之后至少还有一个启用且空槽的槽位
+     - 如槽位状态不对，需要先调用 StorageSetSlotMaterialState 把目标槽位设为 HasMaterial=False
+   - 建议参数值：
+     - MaterialRack = 2
+     - ZAxisSelect = 1
+     - CurrentSlotIndex = 1
+   - 成功后的槽位状态：
+     - 移动到的新当前槽位会自动改成 HasMaterial=True
+     - 含义：下料流程往该槽放入物料
+   - 返回关注项：
+     - Result
+     - errorMsg
+     - data
+   - 相关事件：
+     - DownfeedMoveCompleted
+     - DownfeedMoveFailed
+     - DownfeedCassetteFull
+     - DownfeedNoCassette
+     - DownfeedSlotInsufficientWarning
+   - 常见失败：
+     - 料盒不存在或槽位未初始化
+     - 槽位列表未初始化
+     - 已经是最后一个启用且空槽位，无法继续移动到下一槽
+
+四、普通方法
+1. ControlCylinder
+   - 中文说明：控制储料位气缸
+   - MethodID：ControlCylinder
+   - 必填参数：
+     - MaterialRack
+     - bState
+   - 可选参数：
+     - CylinderIndex
+   - 建议参数值：
+     - MaterialRack = 0
+     - CylinderIndex = 0
+     - bState = True
+
+2. StorageReset
+   - 中文说明：储料装置复位
+   - MethodID：StorageReset
+   - 必填参数：
+     - MaterialRack
+   - 建议参数值：
+     - MaterialRack = 0
+
+3. StorageResetState
+   - 中文说明：料盒状态复位
+   - MethodID：StorageResetState
+   - 必填参数：
+     - MaterialRack
+   - 作用：
+     - 按当前料盒整体有料状态重置槽位状态表
+   - 建议参数值：
+     - MaterialRack = 0
+
+4. StorageOpen
+   - 中文说明：料盒张开
+   - MethodID：StorageOpen
+   - 必填参数：
+     - MaterialRack
+   - 建议参数值：
+     - MaterialRack = 0
+
+5. StorageClose
+   - 中文说明：料盒夹紧
+   - MethodID：StorageClose
+   - 必填参数：
+     - MaterialRack
+   - 建议参数值：
+     - MaterialRack = 0
+
+6. StorageGetCount
+   - 中文说明：获取料盒数量
+   - MethodID：StorageGetCount
+   - 必填参数：
+     - MaterialRack
+   - 建议参数值：
+     - MaterialRack = 0
+   - 返回关注项：
+     - StorageCount
+
+7. StorageGetCurrentSlotState
+   - 中文说明：获取当前槽位状态
+   - MethodID：StorageGetCurrentSlotState
+   - 作用：
+     - 读取指定料盒位当前槽位的运行时状态
+     - 返回的是当前槽位，不是任意指定槽位
+   - 必填参数：
+     - MaterialRack
+   - 建议参数值：
+     - MaterialRack = 0
+   - 返回字段：
+     - SlotIndex
+       - 当前槽位索引
+       - 这里返回的是 0 基槽号
+     - Position
+     - HasMaterial
+     - IsEnabled
+   - 常用示例：
+     - MaterialRack = 0
+     - MaterialRack = 2
+   - 说明：
+     - 当前槽位未初始化时，可能返回默认值对象
+
+8. StorageGetAvailableSlots
+   - 中文说明：获取可用槽位列表
+   - MethodID：StorageGetAvailableSlots
+   - 作用：
+     - 返回指定料盒位全部可用槽位状态列表
+     - 列表元素结构与 StorageSlotState 一致
+   - 必填参数：
+     - MaterialRack
+   - 建议参数值：
+     - MaterialRack = 0
+   - 返回字段：
+     - SlotIndex
+     - Position
+     - HasMaterial
+     - IsEnabled
+   - 常用示例：
+     - MaterialRack = 0
+     - MaterialRack = 2
+
+9. StorageGetSlotMaterialState
+   - 中文说明：获取指定槽位有料状态
+   - MethodID：StorageGetSlotMaterialState
+   - 作用：
+     - 读取指定料盒位中某一个槽当前是否有料
+   - 必填参数：
+     - MaterialRack
+     - SlotIndex
+   - 重要说明：
+     - SlotIndex 是 0 基槽号
+   - 建议参数值：
+     - MaterialRack = 0
+     - SlotIndex = 1
+   - 常用示例：
+     - 读取上料上层第 2 槽有料状态
+       - MaterialRack = 0
+       - SlotIndex = 1
+     - 读取下料上层第 2 槽有料状态
+       - MaterialRack = 2
+       - SlotIndex = 1
+   - 成功返回：
+     - Result = 0
+     - HasMaterial = True 或 False
+   - 常见失败：
+     - 缺少参数或参数无效：SlotIndex
+     - 槽位状态读取失败：MaterialRack=..., SlotIndex=...
+
+10. StorageSetSlotMaterialState
+    - 中文说明：设置指定槽位有料状态
+    - MethodID：StorageSetSlotMaterialState
+    - 作用：
+      - 直接设置指定料盒位中某一个槽的有料状态
+    - 必填参数：
+      - MaterialRack
+      - SlotIndex
+      - HasMaterial
+    - 重要说明：
+      - SlotIndex 是 0 基槽号
+      - CurrentSlotIndex 是 1 基传参，二者不要混
+    - 建议参数值：
+      - MaterialRack = 0
+      - SlotIndex = 1
+      - HasMaterial = True
+    - 常用示例：
+      - 把上料上层第 2 槽设为有料
+        - MaterialRack = 0
+        - SlotIndex = 1
+        - HasMaterial = True
+      - 把下料上层第 2 槽设为空槽
+        - MaterialRack = 2
+        - SlotIndex = 1
+        - HasMaterial = False
+    - 成功返回：
+      - Result = 0
+      - HasMaterial = 传入值
+    - 常见失败：
+      - 缺少参数或参数无效：SlotIndex
+      - 缺少参数或参数无效：HasMaterial
+      - 槽位状态写入失败：MaterialRack=..., SlotIndex=...
+
+11. StorageGetInitialPosition
+    - 中文说明：获取料盒初始位置
+    - MethodID：StorageGetInitialPosition
+    - 必填参数：
+      - MaterialRack
+    - 建议参数值：
+      - MaterialRack = 0
+    - 返回关注项：
+      - InitialPosition
+
+12. TransportMove
+    - 中文说明：运输机构移动
+    - MethodID：TransportMove
+    - 作用：
+      - 控制指定运输轴移动到绝对位置
+    - 必填参数：
+      - ZAxisSelect 或 MaterialRack
+      - Position 或 Pos
+    - 可选参数：
+      - MaxSpeed
+      - Acc
+    - 建议参数值：
+      - ZAxisSelect = 0
+      - Position = 10
+      - MaxSpeed = 20
+      - Acc = 100
+    - 轴选择规则：
+      - ZAxisSelect=0 -> 上料运输轴
+      - ZAxisSelect=1 -> 下料运输轴
+      - MaterialRack=0/1 -> 上料运输轴
+      - MaterialRack=2/3 -> 下料运输轴
+
+13. TransportGetCurrentPosition
+    - 中文说明：获取运输当前位置
+    - MethodID：TransportGetCurrentPosition
+    - 必填参数：
+      - ZAxisSelect 或 MaterialRack
+    - 建议参数值：
+      - ZAxisSelect = 0
+    - 返回关注项：
+      - Position
+
+14. TransportGetMotionParameters
+    - 中文说明：获取运输运动参数
+    - MethodID：TransportGetMotionParameters
+    - 必填参数：
+      - ZAxisSelect 或 MaterialRack
+    - 建议参数值：
+      - ZAxisSelect = 0
+    - 返回关注项：
+      - CurrentPosition
+      - Speed
+      - Acceleration
+
+15. GetFeedPortMaterialState
+    - 中文说明：获取送料口/接料口有料状态
+    - MethodID：GetFeedPortMaterialState
+    - 必填参数：
+      - Type
+      - Index
+    - 建议参数值：
+      - Type = 0
+      - Index = 0
+    - 返回关注项：
+      - Result
+
+五、配置读取接口
+1. GetInitParameters
+   - 中文说明：获取料盒子机械模组初始化参数
+   - MethodID：GetInitParameters
+   - 建议参数值：
+     - 无
+   - 返回关注项：
+     - data
+     - Json
+
+2. GetRecipeParameters
+   - 中文说明：获取料盒子机械模组配方参数
+   - MethodID：GetRecipeParameters
+   - 建议参数值：
+     - 无
+   - 返回关注项：
+     - data
+     - Json
+
+六、运行时命令
+1. MoveTo
+   - RtCmd：MoveTo
+   - 作用：移动到指定槽位或指定绝对位置
+   - 参数：
+     - MaterialRack
+     - ZAxisSelect
+     - SlotIndex 或 Pos / Position
+     - MaxSpeed
+     - Acc 可选
+
+2. RtCmdMoveToFirstSlot
+   - RtCmd：RtCmdMoveToFirstSlot
+   - 作用：移动到首槽位置
+   - 参数：
+     - MaterialRack
+     - ZAxisSelect
+     - MaxSpeed
+     - Acc 可选
+
+3. RtCmdMoveToLastSlot
+   - RtCmd：RtCmdMoveToLastSlot
+   - 作用：移动到末槽位置
+   - 参数：
+     - MaterialRack
+     - ZAxisSelect
+     - MaxSpeed
+     - Acc 可选
+
+4. MoveToNextSlot
+   - RtCmd：MoveToNextSlot
+   - 作用：移动到下一个可用槽位
+   - 参数：
+     - MaterialRack
+     - ZAxisSelect
+     - MaxSpeed
+     - Acc 可选
+     - CurrentSlotIndex 可选，界面按 1 基传入
+
+5. MoveToInitialPosition
+   - RtCmd：MoveToInitialPosition
+   - 作用：移动到当前料盒位配置的初始位置
+   - 参数：
+     - MaterialRack
+     - ZAxisSelect
+     - MaxSpeed 可选
+     - Acc 可选
+
+6. MagazineMotion
+   - RtCmd：MagazineMotion
+   - 作用：连续运动模式驱动运输轴
+   - 参数：
+     - MaterialRack 或 ZAxisSelect
+     - Direction
+     - MaxSpeed
+     - Acc 可选
+
+7. ZMoveUp
+   - RtCmd：ZMoveUp
+   - 作用：
+     - Step > 0 时按指定步距相对向上移动
+     - Step <= 0 或不传时连续向上运动
+   - 参数：
+     - MaterialRack 或 ZAxisSelect
+     - Step 可选
+     - MaxSpeed
+     - Acc 可选
+
+8. ZMoveDown
+   - RtCmd：ZMoveDown
+   - 作用：
+     - Step > 0 时按指定步距相对向下移动
+     - Step <= 0 或不传时连续向下运动
+   - 参数：
+     - MaterialRack 或 ZAxisSelect
+     - Step 可选
+     - MaxSpeed
+     - Acc 可选
+
+9. ZAxisStop
+    - RtCmd：ZAxisStop
+    - 作用：立即停止指定运输轴当前的连续运动
+    - 参数：
+      - MaterialRack 或 ZAxisSelect
+    - 说明：
+      - 当前实现发送 StopContinueMoveInstruction
+      - 相对位移过程是否可中断取决于底层驱动
+
+10. MagazineClamp
+    - RtCmd：MagazineClamp
+    - 作用：夹紧指定储料位料盒
+    - 参数：
+      - MaterialRack
+      - CylinderIndex 可选
+
+11. MagazineUnclamp
+    - RtCmd：MagazineUnclamp
+    - 作用：松开指定储料位料盒
+    - 参数：
+      - MaterialRack
+      - CylinderIndex 可选
+
+12. ResetMaterialBoxState
+    - RtCmd：ResetMaterialBoxState
+    - 作用：按当前配方重建料盒槽位状态，并恢复当前槽位索引
+    - 参数：
+      - MaterialRack
+
+13. GetAxisInfos
+    - RtCmd：GetAxisInfos
+    - 作用：读取电器管理返回的轴信息列表
+    - 返回：
+      - data = 轴信息数组
+
+14. GetIOInfos
+    - RtCmd：GetIOInfos
+    - 作用：读取储料装置当前绑定的 IO 列表与实时状态
+    - 参数：
+      - MaterialRack 可选
+    - 说明：
+      - 不传时返回上料/下料全部料盒位
+
+15. GetAxisPos
+    - RtCmd：GetAxisPos
+    - 作用：读取指定运输轴当前位置
+    - 参数：
+      - MaterialRack 或 ZAxisSelect
+
+七、最小完整调用顺序
+1. 上料移动到下一料槽
+   - 第一步：GetInitParameters
+   - 第二步：GetRecipeParameters
+   - 第三步：StorageGetAvailableSlots
+     - MaterialRack = 0
+   - 第四步：StorageSetSlotMaterialState
+     - MaterialRack = 0
+     - SlotIndex = 1
+     - HasMaterial = True
+   - 第五步：UpfeedMoveNextSlot
+     - MaterialRack = 0
+     - ZAxisSelect = 0
+     - CurrentSlotIndex = 1
+
+2. 下料移动到下一料槽
+   - 第一步：GetInitParameters
+   - 第二步：GetRecipeParameters
+   - 第三步：StorageGetAvailableSlots
+     - MaterialRack = 2
+   - 第四步：StorageSetSlotMaterialState
+     - MaterialRack = 2
+     - SlotIndex = 1
+     - HasMaterial = False
+   - 第五步：DownfeedMoveNextSlot
+     - MaterialRack = 2
+     - ZAxisSelect = 1
+     - CurrentSlotIndex = 1
+
+八、返回值关注项
+1. 通用返回
+   - Result
+   - errorMsg
+   - data
+
+2. 常见结构化字段
+   - SlotIndex
+   - Position
+   - HasMaterial
+   - IsEnabled
+   - StorageCount
+   - InitialPosition
+   - CurrentPosition
+   - Speed
+   - Acceleration
+
+九、常见坑
+1. SlotIndex 是 0 基，CurrentSlotIndex 是 1 基，不要混用。
+2. UpfeedMoveNextSlot 会找“下一个启用且有料”的槽。
+3. DownfeedMoveNextSlot 会找“下一个启用且空槽”的槽。
+4. 测 MoveNextSlot 前，先确认槽位状态，再确认运输轴能正常 Home / Move。
+5. 实际调试时建议显式传 MaterialRack 和 ZAxisSelect，不要依赖默认补参。
+6. 运行时命令和普通方法都能走运输轴，但普通方法已经和运行时命令共用同一套轴选择逻辑。

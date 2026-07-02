@@ -1,0 +1,75 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vmcfg="clr-namespace:NonMainFrameViewModel.ViewModels;assembly=NonMainFrame"
+             x:DataType="vmcfg:GeneralConfigViewModel"
+             x:Class="NonMainFrameView.Views.ConfigViews.GeneralConfigView">
+
+  <!-- 主布局容器 -->
+  <Border BorderThickness="1"
+          BorderBrush="LightGray"
+          Padding="15"> <Grid RowDefinitions="Auto, Auto, Auto"
+            ColumnDefinitions="150, *">
+
+        <TextBlock Grid.Row="0" Grid.Column="0" 
+                   Text="跳转到首页图标:" 
+                   VerticalAlignment="Center"
+                   FontSize="14"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" 
+                    Orientation="Horizontal" 
+                    Spacing="10"
+                    Margin="0,0,0,15" VerticalAlignment="Center">
+          <Border Width="30" Height="30" 
+                  BorderBrush="Gray" 
+                  BorderThickness="1"
+                  CornerRadius="4">
+            <Image Source="{Binding GotoRootPageIconBitmap}"
+                   Stretch="Uniform"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+          </Border>
+          <Button Content="选择图标"
+                  Command="{Binding SelectGotoRootPageIconCommand}"
+                  Width="100"
+                  Height="30"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" 
+                   Text="跳转到上级页面图标:" 
+                   VerticalAlignment="Center"
+                   FontSize="14"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" 
+                    Orientation="Horizontal" 
+                    Spacing="10"
+                    Margin="0,0,0,15" VerticalAlignment="Center">
+          <Border Width="30" Height="30" 
+                  BorderBrush="Gray" 
+                  BorderThickness="1"
+                  CornerRadius="4">
+            <Image Source="{Binding GotoParentPageIconBitmap}"
+                   Stretch="Uniform"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+          </Border>
+          <Button Content="选择图标"
+                  Command="{Binding SelectGotoParentPageIconCommand}"
+                  Width="100"
+                  Height="30"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" 
+                   Text="页面标题名称:" 
+                   VerticalAlignment="Center"
+                   FontSize="14"/>
+        <TextBox Grid.Row="2" Grid.Column="1"
+                 Text="{Binding TileName, Mode=TwoWay}"
+                 Watermark="请输入页面标题..."
+                 HorizontalAlignment="Left"
+                 Width="250"
+                 VerticalAlignment="Center"/>
+
+      </Grid>
+  </Border>
+</UserControl>

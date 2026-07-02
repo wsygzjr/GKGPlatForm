@@ -1,0 +1,52 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        xmlns:vm="using:GKG.Map.Page.UIContainer.GridContainer.ViewModels"
+        xmlns:customMenuCmdConfig="using:Griffins.Map.UI.CustomMenuCmdConfig"
+        x:Class="GKG.Map.Page.UIContainer.GridContainer.Views.ConfigWindow"
+        x:DataType="vm:ConfigViewModel"
+        Title="插件配置"
+        WindowStartupLocation="CenterScreen"
+        Width="800" Height="600">
+    <Design.DataContext>
+        <vm:ConfigViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="10" RowDefinitions="Auto, *, Auto">
+        
+        <!-- 1. 顶部区域：全局网格行列配置 -->
+        <Border Grid.Row="0" Background="#F5F7FA" CornerRadius="4" Padding="10" Margin="0,0,0,10" BorderBrush="#E4E7ED" BorderThickness="1">
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <TextBlock Text="全局网格布局:" FontWeight="Bold" VerticalAlignment="Center" Foreground="#303133"/>
+                
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="行数:" VerticalAlignment="Center"/>
+                    <NumericUpDown Value="{Binding GridRows}" Minimum="1" Maximum="10" Width="100" FormatString="0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="列数:" VerticalAlignment="Center"/>
+                    <NumericUpDown Value="{Binding GridColumns}" Minimum="1" Maximum="10" Width="100" FormatString="0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- 2. 中间区域：Tab 控件 -->
+        <TabControl Grid.Row="1" Margin="0,0,0,10">
+            <TabItem Header="工作区模块配置">
+                <customMenuCmdConfig:WorkAreaConfigView DataContext="{Binding WorkAreaConfigVM}" />
+            </TabItem>
+        </TabControl>
+
+        <!-- 3. 底部区域：按钮 -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="10"
+                    VerticalAlignment="Bottom">
+            <Button Content="关闭" Command="{Binding CloseCommand}" Width="80"/>
+        </StackPanel>
+    </Grid>
+</Window>

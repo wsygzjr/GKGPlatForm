@@ -1,0 +1,171 @@
+ 	<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:GKG.UI.General"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+             x:DataType="vm:CameraOperationViewModel"
+             xmlns:griffinsUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+             xmlns:local="using:GKG.UI.General"  
+			       xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+				    xmlns:enums="clr-namespace:GKG.UI.General;assembly=GKG.UI"  
+             x:Class="GKG.UI.General.CameraOperationView">
+
+		  
+	<!-- 基础库控件：相机操作控件    -->
+	<StackPanel Orientation="Vertical"  HorizontalAlignment="Center"    Width="988"   Margin="0 0 0 0"> 
+		
+			<!-- 图像显示 设置    -->
+		 <griffinsUI:CameraShowView Grid.Column="0"
+			DataContext="{Binding CameraShowViewModel}" 
+			Margin="0" Height="720"  Width="988" /> 
+	 
+		<!-- 操作区 -->
+		<StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0 0 0 0" Width="988">
+			
+			
+			<!-- 带边框的 Grid  -->
+			<Border Classes="border"  Width="485" >
+			<!-- 相机操作按钮区  Width="510" -->
+				<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,"
+					  RowSpacing="0"  HorizontalAlignment="Center"    Width="485" >
+					<!-- 移动 -->
+					<!--Y正向高速-->
+					<Button   Content="Y+G"
+							  Grid.Row="0"  Grid.Column="0"  Grid.ColumnSpan="4"
+							  Classes="btnXJYD"      Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.YHighSpeedForward}"   />
+					<Button
+					Content="Y+ "
+					Grid.Row="1"  Grid.Column="0"  Grid.ColumnSpan="4"
+					Classes="btnXJYD"      Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.YForward}"   />
+
+					<Button
+					Content="X+ "   Grid.Row="2"  Grid.Column="0"      Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.XForward}" 
+					Classes="btnXJYD"   />
+					<Button
+					Content="X+G"   Grid.Row="2"  Grid.Column="1"      Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.XHighSpeedForward}" 
+					Classes="btnXJYD"  />
+					<Button
+					Content="X- "   Grid.Row="2"  Grid.Column="2"       Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.XNegative}" 
+					Classes="btnXJYD"   />
+					<Button
+					Content="X-G"   Grid.Row="2"  Grid.Column="3"    Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.XHighSpeedNegative}" 
+					Classes="btnXJYD"  />
+
+					<Button
+					Content="Y- "
+					Grid.Row="3"  Grid.Column="0"  Grid.ColumnSpan="4"     Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.YNegative}" 
+					Classes="btnXJYD"   />
+					<Button
+					Content="Y-G"
+					Grid.Row="4"  Grid.Column="0"  Grid.ColumnSpan="4"     Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.YHighSpeedNegative}" 
+					Classes="btnXJYD"  />
+
+					<Button
+					Content="Z+ "
+					Grid.Row="0"  Grid.Column="6"     Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.ZForward}" 
+					Classes="btnXJYD"   />
+					<Button
+					Content="Z+G"
+					Grid.Row="1"  Grid.Column="6"     Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.XHighSpeedForward}" 
+					Classes="btnXJYD"  />
+					<Button
+					Content="Z- "
+					Grid.Row="3"  Grid.Column="6"     Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.ZNegative}" 
+					Classes="btnXJYD"   />
+					<Button
+					Content="Z-G"
+					Grid.Row="4"  Grid.Column="6"     Command="{Binding MoveCommand}"    
+							 CommandParameter="{x:Static enums:MoveDirection.ZHighSpeedNegative}" 
+					Classes="btnXJYD"  />
+
+				</Grid>
+			</Border>
+
+		 
+				<!-- 2. 分割线（宽度改为 Stretch 自适应父容器，避免固定 600 导致窗口缩放时错位） -->
+				<!--<Separator Grid.Row="3"  Grid.Column="0"  Grid.ColumnSpan="2"  Height="1"   Background="#E0E0E0"/>-->
+			<!--选项卡 轴速度配置-->
+			<TabControl  TabStripPlacement="Top"  Grid.Row="4"  Grid.Column="0"  Margin="0" FontSize="13" Width="500">
+				<TabItem Header="XY">
+					<StackPanel>
+						<custom:NumericControl
+						Grid.Row="2"  Grid.Column="0"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						LabelName="XY轴高速(mm/s)"
+						WidthLevel="Small"
+						ViewModel="{Binding XYAxisSpeedViewModel.LowSpeedViewModel }"
+						/> 
+						<custom:NumericControl
+						Grid.Row="2"  Grid.Column="0"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						LabelName="XY轴低速(mm/s)"
+						WidthLevel="Small"
+						ViewModel="{Binding XYAxisSpeedViewModel.HighSpeedViewModel }"
+						/>
+					</StackPanel> 
+				</TabItem>
+
+				<TabItem Header="Z">
+						<StackPanel>
+						<custom:NumericControl
+						Grid.Row="2"  Grid.Column="0"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						LabelName="Z轴高速(mm/s)"
+						WidthLevel="Small"
+						ViewModel="{Binding ZAxisSpeedViewModel.LowSpeedViewModel }"
+						/> 
+						<custom:NumericControl
+						Grid.Row="2"  Grid.Column="0"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						LabelName="Z轴低速(mm/s)"
+						WidthLevel="Small"
+						ViewModel="{Binding ZAxisSpeedViewModel.HighSpeedViewModel }"
+						/>
+					    </StackPanel>
+				</TabItem>
+
+				<TabItem Header="UA">
+					<StackPanel>
+						<custom:NumericControl
+						Grid.Row="2"  Grid.Column="0"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						LabelName="UA轴高速(mm/s)"
+						WidthLevel="Small"
+						ViewModel="{Binding UAAxisSpeedViewModel.LowSpeedViewModel }"
+						/> 
+						<custom:NumericControl
+						Grid.Row="2"  Grid.Column="0"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						LabelName="UA轴低速(mm/s)"
+						WidthLevel="Small"
+						ViewModel="{Binding UAAxisSpeedViewModel.HighSpeedViewModel }"
+						/>
+					</StackPanel>
+				</TabItem>
+		</TabControl>
+		 
+
+		</StackPanel>
+
+	</StackPanel>
+
+</UserControl>

@@ -1,0 +1,52 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:NonMainFrameViewModel.ViewModels;assembly=NonMainFrame"
+             xmlns:vmcfg="clr-namespace:NonMainFrameViewModel.ViewModels.ConfigViewModels;assembly=NonMainFrame"
+             xmlns:converter="clr-namespace:NonMainFrameView.Converter"
+             xmlns:view="using:NonMainFrameView.Views.Menu"
+             x:Class="NonMainFrameView.Views.PreviewView"
+             mc:Ignorable="d"
+             x:DataType="vm:PreviewViewModel"
+             d:DesignWidth="1024" d:DesignHeight="768">
+	
+	<Design.DataContext>
+		<vm:PreviewViewModel />
+	</Design.DataContext>
+	
+	<UserControl.Resources>
+		<converter:CountToIsVisibleConverter x:Key="CountToIsVisibleConverter" />
+	</UserControl.Resources>
+	
+	<UserControl.Styles>
+		<FluentTheme />
+		<StyleInclude Source="avares://NonMainFrame/Assets/Icons.axaml" />
+	</UserControl.Styles>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+		
+		<view:TopMenuView DataContext="{Binding TopMenuViewModel}" Grid.Row="0" 
+					BorderThickness="1" BorderBrush="LightGray" Margin="0"/>
+
+		<view:PageToolBarButtonView DataContext="{Binding PageToolBarButtonViewModel}" 
+							  Grid.Row="1" 
+							  BorderThickness="1" BorderBrush="LightGray" Margin="0"
+							  IsVisible="{Binding PageToolBarButtonViewModel.ToolbarMenuItems.Count, Converter={StaticResource CountToIsVisibleConverter}}"/>
+
+		<ContentControl   
+			Content="{Binding WorkAreaContent}"   
+			Grid.Row="2"
+			BorderThickness="1" 
+			BorderBrush="LightGray"
+			Margin="0"
+			VerticalContentAlignment="{Binding VerticalContentAlignment}"
+			HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+		/>
+	</Grid>
+</UserControl>

@@ -1,0 +1,80 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:ui="using:GKG.UI"
+			 xmlns:views="clr-namespace:GKG.UI.General"
+			 xmlns:vm="using:GKG.UI.General"
+			 x:DataType="vm:HeightSerialPortViewModel"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:Class="GKG.UI.General.HeightSerialPortView">
+
+	<!-- 高度串口参数配置界面View -->
+	<Grid Margin="5 0 5 0"
+		  HorizontalAlignment="Stretch"
+		  VerticalAlignment="Top"
+		  RowDefinitions="auto,auto,auto,auto,auto,auto,auto">
+		<!-- 标题 -->
+		<Label Grid.Row="0"
+			   Content="高度串口参数配置界面"
+			   FontSize="20"
+			   HorizontalAlignment="Left"
+			   Margin="0 0 0 10" />
+
+		<!-- 下拉框：串口号 -->
+		<custom:ComboxControl Grid.Row="1"
+							  HorizontalAlignment="Center"
+							  HorizontalContentAlignment="Center"
+							  VerticalContentAlignment="Center"
+							  LabelName="串口号:"
+							  WidthLevel="Medium3"
+							  ViewModel="{Binding PortNameViewModel}" />
+
+		<!-- 下拉框：波特率 -->
+		<custom:ComboxControl Grid.Row="2"
+							  HorizontalAlignment="Center"
+							  HorizontalContentAlignment="Center"
+							  VerticalContentAlignment="Center"
+							  LabelName="波特率:"
+							  WidthLevel="Medium3"
+							  ViewModel="{Binding BaudRateViewModel}" />
+
+		<!-- 下拉框：数据位 -->
+		<custom:ComboxControl Grid.Row="3"
+							  HorizontalAlignment="Center"
+							  HorizontalContentAlignment="Center"
+							  VerticalContentAlignment="Center"
+							  LabelName="数据位:"
+							  WidthLevel="Medium3"
+							  ViewModel="{Binding DataBitsViewModel}" />
+
+		<!-- 下拉框：停止位 -->
+		<custom:ComboxControl Grid.Row="4"
+							  HorizontalAlignment="Center"
+							  HorizontalContentAlignment="Center"
+							  VerticalContentAlignment="Center"
+							  LabelName="停止位:"
+							  WidthLevel="Medium3"
+							  ViewModel="{Binding StopBitsViewModel}" />
+
+		<!-- 下拉框：奇偶校验类型 -->
+		<custom:ComboxControl Grid.Row="5"
+							  HorizontalAlignment="Center"
+							  HorizontalContentAlignment="Center"
+							  VerticalContentAlignment="Center"
+							  LabelName="奇偶校验类型:"
+							  WidthLevel="Medium3"
+							  ViewModel="{Binding ParityViewModel}" />
+
+		<!-- 开关：是否启用CRC16 -->
+		<custom:ToggleSwitchControl Grid.Row="6"
+									HorizontalAlignment="Center"
+									HorizontalContentAlignment="Center"
+									VerticalContentAlignment="Center"
+									LabelName="是否启用CRC16:"
+									WidthLevel="Medium3"
+									ViewModel="{Binding EnableCRC16ViewModel}" />
+	</Grid>
+
+</UserControl>

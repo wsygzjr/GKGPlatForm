@@ -1,0 +1,39 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			  xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage"
+            xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:TemplateCfgViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.TemplateCfgView">
+
+       
+    <!--【模板子页面】-->
+          <TabControl Margin="0" TabStripPlacement="Top"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="1720"  Height="792">
+
+            <TabItem Header="轨迹"> 
+                <views:TrajectorySequenceListView  HorizontalAlignment="Left"
+                    DataContext="{Binding TrajectorySequenceListViewModel}" 
+                    Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="1718"/>
+            </TabItem>  
+            <TabItem Header="Mark">  
+                <views:MarkConfigView  HorizontalAlignment="Left"
+	                DataContext="{Binding MarkConfigViewModel}" 
+	                Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="1718" />  
+            </TabItem>
+            <TabItem Header="子模板">  
+                 <views:SubTemplateConfigView  HorizontalAlignment="Left"
+	                DataContext="{Binding SubTemplateConfigViewModel}" 
+	                Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="1718"   />   
+             </TabItem>
+             <TabItem Header="指令"> 
+                 <views:CommandSequenceListView  HorizontalAlignment="Left"
+	                DataContext="{Binding CommandSequenceListViewModel}" 
+	                Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="1718" />    
+            </TabItem>
+
+        </TabControl>
+
+</UserControl>

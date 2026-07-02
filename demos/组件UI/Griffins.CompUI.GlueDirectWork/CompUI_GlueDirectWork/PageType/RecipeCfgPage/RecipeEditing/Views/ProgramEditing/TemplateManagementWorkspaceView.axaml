@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+             x:DataType="vm:TemplateManagementWorkspaceViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing.TemplateManagementWorkspaceView">
+
+  <Grid RowDefinitions="Auto,8,Auto,12,*">
+    <StackPanel Orientation="Horizontal" Spacing="8">
+      <Button Content="增加新模板" Command="{Binding AddTemplateCommand}" />
+      <Button Content="批量删除模板" Command="{Binding DeleteTemplateCommand}" />
+    </StackPanel>
+
+    <TextBlock Grid.Row="2" Text="模板管理" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" />
+
+    <DataGrid Grid.Row="4"
+              ItemsSource="{Binding Templates}"
+              SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}"
+              AutoGenerateColumns="False"
+              IsReadOnly="False"
+              HeadersVisibility="Column"
+              GridLinesVisibility="All">
+      <DataGrid.Columns>
+        <DataGridTemplateColumn Width="40">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <CheckBox IsChecked="{Binding IsChecked}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTextColumn Header="序列" Binding="{Binding Order}" Width="*" IsReadOnly="True"/>
+        <DataGridTextColumn Header="模板名" Binding="{Binding Name}" Width="2*" />
+        <DataGridTemplateColumn Header="操作" Width="*">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button Content="删除"
+                      Command="{Binding DataContext.DeleteTemplateItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      CommandParameter="{Binding}" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</UserControl>
+

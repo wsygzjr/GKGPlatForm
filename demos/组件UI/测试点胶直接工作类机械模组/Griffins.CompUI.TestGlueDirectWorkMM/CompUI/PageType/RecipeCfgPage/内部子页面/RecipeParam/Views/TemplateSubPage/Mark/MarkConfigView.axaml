@@ -1,0 +1,39 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Mark"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:MarkConfigViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.MarkConfigView">
+
+
+   <!--MarkPointRecognizeCfgInfoView绑定的数据源为：MarkPointListViewModel->SelectedItem->MarkPositionOperateViewModel-->
+   <!-- 1Mark子页面：水平排列   Width="1718"  Height="731"   Height="678" Width="1420"  --> 
+ <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top"   Margin="0 0 0 0"  Width="1457" Height="634" >
+		 <!--左侧 Mark ： 垂直排列--> 
+      <StackPanel Orientation="Vertical"  HorizontalAlignment="Center"   Margin="0 0 0 0"   Width="278"   >
+	            <!--上部分显示：Mark基础配置参数-->  
+             <views:MarkBasicConfigView Grid.Column="0"  HorizontalAlignment="Left"  VerticalAlignment="Top"
+	            DataContext="{Binding MarkBasicConfigViewModel}" 
+	            Height="200"   Width="274"  Margin="0" /> 
+
+                 <!--下部分显示：Mark点列表栏    --> 
+             <Border  Classes="border" > 
+                 <views:MarkPointListView Grid.Column="0"  HorizontalAlignment="Left"  VerticalAlignment="Stretch"  
+	                DataContext="{Binding MarkPointListViewModel}" 
+	                 Height="420"  Width="274"  Margin="0" />  
+             </Border>
+	  </StackPanel>
+
+         <!--右侧显示：当前的选中的Mark点 --> 
+      <Border  Classes="border" > 
+         <views:MarkPointView Grid.Column="0"  VerticalAlignment="Stretch"  
+	        DataContext="{Binding CurSelectMarkPointViewModel}" 
+	        Margin="1" Height="630"  />  
+     </Border>
+  </StackPanel>
+
+</UserControl>

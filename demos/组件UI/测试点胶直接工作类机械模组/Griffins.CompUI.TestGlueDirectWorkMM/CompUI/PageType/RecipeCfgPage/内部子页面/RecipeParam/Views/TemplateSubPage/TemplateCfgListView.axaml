@@ -1,0 +1,77 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:TemplateCfgListViewModel"             
+             xmlns:convert="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.TemplateCfgListView">
+
+    <!-- 转换器 + 按钮样式（关键：添加删除按钮样式，避免不可交互） -->
+    <UserControl.Resources>
+        <convert:ListCountToBoolConverter x:Key="ListCountToBoolConverter"/>
+         
+    </UserControl.Resources>  
+
+    <!-- 左侧显示:轨迹列表栏 -->
+    <DockPanel Margin="1" LastChildFill="True" >
+        <!--1. 顶部操作菜单（添加按钮）--> 
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="4" Margin="0 0 0 1">
+            <Button Content="添加" 
+                    Command="{Binding AddCommand}"  
+                    Background="#4CAF50"/> <!-- 给添加按钮也加样式，区分颜色 -->
+        </StackPanel>
+         
+        <!--模版列表 -->
+        <TabControl TabStripPlacement="Left"    
+                    BorderBrush="#CCCCCC" 
+                    BorderThickness="1.5" 
+                    ItemsSource="{Binding TemplateCfgViewModels}" 
+                    SelectedItem="{Binding SelectedTemplateCfgViewModel, Mode=TwoWay}"> 
+
+            <TabControl.ItemTemplate >
+                
+
+                <DataTemplate DataType="vm:TemplateCfgViewModel" > 
+                  
+                    <StackPanel Orientation="Horizontal" Spacing="4" Margin="2" VerticalAlignment="Center" Width="120">
+                        <TextBlock Text="{Binding TemplateName}" VerticalAlignment="Center"  Width="75" />
+                         
+                        <Button Content="×"  Width="28" Height="28"  FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                Classes="DataGrid_btnDeleteStyle" 
+                                Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" 
+                                CommandParameter="{Binding}">
+                             <!-- 禁用条件：当列表只有1条数据时，禁用当前行的删除按钮 -->
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource ListCountToBoolConverter}">
+                                            <!-- 绑定1：当前列表总数 -->
+                                            <Binding Path="DataContext.TemplateCfgViewModels.Count" RelativeSource="{RelativeSource AncestorType=TabControl}"/>
+                                            <!-- 绑定2：是否强制禁用（此处固定为false，仅用列表总数判断） -->
+                                            <Binding Path="IsDummy" FallbackValue="False"/>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                        </Button>
+                    </StackPanel>  
+                </DataTemplate>
+      
+            </TabControl.ItemTemplate>
+                          
+
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="vm:TemplateCfgViewModel" >
+                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0 0 0 2"  Width="1737"> 
+                           <views:TemplateCfgView HorizontalAlignment="Left" 
+                                              Content="{Binding CachedView}" 
+                                              Margin="5"  
+                                              BorderBrush="#CCCCCC" 
+                                              BorderThickness="1.5" 
+                                              Width="1737"  Height="790" />  
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </DockPanel>
+</UserControl>

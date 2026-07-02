@@ -1,0 +1,14 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/.vs/Dispenser/copilot-chat/eac3d873/sessions
+/.vs
+/DispenserMachineModules/bin/Debug/net9.0
+/DispenserMachineModules/obj
+/DispenserMachineModules0/bin/Debug
+/DispenserMachineModules0/obj/Debug
+/GKG.DispenserMachineModules/bin/Debug/net9.0
+/GKG.DispenserMachineModules/obj/Debug/net9.0
+/GKG.DispenserMachineModules/obj
+/GKG.DispenserMachineModules0

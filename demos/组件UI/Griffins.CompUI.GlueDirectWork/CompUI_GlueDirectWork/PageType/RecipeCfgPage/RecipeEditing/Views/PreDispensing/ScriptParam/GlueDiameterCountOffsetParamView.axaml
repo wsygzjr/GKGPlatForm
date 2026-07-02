@@ -1,0 +1,109 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:GlueDiameterCountOffsetParamViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.GlueDiameterCountOffsetParamView">
+	<!-- 胶点直径个数偏移检测界面 View -->
+	<Panel Height="310" Width="1220">
+		<WrapPanel Orientation="Horizontal" LineSpacing="10" ItemSpacing="10" Margin="2">
+			<!-- 数字输入框+标签：当前胶点直径 -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Center"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			
+			LabelName="当前胶点直径 "
+			WidthLevel="Medium3"
+			ViewModel="{Binding CurrentGlueDiameterViewModel}"
+			/>
+			<!-- 数字输入框：当前个数 -->
+			<custom:NumericControl
+			HorizontalAlignment="Center"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="当前个数 "
+			WidthLevel="Medium3"
+			ViewModel="{Binding CurrentCountViewModel}"
+			/>
+			<!-- 数字输入框+标签：当前X偏移 -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Center"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="当前X偏移 "
+			WidthLevel="Medium3"
+			ViewModel="{Binding CurrentXOffsetViewModel}"
+			/>
+			<!-- 数字输入框+标签：当前Y偏移 -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="当前Y偏移 "
+			WidthLevel="Medium3"
+			ViewModel="{Binding CurrentYOffsetViewModel}"
+			/>
+			<!-- 数字输入框+标签：胶点直径上限 -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="胶点直径上限 "
+			WidthLevel="Medium3"
+			ViewModel="{Binding MaxGlueDiameterViewModel}"
+			/>
+			<!-- 数字输入框+标签：胶点直径下限 -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="胶点直径下限 "
+			WidthLevel="Medium3"
+			ViewModel="{Binding MinGlueDiameterViewModel}"
+			/>
+			<!-- 数字输入框+标签：胶点偏移X+ -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			Grid.Row="2" Grid.Column="0"
+			LabelName="胶点偏移X+ "
+			WidthLevel="Medium3"
+			ViewModel="{Binding MaxXOffsetViewModel}"
+			/>
+			<!-- 数字输入框+标签：胶点偏移X- -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="胶点偏移X- "
+			WidthLevel="Medium3"
+			ViewModel="{Binding MinXOffsetViewModel}"
+			/>
+			<!-- 数字输入框+标签：胶点偏移Y+ -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="胶点偏移Y+ "
+			WidthLevel="Medium3"
+			ViewModel="{Binding MaxYOffsetViewModel}"
+			/>
+			<!-- 数字输入框+标签：胶点偏移Y- -->
+			<custom:NumericWithLableControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Top"
+			LabelName="胶点偏移Y- "
+			WidthLevel="Medium3"
+			ViewModel="{Binding MinYOffsetViewModel}"
+			/>
+		</WrapPanel>
+	</Panel>
+</UserControl>

@@ -1,0 +1,27 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Plan"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:DispensingPlanConfigViewModel"             
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.DispensingPlanConfigView">
+
+   <!--点胶流程-->
+    <StackPanel Orientation="Vertical"  HorizontalAlignment="Center"   Margin="0 0 0 0"  Width="1820" Height="753"     >
+    
+        <!-- 模板 BelongTemplateID -->  
+        <custom:ComboxControl   
+				LabelName="点胶流程类型"  HorizontalAlignment="Left"  
+				WidthLevel="Medium"  
+				ViewModel="{Binding PlanFlowTypeComboBox  , Mode=TwoWay }"  
+				/>  
+
+        <!--工作区-->
+        <ContentControl Content="{Binding WorkAreaView}"   BorderBrush="#CCCCCC" BorderThickness="1.5" VerticalAlignment="Stretch"      HorizontalAlignment="Left"  Width="1816" Height="702" />   
+    
+     </StackPanel>
+</UserControl>

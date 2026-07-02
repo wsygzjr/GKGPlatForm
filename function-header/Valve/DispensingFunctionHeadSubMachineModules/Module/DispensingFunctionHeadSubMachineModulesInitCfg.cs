@@ -1,0 +1,49 @@
+﻿using GF_Gereric;
+
+namespace GKG.SubMM.Dispenser
+{
+    /// <summary>
+    /// 初始化配置
+    /// </summary>
+    public class DispensingFunctionHeadSubMachineModulesInitCfg
+    {
+        /// <summary>
+        /// 阀初始化参数
+        /// </summary>
+        public byte[] ValveInitParams;
+
+        /// <summary>
+        /// 供胶装置初始化参数
+        /// </summary>
+        public byte[] GlueDispensingDeviceInitParams;
+
+        /// <summary>
+        /// 复制
+        /// </summary>
+        /// <param name="source">复制源</param>
+        public void CopyFrom(DispensingFunctionHeadSubMachineModulesInitCfg source)
+        {
+            this.ValveInitParams = source.ValveInitParams;
+            this.GlueDispensingDeviceInitParams = source.GlueDispensingDeviceInitParams;
+        }
+
+        /// <summary>
+        /// 转为字节数组
+        /// </summary>
+        /// <returns>字节数组</returns>
+        public byte[] ToBytes()
+        {
+            return JsonObjConvert.ToJSonBytes(this);
+        }
+
+        /// <summary>
+        /// 从字节数组转换
+        /// </summary>
+        /// <param name="data">字节数组</param>
+        public void FromBytes(byte[] data)
+        {
+            if (data != null && data.Length > 0)
+                JsonObjConvert.PopulateObject(data, this);
+        }
+    }
+}

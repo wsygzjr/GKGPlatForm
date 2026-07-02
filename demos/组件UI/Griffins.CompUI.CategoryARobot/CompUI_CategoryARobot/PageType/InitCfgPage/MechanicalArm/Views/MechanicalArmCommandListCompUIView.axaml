@@ -1,0 +1,97 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.CategoryARobot.CompUI_CategoryARobot.PageType.InitCfgPage.MechanicalArm.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="696" d:DesignHeight="360"
+             x:DataType="vm:MechanicalArmCompUIViewModel"
+             x:Class="Griffins.CompUI.CategoryARobot.CompUI_CategoryARobot.PageType.InitCfgPage.MechanicalArm.Views.MechanicalArmCommandListCompUIView">
+
+  <DockPanel LastChildFill="True">
+    <Button DockPanel.Dock="Top"
+            MinWidth="72"
+            Margin="0,0,0,10"
+            HorizontalAlignment="Left"
+            Content="添加"
+            Command="{Binding AddCommand}" />
+
+    <DataGrid HorizontalAlignment="Stretch"
+              ItemsSource="{Binding Commands}"
+              AutoGenerateColumns="False"
+              HeadersVisibility="Column"
+              CanUserResizeColumns="False"
+              CanUserSortColumns="False"
+              CanUserReorderColumns="False"
+              HorizontalScrollBarVisibility="Disabled"
+              VerticalScrollBarVisibility="Auto"
+              MinHeight="300"
+              MaxHeight="460"
+              RowHeight="42"
+              IsReadOnly="True">
+      <DataGrid.Styles>
+        <Style Selector="DataGridColumnHeader">
+          <Setter Property="HorizontalContentAlignment" Value="Center" />
+          <Setter Property="Padding" Value="6,8" />
+        </Style>
+        <Style Selector="DataGridCell">
+          <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+          <Setter Property="VerticalContentAlignment" Value="Center" />
+          <Setter Property="Padding" Value="4,2" />
+        </Style>
+      </DataGrid.Styles>
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="序号" Binding="{Binding Index}" Width="64" />
+
+        <DataGridTemplateColumn Header="范围" Width="*" MinWidth="180">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <custom:TextInputControl HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Center"
+                                       FixWidth="False"
+                                       LabelName=""
+                                       ViewModel="{Binding RangeViewModel}" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+
+        <DataGridTemplateColumn Header="速度" Width="*" MinWidth="180">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <custom:NumericUpDownControl HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Center"
+                                           FixWidth="False"
+                                           LabelName=""
+                                           ViewModel="{Binding SpeedViewModel}" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+
+        <DataGridTemplateColumn Header="加速度" Width="*" MinWidth="180">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <custom:NumericUpDownControl HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Center"
+                                           FixWidth="False"
+                                           LabelName=""
+                                           ViewModel="{Binding AccelerationViewModel}" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+
+        <DataGridTemplateColumn Header="操作" Width="88">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button MinWidth="64"
+                      Padding="10,4"
+                      HorizontalAlignment="Center"
+                      Content="删除"
+                      Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                      CommandParameter="{Binding}" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </DockPanel>
+</UserControl>

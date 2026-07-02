@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.WeighingBalance.CompUI_WeighingBalance.PageType.FactoryCfgPage.WeighingBalanceFactory.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="360"
+             x:DataType="vm:WeighingBalanceFactoryCompUIViewModel"
+             x:Class="Griffins.CompUI.WeighingBalance.CompUI_WeighingBalance.PageType.FactoryCfgPage.WeighingBalanceFactory.Views.WeighingBalanceFactoryCompUIView">
+    <Design.DataContext>
+        <vm:WeighingBalanceFactoryCompUIViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10" Orientation="Vertical" Spacing="12">
+            <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+                <StackPanel Orientation="Vertical" Spacing="3">
+                    <TextBlock Text="称重模组出厂配置" FontWeight="Bold" FontSize="18" />
+                    <TextBlock Text="出厂配置 (FactoryCfg)" FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12" IsEnabled="{Binding CanEdit}">
+                <custom:ComboxControl WidthLevel="Medium"
+                                     LabelName="天平型号"
+                                     ViewModel="{Binding WeighingBalanceTypeViewModel}" />
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MotionControl</name>
+    </assembly>
+    <members>
+        <member name="M:MotionControl.Tests.Init">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="T:MotionControl.IMotionControlBase">
+            <summary>
+            运控卡基础接口
+            </summary>
+        </member>
+        <member name="P:MotionControl.IMotionControlBase.SupportAxisNum">
+            <summary>
+            支持的轴数量
+            </summary>
+        </member>
+        <member name="T:MotionControl.IMotionControlCategoryA">
+            <summary>
+            A类运控接口
+            </summary>
+            <remarks>
+            该接口用于实现A类运动控制的相关功能
+            </remarks>
+        </member>
+        <member name="M:MotionControl.IMotionControlCategoryA.OnlineSpeedChange(System.Guid,System.Double)">
+            <summary>
+            在线变速
+            </summary>
+            <param name="axisGuid">轴锁定句柄</param>
+            <param name="targetSpeed">目标速度</param>
+        </member>
+        <member name="T:MotionControl.IMotionControlPlugin">
+            <summary>
+            运控卡插件接口
+            </summary>
+        </member>
+        <member name="P:MotionControl.IMotionControlPlugin.MotionControlName">
+            <summary>
+            运控卡名称
+            </summary>
+        </member>
+        <member name="P:MotionControl.IMotionControlPlugin.MotionCardType">
+            <summary>
+            运控卡类型
+            </summary>
+        </member>
+        <member name="M:MotionControl.IMotionControlPlugin.Init(System.String)">
+            <summary>
+            初始化
+            </summary>
+            <param name="pluginFileName">插件文件路径</param>
+        </member>
+        <member name="M:MotionControl.IMotionControlPlugin.CreateMotionCardObj">
+            <summary>
+            创建运控卡接口实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MotionControl.MotionCardType">
+            <summary>
+            运控卡类型
+            </summary>
+        </member>
+        <member name="F:MotionControl.MotionCardType.DMC1000B">
+            <summary>
+            雷赛1000B
+            </summary>
+        </member>
+        <member name="F:MotionControl.MotionCardType.GC800">
+            <summary>
+            高川8轴卡
+            </summary>
+        </member>
+        <member name="T:MotionControl.MotionControlDefAttribute">
+            <summary>
+            运控卡插件定义特性
+            </summary>
+        </member>
+        <member name="F:MotionControl.MotionControlDefAttribute.PLUGINKIND_Str">
+            <summary>
+            运控卡插件种类字符串表示
+            </summary>
+        </member>
+        <member name="F:MotionControl.MotionControlDefAttribute.PLUGINKIND">
+            <summary>
+            运控卡插件插件种类
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlDefAttribute.#ctor(System.String)">
+            <summary>
+            运控卡插件属性构造函数
+            </summary>
+            <param name="motionControlIDStr">运控卡ID（Guid的字符串表示）</param>
+        </member>
+        <member name="P:MotionControl.MotionControlDefAttribute.MotionControlID">
+            <summary>
+            运控卡ID
+            </summary>
+        </member>
+        <member name="T:MotionControl.MotionControlPluginLoad">
+            <summary>
+            运控卡插件加载对象
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginLoad.#ctor(System.String)">
+            <summary>
+            创建 MotionControlPluginLoad 新实例
+            </summary>
+            <param name="plugInPath">插件路径</param>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginLoad.Load">
+            <summary>
+            加载
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginLoad.AllMotionControlInfos">
+             <summary>
+            运控卡插件信息字典
+             </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginLoad.OnBeforeLoad(System.String)">
+            <summary>
+            加载插件前
+            </summary>
+            <param name="plugInPath">插件所在目录</param>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginLoad.GetPluginKind">
+            <summary>
+            取要加载的插件种类
+            </summary>
+            <returns>要加载的插件种类</returns>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginLoad.CheckAddPlugInMngClass(System.String,System.Guid,System.String,System.Type)">
+            <summary>
+            检查是否插件管理类
+            </summary>
+            <param name="pluginFilename">插件文件路径</param>
+            <param name="pluginID">插件ID</param>
+            <param name="pluginDescription">插件描述</param>
+            <param name="t">检查类的类型信息</param>
+        </member>
+        <member name="T:MotionControl.MotionControlPluginLoad.MotionControlPluginInfoDict">
+            <summary>
+            运控卡插件信息字典
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginLoad.MotionControlPluginInfoDict.MotionControlIDs">
+            <summary>
+            运控卡ID
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginLoad.MotionControlPluginInfoDict.SubMachineModulesExecInfos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MotionControl.MotionControlPluginLoad.MotionControlPluginInfo">
+            <summary>
+            运控卡插件信息
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginLoad.MotionControlPluginInfo.#ctor(System.Guid,System.String,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="pluginID">子机械模组插件ID</param>
+            <param name="pluginFilename"></param>
+            <param name="objType"></param>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginLoad.MotionControlPluginInfo.PluginID">
+            <summary>
+            子机械模组插件ID
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginLoad.MotionControlPluginInfo.ObjType">
+            <summary>
+            子机械模组执行对象类型
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginLoad.MotionControlPluginInfo.PluginFilename">
+            <summary>
+            插件文件名和路径
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginLoad.MotionControlPluginInfo.CreateInstance">
+            <summary>
+            创建控制子机械模组接口实例
+            </summary>
+            <returns>控制子机械模组接口实例</returns>
+        </member>
+        <member name="T:MotionControl.MotionControlPluginManager">
+            <summary>
+            运控卡插件管理对象
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginManager.Init">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginManager.loadPlugins">
+            <summary>
+            加载第三方接出接口插件插件
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginManager.GetMotionControl(MotionControl.MotionCardType)">
+            <summary>
+            获取运控卡类型对应的运控卡接口实例
+            </summary>
+            <param name="motionCardType">运控卡类型</param>
+            <returns>运控卡类型对应的运控卡接口实例</returns>
+        </member>
+        <member name="T:MotionControl.MotionControlPluginManager.MotionControlCardInfo">
+            <summary>
+            运控卡信息
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginManager.MotionControlCardInfo.#ctor(System.Guid,System.String,MotionControl.IMotionControlPlugin)">
+            <summary>
+            创建MotionControlCardInfo新实例
+            </summary>
+            <param name="pluginID">插件ID</param>
+            <param name="pluginFilename">插件文件名和路径</param>
+            <param name="iMotionControl">运控卡插件接口实例</param>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginManager.MotionControlCardInfo.IMotionControl">
+            <summary>
+            运控卡接口实例
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginManager.MotionControlCardInfo.MotionCardType">
+            <summary>
+             运控卡类型
+             </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginManager.MotionControlCardInfo.MotionControlName">
+            <summary>
+            运控卡名称
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginManager.MotionControlCardInfo.PluginFilename">
+            <summary>
+            插件文件名和路径
+            </summary>
+        </member>
+        <member name="P:MotionControl.MotionControlPluginManager.MotionControlCardInfo.PluginID">
+            <summary>
+            插件ID
+            </summary>
+        </member>
+        <member name="T:MotionControl.MotionControlPluginManager.MotionControlCardInfoList">
+            <summary>
+            运控卡信息列表
+            </summary>
+        </member>
+        <member name="M:MotionControl.MotionControlPluginManager.MotionControlCardInfoList.Find(MotionControl.MotionCardType)">
+            <summary>
+            查找运控卡类型对应的运控卡信息
+            </summary>
+            <param name="motionCardType">查找的运控卡类型</param>
+            <returns>运控卡类型对应的运控卡信息</returns>
+        </member>
+    </members>
+</doc>

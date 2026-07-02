@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36811.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailWorkStationSubMachineModules", "RailWorkStationSubMachineModules\RailWorkStationSubMachineModules.csproj", "{5726170E-F417-ECF3-1DA1-415E1F722572}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.RailWorkStationSubMachineModules", "GKG.RailWorkStationrSubMachineModules\GKG.RailWorkStationSubMachineModules.csproj", "{14897CE6-E44A-E229-32E2-63BF17A565B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5726170E-F417-ECF3-1DA1-415E1F722572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5726170E-F417-ECF3-1DA1-415E1F722572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5726170E-F417-ECF3-1DA1-415E1F722572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5726170E-F417-ECF3-1DA1-415E1F722572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14897CE6-E44A-E229-32E2-63BF17A565B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14897CE6-E44A-E229-32E2-63BF17A565B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14897CE6-E44A-E229-32E2-63BF17A565B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14897CE6-E44A-E229-32E2-63BF17A565B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E539533-78EB-4862-B36F-E0220BC24A77}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:local="clr-namespace:Griffins.Map.CtlMapCell.Generic.Lable.ViewModel"
+             xmlns:converts="clr-namespace:Griffins.Map.CtlMapCell.Generic.Lable.Convert"
+             x:Class="Griffins.Map.CtlMapCell.Generic.Lable.View.LableView"
+             x:DataType="local:LableViewModel"
+             Width="300" 
+             Height="40">
+      <UserControl.Resources>
+        <converts:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    </UserControl.Resources>
+    <TextBlock x:Name="Lable" HorizontalAlignment="Center" VerticalAlignment="Center">
+		
+    </TextBlock>
+</UserControl>

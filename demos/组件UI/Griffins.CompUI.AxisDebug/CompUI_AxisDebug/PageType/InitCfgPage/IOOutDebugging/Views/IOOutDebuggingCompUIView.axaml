@@ -1,0 +1,146 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Griffins.CompUI.AxisDebug.CompUI_AxisDebug.PageType.InitCfgPage.IOOutDebugging.ViewModels"
+             x:DataType="vm:IOOutDebuggingCompUIViewModel"
+             UseLayoutRounding="True"
+             x:Class="Griffins.CompUI.AxisDebug.CompUI_AxisDebug.PageType.InitCfgPage.IOOutDebugging.Views.IOOutDebuggingCompUIView">
+
+    <UserControl.Styles>
+        <Style Selector="ToggleButton.io-toggle">
+            <Setter Property="MinWidth" Value="28" />
+            <Setter Property="MinHeight" Value="28" />
+            <Setter Property="Background" Value="#BDBDBD" />
+            <Setter Property="BorderBrush" Value="#9E9E9E" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <Border Width="16"
+                                Height="16"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="ToggleButton.io-toggle:checked">
+            <Setter Property="Background" Value="#2ECC71" />
+            <Setter Property="BorderBrush" Value="#27AE60" />
+        </Style>
+        <Style Selector="ToggleButton.io-toggle:disabled">
+            <Setter Property="Opacity" Value="0.4" />
+        </Style>
+
+        <Style Selector="Border.io-row-overlay">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Border.io-row-overlay.selected">
+            <Setter Property="Background" Value="#CCE5FF" />
+        </Style>
+    </UserControl.Styles>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="16" Margin="12">
+            <Grid Grid.Column="0" RowDefinitions="Auto,*">
+                <Border Background="#D9D9D9" BorderBrush="#D3D3D3" BorderThickness="1" Padding="0">
+                    <Grid ColumnDefinitions="*,60">
+                        <Border Background="#D9D9D9" />
+                        <Border Grid.Column="1" Background="#D9D9D9" BorderBrush="#C8C8C8" BorderThickness="1,0,0,0" />
+                        <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                        <TextBlock Grid.Column="1" Text="开关" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+                    </Grid>
+                </Border>
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Column1Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:IOOutItemViewModel">
+                            <Border BorderBrush="#D3D3D3" BorderThickness="1" Padding="0" Background="Transparent" PointerPressed="RowBorder_OnPointerPressed">
+                                <Grid ColumnDefinitions="*,60" MinHeight="34">
+                                    <Border Background="#EEF6FF" />
+                                    <Border Grid.Column="1" Background="White" BorderBrush="#D9D9D9" BorderThickness="1,0,0,0" />
+                                    <Border Classes="io-row-overlay" Classes.selected="{Binding IsSelected}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="8,6" />
+                                    <ToggleButton Grid.Column="1"
+                                                 Classes="io-toggle"
+                                                 IsChecked="{Binding IsOn}"
+                                                 IsEnabled="{Binding IsEnabled}"
+                                                 VerticalAlignment="Stretch"
+                                                 HorizontalAlignment="Stretch" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+            <Grid Grid.Column="1" RowDefinitions="Auto,*">
+                <Border Background="#D9D9D9" BorderBrush="#D3D3D3" BorderThickness="1" Padding="0">
+                    <Grid ColumnDefinitions="*,60">
+                        <Border Background="#D9D9D9" />
+                        <Border Grid.Column="1" Background="#D9D9D9" BorderBrush="#C8C8C8" BorderThickness="1,0,0,0" />
+                        <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                        <TextBlock Grid.Column="1" Text="开关" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+                    </Grid>
+                </Border>
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Column2Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:IOOutItemViewModel">
+                            <Border BorderBrush="#D3D3D3" BorderThickness="1" Padding="0" Background="Transparent" PointerPressed="RowBorder_OnPointerPressed">
+                                <Grid ColumnDefinitions="*,60" MinHeight="34">
+                                    <Border Background="#EEF6FF" />
+                                    <Border Grid.Column="1" Background="White" BorderBrush="#D9D9D9" BorderThickness="1,0,0,0" />
+                                    <Border Classes="io-row-overlay" Classes.selected="{Binding IsSelected}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="8,6" />
+                                    <ToggleButton Grid.Column="1"
+                                                 Classes="io-toggle"
+                                                 IsChecked="{Binding IsOn}"
+                                                 IsEnabled="{Binding IsEnabled}"
+                                                 VerticalAlignment="Stretch"
+                                                 HorizontalAlignment="Stretch" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+
+            <Grid Grid.Column="2" RowDefinitions="Auto,*">
+                <Border Background="#D9D9D9" BorderBrush="#D3D3D3" BorderThickness="1" Padding="0">
+                    <Grid ColumnDefinitions="*,60">
+                        <Border Background="#D9D9D9" />
+                        <Border Grid.Column="1" Background="#D9D9D9" BorderBrush="#C8C8C8" BorderThickness="1,0,0,0" />
+                        <TextBlock Text="端口名称" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8,8" FontWeight="Bold" Foreground="#333333" />
+                        <TextBlock Grid.Column="1" Text="开关" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Foreground="#333333" />
+                    </Grid>
+                </Border>
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Column3Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:IOOutItemViewModel">
+                            <Border BorderBrush="#D3D3D3" BorderThickness="1" Padding="0" Background="Transparent" PointerPressed="RowBorder_OnPointerPressed">
+                                <Grid ColumnDefinitions="*,60" MinHeight="34">
+                                    <Border Background="#EEF6FF" />
+                                    <Border Grid.Column="1" Background="White" BorderBrush="#D9D9D9" BorderThickness="1,0,0,0" />
+                                    <Border Classes="io-row-overlay" Classes.selected="{Binding IsSelected}" Grid.ColumnSpan="2" IsHitTestVisible="False" />
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="8,6" />
+                                    <ToggleButton Grid.Column="1"
+                                                 Classes="io-toggle"
+                                                 IsChecked="{Binding IsOn}"
+                                                 IsEnabled="{Binding IsEnabled}"
+                                                 VerticalAlignment="Stretch"
+                                                 HorizontalAlignment="Stretch" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

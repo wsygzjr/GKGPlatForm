@@ -1,0 +1,110 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:DMatrixParamViewModel"	  
+			 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.DMatrixParamView">
+
+
+	<!--公共矩阵参数-->
+   
+			  	<!-- 矩阵指令参数 3行3列 -->
+				 <Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto,Auto"
+						RowSpacing="0"  HorizontalAlignment="Left" VerticalAlignment="Top"  Width="660" Height="240" >
+					 
+						<custom:NumericControl
+						Grid.Row="0"  Grid.Column="0" 
+						HorizontalAlignment="Left"
+							HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							VerticalContentAlignment="Center"
+							LabelName="行数"
+							WidthLevel="Small8" 
+							ViewModel="{Binding  RowCountViewModel }"
+							/> 
+
+						<custom:NumericControl
+						Grid.Row="0"  Grid.Column="1" 
+						HorizontalAlignment="Left"
+							HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							VerticalContentAlignment="Center"
+							LabelName="列数"
+							WidthLevel="Small8" 
+							ViewModel="{Binding ColumnCountViewModel }"
+							/> 
+
+
+						<!-- 起始点 --> 
+						<custom:ComboxControl
+							Grid.Row="1"  Grid.Column="0" 
+							HorizontalAlignment="Left"
+							HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							VerticalContentAlignment="Center"
+							LabelName="起始点" 
+							WidthLevel="Small8"
+							ViewModel="{Binding StartPointModel }" /> 
+					 
+						<!-- 矩阵方向 --> 
+						<custom:ComboxControl
+							Grid.Row="1"  Grid.Column="1" 
+							HorizontalAlignment="Left"
+							HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							VerticalContentAlignment="Center"
+							LabelName="矩阵方向"
+							WidthLevel="Small8"
+							ViewModel="{Binding MatrixDirectionModel }" /> 
+					 
+						<!-- 路径形状 -->   
+					 	<custom:ComboxControl
+							Grid.Row="1"  Grid.Column="2" 
+							HorizontalAlignment="Left"
+							HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							VerticalContentAlignment="Center"
+							LabelName="路径形状"
+							WidthLevel="Small8"
+							ViewModel="{Binding PathShapeModel }" /> 
+					  
+
+						 <Grid   Grid.Row="2"  Grid.Column="0"  Grid.ColumnSpan="3"  RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
+							   RowSpacing="0"   Height="150"  HorizontalAlignment="Left" VerticalAlignment="Center" > 
+
+								<TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+										FontFamily="SimSun"     FontSize="14"  Text=""      />
+								<!-- 坐标表头 --><!--
+								<gkgUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="1"  
+									Margin="0"      HorizontalAlignment="Left" VerticalAlignment="Center" />   -->
+								<!-- 左上角 -->
+								 <TextBlock  Grid.Row="1"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+										FontFamily="SimSun"     FontSize="14"  Text="左上角"      />
+
+							<!--	<gkgUI:PositionTeachView    Grid.Row="1"  Grid.Column="1"    
+									DataContext="{Binding DotMatrix_LeftUpperPositionViewModel}" 
+									Margin="0"    HorizontalAlignment="Left" VerticalAlignment="Center"  Height="40"  />   -->
+							   <!-- 右上角 -->
+								<TextBlock  Grid.Row="2"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+										FontFamily="SimSun"     FontSize="14"  Text="右上角"      />
+
+							<!--	<gkgUI:PositionTeachView    Grid.Row="2"  Grid.Column="1" 
+									DataContext="{Binding DotMatrix_RightUpperPositionViewModel}" 
+									Margin="0"   HorizontalAlignment="Left" VerticalAlignment="Center" Height="40"   />   -->
+							   <!-- 右下角 -->
+								<TextBlock  Grid.Row="3"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+										FontFamily="SimSun"     FontSize="14"  Text="右下角"      />
+
+								<!--<gkgUI:PositionTeachView    Grid.Row="3"  Grid.Column="1"  
+									DataContext="{Binding DotMatrix_RightLowerPositionViewModel}" 
+									Margin="0"     HorizontalAlignment="Left" VerticalAlignment="Center" Height="40"  />  --> 
+					   </Grid>
+					  
+				</Grid>
+	 
+</UserControl>

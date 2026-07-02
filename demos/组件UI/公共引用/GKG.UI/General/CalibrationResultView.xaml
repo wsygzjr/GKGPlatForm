@@ -1,0 +1,84 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+              xmlns:views="clr-namespace:GKG.UI.General"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+             x:DataType="vm:CalibrationResultViewModel"
+               xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   x:Class="GKG.UI.General.CalibrationResultView"  >
+     
+      <!--  标定结果8行2列   -->
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*"
+              Margin="5"  HorizontalAlignment="Center"    Width="355">
+            <!-- 相机标定 -->
+            <TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+            Text="相机标定（mm/pix）" Margin="5"/> 
+
+           <custom:TextBlockControl
+            Grid.Row="1"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="相机标定X|Y"
+			WidthLevel="Small"  
+			ViewModel="{Binding CameraCalibrationViewModel}"
+			/> 
+
+             <!-- 相机Vs胶阀（mm） -->
+            <TextBlock  Grid.Row="2"  Grid.Column="0"  HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+            Text="相机Vs胶阀（mm）" Margin="5"/>
+
+           <custom:TextBlockControl
+            Grid.Row="3"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="RO"
+			WidthLevel="Small"  
+			ViewModel="{Binding CameraVsGluevalveR0ViewModel}"
+			/>
+
+           <custom:TextBlockControl
+            Grid.Row="4"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="90度位置"
+			WidthLevel="Small"  
+			ViewModel="{Binding CameraVsGluevalveNinetyViewModel}"
+			/>
+
+             <!-- 相机Vs激光（mm） -->
+            <TextBlock  Grid.Row="5"  Grid.Column="0"  HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+            Text="相机Vs激光（mm）" Margin="5"/>
+
+           <custom:TextBlockControl
+            Grid.Row="6"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="偏量"
+			WidthLevel="Small"  
+			ViewModel="{Binding CameraVsLaserViewModel}"
+			/>
+
+            
+             <!-- 激光Vs胶阀（mm） -->
+            <TextBlock  Grid.Row="7"  Grid.Column="0"  HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+            Text="激光Vs胶阀（mm）" Margin="5"/>
+
+           <custom:TextBlockControl
+            Grid.Row="8"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+			LabelName="阀高度"
+			WidthLevel="Small"  
+			ViewModel="{Binding LaserVsGluevalveHightViewModel}"
+			/>
+             
+        </Grid>
+             
+              
+
+</UserControl>

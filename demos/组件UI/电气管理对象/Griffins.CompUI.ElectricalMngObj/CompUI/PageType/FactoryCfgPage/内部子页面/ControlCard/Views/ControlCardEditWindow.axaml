@@ -1,0 +1,106 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels"
+        xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2" 
+        mc:Ignorable="d"
+        x:DataType="vm:ControlCardEditWindowViewModel"
+        x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.ControlCardEditWindow"
+        Title="运控卡编辑" 
+        Width="500"
+        Height="400"
+        MinWidth="450"
+        MinHeight="380">
+
+    <!-- 运控卡编辑,主布局：垂直排列 表单、按钮区   -->
+    <StackPanel Margin="10,25,10,25" HorizontalAlignment="Center"   >
+
+        <!-- 2. 表单内容   -->
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="500"
+              RowSpacing="0"
+              HorizontalAlignment="Center" >
+            <!-- 控制卡种类 -->
+             <custom:ComboxControl  
+             Grid.Row="0"  Grid.Column="0"  
+					LabelName="控制卡种类:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding EditCopy.ControlCardKindModel , Mode=TwoWay }" 
+					/>
+            <!-- 控制卡类型    -->
+              <custom:ComboxControl 
+                     Grid.Row="1"  Grid.Column="0"  
+					LabelName="控制卡类型:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding EditCopy.ControlCardTypeModel , Mode=TwoWay}" />
+
+                <!--运控卡轴状态类型 下拉框-->
+          <custom:TextInputControl 
+                     Grid.Row="2"  Grid.Column="0"  
+					LabelName="运控卡ID:"
+					WidthLevel="Medium" 
+					ViewModel="{Binding EditCopy.CadIDViewModel , Mode=TwoWay}" /> 
+
+     <!--      <custom:TextBlockControl
+                Grid.Row="3"  Grid.Column="0"  
+			    LabelName="轴数量:"
+			    WidthLevel="Medium"  
+			    ViewModel="{Binding EditCopy.AxisCountViewModel.Value ,  Mode=TwoWay }"
+			    /> 
+
+            <custom:TextBlockControl
+            Grid.Row="4"  Grid.Column="0"  
+			    LabelName="模拟量通道:"
+			    WidthLevel="Medium"  
+			    ViewModel="{Binding EditCopy.AnalogChannelCountViewModel.Value ,  Mode=TwoWay }"
+			    /> 
+          
+            <custom:TextBlockControl
+            Grid.Row="5"  Grid.Column="0"  
+			    LabelName="状态量通道:"
+			    WidthLevel="Medium"  
+			    ViewModel="{Binding EditCopy.StateChannelCountViewModel.Value ,  Mode=TwoWay }"
+			    /> -->
+
+            
+		  <custom:NumericControl
+            Grid.Row="3"  Grid.Column="0"  
+			LabelName="轴数量:"
+			WidthLevel="Medium"  
+			ViewModel="{Binding EditCopy.AxisCountViewModel}"
+			/>
+
+             <custom:NumericControl
+               Grid.Row="4"  Grid.Column="0"  
+			LabelName="模拟量通道数量:"
+			WidthLevel="Medium"  
+			ViewModel="{Binding EditCopy.AnalogChannelCountViewModel  }"
+			/>
+             
+            <custom:NumericControl
+               Grid.Row="5"  Grid.Column="0" 
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+			Name="StateChannelCountViewModel"
+			LabelName="状态量通道数量:"
+			WidthLevel="Medium"  
+			ViewModel="{Binding EditCopy.StateChannelCountViewModel   }"
+			/>
+
+        </Grid>
+
+        <!-- 3. 按钮区（保存/取消） -->
+        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="0 0 0 0">
+            <Button 
+                Content="取消" 
+                Command="{Binding CancelCommand}" 
+                Classes="btnCancel" />
+             
+            <Button 
+                Content="保存"   Classes="btnSave"
+                Command="{Binding SaveCommand}"  
+                Cursor="Hand"> 
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

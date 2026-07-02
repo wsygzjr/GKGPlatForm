@@ -1,0 +1,25 @@
+{
+  "solution": {
+    "path": "总解决方案.sln",
+    "projects": [
+      "..\\功能图元\\AuxiliaryFunctionsFuncCtlMapCell\\GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.csproj",
+      "..\\功能图元\\AuxiliaryInfoFuncCtlMapCell\\GKG.Map.AuxiliaryInfoFuncCtlMapCell.csproj",
+      "..\\功能图元\\CameraViewerFuncCtlMapCell\\GKG.Map.CameraViewerFuncCtlMapCell.csproj",
+      "..\\功能图元\\ChartFuncCtlMapCell\\GKG.Map.ChartFuncCtlMapCell.csproj",
+      "..\\功能图元\\CommunicationFuncCtlMapCell\\Griffins.Map.CommunicationFuncCtlMapCell.csproj",
+      "..\\功能图元\\DataMonitorFuncCtlMapCell\\Griffins.Map.DataMonitorFuncCtlMapCell.csproj",
+      "..\\功能图元\\DeviceStatusCtlMapCell\\Griffins.Map.DeviceStatusFuncCtlMapCell.csproj",
+      "..\\功能图元\\DispensingViewFuncCtlMapCell\\Griffins.Map.DispensingViewFuncCtlMapCell.csproj",
+      "..\\功能图元\\HeatingControlFuncCtlMapCell\\Griffins.Map.HeatingControlFuncCtlMapCell.csproj",
+      "..\\功能图元\\LoadUnloadFuncCtlMapCell\\GKG.Map.LoadUnloadFuncCtlMapCell.csproj",
+      "..\\功能图元\\LogFuncCtlMapCell\\Griffins.Map.LogFuncCtlMapCell.csproj",
+      "..\\功能图元\\PressureFuncCtlMapCell\\Griffins.Map.PressureFuncCtlMapCell.csproj",
+      "..\\功能图元\\ProductionInformationFuncCtlMapCell\\GKG.Map.ProductionInformationFuncCtlMapCell.csproj",
+      "..\\功能图元\\StationFuncCtlMapCell\\StationFuncCtlMapCell.csproj",
+      "..\\功能图元\\StatusInfoFuncCtlMapCell\\Griffins.Map.StatusInfoFuncCtlMapCell.csproj",
+      "..\\功能图元\\TrackFuncCtlMapCell\\Griffins.Map.TrackFuncCtlMapCell.csproj",
+      "..\\功能图元\\TwoDDetectionFuncCtlMapCell\\Griffins.Map.TwoDDetectionFuncCtlMapCell.csproj",
+      "TestApp\\TestApp.csproj"
+    ]
+  }
+}

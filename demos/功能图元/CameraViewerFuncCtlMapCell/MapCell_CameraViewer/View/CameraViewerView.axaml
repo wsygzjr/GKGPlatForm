@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:general="using:GKG.UI.General" 
+             xmlns:vm="using:GKG.Map.CameraViewerFuncCtlMapCell.ViewModel"
+             x:Class="GKG.Map.CameraViewerFuncCtlMapCell.View.CameraViewerView"
+             x:DataType="vm:CameraViewerViewModel">
+
+    <Grid>
+        <general:VisionControlShowView Margin="5" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,86 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.ViewModel"
+        x:Class="GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.View.MachineCalibrationView"
+        Title="一键校正" Width="750" Height="600"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="None" ShowInTaskbar="False"
+        Background="#F5F5F5">
+
+    <Window.Styles>
+        <Style Selector="Button.BlueBtn">
+            <Setter Property="Background" Value="#5B9BD5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Styles>
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:StartStepViewModel}">
+            <Button Classes="BlueBtn" Content="开始校正" Width="250" Height="80" 
+                    HorizontalAlignment="Center" Command="{Binding StartCommand}"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:OutGlueStepViewModel}">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+                <StackPanel Orientation="Horizontal" Spacing="30" IsVisible="{Binding IsDoubleValve}">
+                    <TextBlock Text="排胶点数" Background="#EAEAEA" Padding="20,10" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox Text="{Binding LeftPoints}" Width="100" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <Button Classes="BlueBtn" Content="左阀" Width="200" Height="60" Command="{Binding LeftValveCommand}"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" Spacing="30">
+                    <TextBlock Text="排胶点数" Background="#EAEAEA" Padding="20,10" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox Text="{Binding RightPoints}" Width="100" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <Button Classes="BlueBtn" Width="200" Height="60" 
+                            Command="{Binding RightValveCommand}"
+                            Content="{Binding RightButtonText}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:GenericActionStepViewModel}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="50">
+                <Button Classes="BlueBtn" Content="左阀" Width="200" Height="80" 
+                        Command="{Binding LeftActionCommand}" IsVisible="{Binding IsDoubleValve}"/>
+                <Button Classes="BlueBtn" Width="200" Height="80" 
+                        Command="{Binding RightActionCommand}"
+                        Content="{Binding RightButtonText}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ObliqueTeachStepViewModel}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="50">
+                <Button Classes="BlueBtn" Content="旋转0度校准" Width="220" Height="80" 
+                        Command="{Binding R0Command}"/>
+                
+                <Button Classes="BlueBtn" Content="旋转90度校准" Width="220" Height="80" 
+                        Command="{Binding R90Command}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <Grid RowDefinitions="60, *, 200, 80">
+        <Border Grid.Row="0" Background="#EAEAEA">
+            <TextBlock Text="{Binding CurrentStep.StepTitle}" FontSize="28" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <TransitioningContentControl Grid.Row="1" Content="{Binding CurrentStep}" Margin="20"/>
+
+        <Border Grid.Row="2" BorderBrush="#D0D0D0" BorderThickness="1" Margin="30,10">
+            <ListBox ItemsSource="{Binding Logs}" FontSize="14" Background="White"/>
+        </Border>
+
+        <Grid Grid.Row="3" ColumnDefinitions="*,*" Margin="30,0">
+            <Button Grid.Column="0" Classes="BlueBtn" Content="⮜ 上一步" Width="200" Height="50"
+                    HorizontalAlignment="Left" Command="{Binding PrevCommand}"/>
+            
+            <Button Grid.Column="1" Classes="BlueBtn" Content="{Binding NextButtonText}" Width="200" Height="50"
+                    HorizontalAlignment="Right" Command="{Binding NextCommand}"/>
+        </Grid>
+    </Grid>
+</Window>

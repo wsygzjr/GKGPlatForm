@@ -1,0 +1,276 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_Slider.ViewModels"
+             xmlns:local="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_Slider.Converts"
+             xmlns:textBoxConverts="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_TextBox.Converts"
+             mc:Ignorable="d"
+             d:DesignWidth="150"
+             d:DesignHeight="32"
+             x:Class="GKG.Map.MapCell.Generic.Control.MapCell_Slider.Views.SliderView"
+             x:Name="This"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <Design.DataContext>
+        <vm:SliderViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <local:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <local:StringToOrientationConverter x:Key="StringToOrientationConverter"/>
+        <local:TickPlacementToVisibilityConverter x:Key="TickPlacementToVisibilityConverter"/>
+        <textBoxConverts:CursorTypeToCursorConverter x:Key="CursorTypeToCursorConverter"/>
+    </UserControl.Resources>
+    
+    <Border x:Name="RootBorder"
+            Background="Transparent"
+            ClipToBounds="False"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+        <!-- 滑块控件，直接使用Slider，确保所有绑定和样式正确 -->
+        <Slider x:Name="CustomSlider"
+                Minimum="{Binding CommonInfo.Minimum}"
+                Maximum="{Binding CommonInfo.Maximum}"
+                Value="{Binding CommonInfo.Value, Mode=TwoWay}"
+                SmallChange="{Binding CommonInfo.SmallChange}"
+                TickFrequency="{Binding CommonInfo.TickFrequency}"
+                TickPlacement="{Binding CommonInfo.TickPlacement}"
+                IsEnabled="{Binding CommonInfo.Enabled}"
+                Orientation="{Binding CommonInfo.Direction, Converter={StaticResource StringToOrientationConverter}}"
+                ClipToBounds="False"
+                Cursor="{Binding EffectiveHoverCursor, Converter={StaticResource CursorTypeToCursorConverter}}"
+                Opacity="{Binding OpacityValue}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+            
+            <Slider.Styles>
+                <!-- 基础样式，设置默认颜色和行为 -->
+                <Style Selector="Slider">
+                    <Setter Property="Foreground" Value="{Binding BrushInfo.BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"/>
+                    <Setter Property="Background" Value="Gray"/>
+                </Style>
+                
+                <!-- 水平方向样式 -->
+                <Style Selector="Slider[Orientation=Horizontal]#CustomSlider">
+                    <Setter Property="Padding" Value="0,8,0,0"/>
+                    <Setter Property="Template">
+                        <ControlTemplate>
+                            <Border Background="Transparent"
+                                    Padding="{TemplateBinding Padding}">
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                      Cursor="{TemplateBinding Cursor}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="6"/>
+                                        <RowDefinition Height="16"/>
+                                        <RowDefinition Height="6"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <!-- 刻度线使用单独的 TickBar 呈现，只在对应位置配置下显示。 -->
+                                    <TickBar Grid.Row="0"
+                                             Minimum="{TemplateBinding Minimum}"
+                                             Maximum="{TemplateBinding Maximum}"
+                                             TickFrequency="{TemplateBinding TickFrequency}"
+                                             Placement="Top"
+                                             ReservedSpace="16"
+                                             Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}"
+                                             IsVisible="{Binding TickPlacement, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TickPlacementToVisibilityConverter}, ConverterParameter=TopLeft}"/>
+                                    
+                                    <!-- 轨道背景 -->
+                                    <Border Grid.Row="1"
+                                            Background="Gray" 
+                                            Height="6" 
+                                            VerticalAlignment="Center" 
+                                            HorizontalAlignment="Stretch" 
+                                            MinWidth="20"
+                                            CornerRadius="3"/>
+                                    
+                                    <!-- 轨道 -->
+                                    <Track x:Name="PART_Track" 
+                                           Grid.Row="1"
+                                           HorizontalAlignment="Stretch" 
+                                           VerticalAlignment="Center" 
+                                           Height="16"
+                                           MinWidth="20"
+                                           Minimum="{TemplateBinding Minimum}"
+                                           Maximum="{TemplateBinding Maximum}"
+                                           Value="{TemplateBinding Value}"
+                                           Orientation="{TemplateBinding Orientation}">
+                                        <!-- 选中轨道 -->
+                                        <Track.DecreaseButton>
+                                            <RepeatButton Background="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}"
+                                                          Cursor="{Binding Cursor, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}">
+                                                <RepeatButton.Template>
+                                                    <ControlTemplate>
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                HorizontalAlignment="Stretch" 
+                                                                VerticalAlignment="Center" 
+                                                                Height="6"
+                                                                MinWidth="1"
+                                                                CornerRadius="3"/>
+                                                    </ControlTemplate>
+                                                </RepeatButton.Template>
+                                            </RepeatButton>
+                                        </Track.DecreaseButton>
+                                        
+                                        <!-- 未选中轨道 -->
+                                        <Track.IncreaseButton>
+                                            <RepeatButton Background="Transparent"
+                                                          Cursor="{Binding Cursor, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}">
+                                                <RepeatButton.Template>
+                                                    <ControlTemplate>
+                                                        <Border Background="Transparent" 
+                                                                HorizontalAlignment="Stretch" 
+                                                                VerticalAlignment="Center" 
+                                                                Height="6"
+                                                                MinWidth="1"
+                                                                CornerRadius="3"/>
+                                                    </ControlTemplate>
+                                                </RepeatButton.Template>
+                                            </RepeatButton>
+                                        </Track.IncreaseButton>
+                                        
+                                        <!-- 滑块 -->
+                                        <Track.Thumb>
+                                            <Thumb Width="16" Height="16"
+                                                   Cursor="{Binding Cursor, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}">
+                                                <Thumb.Template>
+                                                    <ControlTemplate>
+                                                        <Ellipse Fill="#FF1E90FF" 
+                                                                 Width="16" 
+                                                                 Height="16" 
+                                                                 Stroke="#FF1E90FF" 
+                                                                 StrokeThickness="1"/>
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                        </Track.Thumb>
+                                    </Track>
+
+                                    <TickBar Grid.Row="2"
+                                             Minimum="{TemplateBinding Minimum}"
+                                             Maximum="{TemplateBinding Maximum}"
+                                             TickFrequency="{TemplateBinding TickFrequency}"
+                                             Placement="Bottom"
+                                             ReservedSpace="16"
+                                             Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}"
+                                             IsVisible="{Binding TickPlacement, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TickPlacementToVisibilityConverter}, ConverterParameter=BottomRight}"/>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter>
+                </Style>
+                
+                <!-- 垂直方向样式 -->
+                <Style Selector="Slider[Orientation=Vertical]#CustomSlider">
+                    <Setter Property="Padding" Value="8,0,0,0"/>
+                    <Setter Property="Template">
+                        <ControlTemplate>
+                            <Border Background="Transparent"
+                                    Padding="{TemplateBinding Padding}">
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                      Cursor="{TemplateBinding Cursor}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="6"/>
+                                        <ColumnDefinition Width="16"/>
+                                        <ColumnDefinition Width="6"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TickBar Grid.Column="0"
+                                             Minimum="{TemplateBinding Minimum}"
+                                             Maximum="{TemplateBinding Maximum}"
+                                             TickFrequency="{TemplateBinding TickFrequency}"
+                                             Orientation="Vertical"
+                                             Placement="Left"
+                                             ReservedSpace="16"
+                                             Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}"
+                                             IsVisible="{Binding TickPlacement, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TickPlacementToVisibilityConverter}, ConverterParameter=TopLeft}"/>
+
+                                    <!-- 轨道背景 -->
+                                    <Border Grid.Column="1"
+                                            Background="Gray" 
+                                            Width="6" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Stretch" 
+                                            MinHeight="20"
+                                            CornerRadius="3"/>
+                                    
+                                    <!-- 轨道 -->
+                                    <Track x:Name="PART_Track" 
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Stretch" 
+                                           Width="16"
+                                           MinHeight="20"
+                                           Minimum="{TemplateBinding Minimum}"
+                                           Maximum="{TemplateBinding Maximum}"
+                                           Value="{TemplateBinding Value}"
+                                           Orientation="{TemplateBinding Orientation}">
+                                        <!-- 选中轨道 -->
+                                        <Track.DecreaseButton>
+                                            <RepeatButton Background="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}"
+                                                          Cursor="{Binding Cursor, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}">
+                                                <RepeatButton.Template>
+                                                    <ControlTemplate>
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                HorizontalAlignment="Center" 
+                                                                VerticalAlignment="Stretch" 
+                                                                Width="6"
+                                                                MinHeight="1"
+                                                                CornerRadius="3"/>
+                                                    </ControlTemplate>
+                                                </RepeatButton.Template>
+                                            </RepeatButton>
+                                        </Track.DecreaseButton>
+                                        
+                                        <!-- 未选中轨道 -->
+                                        <Track.IncreaseButton>
+                                            <RepeatButton Background="Transparent"
+                                                          Cursor="{Binding Cursor, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}">
+                                                <RepeatButton.Template>
+                                                    <ControlTemplate>
+                                                        <Border Background="Transparent" 
+                                                                HorizontalAlignment="Center" 
+                                                                VerticalAlignment="Stretch" 
+                                                                Width="6"
+                                                                MinHeight="1"
+                                                                CornerRadius="3"/>
+                                                    </ControlTemplate>
+                                                </RepeatButton.Template>
+                                            </RepeatButton>
+                                        </Track.IncreaseButton>
+                                        
+                                        <!-- 滑块 -->
+                                        <Track.Thumb>
+                                            <Thumb Width="16" Height="16"
+                                                   Cursor="{Binding Cursor, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}">
+                                                <Thumb.Template>
+                                                    <ControlTemplate>
+                                                        <Ellipse Fill="#FF1E90FF" 
+                                                                 Width="16" 
+                                                                 Height="16" 
+                                                                 Stroke="#FF1E90FF" 
+                                                                 StrokeThickness="1"/>
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                        </Track.Thumb>
+                                    </Track>
+
+                                    <TickBar Grid.Column="2"
+                                             Minimum="{TemplateBinding Minimum}"
+                                             Maximum="{TemplateBinding Maximum}"
+                                             TickFrequency="{TemplateBinding TickFrequency}"
+                                             Orientation="Vertical"
+                                             Placement="Right"
+                                             ReservedSpace="16"
+                                             Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Slider}}}"
+                                             IsVisible="{Binding TickPlacement, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TickPlacementToVisibilityConverter}, ConverterParameter=BottomRight}"/>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter>
+                </Style>
+            </Slider.Styles>
+        </Slider>
+    </Border>
+</UserControl>

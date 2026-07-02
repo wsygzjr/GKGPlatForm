@@ -1,0 +1,289 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.IODevice.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="1500"
+             d:DesignHeight="760"
+             x:DataType="vm:IODeviceCfgViewModel"
+             x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.IODevice.Views.IODeviceCfgView">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock.section-title">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#20407B" />
+        </Style>
+        <Style Selector="Border.panel">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+        <Style Selector="Border.title-panel">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="10,12" />
+        </Style>
+        <Style Selector="Button.toolbar-primary">
+            <Setter Property="Background" Value="#1C5ED6" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#1C5ED6" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Button.toolbar-danger">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#FF3D3D" />
+            <Setter Property="BorderBrush" Value="#FF3D3D" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Button.action-danger">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#FF3D3D" />
+            <Setter Property="BorderBrush" Value="#FF3D3D" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F1F4F8" />
+            <Setter Property="Foreground" Value="#5C5F63" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+        </Style>
+        <Style Selector="DataGridCell">
+            <Setter Property="BorderBrush" Value="#E8EAEE" />
+        </Style>
+        <Style Selector="DataGridRow">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#111111" />
+        </Style>
+        <Style Selector="DataGridRow:selected">
+            <Setter Property="Background" Value="#F2F7FF" />
+            <Setter Property="Foreground" Value="#1C5ED6" />
+        </Style>
+        <Style Selector="ComboBox">
+            <Setter Property="MinHeight" Value="34" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="8,4" />
+        </Style>
+        <Style Selector="Button.advanced-btn:disabled">
+            <Setter Property="Background" Value="#D5DDE3" />
+            <Setter Property="BorderBrush" Value="#B8C4CC" />
+            <Setter Property="Foreground" Value="#7A8A95" />
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="Cursor" Value="Arrow" />
+        </Style>
+        <Style Selector="Button.advanced-btn">
+            <Setter Property="Background" Value="#1C5ED6" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#1C5ED6" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Classes="panel">
+        <Grid ColumnDefinitions="680,*"
+              ColumnSpacing="12">
+            <Grid Grid.Column="0"
+                  RowDefinitions="Auto,*"
+                  RowSpacing="10">
+                <StackPanel Grid.Row="0"
+                            Orientation="Horizontal"
+                            Spacing="8">
+                    <Button Content="新增"
+                            Classes="toolbar-primary"
+                            Command="{Binding AddCommand}"
+                            MinWidth="88"
+                            Height="38"
+                            IsVisible="{Binding IsStateMode}" />
+                    <Button Content="删除"
+                            Classes="toolbar-danger"
+                            Command="{Binding DeleteCheckedCommand}"
+                            MinWidth="88"
+                            Height="38"
+                            IsVisible="{Binding IsStateMode}" />
+                </StackPanel>
+
+                <DataGrid Grid.Row="1"
+                          Name="IODeviceDataGrid"
+                          IsVisible="{Binding IsStateMode}"
+                          ItemsSource="{Binding IODeviceInfoList}"
+                          AutoGenerateColumns="False"
+                          Background="#FFFFFF"
+                          BorderBrush="#E0E3E9"
+                          BorderThickness="1"
+                          IsReadOnly="False"
+                          SelectionMode="Single"
+                          SelectedItem="{Binding SelectedIODevice, Mode=TwoWay}"
+                          GridLinesVisibility="All"
+                          HeadersVisibility="Column"
+                          RowHeight="42">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="80"
+                                                CanUserSort="False">
+                            <DataGridTemplateColumn.Header>
+                                <CheckBox HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          ToolTip.Tip="全选"
+                                          IsChecked="{Binding DataContext.IsAllChecked, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" />
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="序号"
+                                            Binding="{Binding SequenceNo, Mode=OneWay}"
+                                            IsReadOnly="True"
+                                            Width="70" />
+
+                        <DataGridTextColumn Header="状态量名称"
+                                            Binding="{Binding IOName, Mode=TwoWay}"
+                                            Width="145" />
+
+                        <DataGridTemplateColumn Header="IO设备"
+                                                Width="155">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding DeviceIdModel.ItemsSource}"
+                                              SelectedItem="{Binding DeviceIdModel.SelectedItem, Mode=TwoWay}"
+                                              Tag="Device"
+                                              SelectionChanged="DeviceComboBox_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DisplayName}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="通道号"
+                                                Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding ChannelSelectionModel.ItemsSource}"
+                                              SelectedItem="{Binding ChannelSelectionModel.SelectedItem, Mode=TwoWay}"
+                                              Tag="Channel"
+                                              SelectionChanged="ChannelComboBox_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DisplayName}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="操作"
+                                                Width="90"
+                                                IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="删除"
+                                            Classes="action-danger"
+                                            HorizontalAlignment="Center"
+                                            Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Border Grid.Row="1"
+                        IsVisible="{Binding IsAnalogMode}"
+                        BorderBrush="#E0E3E9"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                        Background="#F8FCFE">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="#6C8796"
+                               Text="模拟量表格暂未配置" />
+                </Border>
+            </Grid>
+
+            <Border Grid.Column="1"
+                    BorderBrush="#E0E3E9"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Background="#FFFFFF"
+                    Padding="12">
+                <Border Classes="panel">
+                    <Grid RowDefinitions="Auto,*,Auto"
+                          RowSpacing="12">
+                        <Border Grid.Row="0"
+                                Classes="title-panel">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding SelectedItemDisplayName}"
+                                       Classes="section-title" />
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                IsVisible="{Binding IsStateMode}"
+                                BorderBrush="#E0E3E9"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Background="#F8FCFE"
+                                Padding="12">
+                            <StackPanel Spacing="10">
+                                <TextBlock Text="状态量公共参数"
+                                           Classes="section-title" />
+                                <Grid ColumnDefinitions="90,*"
+                                      ColumnSpacing="10">
+                                    <TextBlock Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               Text="读写模式" />
+                                    <custom:ComboxControl Grid.Column="1"
+                                                          Width="220"
+                                                          HorizontalAlignment="Left"
+                                                          LabelName=""
+                                                          ViewModel="{Binding ReadWriteModeEditorViewModel}" />
+                                </Grid>
+                                <CheckBox Content="状态量取反"
+                                          IsChecked="{Binding CurrentStateParameterItem.StateReverse, Mode=TwoWay}" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                IsVisible="{Binding IsAnalogMode}"
+                                BorderBrush="#E0E3E9"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Background="#F8FCFE">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="#6C8796"
+                                       Text="暂无公共参数" />
+                        </Border>
+
+                        <Button Grid.Row="2"
+                                IsVisible="{Binding IsStateMode}"
+                                HorizontalAlignment="Right"
+                                MinWidth="140"
+                                Height="34"
+                                Content="状态量高级参数"
+                                Classes="advanced-btn"
+                                IsEnabled="{Binding CanOpenAdvancedParameter}"
+                                Click="OpenStateAdvancedParameterWindow_Click" />
+                    </Grid>
+                </Border>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,90 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:QrCodeWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:DispensingPageType.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.QrCodeWorkAreaView">
+	
+     <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"   Width="876"  Height="290" HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+             
+			<TextBlock Text="扫二维码设置"  Classes="TextBlockWorkAreaViewTitle" ></TextBlock> 
+            
+            <Grid   RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto"
+            RowSpacing="0"   Width="865" HorizontalAlignment="Left" VerticalAlignment="Center"  >
+            
+                <Grid  Grid.Row="0"  Grid.Column="0"   RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
+                RowSpacing="0"   Width="580"  HorizontalAlignment="Left" VerticalAlignment="Center"  >
+                     <custom:ComboxControl  Grid.Row="0"  Grid.Column="0" 
+		                HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName="扫码方式"
+		                WidthLevel="Small"
+		                ViewModel="{Binding ScanModeViewModel  }" />   
+			
+            
+                     <custom:ComboxControl  Grid.Row="1"  Grid.Column="0" 
+		                HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName="码类型"
+		                WidthLevel="Small"
+		                ViewModel="{Binding CodeTypeViewModel  }" />  
+             
+                         <Button  Grid.Row="2"  Grid.Column="0" 
+                        Content="测试"   Classes="btnSave" 
+                        Command="{Binding TestCommand}"
+                        Cursor="Hand"> 
+                    </Button>  
+               </Grid>
+
+                     <!-- 起始位置  视图模型GlueDspensingPositionViewModel --> 
+                <Grid   Width="580"  Grid.Row="1"  Grid.Column="0"   RowDefinitions="Auto" ColumnDefinitions="Auto,Auto"
+                            RowSpacing="0"     HorizontalAlignment="Left" VerticalAlignment="Center"  > 
+                              
+                    <TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Top" 
+                                    FontFamily="SimSun"     FontSize="14"  Text="位置" Margin="4,10,4,10"     />
+                        
+                    <Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+                        RowSpacing="0"    HorizontalAlignment="Left" VerticalAlignment="Center" > 
+                             <!-- 坐标表头 --> 
+                         <!--   <gkgUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="0"  
+                                Margin="0" Height="35" HorizontalAlignment="Left" VerticalAlignment="Center" />   
+                             --><!-- 坐标数据    --><!-- 
+                            <gkgUI:PositionTeachView    Grid.Row="1"  Grid.Column="0" 
+                               DataContext="{Binding PositionViewModel}"
+                                Margin="0" Height="50"    HorizontalAlignment="Left" VerticalAlignment="Center" />   -->
+                    </Grid>
+                 </Grid> 
+                   
+                 <!-- 扫码数据列表  --> 
+                <StackPanel  Grid.Row="0"  Grid.Column="1"  Grid.RowSpan="2"
+                            Orientation="Vertical"   HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+			        <TextBlock Text="扫码数据"  Grid.Row="0"  Grid.Column="1"  HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" ></TextBlock> 
+
+                    <Border Classes="border"  Background="LightGray"> 
+				        <ListBox  Grid.Row="1"  Grid.Column="1"  Grid.RowSpan="2" Width="240"
+                      Height="190" Name="lstShowDoneDataRight"  
+		                    ItemsSource ="{Binding ScanDataList  }"  Foreground="LightGray" />
+                    </Border>
+                </StackPanel>    
+          </Grid> 
+        
+        </StackPanel>
+      
+
+    </Border>
+     
+    
+</UserControl>

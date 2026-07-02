@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="GriffinsGeneralTestMM.UctlParamListView"
+               xmlns:vm="clr-namespace:GriffinsGeneralTestMM"
+               x:DataType="vm:UctlParamListViewModel"
+               d:DesignWidth="410" d:DesignHeight="267"> 
+
+    <!-- 参数表格界面 -->
+
+    <!-- 带滚动的参数列表容器 -->
+    <ScrollViewer HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto"
+                    Margin="5"  > 
+      <!--内容控件  zgl改 -->    
+           <ContentControl Content="{Binding StackPanel_UctlParamList}" BorderBrush="#CCCCCC" BorderThickness="1.5"  />   
+    </ScrollViewer> 
+</UserControl>
+ 

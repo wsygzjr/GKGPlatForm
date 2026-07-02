@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "总解决方案.sln",
+    "projects": [
+      "..\\控件图元\\Generic\\GenericCtlMapCell\\GKG.Map.MapCell.Generic.csproj"
+    ]
+  }
+}

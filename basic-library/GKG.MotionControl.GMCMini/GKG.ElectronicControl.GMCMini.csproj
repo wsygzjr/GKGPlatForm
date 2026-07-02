@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\MotionControl</OutputPath>
+	  <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	  <Private>False</Private>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GF_Gereric" Version="7.1.0" />
+    <PackageReference Include="GKG" Version="1.0.0" />
+    <PackageReference Include="GKG.ElectronicControl" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

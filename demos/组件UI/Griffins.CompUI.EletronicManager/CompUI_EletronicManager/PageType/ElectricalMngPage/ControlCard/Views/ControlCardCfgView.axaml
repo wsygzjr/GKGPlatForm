@@ -1,0 +1,45 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="1500"
+             d:DesignHeight="900"
+             xmlns:views="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.Views"
+             xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.ViewModels"
+             x:DataType="vm:ControlCardCfgViewModel"
+             x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.Views.ControlCardCfgView">
+
+    <Border Background="#CFE7F6"
+            Padding="12"
+            CornerRadius="10">
+        <TabControl>
+            <TabItem Header="运控卡">
+                <Grid ColumnDefinitions="*"
+                      ColumnSpacing="12">
+                    <views:ControlCardListCfgView Grid.Column="0"
+                                                  DataContext="{Binding ControlCardListViewModel}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="IO设备">
+                <Border Background="#D8ECF7"
+                        BorderBrush="#8FB8CF"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="12">
+                    <Border Background="#F8FCFE"
+                            BorderBrush="#C7DCE8"
+                            BorderThickness="1"
+                            CornerRadius="6">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="#6C8796"
+                                   Text="IO设备页面暂未开发" />
+                    </Border>
+                </Border>
+            </TabItem>
+        </TabControl>
+    </Border>
+</UserControl>
+

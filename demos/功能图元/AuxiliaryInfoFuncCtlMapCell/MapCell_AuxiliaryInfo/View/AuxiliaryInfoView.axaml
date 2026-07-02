@@ -1,0 +1,227 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.AuxiliaryInfoFuncCtlMapCell.ViewModel"
+             xmlns:res="clr-namespace:GKG.Map.AuxiliaryInfoFuncCtlMapCell"
+             xmlns:conv="clr-namespace:GKG.Map.AuxiliaryInfoFuncCtlMapCell.Convert"
+             mc:Ignorable="d" d:DesignWidth="1080" d:DesignHeight="750"
+             x:Class="GKG.Map.AuxiliaryInfoFuncCtlMapCell.View.AuxiliaryInfoView"
+             x:DataType="vm:AuxiliaryInfoViewModel"
+             Background="#F4F6F9"> <UserControl.Styles>
+        <Style Selector="TextBlock.Label">
+            <Setter Property="Foreground" Value="#888888" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
+        <Style Selector="TextBlock.Value">
+            <Setter Property="Foreground" Value="#000000" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+        </Style>
+
+        <Style Selector="Border.RowSeparator">
+            <Setter Property="BorderBrush" Value="#EAECEF" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Padding" Value="0,18" /> 
+        </Style>
+
+        <Style Selector="Button.Primary">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="20,0" />
+            <Setter Property="Background" Value="#0078D4" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Transitions">
+                <Transitions><BrushTransition Property="Background" Duration="0:0:0.2"/></Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.Primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#005A9E" />
+        </Style>
+
+        <Style Selector="Button.Outline">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="16,0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#0078D4" />
+            <Setter Property="BorderBrush" Value="#0078D4" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Transitions">
+                <Transitions><BrushTransition Property="Background" Duration="0:0:0.2"/></Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.Outline:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#F0F8FF" />
+            <Setter Property="BorderBrush" Value="#005A9E" />
+            <Setter Property="Foreground" Value="#005A9E" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border x:Name="MainBorder" Background="White" CornerRadius="8" Padding="30" Margin="24" BoxShadow="0 4 20 0 #15000000">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Padding="0,0,16,0">
+            <StackPanel Spacing="0"> <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *, Auto">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.ProgramName}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding ProgramName}" />
+                        <Button Grid.Column="2" Classes="Primary" Content="{x:Static res:ResourceA.SaveParams}" Command="{Binding SaveParamsCommand}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *, Auto">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.WorkOrderNo}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding WorkOrderNo}" />
+                        <Button Grid.Column="2" Classes="Outline" Content="{x:Static res:ResourceA.VerifyProgram}" Command="{Binding VerifyProgramCommand}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *, Auto">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.RightValveGlueInfo}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding RightValveGlueInfo}" />
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                            <Button Classes="Outline" Content="{x:Static res:ResourceA.Online}" Command="{Binding OnlineCommand}" />
+                            <Button Classes="Outline" Content="{x:Static res:ResourceA.Offline}" Command="{Binding OfflineCommand}" BorderBrush="#888888" Foreground="#666666"/> </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.RightValveGluePackageId}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding RightValveGluePackageId}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.RightValveGlueBatchNo}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding RightValveGlueBatchNo}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.RightValveGlueMaterialNo}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding RightValveGlueMaterialNo}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.RightValveGlueProdDate}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding RightValveGlueProdDate}" />
+                    </Grid>
+                </Border>
+
+                <StackPanel IsVisible="{Binding IsDualValve}">
+                    <Border Classes="RowSeparator">
+                        <Grid ColumnDefinitions="180, *, Auto">
+                            <TextBlock Grid.Column="0" Classes="Label" Text="左阀胶水信息" />
+                            <TextBlock Grid.Column="1" Classes="Value" Text="{Binding LeftValveGlueInfo}" />
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                                <Button Classes="Outline" Content="{x:Static res:ResourceA.Online}" Command="{Binding OnlineCommand}" />
+                                <Button Classes="Outline" Content="{x:Static res:ResourceA.Offline}" Command="{Binding OfflineCommand}" BorderBrush="#888888" Foreground="#666666"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="RowSeparator">
+                        <Grid ColumnDefinitions="180, *">
+                            <TextBlock Grid.Column="0" Classes="Label" Text="左阀胶水包装ID" />
+                            <TextBlock Grid.Column="1" Classes="Value" Text="{Binding LeftValveGluePackageId}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="RowSeparator">
+                        <Grid ColumnDefinitions="180, *">
+                            <TextBlock Grid.Column="0" Classes="Label" Text="左阀胶水生产批次号" />
+                            <TextBlock Grid.Column="1" Classes="Value" Text="{Binding LeftValveGlueBatchNo}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="RowSeparator">
+                        <Grid ColumnDefinitions="180, *">
+                            <TextBlock Grid.Column="0" Classes="Label" Text="左阀胶水制造料号" />
+                            <TextBlock Grid.Column="1" Classes="Value" Text="{Binding LeftValveGlueMaterialNo}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="RowSeparator">
+                        <Grid ColumnDefinitions="180, *">
+                            <TextBlock Grid.Column="0" Classes="Label" Text="左阀胶水生产日期" />
+                            <TextBlock Grid.Column="1" Classes="Value" Text="{Binding LeftValveGlueProdDate}" />
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.DeviceId}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding DeviceId}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.DeviceName}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding DeviceName}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.MacAddress}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding MacAddress}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.IpAddress}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding IpAddress}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.ProductInfo}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding ProductInfo}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.GlueName}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding GlueName}" />
+                    </Grid>
+                </Border>
+
+                <Border Classes="RowSeparator">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.PiezoValveSerialNo}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding PiezoValveSerialNo}" />
+                    </Grid>
+                </Border>
+
+                <Border Padding="0,12">
+                    <Grid ColumnDefinitions="180, *">
+                        <TextBlock Grid.Column="0" Classes="Label" Text="{x:Static res:ResourceA.ValveId}" />
+                        <TextBlock Grid.Column="1" Classes="Value" Text="{Binding ValveId}" />
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

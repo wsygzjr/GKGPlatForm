@@ -1,0 +1,67 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Griffins.CompUI.Vision"
+		xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+		xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+        mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="450"
+        x:Class="Griffins.CompUI.Vision.ControlPanelWindow"
+        x:DataType="vm:ControlPanelViewModel">
+	<Window.Styles>
+		<Style Selector="Button.cp-btn">
+			<Setter Property="Width" Value="110" />
+			<Setter Property="Height" Value="34" />
+			<Setter Property="Margin" Value="0,0,0,10" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+		</Style>
+		<Style Selector="TextBlock.cp-label">
+			<Setter Property="FontSize" Value="14" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="0,0,0,0" />
+		</Style>
+		<Style Selector="TextBlock.cp-value">
+			<Setter Property="FontSize" Value="14" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="8,0,0,0" />
+			<Setter Property="TextWrapping" Value="Wrap" />
+		</Style>
+	</Window.Styles>
+
+	<Border Padding="18" Background="White">
+		<Grid ColumnDefinitions="170,*,*" RowDefinitions="auto">
+			<StackPanel Grid.Column="0" Spacing="14">
+				<Button Classes="cp-btn" Content="视觉测试" Command="{Binding VisionTestCommand}" />
+				<Button Classes="cp-btn" Content="9点标定" Command="{Binding NinePointCalibrationCommand}" />
+				<Button Classes="cp-btn" Content="扫码测试" Command="{Binding ScanTestCommand}" />
+				<Button Classes="cp-btn" Content="触发拍照" />
+			</StackPanel>
+
+			<StackPanel Grid.Column="1" Spacing="30" Margin="40,6,0,0">
+				<StackPanel Orientation="Horizontal" Spacing="0">
+					<TextBlock Classes="cp-label" Text="视觉结果：" />
+					<TextBlock Classes="cp-value" Text="{Binding VisionTestResult}" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal" Spacing="0">
+					<TextBlock Classes="cp-label" Text="视觉结果：" />
+					<TextBlock Classes="cp-value" Text="{Binding NinePointCalibrationResult}" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal" Spacing="0">
+					<TextBlock Classes="cp-label" Text="扫码结果：" />
+					<TextBlock Classes="cp-value" Text="{Binding ScanTestResult}" />
+				</StackPanel>
+			</StackPanel>
+			<StackPanel Grid.Column ="2" Spacing="30" Margin="40,6,0,0">
+				<gkgUI:VisionControlShowView
+					x:Name="CameraShow" 
+					DataContext="{Binding CameraShowViewModel}" 
+					Margin="2" 
+					Height="480"  
+					Width="640" />
+			</StackPanel>
+		</Grid>
+	</Border>
+</Window>

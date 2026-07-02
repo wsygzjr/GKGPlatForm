@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotionCalculateSubMachineModules", "MotionCalculate\MotionCalculateSubMachineModules\MotionCalculateSubMachineModules.csproj", "{F2DF4FB9-72FC-DE4F-B388-405E84E907E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalibrationSubMachineModules", "Calibration\CalibrationSubMachineModules\CalibrationSubMachineModules.csproj", "{43F4DCD1-FF7D-4CBF-5213-7093FB2B056A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Calibration", "Calibration", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MotionCalculate", "MotionCalculate", "{92B98648-1D82-4938-8547-E305AEAC5552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calibration", "Calibration\Calibration\Calibration.csproj", "{624F1F32-C11B-DD19-B8E0-F132350ACFAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.MotionCalculateSubMachineModules", "MotionCalculate\GKG.MotionCalculateSubMachineModules\GKG.MotionCalculateSubMachineModules.csproj", "{63E781B5-BC05-6AED-9725-2FFE664ACE75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.CalibrationSubMachineModules", "Calibration\GKG.CalibrationSubMachineModules\GKG.CalibrationSubMachineModules.csproj", "{0CDBA522-0A7D-6921-EFC2-ED45DA4C8171}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2DF4FB9-72FC-DE4F-B388-405E84E907E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DF4FB9-72FC-DE4F-B388-405E84E907E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DF4FB9-72FC-DE4F-B388-405E84E907E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DF4FB9-72FC-DE4F-B388-405E84E907E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43F4DCD1-FF7D-4CBF-5213-7093FB2B056A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43F4DCD1-FF7D-4CBF-5213-7093FB2B056A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43F4DCD1-FF7D-4CBF-5213-7093FB2B056A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43F4DCD1-FF7D-4CBF-5213-7093FB2B056A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{624F1F32-C11B-DD19-B8E0-F132350ACFAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{624F1F32-C11B-DD19-B8E0-F132350ACFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{624F1F32-C11B-DD19-B8E0-F132350ACFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{624F1F32-C11B-DD19-B8E0-F132350ACFAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63E781B5-BC05-6AED-9725-2FFE664ACE75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63E781B5-BC05-6AED-9725-2FFE664ACE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63E781B5-BC05-6AED-9725-2FFE664ACE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63E781B5-BC05-6AED-9725-2FFE664ACE75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CDBA522-0A7D-6921-EFC2-ED45DA4C8171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CDBA522-0A7D-6921-EFC2-ED45DA4C8171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CDBA522-0A7D-6921-EFC2-ED45DA4C8171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CDBA522-0A7D-6921-EFC2-ED45DA4C8171}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2DF4FB9-72FC-DE4F-B388-405E84E907E9} = {92B98648-1D82-4938-8547-E305AEAC5552}
+		{43F4DCD1-FF7D-4CBF-5213-7093FB2B056A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{624F1F32-C11B-DD19-B8E0-F132350ACFAC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{63E781B5-BC05-6AED-9725-2FFE664ACE75} = {92B98648-1D82-4938-8547-E305AEAC5552}
+		{0CDBA522-0A7D-6921-EFC2-ED45DA4C8171} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2755D470-156D-44E4-A829-9A933FB7ACCE}
+	EndGlobalSection
+EndGlobal

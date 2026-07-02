@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.Map.CtlMapCell.Generic.ViewModel"
+             xmlns:local="clr-namespace:Griffins.Map.CtlMapCell.Generic.Convert"
+             mc:Ignorable="d" d:DesignWidth="139" d:DesignHeight="53"
+             x:DataType="vm:ButtonViewModel"
+             x:Class="Griffins.Map.CtlMapCell.Generic.ButtonView">
+    <Design.DataContext>
+		<vm:ButtonViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <local:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <local:BitmapDataToImageBrushConverter x:Key="BitmapDataToImageBrushConverter"/>
+        <local:ImageSizeModeToStretchConverter x:Key="ImageSizeModeToStretchConverter"/>
+    </UserControl.Resources>
+    <Button x:Name="CustomButton" 
+            HorizontalContentAlignment="Center" 
+            VerticalContentAlignment="Center" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch">
+	    <Button.Background>
+            <MultiBinding Converter="{local:BackgroundMultiConverter}">
+                <Binding Path="BackgroundImage"/>         
+                <Binding Path="BackColor"/>               
+                <Binding Path="ImageSizeMode"/>
+            </MultiBinding>
+        </Button.Background>
+    </Button>
+</UserControl>

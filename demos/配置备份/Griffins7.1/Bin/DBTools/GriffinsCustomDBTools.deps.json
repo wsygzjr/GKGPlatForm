@@ -1,0 +1,44 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "GriffinsCustomDBTools/1.0.0": {
+        "dependencies": {
+          "DBToolsSvr": "1.0.0"
+        },
+        "runtime": {
+          "GriffinsCustomDBTools.dll": {}
+        }
+      },
+      "DBToolsSvr/1.0.0": {
+        "runtime": {
+          "DBToolsSvr.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "zh-CHT/DBToolsSvr.resources.dll": {
+            "locale": "zh-CHT"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GriffinsCustomDBTools/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DBToolsSvr/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

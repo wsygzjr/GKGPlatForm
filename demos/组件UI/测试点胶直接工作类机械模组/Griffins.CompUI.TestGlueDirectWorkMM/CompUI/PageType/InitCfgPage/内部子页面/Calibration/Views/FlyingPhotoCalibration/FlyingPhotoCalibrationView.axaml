@@ -1,0 +1,134 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="using:System"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.ViewModels.FlyingPhotoCalibration"
+             x:DataType="vm:FlyingPhotoCalibrationViewModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  x:Class="Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views.FlyingPhotoCalibrationView">
+
+     
+ <!--  飞拍标定选项卡-->
+	<StackPanel Orientation="Vertical"   MaxWidth="440" MinWidth="400" Width="440" > 
+         <!--xyz坐标位置-->
+         <views:PositionView     DataContext="{Binding }"    Margin="0"/> 
+
+         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*"
+              RowSpacing="0"  HorizontalAlignment="Center"   > 
+                 <!-- 阀 -->
+            <custom:ComboxControl   Grid.Row="0"  Grid.Column="0" 
+		        HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center" 
+		        LabelName="阀号选择"
+		        WidthLevel="Small1"
+		        ViewModel="{Binding ValveInfoModel }" />     
+             
+            <!-- 飞拍速度（mm/s） -->
+             <custom:NumericControl
+            Grid.Row="1"  Grid.Column="0"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center" 
+			LabelName="飞拍速度(mm/s)"
+			WidthLevel="Small1"  
+			ViewModel="{Binding FlyingSpeedViewModel}"
+			/>  
+            <!-- 提前加速度距离（mm） -->
+             <custom:NumericControl
+            Grid.Row="2"  Grid.Column="0"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center" 
+			LabelName="提前加速度距离(mm)"
+			WidthLevel="Small1"  
+			ViewModel="{Binding PreAccelerationDistanceViewModel}"
+			/> 
+               
+            <!-- 飞拍首点整定时间（ms） -->
+             <custom:NumericControl
+            Grid.Row="3"  Grid.Column="0"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center" 
+			LabelName="飞拍首点整定时间(ms)"
+			WidthLevel="Small1"  
+			ViewModel="{Binding FlyingCalibrationTimeViewModel}"
+			/> 
+
+             <!-- 方向 -->
+             <custom:ComboxControl  
+             Grid.Row="4"  Grid.Column="0" 
+                      HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     VerticalAlignment="Center"
+					LabelName="方向"
+					WidthLevel="Small1" 
+					ViewModel="{Binding FlyingDirectionViewModel}" 
+					/>
+           <!-- 标定 -->
+           <Button Content="标定"   Grid.Row="5"  Grid.Column="0" 
+                   Command="{Binding CalibrationCommand}"
+                Classes="btn"  /> 
+        </Grid>
+
+        
+         <!-- 3. 已标定速度列表区域 -->
+        <TextBlock Text="已标定速度列表"
+                   FontSize="14"
+                   FontWeight="Medium"
+                   Foreground="#333"
+                   Margin="3 5 0 2"/>
+         
+
+        <!-- 4. 标定速度数据网格：绑定 ObservableCollection<decimal> -->
+        <DataGrid ItemsSource="{Binding CalibratedSpeeds}"
+                  AutoGenerateColumns="False"
+                  BorderBrush="#E0E0E0"
+                  BorderThickness="1"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  MinHeight="120"  Width="430" 
+                  Margin="0 2"  Classes="StyleDataGrid" >
+            <DataGrid.Columns>
+                <!-- 速度列：格式化 decimal 显示，保留1位小数 -->
+                <DataGridTextColumn Header="速度 (mm/s)"
+                                    Width="250"
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="." StringFormat="F1"/>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+
+                <!-- 操作列：删除按钮 -->
+                <DataGridTemplateColumn Header="操作"
+                                        Width="170"
+                                        IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <!-- DataType 绑定 decimal 类型，匹配集合元素 -->
+                        <DataTemplate DataType="system:Decimal">
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="5"
+                                        HorizontalAlignment="Center"
+                                        Margin="0">
+                                <Button Content="删除"
+                                        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding .}"
+                                        Classes="DataGrid_btnDeleteStyle"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </StackPanel>
+ 
+
+</UserControl>

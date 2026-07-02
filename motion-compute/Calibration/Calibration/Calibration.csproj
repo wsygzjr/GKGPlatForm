@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>F:\Griffins7.1\Bin\Share\ImeIOT\MM</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="GKG" Version="1.0.0" />
+	  <PackageReference Include="GKG.EletronicManager" Version="1.0.0" />
+	  <PackageReference Include="GKG.MotionControl" Version="1.0.0" />
+	  <PackageReference Include="GKG.MotionCalculator" Version="1.0.0" />
+	  <PackageReference Include="GKG.Robot" Version="1.0.0" />
+	  <PackageReference Include="GKG.Vision" Version="1.0.0" />
+	</ItemGroup>
+
+</Project>

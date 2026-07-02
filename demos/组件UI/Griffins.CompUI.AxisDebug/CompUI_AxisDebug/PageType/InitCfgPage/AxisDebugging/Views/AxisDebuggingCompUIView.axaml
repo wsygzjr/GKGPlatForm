@@ -1,0 +1,229 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:convert="clr-namespace:Griffins.CompUI.AxisDebug.CompUI_AxisDebug.Converters"
+             xmlns:vm="clr-namespace:Griffins.CompUI.AxisDebug.CompUI_AxisDebug.PageType.InitCfgPage.AxisDebugging.ViewModels"
+             x:DataType="vm:AxisDebuggingCompUIViewModel"
+             x:Class="Griffins.CompUI.AxisDebug.CompUI_AxisDebug.PageType.InitCfgPage.AxisDebugging.Views.AxisDebuggingCompUIView">
+
+  <UserControl.Resources>
+    <convert:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter" />
+  </UserControl.Resources>
+
+  <UserControl.Styles>
+    <Style Selector="DataGridColumnHeader">
+      <Setter Property="Background" Value="#F2F2F2" />
+      <Setter Property="BorderBrush" Value="#D0D7E2" />
+      <Setter Property="BorderThickness" Value="0,0,1,1" />
+      <Setter Property="Foreground" Value="#333333" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Button.axis-action">
+      <Setter Property="Background" Value="#1F5FBF" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#184C99" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="2" />
+      <Setter Property="Padding" Value="10,6" />
+    </Style>
+    <Style Selector="Button.axis-action:disabled">
+      <Setter Property="Background" Value="#D9D9D9" />
+      <Setter Property="Foreground" Value="#777777" />
+      <Setter Property="BorderBrush" Value="#C8C8C8" />
+    </Style>
+  </UserControl.Styles>
+
+  <Grid Margin="10" ColumnDefinitions="2*,*" RowDefinitions="*" Background="#FFFFFF">
+    <Border Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="1" CornerRadius="4" Padding="8" Background="#FFFFFF">
+      <DataGrid
+        ItemsSource="{Binding AxisStatusList}"
+        AutoGenerateColumns="False"
+        IsReadOnly="True"
+        GridLinesVisibility="All"
+        HeadersVisibility="All"
+        Background="#FFFFFF"
+        BorderThickness="0">
+        <DataGrid.Columns>
+          <DataGridTemplateColumn Width="2*">
+            <DataGridTemplateColumn.Header>
+              <Border Background="#F2F2F2" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" />
+            </DataGridTemplateColumn.Header>
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Border Background="#EEF6FF" BorderBrush="#D0D7E2" BorderThickness="0,0,1,0">
+                  <TextBlock Text="{Binding AxisName}"
+                             Margin="8,0"
+                             VerticalAlignment="Center" />
+                </Border>
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn Header="当前位置" Width="*">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Border Background="#EEF6FF" BorderBrush="#D0D7E2" BorderThickness="0,0,1,0">
+                  <TextBlock Text="{Binding Position, StringFormat=0.000}"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             TextAlignment="Center" />
+                </Border>
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn Header="正限位(+)" Width="*">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Ellipse Width="10" Height="10"
+                         Fill="{Binding IsPosLimit, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn Header="原点" Width="*">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Ellipse Width="10" Height="10"
+                         Fill="{Binding IsHome, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn Header="负限位(-)" Width="*">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Ellipse Width="10" Height="10"
+                         Fill="{Binding IsNegLimit, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn Header="报警" Width="*">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Ellipse Width="10" Height="10"
+                         Fill="{Binding IsAlarm, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Red,LightGray'}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn Header="使能" Width="*">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Ellipse Width="10" Height="10"
+                         Fill="{Binding IsEnabled, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+        </DataGrid.Columns>
+      </DataGrid>
+    </Border>
+
+    <Border Grid.Column="1" Margin="10 0 0 0" BorderBrush="#D0D7E2" BorderThickness="1" CornerRadius="4" Padding="8" Background="#FFFFFF">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="110,*" RowSpacing="0" ColumnSpacing="0">
+        <Border Grid.Row="0" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" Padding="8 6" Background="#EEF6FF">
+          <TextBlock Text="运动轴" VerticalAlignment="Center" />
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,1" Padding="8 6">
+          <ComboBox ItemsSource="{Binding AxisOptions}"
+                    SelectedItem="{Binding SelectedAxis}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center">
+            <ComboBox.ItemTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center" />
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" Padding="8 6" Background="#EEF6FF">
+          <TextBlock Text="运动模式" VerticalAlignment="Center" />
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,1" Padding="8 6">
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+            <RadioButton Grid.Column="0" Content="正/反转" IsChecked="{Binding IsJogMode, Mode=TwoWay}" GroupName="MotionMode" HorizontalAlignment="Center" />
+            <RadioButton Grid.Column="1" Content="点位运动" IsChecked="{Binding IsPointMode, Mode=TwoWay}" GroupName="MotionMode" HorizontalAlignment="Center" />
+          </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" Padding="8 6" Background="#EEF6FF">
+          <TextBlock Text="转动方向" VerticalAlignment="Center" />
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,1" Padding="8 6">
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+            <RadioButton Grid.Column="0" Content="CW" IsChecked="{Binding IsCw, Mode=TwoWay}" GroupName="RotationDirection" HorizontalAlignment="Center" />
+            <RadioButton Grid.Column="1" Content="CCW" IsChecked="{Binding IsCcw, Mode=TwoWay}" GroupName="RotationDirection" HorizontalAlignment="Center" />
+          </Grid>
+        </Border>
+
+        <Border Grid.Row="3" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" Padding="8 6" Background="#EEF6FF">
+          <TextBlock Text="运动速度" VerticalAlignment="Center" />
+        </Border>
+        <Border Grid.Row="3" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,1" Padding="8 6">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBox Width="120" Text="{Binding Velocity, Mode=TwoWay}" TextAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="(mm/s)" VerticalAlignment="Center" />
+            <Button Content="{Binding JogButtonText}"
+                    Width="90"
+                    Margin="20 0 0 0"
+                    Classes="axis-action"
+                    Command="{Binding JogToggleCommand}"
+                    IsEnabled="{Binding CanMove}"
+                    IsVisible="{Binding IsJogMode}" />
+            <Button Content="运动"
+                    Width="90"
+                    Margin="20 0 0 0"
+                    Classes="axis-action"
+                    Command="{Binding MoveCommand}"
+                    IsEnabled="{Binding CanMove}"
+                    IsVisible="{Binding IsPointMode}" />
+          </StackPanel>
+        </Border>
+
+        <Border Grid.Row="4" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" Padding="8 6" Background="#EEF6FF">
+          <TextBlock Text="加速度" VerticalAlignment="Center" />
+        </Border>
+        <Border Grid.Row="4" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,1" Padding="8 6">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBox Width="120" Text="{Binding Acceleration, Mode=TwoWay}" TextAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="(mm/s²)" VerticalAlignment="Center" />
+          </StackPanel>
+        </Border>
+
+        <Border Grid.Row="5" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" Padding="8 6" Background="#EEF6FF">
+          <TextBlock Text="位移量" VerticalAlignment="Center" />
+        </Border>
+        <Border Grid.Row="5" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,1" Padding="8 6">
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <TextBox Width="120" Text="{Binding Distance, Mode=TwoWay}" TextAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="(mm)" VerticalAlignment="Center" />
+            <Button Content="停止" Width="90" Margin="20 0 0 0" Classes="axis-action" Command="{Binding StopCommand}" />
+          </StackPanel>
+        </Border>
+
+        <Border Grid.Row="6" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,1" Padding="8 6" Background="#EEF6FF" />
+        <Border Grid.Row="6" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,1" Padding="8 6">
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+            <Button Grid.Column="0" Content="使能" Width="140" Classes="axis-action" Command="{Binding EnableCommand}" />
+            <Button Grid.Column="1" Content="清除状态" Width="140" Classes="axis-action" Command="{Binding ClearStatusCommand}" />
+          </Grid>
+        </Border>
+
+        <Border Grid.Row="7" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,0" Padding="8 6" Background="#EEF6FF" />
+        <Border Grid.Row="8" Grid.Column="0" BorderBrush="#D0D7E2" BorderThickness="0,0,1,0" Background="#EEF6FF" />
+        <Border Grid.Row="7" Grid.Column="1" BorderBrush="#D0D7E2" BorderThickness="0,0,0,0" Padding="8 6">
+          <Button Content="回零" Width="140" Classes="axis-action" Command="{Binding HomeCommand}" IsEnabled="{Binding CanMove}" />
+        </Border>
+      </Grid>
+    </Border>
+  </Grid>
+</UserControl>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GKG.LoadUnloadMachineModules": {
+      "commandName": "Project"
+    },
+    "配置文件 1": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\IotGwSvr\\TestIotGwSvr.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\IotGwSvr"
+    }
+  }
+}

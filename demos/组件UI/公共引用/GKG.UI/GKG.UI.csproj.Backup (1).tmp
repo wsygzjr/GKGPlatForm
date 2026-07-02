@@ -1,0 +1,130 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	  <DocumentationFile>GKG.UI.xml</DocumentationFile>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Dlls</OutputPath>
+	  <EnableDynamicLoading>true</EnableDynamicLoading>
+	  <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+	  <PackageVersion>7.1.0</PackageVersion>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+	  <AssemblyTitle>GKG.UI</AssemblyTitle>
+	  <Company>Griffins</Company>
+	  <Product>GKG.UI</Product>
+	  <Copyright>Copyright © Griffins 2016</Copyright>
+	  <AssemblyVersion>7.1.0.0</AssemblyVersion>
+	  <FileVersion>7.1.0.0</FileVersion>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="公共\BaseLayoutControl.axaml" />
+    <AvaloniaXaml Remove="公共\ComboBoxControl.axaml" />
+    <AvaloniaXaml Remove="公共\ComboBoxEx.axaml" />
+    <AvaloniaXaml Remove="公共\DatePickerControl.axaml" />
+    <AvaloniaXaml Remove="公共\DropDownStyleComboBox.axaml" />
+    <AvaloniaXaml Remove="公共\EditableComboBoxControl.axaml" />
+    <AvaloniaXaml Remove="公共\EnhancedComboBox.axaml" />
+    <AvaloniaXaml Remove="公共\ExtendedComboBox.axaml" />
+    <AvaloniaXaml Remove="公共\GroupBoxControl.axaml" />
+    <AvaloniaXaml Remove="公共\RadioButtonControl.axaml" />
+    <AvaloniaXaml Remove="公共\SliderControl.axaml" />
+    <AvaloniaXaml Remove="公共\TimePickerWithSeconds.axaml" />
+    <AvaloniaXaml Remove="General\StandardCylinder\**\*.axaml" />
+    <AvaloniaXaml Remove="General\CylinderPageTypeRow\**\*.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="General\PositionTeachVerticalView.xaml.cs" />
+    <Compile Remove="公共\BaseLayoutControl.axaml.cs" />
+    <Compile Remove="公共\ComboBoxControl.axaml.cs" />
+    <Compile Remove="公共\ComboBoxEx.axaml.cs" />
+    <Compile Remove="公共\ComboBoxExtensions.cs" />
+    <Compile Remove="公共\DatePickerControl.axaml.cs" />
+    <Compile Remove="公共\DropDownStyleComboBox.axaml.cs" />
+    <Compile Remove="公共\EditableComboBoxControl.axaml.cs" />
+    <Compile Remove="公共\EnhancedComboBox.axaml.cs" />
+    <Compile Remove="公共\ExtendedComboBox.axaml.cs" />
+    <Compile Remove="公共\GroupBoxControl.axaml.cs" />
+    <Compile Remove="公共\GroupBoxControl.xaml.cs" />
+    <Compile Remove="公共\Path1Control.cs" />
+    <Compile Remove="公共\RadioButtonControl.axaml.cs" />
+    <Compile Remove="公共\SliderControl.axaml.cs" />
+    <Compile Remove="公共\TimePickerWithSeconds.axaml.cs" />
+    <Compile Remove="公共\TimePickerWithUnitControl.cs" />
+    <Compile Remove="General\StandardCylinder\**\*.cs" />
+    <Compile Remove="General\CylinderPageTypeRow\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="General\PositionTeachVerticalView.xaml" />
+    <None Remove="公共\GroupBoxControl.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Include="General\CameraLightSourceCtrView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\PositionTeachHeaderTextView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\PositionTeachTextView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\VisionControl\Views\VisionControlShowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\PositionTeachHeaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\PositionTeachView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\VisionControl\Views\CameraShowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\PreDispensingCfgView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\CameraOperationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+    <AvaloniaXaml Include="General\CalibrationResultView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.3.3" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.3.3" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.3" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.3" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3" />
+		<PackageReference Include="GF_Gereric" Version="7.1.0" />
+    <PackageReference Include="Griffins.Theme" Version="7.1.0" />
+		<PackageReference Include="MessageBox.Avalonia" Version="3.2.0" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="General\ExternalScanner\Views\ExternalScannerView.axaml.cs">
+	    <DependentUpon>ExternalScannerView.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="General\LaserSensor\Views\LaserSerialPortView.axaml.cs">
+	    <DependentUpon>LaserSerialPortView.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="公共\BasicControl.axaml.cs">
+	    <DependentUpon>BasicControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="公共\BasicControl.axaml.cs">
+	    <DependentUpon>BasicControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\RadioButtonListControl.axaml.cs">
+	    <DependentUpon>RadioButtonListControl.axaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+</Project>

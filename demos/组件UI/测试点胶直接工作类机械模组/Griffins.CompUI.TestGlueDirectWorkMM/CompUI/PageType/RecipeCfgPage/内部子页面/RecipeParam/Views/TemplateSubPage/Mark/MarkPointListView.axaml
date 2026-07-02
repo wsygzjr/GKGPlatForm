@@ -1,0 +1,90 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Mark"
+			 xmlns:vm1="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.TrajectorySequence"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:MarkPointListViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.MarkPointListView">
+
+ <!-- 2.2 Mark点列表栏-->
+     <!--横向排列 --> 
+ <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Stretch"    Margin="0 0 0 0"   Width="274" 
+             >
+        <!-- 左侧显示:轨迹列表栏 -->
+    <DockPanel Margin="0" LastChildFill="True"  Width="264"  VerticalAlignment="Top" HorizontalAlignment="Left"  >  
+          <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"  Spacing="0" Margin="1 0 0 1"    HorizontalAlignment="Left" > 
+                        <Button Content="添加" Command="{Binding AddCommand}" Classes="DataGrid_btnAddStyle" MinWidth="60" /> 
+                        <Button Content="删除" Command="{Binding BatchDeleteCommand}" Classes="DataGrid_btnAddStyle" MinWidth="60"  /> 
+          </StackPanel>
+
+        <!--左侧显示DataGrid 绑定数据源    -->  
+        <DataGrid    ItemsSource="{Binding ItemsSource }"
+            SelectedItem="{Binding SelectedItem , Mode=TwoWay}"
+            AutoGenerateColumns="False"
+            BorderBrush="LightGray"
+            BorderThickness="1"
+            IsReadOnly="False" 
+            SelectionMode="Extended"
+            RowHeight="40"  Width="271"   Height="387"
+            CanUserResizeColumns="True" VerticalAlignment="Top"
+            CanUserSortColumns="True"  HorizontalAlignment="Left"  Margin="1,0,0,1"   Classes="StyleDataGridCard"  > 
+      
+        <DataGrid.Columns> 
+            <!-- 全选列（不变） -->
+        <DataGridTemplateColumn Width="50" IsReadOnly="True">
+            <DataGridTemplateColumn.HeaderTemplate>
+                <DataTemplate>
+                    <CheckBox Classes="DataGrid_CheckBoxStyle"  
+                                IsChecked="{Binding DataContext.IsSelectAll, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                Content=""  HorizontalAlignment="Right" HorizontalContentAlignment="Right" Width="40" />
+                </DataTemplate>
+            </DataGridTemplateColumn.HeaderTemplate>
+            <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate DataType="vm1:TrajectorySequenceModel">
+                    <CheckBox Classes="DataGrid_CheckBoxStyle" 
+                                IsChecked="{Binding IsSelected, Mode=TwoWay}"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="40"  />
+                </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn> 
+
+            <!-- 1. 序号（只读） -->
+            <DataGridTextColumn 
+                    Header="序号" 
+                    Binding="{Binding SerialNumber}" 
+                    Width="69"
+                    IsReadOnly="True"  /> 
+
+            <!-- 2. Mark ID（只读） -->
+            <DataGridTextColumn   Header="Mark"  Binding="{Binding PointName}"   Width="80"    IsReadOnly="True"/>  
+                                  
+            <!-- 操作列（编辑+删除按钮） -->
+            <DataGridTemplateColumn 
+                Header="操作" 
+                Width="69" 
+                IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                    <!-- 定义表头样式，设置文本居中 --> 
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate DataType="vm1:TrajectorySequenceModel">
+                        <StackPanel Orientation="Horizontal" Spacing="2" Margin="2 2"> 
+                            <Button 
+                                Content="删除" 
+                                Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding}" 
+                                Classes="DataGrid_btnDeleteStyle" > 
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate> 
+            </DataGridTemplateColumn>
+                     
+        </DataGrid.Columns> 
+    </DataGrid> 
+ </DockPanel>   
+
+  </StackPanel>
+
+</UserControl>

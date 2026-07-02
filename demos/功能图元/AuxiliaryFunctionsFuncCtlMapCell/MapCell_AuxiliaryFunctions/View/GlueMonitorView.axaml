@@ -1,0 +1,104 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.ViewModel"
+		x:Class="GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.View.GlueMonitorView"
+		Title="余量监控" Height="680" SizeToContent="Width"
+		WindowStartupLocation="CenterScreen"
+		SystemDecorations="None" ShowInTaskbar="False"
+		Background="#F5F5F5">
+
+	<Window.Styles>
+		<Style Selector="Button.BlueBtn">
+			<Setter Property="Background" Value="#5B9BD5"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="0,15"/>
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
+
+		<Style Selector="Border.TableBorder">
+			<Setter Property="BorderBrush" Value="#D0D0D0"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="Margin" Value="10,0"/>
+			<Setter Property="Width" Value="380"/>
+		</Style>
+
+		<Style Selector="TextBlock.alarm">
+			<Setter Property="Foreground" Value="Red"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="60, 80, *, 80">
+
+		<Border Grid.Row="0" Background="#EAEAEA">
+			<TextBlock Text="余量监控" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		</Border>
+
+		<TextBlock Grid.Row="1" Text="换好胶水后，请点击“刷新”，重新开始余量监控"
+				   FontSize="24" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20,0">
+
+			<Border Classes="TableBorder" DataContext="{Binding LeftValve}" IsVisible="{Binding IsVisible}">
+				<Grid RowDefinitions="Auto,Auto,*,*,*">
+					<Border Grid.Row="0" Background="#EAEAEA" Padding="20">
+						<Button Classes="BlueBtn" Content="{Binding Title}" Command="{Binding RefreshCommand}"/>
+					</Border>
+					<Border Grid.Row="1" Background="#E6F0FA" Padding="0,15">
+						<Grid ColumnDefinitions="*,*">
+							<TextBlock Grid.Column="0" Text="类型" HorizontalAlignment="Center" FontSize="16"/>
+							<TextBlock Grid.Column="1" Text="剩余量" HorizontalAlignment="Center" FontSize="16"/>
+						</Grid>
+					</Border>
+					<Grid Grid.Row="2" ColumnDefinitions="*,*">
+						<TextBlock Grid.Column="0" Text="{Binding TimeMetric.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+						<TextBlock Grid.Column="1" Text="{Binding TimeMetric.ValueText}" Classes.alarm="{Binding TimeMetric.IsAlarm}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+					</Grid>
+					<Grid Grid.Row="3" ColumnDefinitions="*,*">
+						<TextBlock Grid.Column="0" Text="{Binding WeightMetric.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+						<TextBlock Grid.Column="1" Text="{Binding WeightMetric.ValueText}" Classes.alarm="{Binding WeightMetric.IsAlarm}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+					</Grid>
+					<Grid Grid.Row="4" ColumnDefinitions="*,*">
+						<TextBlock Grid.Column="0" Text="{Binding PcsMetric.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+						<TextBlock Grid.Column="1" Text="{Binding PcsMetric.ValueText}" Classes.alarm="{Binding PcsMetric.IsAlarm}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+					</Grid>
+				</Grid>
+			</Border>
+
+			<Border Classes="TableBorder" DataContext="{Binding RightValve}" IsVisible="{Binding IsVisible}">
+				<Grid RowDefinitions="Auto,Auto,*,*,*">
+					<Border Grid.Row="0" Background="#EAEAEA" Padding="20">
+						<Button Classes="BlueBtn" Content="{Binding Title}" Command="{Binding RefreshCommand}"/>
+					</Border>
+					<Border Grid.Row="1" Background="#E6F0FA" Padding="0,15">
+						<Grid ColumnDefinitions="*,*">
+							<TextBlock Grid.Column="0" Text="选项设置" HorizontalAlignment="Center" FontSize="16"/>
+							<TextBlock Grid.Column="1" Text="剩余量" HorizontalAlignment="Center" FontSize="16"/>
+						</Grid>
+					</Border>
+					<Grid Grid.Row="2" ColumnDefinitions="*,*">
+						<TextBlock Grid.Column="0" Text="{Binding TimeMetric.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+						<TextBlock Grid.Column="1" Text="{Binding TimeMetric.ValueText}" Classes.alarm="{Binding TimeMetric.IsAlarm}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+					</Grid>
+					<Grid Grid.Row="3" ColumnDefinitions="*,*">
+						<TextBlock Grid.Column="0" Text="{Binding WeightMetric.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+						<TextBlock Grid.Column="1" Text="{Binding WeightMetric.ValueText}" Classes.alarm="{Binding WeightMetric.IsAlarm}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+					</Grid>
+					<Grid Grid.Row="4" ColumnDefinitions="*,*">
+						<TextBlock Grid.Column="0" Text="{Binding PcsMetric.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+						<TextBlock Grid.Column="1" Text="{Binding PcsMetric.ValueText}" Classes.alarm="{Binding PcsMetric.IsAlarm}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+					</Grid>
+				</Grid>
+			</Border>
+
+		</StackPanel>
+
+		<Border Grid.Row="3" BorderBrush="#D0D0D0" BorderThickness="0,1,0,0" Padding="0,15">
+			<Button x:Name="NextStepButton" Classes="BlueBtn" Content="➔ 下一步" Width="200" HorizontalAlignment="Center"/>
+		</Border>
+	</Grid>
+</Window>

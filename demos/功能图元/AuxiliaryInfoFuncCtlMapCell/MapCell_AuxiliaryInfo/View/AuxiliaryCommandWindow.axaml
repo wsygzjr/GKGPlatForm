@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Width="420" Height="200"
+        MinWidth="360" MinHeight="180"
+        Background="White"
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding CommandName}"
+        x:Class="GKG.Map.AuxiliaryInfoFuncCtlMapCell.View.AuxiliaryCommandWindow">
+
+  <Grid RowDefinitions="Auto,*" Margin="12" RowSpacing="10">
+    <TextBlock Grid.Row="0"
+               FontSize="16"
+               FontWeight="SemiBold"
+               Text="{Binding CommandName}" />
+
+    <Border Grid.Row="1"
+            BorderBrush="#FFE6E6E6"
+            BorderThickness="1"
+            Background="White"
+            Padding="10">
+      <TextBlock TextWrapping="Wrap"
+                 FontSize="13"
+                 Text="{Binding ResultText}" />
+    </Border>
+  </Grid>
+</Window>

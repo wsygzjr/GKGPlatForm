@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="950"
+             xmlns:views="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views"
+             xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels"
+             x:DataType="vm:ControlCardCfgViewModel"
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.ControlCardCfgView">
+
+	<Grid Margin="0,5,0,0" Height="840">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<!-- 左侧列表 -->
+		<views:ControlCardListCfgView Grid.Column="0"
+								 DataContext="{Binding ControlCardListViewModel}" />
+
+		<!-- 右侧：直接绑定轴配置 View，避免 ContentControl+DataTemplate 在 Tab/子页切换、同一 VM 引用时子树不重建而空白 -->
+		<Border Grid.Column="1"
+				BorderBrush="LightGray"
+				BorderThickness="2">
+			<views:ControlCardBaseCfgView DataContext="{Binding SelectedBaseCfgVm}" />
+		</Border>
+	</Grid>
+
+</UserControl>

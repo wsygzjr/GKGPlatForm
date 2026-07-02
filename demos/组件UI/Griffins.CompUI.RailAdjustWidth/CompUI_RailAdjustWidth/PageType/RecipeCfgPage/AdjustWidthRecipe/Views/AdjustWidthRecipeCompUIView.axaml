@@ -1,0 +1,160 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.RailAdjustWidth.CompUI_RailAdjustWidth.PageType.RecipeCfgPage.AdjustWidthRecipe.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="520"
+             x:DataType="vm:AdjustWidthRecipeCompUIViewModel"
+             x:Class="Griffins.CompUI.RailAdjustWidth.CompUI_RailAdjustWidth.PageType.RecipeCfgPage.AdjustWidthRecipe.Views.AdjustWidthRecipeCompUIView">
+  <Design.DataContext>
+    <vm:AdjustWidthRecipeCompUIViewModel />
+  </Design.DataContext>
+
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="18"/>
+    </Style>
+    <Style Selector="Border.Card">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BoxShadow" Value="0 4 12 0 #120F172A"/>
+    </Style>
+    <Style Selector="Border.ContentPanel">
+      <Setter Property="Background" Value="#F7FAFD"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="14,16"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="#1F3F75"/>
+    </Style>
+    <Style Selector="TextBlock.FormLabel">
+      <Setter Property="Foreground" Value="#3C4652"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style Selector="Button.PrimaryAction">
+      <Setter Property="Background" Value="#1C5ED6"/>
+      <Setter Property="Foreground" Value="#FFF"/>
+      <Setter Property="BorderBrush" Value="#1C5ED6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="16,8"/>
+      <Setter Property="MinWidth" Value="96"/>
+      <Setter Property="Height" Value="36"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Classes="PageShell">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+      <StackPanel Spacing="16">
+        <Border Classes="Card" Padding="14">
+          <StackPanel Spacing="3">
+            <TextBlock Text="调宽配方参数" FontWeight="Bold" FontSize="18" />
+            <TextBlock Text="配方配置 (PPCfg)" FontWeight="SemiBold" />
+            <TextBlock Text="包含固定轨、板宽与运动参数，固定轨位置可在下方手动操作区设置。" Foreground="#66000000" TextWrapping="Wrap" />
+          </StackPanel>
+        </Border>
+
+        <Border Classes="Card" Padding="14">
+          <Grid RowDefinitions="Auto,16,Auto">
+            <TextBlock Classes="SectionTitle" Text="配方参数"/>
+            <Border Grid.Row="2" Classes="ContentPanel">
+              <StackPanel Spacing="12" HorizontalAlignment="Left">
+                <custom:ComboxControl WidthLevel="Medium"
+                                     LabelName="固定轨 ID"
+                                     ViewModel="{Binding FixRailIDViewModel}" />
+                <custom:TextInputControl WidthLevel="Medium"
+                                        LabelName="板宽 (mm)"
+                                        ViewModel="{Binding WidthViewModel}" />
+                <custom:TextInputControl WidthLevel="Medium"
+                                        LabelName="调宽速度 (mm/s)"
+                                        ViewModel="{Binding AdjustWidthSpeedViewModel}" />
+                <custom:TextInputControl WidthLevel="Medium"
+                                        LabelName="加速度 (mm/s²)"
+                                        ViewModel="{Binding AdjustWidthAccelerationViewModel}" />
+              </StackPanel>
+            </Border>
+          </Grid>
+        </Border>
+
+        <Border Classes="Card" Padding="14">
+          <Grid RowDefinitions="Auto,16,Auto">
+            <TextBlock Classes="SectionTitle" Text="轨道位置与手动操作"/>
+            <Border Grid.Row="2" Classes="ContentPanel">
+              <Grid ColumnDefinitions="Auto,Auto,Auto"
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="10"
+                    RowSpacing="14"
+                    HorizontalAlignment="Left">
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Classes="FormLabel"
+                           VerticalAlignment="Center"
+                           Text="固定轨位置 (mm)"/>
+                <custom:TextInputControl Grid.Row="0"
+                                        Grid.Column="1"
+                                        LabelName=""
+                                        WidthLevel="Small3"
+                                        MinHeight="40"
+                                        VerticalAlignment="Center"
+                                        ViewModel="{Binding FixRailPositionViewModel}"/>
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Classes="FormLabel"
+                           VerticalAlignment="Center"
+                           Text="{Binding SelectedRailPositionLabel}"/>
+                <custom:TextInputControl Grid.Row="1"
+                                        Grid.Column="1"
+                                        LabelName=""
+                                        WidthLevel="Small3"
+                                        MinHeight="40"
+                                        VerticalAlignment="Center"
+                                        ViewModel="{Binding SelectedRailCurrentPositionViewModel}"/>
+
+                <Grid Grid.Row="0"
+                      Grid.RowSpan="2"
+                      Grid.Column="2"
+                      ColumnDefinitions="Auto,Auto,Auto,Auto,Auto"
+                      RowDefinitions="Auto,Auto"
+                      ColumnSpacing="10"
+                      RowSpacing="14"
+                      VerticalAlignment="Top">
+                  <Button Grid.Row="0" Grid.Column="0" Classes="PrimaryAction" Content="教导"
+                          Command="{Binding TeachFixRailPositionCommand}" IsEnabled="{Binding CanOperateSelectedRail}"/>
+                  <Button Grid.Row="0" Grid.Column="1" Classes="PrimaryAction" Content="移动到"
+                          Command="{Binding MoveToFixRailPositionCommand}" IsEnabled="{Binding CanOperateSelectedRail}"/>
+                  <Button x:Name="Button_MoveFront" Grid.Row="0" Grid.Column="2" Classes="PrimaryAction" Content="前移"
+                          IsEnabled="{Binding CanOperateSelectedRail}"
+                          PointerPressed="ForwardButton_OnPointerPressed"
+                          PointerReleased="ForwardButton_OnPointerReleased"
+                          PointerCaptureLost="MoveButton_OnPointerCaptureLost"/>
+                  <Button x:Name="Button_MoveBack" Grid.Row="0" Grid.Column="3" Classes="PrimaryAction" Content="后移"
+                          IsEnabled="{Binding CanOperateSelectedRail}"
+                          PointerPressed="BackwardButton_OnPointerPressed"
+                          PointerReleased="BackwardButton_OnPointerReleased"
+                          PointerCaptureLost="MoveButton_OnPointerCaptureLost"/>
+                  <Button Grid.Row="0" Grid.Column="4" Classes="PrimaryAction" Content="调宽"
+                          Command="{Binding AdjustWidthCommand}" IsEnabled="{Binding CanAdjustWidth}"/>
+
+                  <Button Grid.Row="1" Grid.Column="0" Classes="PrimaryAction" Content="停止"
+                          Command="{Binding StopCommand}" IsEnabled="{Binding CanOperateSelectedRail}"/>
+                  <Button Grid.Row="1" Grid.Column="1" Classes="PrimaryAction" Content="回零"
+                          Command="{Binding GoHomeCommand}" IsEnabled="{Binding CanOperateSelectedRail}"/>
+                </Grid>
+              </Grid>
+            </Border>
+          </Grid>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+  </Border>
+</UserControl>

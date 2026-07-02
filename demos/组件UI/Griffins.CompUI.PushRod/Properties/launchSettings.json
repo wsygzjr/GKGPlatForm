@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Griffins.CompUI.PushRod": {
+      "commandName": "Project"
+    },
+    "配置文件 1": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\智造设备\\智造设备管理平台\\测试工具\\模拟智造设备终端\\SimulimImeTml.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\智造设备\\智造设备管理平台\\测试工具\\模拟智造设备终端"
+    }
+  }
+}

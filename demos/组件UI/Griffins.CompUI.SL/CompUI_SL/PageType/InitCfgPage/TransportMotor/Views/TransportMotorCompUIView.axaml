@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:Griffins.CompUI.SL.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.SL.InitCfgPage.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Class="Griffins.CompUI.SL.InitCfgPage.Views.TransportMotorCompUIView"
+			 x:DataType="vm:TransportMotorCompUIViewModel"
+			 Tag="{Binding ViewTag, Mode=TwoWay}">
+	<Design.DataContext>
+		<vm:TransportMotorCompUIViewModel/>
+	</Design.DataContext>
+	<DockPanel LastChildFill="True">
+		<!-- 工位选项卡 -->
+		<TabControl ItemsSource="{Binding Motors}" Margin="10">
+			<TabControl.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding MotorName}" />
+				</DataTemplate>
+			</TabControl.ItemTemplate>
+			<TabControl.ContentTemplate>
+				<DataTemplate>
+					<local:TransportMotorItemCompUIView DataContext="{Binding}" />
+				</DataTemplate>
+			</TabControl.ContentTemplate>
+		</TabControl>
+	</DockPanel>
+</UserControl>

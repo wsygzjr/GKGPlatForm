@@ -1,0 +1,22 @@
+﻿using Griffins.CompUI.TestGlueDirectWorkMM.CompUI.PageType;
+using Griffins.UI.General;
+
+namespace Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Models
+{
+    /// <summary>
+    ///胶阀位置信息
+    /// </summary>
+    public class DegreevalvePosition : BasePositionInfo
+    {
+        /// <summary>
+        ///出胶点数
+        /// </summary>
+        public int NumberOfDispensingPoints { set; get; }
+
+        public DegreevalvePosition()
+        {
+
+        }
+    }
+
+}

@@ -1,0 +1,316 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.DebugPage.ViewModels"
+        xmlns:convert="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.Converters"
+        xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+        mc:Ignorable="d"
+        x:DataType="vm:AxisDebugWindowViewModel"
+        x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.DebugPage.Views.AxisDebugMotionView"
+        ClipToBounds="True"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+
+  <UserControl.Resources>
+    <convert:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter" />
+  </UserControl.Resources>
+
+  <UserControl.Styles>
+    <Style Selector="Border.panel">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#E0E3E9" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Padding" Value="12" />
+    </Style>
+    <Style Selector="TextBlock.section-title">
+      <Setter Property="FontSize" Value="15" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="#334155" />
+      <Setter Property="Margin" Value="0,0,0,12" />
+    </Style>
+    <Style Selector="TextBlock.table-header">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="#5C5F63" />
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style Selector="TextBlock.table-header.left">
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="Margin" Value="12,0,0,0" />
+    </Style>
+    <Style Selector="TextBlock.axis-name">
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="Margin" Value="12,0,0,0" />
+    </Style>
+    <Style Selector="TextBlock.form-label-text">
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="Foreground" Value="#334155" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <Style Selector="TextBlock.unit-text">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Foreground" Value="#64748B" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="Margin" Value="8,0,0,0" />
+    </Style>
+    <Style Selector="Border.table-header-row">
+      <Setter Property="Background" Value="#F1F4F8" />
+      <Setter Property="BorderBrush" Value="#E0E3E9" />
+      <Setter Property="BorderThickness" Value="0,0,0,1" />
+      <Setter Property="Padding" Value="0,10" />
+    </Style>
+    <Style Selector="ListBox.axis-status-list">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+    <Style Selector="ListBoxItem.axis-status-item">
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="0" />
+      <Setter Property="MinHeight" Value="44" />
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#E8EAEE" />
+      <Setter Property="BorderThickness" Value="0,0,0,1" />
+    </Style>
+    <Style Selector="ListBoxItem.axis-status-item:pointerover">
+      <Setter Property="Background" Value="#F8FBFF" />
+    </Style>
+    <Style Selector="ListBoxItem.axis-status-item:selected">
+      <Setter Property="Background" Value="#F2F7FF" />
+    </Style>
+    <Style Selector="Button.axis-action">
+      <Setter Property="Background" Value="#1C5ED6" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#1C5ED6" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Padding" Value="14,8" />
+      <Setter Property="MinHeight" Value="36" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style Selector="Button.axis-action:disabled">
+      <Setter Property="Background" Value="#D5DDE3" />
+      <Setter Property="Foreground" Value="#7A8A95" />
+      <Setter Property="BorderBrush" Value="#B8C4CC" />
+    </Style>
+    <Style Selector="RadioButton">
+      <Setter Property="Foreground" Value="#334155" />
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="Margin" Value="4,2" />
+    </Style>
+    <Style Selector="custom|TextInputControl Border.borderName">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#E0E3E9" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="4" />
+    </Style>
+    <Style Selector="custom|ComboxControl Border.borderName">
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#E0E3E9" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="4" />
+    </Style>
+  </UserControl.Styles>
+
+  <Border Background="#F1F4F8"
+          Padding="12"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
+    <Grid ColumnDefinitions="*,420"
+          ColumnSpacing="16"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Top">
+      <!-- 左侧：ListBox 表格，高度随内容，不横向撑开 -->
+      <Border Grid.Column="0"
+              Classes="panel"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Stretch"
+              MinWidth="0">
+        <StackPanel>
+          <TextBlock Text="轴状态" Classes="section-title" />
+
+          <Border Classes="table-header-row">
+            <Grid ColumnDefinitions="140,96,64,64,64,64,64">
+              <TextBlock Grid.Column="0" Text="轴名称" Classes="table-header left" />
+              <TextBlock Grid.Column="1" Text="当前位置" Classes="table-header" />
+              <TextBlock Grid.Column="2" Text="正限位" Classes="table-header" />
+              <TextBlock Grid.Column="3" Text="原点" Classes="table-header" />
+              <TextBlock Grid.Column="4" Text="负限位" Classes="table-header" />
+              <TextBlock Grid.Column="5" Text="报警" Classes="table-header" />
+              <TextBlock Grid.Column="6" Text="使能" Classes="table-header" />
+            </Grid>
+          </Border>
+
+          <ListBox Classes="axis-status-list"
+                   ItemsSource="{Binding AxisStatusList}"
+                   SelectedItem="{Binding SelectedAxisStatus, Mode=TwoWay}"
+                   SelectionMode="Single"
+                   MaxHeight="220">
+            <ListBox.Styles>
+              <Style Selector="ListBoxItem">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="MinHeight" Value="44" />
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Setter Property="BorderBrush" Value="#E8EAEE" />
+                <Setter Property="BorderThickness" Value="0,0,0,1" />
+              </Style>
+              <Style Selector="ListBoxItem:pointerover">
+                <Setter Property="Background" Value="#F8FBFF" />
+              </Style>
+              <Style Selector="ListBoxItem:selected">
+                <Setter Property="Background" Value="#F2F7FF" />
+              </Style>
+            </ListBox.Styles>
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="vm:AxisStatusItemViewModel">
+                <Grid ColumnDefinitions="140,96,64,64,64,64,64">
+                  <TextBlock Grid.Column="0"
+                             Text="{Binding AxisName}"
+                             Classes="axis-name"
+                             Foreground="{Binding IsSelected, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='#1C5ED6,#111111'}" />
+                  <TextBlock Grid.Column="1"
+                             Text="{Binding Position, StringFormat=0.000}"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             FontSize="14" />
+                  <Ellipse Grid.Column="2" Width="10" Height="10"
+                           Fill="{Binding IsPosLimit, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  <Ellipse Grid.Column="3" Width="10" Height="10"
+                           Fill="{Binding IsHome, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  <Ellipse Grid.Column="4" Width="10" Height="10"
+                           Fill="{Binding IsNegLimit, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  <Ellipse Grid.Column="5" Width="10" Height="10"
+                           Fill="{Binding IsAlarm, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Red,LightGray'}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  <Ellipse Grid.Column="6" Width="10" Height="10"
+                           Fill="{Binding IsEnabled, Converter={StaticResource CustomBoolToColorConverter}, ConverterParameter='Green,LightGray'}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </StackPanel>
+      </Border>
+
+      <!-- 右侧：固定 420，表单项留白更足 -->
+      <Border Grid.Column="1"
+              Classes="panel"
+              Width="420"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Right">
+        <StackPanel Spacing="16">
+          <TextBlock Text="运动控制" Classes="section-title" />
+
+          <Grid ColumnDefinitions="108,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="运动轴" Classes="form-label-text" />
+            <custom:ComboxControl Grid.Row="0" Grid.Column="1"
+                                  LabelName=""
+                                  WidthLevel="Small"
+                                  HorizontalAlignment="Stretch"
+                                  ViewModel="{Binding AxisSelectionComboxViewModel}" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="运动模式" Classes="form-label-text" />
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Spacing="16">
+              <RadioButton Content="点动/反转" IsChecked="{Binding IsJogMode, Mode=TwoWay}" GroupName="MotionMode" />
+              <RadioButton Content="定位运动" IsChecked="{Binding IsPointMode, Mode=TwoWay}" GroupName="MotionMode" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="运动方向" Classes="form-label-text" />
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="16">
+              <RadioButton Content="CW" IsChecked="{Binding IsCw, Mode=TwoWay}" GroupName="RotationDirection" />
+              <RadioButton Content="CCW" IsChecked="{Binding IsCcw, Mode=TwoWay}" GroupName="RotationDirection" />
+            </StackPanel>
+          </Grid>
+
+          <Border Height="1" Background="#E8EAEE" />
+
+          <Grid ColumnDefinitions="108,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="运动速度" Classes="form-label-text" />
+            <Grid Grid.Row="0" Grid.Column="1" ColumnDefinitions="*,Auto">
+              <custom:TextInputControl Grid.Column="0" WidthLevel="Small" LabelName="" HorizontalAlignment="Stretch" ViewModel="{Binding VelocityInputViewModel}" />
+              <TextBlock Grid.Column="1" Text="mm/s" Classes="unit-text" />
+            </Grid>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="加速度" Classes="form-label-text" />
+            <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="*,Auto">
+              <custom:TextInputControl Grid.Column="0" WidthLevel="Small" LabelName="" HorizontalAlignment="Stretch" ViewModel="{Binding AccelerationInputViewModel}" />
+              <TextBlock Grid.Column="1" Text="mm/s²" Classes="unit-text" />
+            </Grid>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="位移量" Classes="form-label-text" />
+            <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="*,Auto">
+              <custom:TextInputControl Grid.Column="0" WidthLevel="Small" LabelName="" HorizontalAlignment="Stretch" ViewModel="{Binding DistanceInputViewModel}" />
+              <TextBlock Grid.Column="1" Text="mm" Classes="unit-text" />
+            </Grid>
+          </Grid>
+
+          <Border Height="1" Background="#E8EAEE" />
+
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+            <Button Grid.Row="0" Grid.Column="0"
+                    Content="{Binding JogButtonText}"
+                    Classes="axis-action"
+                    Command="{Binding JogToggleCommand}"
+                    IsEnabled="{Binding CanMove}"
+                    IsVisible="{Binding IsJogMode}"
+                    ToolTip.Tip="{Binding AxisSelectionHint}" />
+            <Button Grid.Row="0" Grid.Column="1"
+                    Content="运动"
+                    Classes="axis-action"
+                    Command="{Binding MoveCommand}"
+                    IsEnabled="{Binding CanMove}"
+                    IsVisible="{Binding IsPointMode}"
+                    ToolTip.Tip="{Binding AxisSelectionHint}" />
+
+            <Button Grid.Row="1" Grid.Column="0"
+                    Content="停止"
+                    Classes="axis-action"
+                    Command="{Binding StopCommand}"
+                    IsEnabled="{Binding CanAxisCommand}"
+                    ToolTip.Tip="{Binding AxisSelectionHint}" />
+            <Button Grid.Row="1" Grid.Column="1"
+                    Content="清除状态"
+                    Classes="axis-action"
+                    Command="{Binding ClearStatusCommand}"
+                    IsEnabled="{Binding CanAxisCommand}"
+                    ToolTip.Tip="{Binding AxisSelectionHint}" />
+
+            <Button Grid.Row="2" Grid.Column="0"
+                    Content="使能"
+                    Classes="axis-action"
+                    Command="{Binding EnableCommand}"
+                    IsEnabled="{Binding CanAxisCommand}"
+                    ToolTip.Tip="{Binding AxisSelectionHint}" />
+            <Button Grid.Row="2" Grid.Column="1"
+                    Content="断使能"
+                    Classes="axis-action"
+                    Command="{Binding DisableCommand}"
+                    IsEnabled="{Binding CanAxisCommand}"
+                    ToolTip.Tip="{Binding AxisSelectionHint}" />
+          </Grid>
+
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+            <Button Grid.Column="0"
+                    Content="回零"
+                    Classes="axis-action"
+                    Command="{Binding HomeCommand}"
+                    IsEnabled="{Binding CanMove}"
+                    ToolTip.Tip="{Binding AxisSelectionHint}" />
+          </Grid>
+        </StackPanel>
+      </Border>
+    </Grid>
+  </Border>
+</UserControl>

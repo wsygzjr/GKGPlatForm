@@ -1,0 +1,88 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+	    xmlns:convert="clr-namespace:PageMngControl.Converters"
+		xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Plan"
+        xmlns:vm1="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.TrajectorySequence"
+        xmlns:vm2="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+		x:DataType="vm:SelectAreaWindowViewModel" 
+        xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+        x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.SelectAreaWindow"
+        Title="">
+       
+   
+          <!-- 轨迹列表：横向排列 --> 
+ <StackPanel Orientation="Vertical"  HorizontalAlignment="Center"  VerticalAlignment="Stretch"    Margin="10 10 10 10"   Width="880"   Height="604"  > 
+    <!-- 左侧显示:轨迹列表栏 --> 
+    <StackPanel  Spacing="0" Margin="1 1 1 1"    >
+            <DataGrid    ItemsSource="{Binding ItemsSource }"
+                SelectedItem="{Binding SelectedItem , Mode=TwoWay}"
+                AutoGenerateColumns="False"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                IsReadOnly="False" 
+                SelectionMode="Single"
+                RowHeight="40"  Width="784"   Height="530" 
+                CanUserResizeColumns="True" VerticalAlignment="Center"
+                CanUserSortColumns="True"  HorizontalAlignment="Center"  Margin="10,10,10,10"  Classes="StyleDataGrid"  > 
+      
+            <DataGrid.Columns> 
+                <!-- 全选列（不变） -->
+            <DataGridTemplateColumn Width="70" IsReadOnly="True">
+                <DataGridTemplateColumn.HeaderTemplate>
+                    <DataTemplate>
+                        <CheckBox Classes="CheckBoxStyle"  
+                                    IsChecked="{Binding DataContext.IsSelectAll, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                    Content="全选"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.HeaderTemplate>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate DataType="vm1:TrajectorySequenceBaseModel">
+                        <CheckBox Classes="CheckBoxStyle" 
+                                    IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn> 
+
+            <!-- 1. 序号（只读） -->
+            <DataGridTextColumn 
+                    Header="序号" 
+                    Binding="{Binding SerialNumber}" 
+                    Width="68"
+                    IsReadOnly="True"  /> 
+ 
+                    <!-- 3. 计算轨迹类型（可编辑：ComboBox） -->
+            <DataGridTemplateColumn 
+                Header="区域名"   Width="190"   > 
+                    <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate DataType="vm2:AreaItemViewModel"> 
+                            <TextBlock Text="{Binding AreaNameViewModel.Text}" VerticalAlignment="Center" HorizontalAlignment="Center" />  
+                    </DataTemplate> 
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+ 
+                     
+            </DataGrid.Columns> 
+        </DataGrid>
+    </StackPanel>
+         
+
+        <!-- 3. 按钮区（保存/取消）  -->
+    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Margin="0 10 0 15">
+        <Button 
+            Content="取消" 
+            Command="{Binding CancelCommand}"  
+            Classes="btnCancel"  />
+             
+        <Button 
+            Content="确认"    Classes="btnSave"
+            Command="{Binding SaveCommand}" 
+            Cursor="Hand"> 
+        </Button>
+    </StackPanel>
+ 
+ </StackPanel> 
+</Window>

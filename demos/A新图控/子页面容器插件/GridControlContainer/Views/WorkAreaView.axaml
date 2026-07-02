@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="768"
+             xmlns:vm="using:GKG.Map.Page.UIContainer.GridContainer.ViewModels" 
+             x:Class="GKG.Map.Page.UIContainer.GridContainer.Views.WorkAreaView"
+             x:DataType="vm:WorkAreaViewModel">
+    
+    <Design.DataContext>
+        <vm:WorkAreaViewModel />
+    </Design.DataContext>
+
+    <!-- 工作区背景 -->
+    <Border Background="#F0F2F5" Padding="5">
+        
+        <ItemsControl ItemsSource="{Binding WorkAreaItems}">
+            
+            <!-- 使用 UniformGrid 并绑定 ViewModel 中的行列数 -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding GridRows}" 
+                                 Columns="{Binding GridColumns}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <!-- 每一个网格单元的样式 -->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="vm:GridWorkAreaModel">
+                    <Border Background="White" 
+                            CornerRadius="4" 
+                            Margin="5" 
+                            BorderBrush="#DCDFE6" 
+                            BorderThickness="1"
+                            BoxShadow="0 2 8 0 #1A000000"> <!-- 添加一点轻微的阴影提升质感 -->
+                            <!-- 实际内容加载区 -->
+                            <ContentControl Content="{Binding CachedContent}"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            VerticalContentAlignment="{Binding VerticalContentAlignment}"
+                                            HorizontalContentAlignment="{Binding HorizontalContentAlignment}" />
+                    </Border>
+                    
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Border>
+
+</UserControl>

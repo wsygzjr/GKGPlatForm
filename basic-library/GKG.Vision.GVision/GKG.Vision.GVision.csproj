@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+    <VisionPluginDeployPath>F:\Griffins7.1\Bin\Share\Vision\</VisionPluginDeployPath>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\Vision</OutputPath>
+	  <Private>False</Private>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.3" />
+    <PackageReference Include="GKG" Version="1.0.0" />
+    <PackageReference Include="GKG.ElectronicControl" Version="1.0.0" />
+    <PackageReference Include="GKG.ShareMemRPCLite" Version="1.0.0" />
+    <PackageReference Include="GKG.Vision" Version="1.0.0" />
+  </ItemGroup>
+
+  <Target Name="DeployVisionPlugin" AfterTargets="Build">
+    <MakeDir Directories="$(VisionPluginDeployPath)" />
+    <ItemGroup>
+      <VisionPluginDeployFiles Include="$(OutputPath)**\*.*" Exclude="$(OutputPath)ref\**\*.*;$(OutputPath)*.deps.json;$(OutputPath)*.runtimeconfig.json" />
+    </ItemGroup>
+    <Copy SourceFiles="@(VisionPluginDeployFiles)" DestinationFiles="@(VisionPluginDeployFiles->'$(VisionPluginDeployPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

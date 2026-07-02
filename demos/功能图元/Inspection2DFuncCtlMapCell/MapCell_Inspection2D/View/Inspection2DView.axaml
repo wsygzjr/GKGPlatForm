@@ -1,0 +1,84 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:GKG.Map.Inspection2DFuncCtlMapCell.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="410"
+             Width="760" Height="410"
+             x:DataType="vm:Inspection2DViewModel"
+             x:Class="GKG.Map.Inspection2DFuncCtlMapCell.Views.Inspection2DView">
+
+  <UserControl.Styles>
+    <Style Selector="TextBlock.OkStyle">
+      <Setter Property="Foreground" Value="#107C41"/>
+    </Style>
+    <Style Selector="TextBlock.NgStyle">
+      <Setter Property="Foreground" Value="#E81123"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Grid ColumnDefinitions="*, 220" Margin="5" Background="Transparent">
+    
+    <Grid Grid.Column="0" RowDefinitions="*, Auto" Margin="0,0,6,0">
+      
+      <Border Grid.Row="0" Background="#F3F3F3" CornerRadius="4" BorderBrush="#D1D1D1" BorderThickness="1" ClipToBounds="True">
+        <Panel>
+          <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+            <TextBlock Text="[ 2D 检测高清主视图 ]" Foreground="#888888" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding SelectedItem.Title}" FontSize="16" Foreground="#333333" HorizontalAlignment="Center"/>
+          </StackPanel>
+        </Panel>
+      </Border>
+
+      <Border Grid.Row="1" Background="#FFFFFF" CornerRadius="4" BorderBrush="#D1D1D1" BorderThickness="1" Margin="0,6,0,0" Padding="12,10">
+        <Grid ColumnDefinitions="Auto, Auto, *">
+          <TextBlock Grid.Column="0" Text="结果:" Foreground="#666666" VerticalAlignment="Center"/>
+          
+          <Panel Grid.Column="1" Margin="8,0,15,0" VerticalAlignment="Center">
+            <TextBlock Text="OK" Classes="OkStyle" FontWeight="Bold" FontSize="16" IsVisible="{Binding SelectedItem.IsOk}"/>
+            <TextBlock Text="NG" Classes="NgStyle" FontWeight="Bold" FontSize="16" IsVisible="{Binding !SelectedItem.IsOk}"/>
+          </Panel>
+          
+          <TextBlock Grid.Column="2" Text="{Binding SelectedItem.Details}" Foreground="#333333" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+        </Grid>
+      </Border>
+    </Grid>
+
+    <Border Grid.Column="1" Background="#FFFFFF" BorderBrush="#D1D1D1" BorderThickness="1" CornerRadius="4">
+      <Grid RowDefinitions="Auto, *">
+        
+        <Border Grid.Row="0" Background="#F8F8F8" Padding="8" BorderBrush="#D1D1D1" BorderThickness="0,0,0,1">
+          <TextBlock Text="检测历史序列" Foreground="#333333" FontWeight="Bold" HorizontalAlignment="Center" FontSize="12"/>
+        </Border>
+
+        <ListBox Grid.Row="1" 
+                 ItemsSource="{Binding InspectionList}" 
+                 SelectedItem="{Binding SelectedItem}" 
+                 Background="Transparent"
+                 Padding="2">
+          <ListBox.ItemTemplate>
+            <DataTemplate DataType="vm:InspectionItemViewModel">
+              <Grid ColumnDefinitions="50, *" Margin="0,2" Height="48">
+                
+                <Border Grid.Column="0" Background="#EFEFEF" CornerRadius="2" BorderBrush="#CCCCCC" BorderThickness="1">
+                  <TextBlock Text="IMG" FontSize="10" Foreground="#888888" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                
+                <Grid Grid.Column="1" RowDefinitions="*, *" Margin="8,2,0,2">
+                  <TextBlock Grid.Row="0" Text="{Binding Title}" FontSize="12" Foreground="#333333" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                  <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                    <TextBlock Text="OK" Classes="OkStyle" IsVisible="{Binding IsOk}" FontSize="11" FontWeight="SemiBold"/>
+                    <TextBlock Text="NG" Classes="NgStyle" IsVisible="{Binding !IsOk}" FontSize="11" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Timestamp, StringFormat={}{0:HH:mm:ss}}" FontSize="10" Foreground="#888888"/>
+                  </StackPanel>
+                </Grid>
+                
+              </Grid>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+    </Border>
+    
+  </Grid>
+</UserControl>

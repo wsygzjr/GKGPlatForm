@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>GKG.Dispense.DB</AssemblyName>
+		<RootNamespace>GKG.Dispense.DB</RootNamespace>
+		<OutputType>library</OutputType>
+		<OutputPath>F:\Griffins7.1\Bin\IotGwSvr\AppSvrDB</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Griffins.PF.Server" Version="7.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\GKG.Dispense\GKG.Dispense.csproj">
+			<Private>false</Private>
+		</ProjectReference>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,37 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.SL.InitCfgPage.ViewModels"
+			 xmlns:local="clr-namespace:Griffins.CompUI.SL.InitCfgPage.Views"
+			 mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="650"
+			 x:Class="Griffins.CompUI.SL.InitCfgPage.Views.RegularSingleTrackCompUIView"
+			 x:DataType="vm:RegularSingleTrackCompUIViewModel"
+			 Tag="{Binding ViewTag, Mode=TwoWay}">
+	<Design.DataContext>
+		<vm:RegularSingleTrackCompUIViewModel />
+	</Design.DataContext>
+
+	<Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*" Margin="10">
+		<Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="16">
+			<Border Grid.Column="0" Padding="10" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="6">
+				<local:TrackBasicParamCompUIView DataContext="{Binding TrackBasicParamViewModel}" />
+			</Border>
+			<Border Grid.Column="1" Padding="10" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="6">
+				<local:PcCommunicationCompUIView DataContext="{Binding PcCommunicationViewModel}" />
+			</Border>
+			<Border Grid.Column="2" Padding="10" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="6">
+				<local:TrackWideningCompUIView DataContext="{Binding TrackWideningViewModel}" />
+			</Border>
+		</Grid>
+
+		<Grid Grid.Row="1" Margin="0,16,0,0" ColumnDefinitions="320,*" ColumnSpacing="16">
+			<Border Grid.Column="0" Padding="10" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="6">
+				<local:TransportMotorCompUIView DataContext="{Binding TransportMotorViewModel}" />
+			</Border>
+			<Border Grid.Column="1" Padding="10" BorderBrush="#D9D9D9" BorderThickness="1" CornerRadius="6">
+				<local:SingleTrackStationCompUIView DataContext="{Binding SingleTrackStationViewModel}" />
+			</Border>
+		</Grid>
+	</Grid>
+</UserControl>

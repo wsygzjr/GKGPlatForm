@@ -1,0 +1,389 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Griffins.CompUI.GantryClean.CompUI_GantryClean.PageType.InitCfgPage.GantryCleanConfig.ViewModels"
+             xmlns:custom="using:GKG.UI"
+             x:DataType="vm:GantryCleanConfigCompUIViewModel"
+             x:Class="Griffins.CompUI.GantryClean.CompUI_GantryClean.PageType.InitCfgPage.GantryCleanConfig.Views.GantryCleanConfigCompUIView">
+
+    <UserControl.Styles>
+        <Style Selector="Border.Card">
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="#13A3E6" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="CornerRadius" Value="4" />
+        </Style>
+
+        <Style Selector="Border.ContentPanel">
+            <Setter Property="Background" Value="#EEF7FF" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Padding" Value="14,16" />
+        </Style>
+
+        <Style Selector="Border.FloatLabel">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#13A3E6" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Padding" Value="10,4" />
+        </Style>
+
+        <Style Selector="TextBlock.SectionTitle">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Foreground" Value="#0B75B7" />
+        </Style>
+
+        <Style Selector="TextBlock.FormLabel">
+            <Setter Property="Foreground" Value="#0F172A" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid x:Name="RootGrid" RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="14" ColumnSpacing="14" Margin="16" Background="#FFFFFF" VerticalAlignment="Stretch" ClipToBounds="True">
+        <Border Grid.Row="0" Grid.Column="0" Classes="Card" VerticalAlignment="Stretch" MinHeight="0">
+            <DockPanel LastChildFill="True" VerticalAlignment="Stretch">
+                <Border Classes="FloatLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,-9,0,0" ZIndex="10" DockPanel.Dock="Top">
+                    <TextBlock Classes="SectionTitle" Text="清洁功能开关" />
+                </Border>
+
+                <Border Classes="ContentPanel" Margin="12,6,12,12" VerticalAlignment="Stretch" MinHeight="0">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" MinHeight="0" IsScrollChainingEnabled="False">
+                        <StackPanel Spacing="10">
+                            <custom:ToggleSwitchControl LabelName="清洁" WidthLevel="Medium" ViewModel="{Binding CleanSwitchViewModel}" />
+                            <custom:ToggleSwitchControl LabelName="擦拭" WidthLevel="Medium" ViewModel="{Binding WipeSwitchViewModel}" />
+                            <custom:ToggleSwitchControl LabelName="排胶" WidthLevel="Medium" ViewModel="{Binding PurgeSwitchViewModel}" />
+                            <custom:ToggleSwitchControl LabelName="开启停机排胶" WidthLevel="Medium" ViewModel="{Binding StopMachinePurgeSwitchViewModel}" />
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="清洁顺序" />
+                                <custom:ComboxControl Grid.Column="1" ViewModel="{Binding CleanOrderComboxViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="功能头ID" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding FunctionHeadIdTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="清洁次数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CleanCountTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="CCD到阀距离X" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CCDToValveDistanceXTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="CCD到阀距离Y" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CCDToValveDistanceYTextViewModel}" />
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1" Classes="Card" VerticalAlignment="Stretch" MinHeight="0">
+            <DockPanel LastChildFill="True" VerticalAlignment="Stretch">
+                <Border Classes="FloatLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,-9,0,0" ZIndex="10" DockPanel.Dock="Top">
+                    <TextBlock Classes="SectionTitle" Text="擦拭" />
+                </Border>
+
+                <Border Classes="ContentPanel" Margin="12,6,12,12" VerticalAlignment="Stretch" MinHeight="0">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" MinHeight="0" IsScrollChainingEnabled="False">
+                        <StackPanel Spacing="10">
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="擦拭模式" />
+                                <custom:ComboxControl Grid.Column="1" ViewModel="{Binding WipeModeComboxViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="示教位置模式" />
+                                <custom:ComboxControl Grid.Column="1" ViewModel="{Binding WipeTeachPosModeComboxViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="擦拭位置XYZ" />
+                                <Grid Grid.Column="1" ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                                    <custom:TextInputControl Grid.Column="0" ViewModel="{Binding WipePosXTextViewModel}" />
+                                    <custom:TextInputControl Grid.Column="1" ViewModel="{Binding WipePosYTextViewModel}" />
+                                    <custom:TextInputControl Grid.Column="2" ViewModel="{Binding WipePosZTextViewModel}" />
+                                </Grid>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="擦拭圈数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding WipeCylinderCountTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="转纸圈数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding RollPaperCountTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="转纸速度" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding RollPaperSpeedTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="清洁半径" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CleanRadiusTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="擦拭速度" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding WipeSpeedTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="阵列擦拭" />
+                                <custom:ToggleSwitchControl Grid.Column="1" LabelName="" WidthLevel="Medium" ViewModel="{Binding WipeOpenForArraySwitchViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="擦拭间距" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding WipeSpaceTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="X数量" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding XCountTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="Y数量" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding YCountTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="当前索引" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CurrentRunIndexTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="设定循环次数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding SetLoopTimesTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="实际循环次数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding RealLoopTimesTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="检查清洁纸" />
+                                <custom:ToggleSwitchControl Grid.Column="1" LabelName="" WidthLevel="Medium" ViewModel="{Binding CheckCleanPaperSwitchViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="阀来回次数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ValveBackAndForthTimesTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="阀来回距离" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ValveBackAndForthDisTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="反转" />
+                                <custom:ToggleSwitchControl Grid.Column="1" LabelName="" WidthLevel="Medium" ViewModel="{Binding ReversalSwitchViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="毛刷运行时间" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding BrushRunTimeTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="中心擦拭时间" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CenterWipeTimeTextViewModel}" />
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" Classes="Card" VerticalAlignment="Stretch" MinHeight="0">
+            <DockPanel LastChildFill="True" VerticalAlignment="Stretch">
+                <Border Classes="FloatLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,-9,0,0" ZIndex="10" DockPanel.Dock="Top">
+                    <TextBlock Classes="SectionTitle" Text="排胶" />
+                </Border>
+
+                <Border Classes="ContentPanel" Margin="12,6,12,12" VerticalAlignment="Stretch" MinHeight="0">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" MinHeight="0" IsScrollChainingEnabled="False">
+                        <StackPanel Spacing="10">
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="示教位置模式" />
+                                <custom:ComboxControl Grid.Column="1" ViewModel="{Binding PurgeTeachPosModeComboxViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶位置XYZ" />
+                                <Grid Grid.Column="1" ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                                    <custom:TextInputControl Grid.Column="0" ViewModel="{Binding PurgePosXTextViewModel}" />
+                                    <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgePosYTextViewModel}" />
+                                    <custom:TextInputControl Grid.Column="2" ViewModel="{Binding PurgePosZTextViewModel}" />
+                                </Grid>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="启用回抹" />
+                                <custom:ToggleSwitchControl Grid.Column="1" LabelName="" WidthLevel="Medium" ViewModel="{Binding ToAndFroMoveSwitchViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶点数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeGluePointsTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="间隔板数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeIntervalPcsTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="最小间隔板数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeIntervalMinPcsTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="间隔时间(s)" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeIntervalTimeSTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="阵列排胶" />
+                                <custom:ToggleSwitchControl Grid.Column="1" LabelName="" WidthLevel="Medium" ViewModel="{Binding PurgeGlueOpenForArraySwitchViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶间距" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeGlueSpaceTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶X数量" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeGlueXCountTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶Y数量" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeGlueYCountTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶当前索引" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeGlueCurrentRunIndexTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶设定循环次数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeGlueSetLoopTimesTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="排胶实际循环次数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding PurgeGlueRealLoopTimesTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="回抹次数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ToAndFroNumTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="回抹距离" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ToAndFroDistanceTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="回抹速度" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ToAndFroSpeedTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="回抹加速度" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ToAndFroAccSpeedTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="实际板数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ActualvalueBoardNumTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="刮刀方向" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding ScraperDirectionTextViewModel}" />
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Classes="Card" VerticalAlignment="Stretch" MinHeight="0">
+            <DockPanel LastChildFill="True" VerticalAlignment="Stretch">
+                <Border Classes="FloatLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16,-9,0,0" ZIndex="10" DockPanel.Dock="Top">
+                    <TextBlock Classes="SectionTitle" Text="清胶" />
+                </Border>
+
+                <Border Classes="ContentPanel" Margin="12,6,12,12" VerticalAlignment="Stretch" MinHeight="0">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch" MinHeight="0" IsScrollChainingEnabled="False">
+                        <StackPanel Spacing="10">
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="示教位置模式" />
+                                <custom:ComboxControl Grid.Column="1" ViewModel="{Binding CleanTeachPosModeComboxViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="清胶位置XYZ" />
+                                <Grid Grid.Column="1" ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                                    <custom:TextInputControl Grid.Column="0" ViewModel="{Binding CleanPosXTextViewModel}" />
+                                    <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CleanPosYTextViewModel}" />
+                                    <custom:TextInputControl Grid.Column="2" ViewModel="{Binding CleanPosZTextViewModel}" />
+                                </Grid>
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="清洁模式" />
+                                <custom:ComboxControl Grid.Column="1" ViewModel="{Binding CleanModeComboxViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="喷胶点数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding SpitGluePointsTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="真空吸时间(s)" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding VacuumTimeSTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="间隔板数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CleanIntervalPcsTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="最小间隔板数" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CleanIntervalMinPcsTextViewModel}" />
+                            </Grid>
+
+                            <Grid ColumnDefinitions="150,*" ColumnSpacing="12">
+                                <TextBlock Classes="FormLabel" Text="间隔时间(s)" />
+                                <custom:TextInputControl Grid.Column="1" ViewModel="{Binding CleanIntervalTimeSTextViewModel}" />
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="520"
+             xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+             x:DataType="vm:RecipePlanBlockConfigWorkspaceViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.RecipePlanWorkspaces.RecipePlanBlockConfigWorkspaceView">
+
+    <Grid ColumnDefinitions="620,12,*" RowDefinitions="Auto,8,*" MinHeight="420">
+        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="532,88">
+            <Button Grid.Column="1" Content="预览" Width="88" Height="30" Command="{Binding PreviewCommand}" />
+        </Grid>
+
+        <Border Grid.Column="0"
+                Grid.Row="2"
+                BorderBrush="#D0D0D0"
+                BorderThickness="1"
+                Padding="0">
+            <DataGrid ItemsSource="{Binding DisplayedRows}"
+                      SelectedItem="{Binding SelectedRow, Mode=TwoWay}"
+                      AutoGenerateColumns="False"
+                      HeadersVisibility="Column"
+                      CanUserResizeColumns="False"
+                      CanUserSortColumns="False"
+                      CanUserReorderColumns="False"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto"
+                      RowHeight="38"
+                      GridLinesVisibility="Horizontal">
+                <DataGrid.Styles>
+                    <Style Selector="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="0" />
+                    </Style>
+                    <Style Selector="DataGridCell">
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="0" />
+                    </Style>
+                </DataGrid.Styles>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="序号" Binding="{Binding SerialNumber}" Width="90" IsReadOnly="True" />
+                    <DataGridTextColumn Header="区块名" Binding="{Binding BlockName}" Width="180" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="启用/禁用" Width="110" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="vm:RecipePlanBlockConfigRowViewModel">
+                                <TextBlock Text="{Binding EnableStatusText}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="操作" Width="240" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="vm:RecipePlanBlockConfigRowViewModel">
+                                <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
+                                    <Button Content="启用/禁用"
+                                            Width="90"
+                                            Height="34"
+                                            Command="{Binding DataContext.ToggleRowEnableCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding .}" />
+                                    <Button Content="上移"
+                                            Width="55"
+                                            Height="34"
+                                            IsEnabled="{Binding CanMoveUp}"
+                                            Command="{Binding DataContext.MoveRowUpCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding .}" />
+                                    <Button Content="下移"
+                                            Width="55"
+                                            Height="34"
+                                            IsEnabled="{Binding CanMoveDown}"
+                                            Command="{Binding DataContext.MoveRowDownCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding .}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- 右侧预览/参数区占位（与截图一致预留大区域） -->
+        <Border Grid.Column="2" Grid.RowSpan="3"
+                Background="#DCE9EF"
+                BorderBrush="#C8DCE6"
+                BorderThickness="1" />
+    </Grid>
+
+</UserControl>
+

@@ -1,0 +1,106 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:GKG.Map.CommunicationFuncCtlMapCell.ViewModel"
+			 xmlns:conv="clr-namespace:GKG.Map.CommunicationFuncCtlMapCell.Convert"
+			 mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="520"
+			 x:Class="GKG.Map.CommunicationFuncCtlMapCell.View.CommunicationView"
+			 x:DataType="vm:CommunicationViewModel">
+
+	<Border x:Name="MainBorder" BorderBrush="#9CC3F0" BorderThickness="1" Padding="0" Background="Transparent">
+		<Grid x:Name="MainGrid" RowDefinitions="40,Auto,*" MinWidth="420">
+			<Border x:Name="bdHeader" Grid.Row="0" BorderBrush="#E5E5E5" BorderThickness="0,0,0,1" Background="White">
+				<TextBlock x:Name="tbTitle"
+						   Text="阀"
+						   HorizontalAlignment="Left"
+						   VerticalAlignment="Center"
+						   FontSize="16"
+						   FontWeight="Bold"
+						   Foreground="Black"
+						   Margin="10,0,0,0"/>
+			</Border>
+			<Grid x:Name="gridBody" Grid.Row="1" Margin="0">
+				<Border x:Name="bdLeftPanel" BorderBrush="#E6E6E6" BorderThickness="0">
+					<Grid x:Name="gridParams"
+						  Margin="10,10,10,10"
+						  ColumnDefinitions="140,*,140,*"
+						  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+						  RowSpacing="10"
+						  ColumnSpacing="10">
+
+						<Border Grid.Row="0" Grid.Column="0" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbRaiseTime" Text="抬起时间(ms)" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="0" Grid.Column="1" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<TextBox x:Name="txtRaiseTime" BorderThickness="0" Text="{Binding RaiseTime}"/>
+						</Border>
+						<Border Grid.Row="0" Grid.Column="2" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbDispenseTime" Text="点胶时间(ms)" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="0" Grid.Column="3" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<TextBox x:Name="txtDispenseTime" BorderThickness="0" Text="{Binding DispenseTime}"/>
+						</Border>
+
+						<Border Grid.Row="1" Grid.Column="0" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbImpactTime" Text="撞击时间(ms)" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="1" Grid.Column="1" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<TextBox x:Name="txtImpactTime" BorderThickness="0" Text="{Binding ImpactTime}"/>
+						</Border>
+						<Border Grid.Row="1" Grid.Column="2" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbIntermittentTime" Text="间歇时间(ms)" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="1" Grid.Column="3" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<TextBox x:Name="txtIntermittentTime" BorderThickness="0" Text="{Binding IntermittentTime}"/>
+						</Border>
+
+						<Border Grid.Row="2" Grid.Column="0" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbVoltageRatio" Text="电压比(%)" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="2" Grid.Column="1" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<TextBox x:Name="txtVoltageRatio" BorderThickness="0" Text="{Binding VoltageRatio}"/>
+						</Border>
+						<Border Grid.Row="2" Grid.Column="2" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbDotCount" Text="画点次数" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="2" Grid.Column="3" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<TextBox x:Name="txtDotCount" BorderThickness="0" Text="{Binding DotCount}"/>
+						</Border>
+
+						<Border Grid.Row="3" Grid.Column="0" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbDispenseMode" Text="点胶模式" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="0">
+							<Grid ColumnDefinitions="*,10,140,10,*" VerticalAlignment="Center">
+								<TextBox x:Name="txtDispenseMode" Grid.Column="0" MinWidth="80" BorderThickness="0" Margin="10,4" Text="{Binding DispenseMode}"/>
+								<Border Grid.Column="1" Width="1" Background="#E6E6E6" HorizontalAlignment="Center" Margin="0,6"/>
+								<StackPanel Grid.Column="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+									<RadioButton x:Name="rbModeDot" GroupName="DispenseMode" Content="画点" Margin="10,0,0,0"
+												 IsChecked="{Binding DispenseMode, Converter={x:Static conv:DispenseModeIntToBoolConverter.Instance}, ConverterParameter=0}"/>
+									<RadioButton x:Name="rbModeLine" GroupName="DispenseMode" Content="画线" Margin="20,0,0,0"
+												 IsChecked="{Binding DispenseMode, Converter={x:Static conv:DispenseModeIntToBoolConverter.Instance}, ConverterParameter=1}"/>
+								</StackPanel>
+							</Grid>
+						</Border>
+
+						<Border Grid.Row="4" Grid.Column="0" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbAfterStop" Text="后停状态" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<ToggleSwitch x:Name="tsAfterStop" HorizontalAlignment="Left" IsChecked="{Binding AfterStop}"/>
+						</Border>
+
+						<Border Grid.Row="5" Grid.Column="0" Background="#F2F3F5" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,6">
+							<TextBlock x:Name="tbTotalCount" Text="总次数" VerticalAlignment="Center"/>
+						</Border>
+						<Border Grid.Row="5" Grid.Column="1" Background="White" BorderBrush="#E6E6E6" BorderThickness="1" Padding="10,4">
+							<TextBox x:Name="txtTotalCount" BorderThickness="0" Text="{Binding TotalCount}"/>
+						</Border>
+						<Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Background="Transparent" BorderThickness="0"/>
+					</Grid>
+				</Border>
+			</Grid>
+		</Grid>
+	</Border>
+</UserControl>

@@ -1,0 +1,4 @@
+[submodule "submodule/basic-library"]
+	path = submodule/basic-library
+	url = http://192.168.1.1:3000/GKG/basic-library.git
+	branch = master

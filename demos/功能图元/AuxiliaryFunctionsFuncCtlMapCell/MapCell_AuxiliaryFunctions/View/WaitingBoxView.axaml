@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="460" d:DesignHeight="260"
+		x:Class="GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.View.WaitingBoxView"
+		xmlns:vm="using: GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.ViewModel"
+		SystemDecorations="None"
+		WindowStartupLocation="CenterOwner"
+		ShowInTaskbar="False"
+		Background="Transparent"
+		CanResize="False"
+		Width="460" Height="260">
+
+	<Window.Styles>
+		<Style Selector="TextBlock.SpinningIcon">
+			<Style.Animations>
+				<Animation Duration="0:0:2.5" IterationCount="Infinite">
+					<KeyFrame Cue="0%">
+						<Setter Property="RotateTransform.Angle" Value="0" />
+					</KeyFrame>
+					<KeyFrame Cue="100%">
+						<Setter Property="RotateTransform.Angle" Value="360" />
+					</KeyFrame>
+				</Animation>
+			</Style.Animations>
+		</Style>
+	</Window.Styles>
+
+	<Grid>
+		<Border Background="#5B9BD5" CornerRadius="1" />
+
+		<StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+			<TextBlock x:Name="IconTextBlock" Text="&#xe65f;" FontSize="50" Classes="SpinningIcon"
+					   Foreground="White" Margin="3" VerticalAlignment="Center">
+				<TextBlock.RenderTransform>
+					<RotateTransform />
+				</TextBlock.RenderTransform>
+			</TextBlock>
+			<TextBlock x:Name="MessageTextBlock" Margin="30,10,10,10" FontSize="18"
+					   Width="320" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="White" />
+		</StackPanel>
+
+		<ProgressBar x:Name="BottomProgressBar" VerticalAlignment="Bottom" Height="15"
+					 Background="#5B9BD5" Foreground="#95DFFF" Maximum="1000" />
+	</Grid>
+
+</Window>

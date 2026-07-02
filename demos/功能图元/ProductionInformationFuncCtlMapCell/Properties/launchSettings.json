@@ -1,0 +1,26 @@
+{
+  "profiles": {
+    "GKG.Map.ProductionInformationFuncCtlMapCell": {
+      "commandName": "Project"
+    },
+    "配置文件 1": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\\\智造设备\\\\智造设备管理平台\\\\测试工具\\\\图元测试工具\\\\MapCellTest.exe"
+    },
+    "maptool": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\MapTool\\MapTool.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\MapTool"
+    },
+    "mapTML": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\MapTml\\MapTml.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\MapTml"
+    },
+    "服务": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\IotGwSvr\\TestIotGwSvr.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\IotGwSvr"
+    }
+  }
+}

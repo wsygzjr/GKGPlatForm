@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:DispensingPageType.ViewModels.RecipeParamCfgPage.ParametersAndCalculation"
+			
+			 xmlns:vmcom="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"
+             xmlns:local="using Griffins.UI.General"    
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation" 
+             x:DataType="vmcom:CamreaPositionViewModel"  
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.PointEditView">
+
+    <!--垂直排列   -->
+ <StackPanel Orientation="Vertical"  HorizontalAlignment="Center"   Margin="0 0 0 0"    >
+		 
+<!--	--><!--上部分显示相机栏--><!-- 
+	<gkgUI:CameraShowView Grid.Column="0" 
+         DataContext="{x:Static local:GlobalVisionViewModel.CameraShowViewModel}" 
+         Margin="2" Height="609"  /> -->
+	 
+	<!--下部分显示当前选中点参数编辑栏（该区域缺省不显示，点击“点明细列表栏”中的点时，才显示当前选中点类型对应的内容），XYZ坐标,教导,移动到--> 
+        <Grid RowDefinitions="Auto" ColumnDefinitions="Auto"
+                    RowSpacing="0"  HorizontalAlignment="Left"  Height="85" > 
+                               
+            <Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+                RowSpacing="0"  HorizontalAlignment="Center"  Height="85"  > 
+                 <!--   --><!-- 坐标表头 --><!--
+                    <gkgUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="0"  
+                        Margin="1" Height="35" Width="580"  />   
+                    --><!-- 坐标数据 --><!--
+                    <gkgUI:PositionTeachView    Grid.Row="1"  Grid.Column="0" 
+                        DataContext="{Binding .}" 
+                        Margin="1" Height="43" Width="580"  />   -->
+            </Grid>
+        </Grid> 
+	
+  </StackPanel>
+</UserControl>

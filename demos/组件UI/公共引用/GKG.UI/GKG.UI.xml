@@ -1,0 +1,5264 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GKG.UI</name>
+    </assembly>
+    <members>
+        <member name="T:GKG.UI.General.BasePositionViewModel">
+            <summary>
+            位置信息基类 视图模型
+            实现功能头移动到指定位置和坐标教导
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.BasePositionViewModel._viewReference">
+            <summary>
+            视图引用（用于显示对话框）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.XViewModel">
+            <summary>
+            X轴坐标(mm) 数据模型（decimal类型）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.YViewModel">
+            <summary>
+            Y轴坐标(mm) 数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.ZViewModel">
+            <summary>
+            Z轴坐标(mm) 数据模型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.BasePositionViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.X">
+            <summary>
+            X轴坐标
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.Y">
+            <summary>
+            Y轴坐标
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.Z">
+            <summary>
+            Z轴坐标
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.IsOping">
+            <summary>
+            操作中状态
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.MoveBtText">
+            <summary>
+            移动按钮显示文本
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.TeachCommand">
+            <summary>
+            教导命令
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionViewModel.MoveCommand">
+            <summary>
+            相机到命令
+            针头到命令
+            激光到命令
+            ...
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（供对话框使用）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel.CopyFrom(GKG.UI.General.BasePositionInfo)">
+            <summary>
+            从基类数据模型加载X/Y/Z
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel.CopyTo(GKG.UI.General.BasePositionInfo)">
+            <summary>
+            将X/Y/Z回写到基类数据模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel.onTeach">
+             <summary>
+            教导
+             </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel.onMoveCamera">
+            <summary>
+            移动相机
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel._getCurrentDevicePosition">
+            <summary>
+            获取当前设备位置
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel._moveCameraToPosition(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            移动相机到目标位置
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionViewModel.subscribeValueChanges">
+            <summary>
+            订阅值改变事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.BasePositionInfo">
+             <summary>
+            位置信息基类
+             </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionInfo.X">
+             <summary>
+            X轴坐标(mm)
+             </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionInfo.Y">
+             <summary>
+            Y轴坐标(mm)
+             </summary>
+        </member>
+        <member name="P:GKG.UI.General.BasePositionInfo.Z">
+             <summary>
+            Z轴坐标(mm)
+             </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionInfo.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从 JObject 反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.BasePositionInfo.ToJObject">
+            <summary>
+            序列化为 JObject
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CalibrationResultView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CalibrationResultView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CalibrationResultView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.CalibrationResultViewModel">
+            <summary>
+            标定结果-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraCalibrationViewModel">
+            <summary>
+            相机标定结果
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraVsGluevalveR0ViewModel">
+            <summary>
+            相机VS胶阀结果R0
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraVsGluevalveNinetyViewModel">
+            <summary>
+            相机VS胶阀结果90度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraVsLaserViewModel">
+            <summary>
+            相机VS激光偏移结果
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.LaserVsGluevalveHightViewModel">
+            <summary>
+            相机VS胶阀阀高度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraRatioCalibrationXYStr">
+            <summary>
+            相机比例标定结果字符串
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraVsGluevalveR0Str">
+            <summary>
+            相机VS胶阀结果R0字符串
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraVsGluevalveNinetyStr">
+            <summary>
+            相机VS胶阀结果90度字符串
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.CameraVsLaserOffsetStr">
+            <summary>
+            相机VS激光偏移结果字符串
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultViewModel.LaserVsGluevalveHightStr">
+            <summary>
+            激光VS胶阀阀高度字符串
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CalibrationResultViewModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CalibrationResultViewModel.SetCalibrationResultInfo(GKG.UI.General.CalibrationResultInfoChangedEventArgs)">
+            <summary>
+            设置标定结果
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:GKG.UI.General.CalibrationResultInfo">
+            <summary>
+            标定结果信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultInfo.CameraRatioOffset">
+            <summary>
+            相机比例标定结果
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultInfo.CameraVsGluevalveResultInfo">
+            <summary>
+            相机VS胶阀结果
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultInfo.CameraVsLaserResultInfo">
+            <summary>
+            相机VS激光偏移结果
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultInfo.LaserVsGluevalveResultInfo">
+            <summary>
+            激光VS胶阀标定结果偏移信息
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CalibrationResultInfo.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CameraRatioResultInfo">
+            <summary>
+            相机比列定结果信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraRatioResultInfo.XOffset">
+            <summary>
+            X偏移
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraRatioResultInfo.YOffset">
+            <summary>
+            Y偏移
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraRatioResultInfo.ToResultString">
+            <summary>
+            结果转字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.General.CameraRatioResultInfo.FromResultString(System.String)">
+            <summary>
+            字符串转结果信息
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:GKG.UI.General.CameraRatioResultInfo.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CameraVsGluevalveResultInfo">
+            <summary>
+            相机VS胶阀标定结果信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraVsGluevalveResultInfo.R0Offset">
+            <summary>
+            相机VS胶阀R0偏移
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraVsGluevalveResultInfo.NinetyOffset">
+            <summary>
+            相机VS胶阀90度偏移
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraVsGluevalveResultInfo.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.OffsetResultInfo">
+            <summary>
+            偏移标定结果偏移信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.OffsetResultInfo.X">
+            <summary>
+            X坐标
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.OffsetResultInfo.Y">
+            <summary>
+            Y坐标
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.OffsetResultInfo.#ctor">
+            <summary>
+            偏移标定结果偏移信息
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.OffsetResultInfo.ToResultString">
+            <summary>
+            结果转字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.General.OffsetResultInfo.FromResultString(System.String)">
+            <summary>
+            字符串转结果信息
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="T:GKG.UI.General.LaserVsGluevalveResultInfo">
+            <summary>
+            激光VS胶阀标定结果偏移信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LaserVsGluevalveResultInfo.LaserToPlaneValue">
+            <summary>
+            激光到平面的数值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LaserVsGluevalveResultInfo.ValveZAxisPosition">
+            <summary>
+            阀碰到平面的Z轴位置
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LaserVsGluevalveResultInfo.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LaserVsGluevalveResultInfo.ToResultString">
+            <summary>
+            结果转字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.General.LaserVsGluevalveResultInfo.FromResultString(System.String)">
+            <summary>
+            字符串转结果信息
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="T:GKG.UI.General.CalibrationResultInfoChangedEventArgs">
+            <summary>
+            相机标定结果信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultInfoChangedEventArgs.CalibrationResultKind">
+            <summary>
+            标定结果类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CalibrationResultInfoChangedEventArgs.CalibrationResultInfo">
+            <summary>
+            标定结果信息,根据标定结果类型区分不同的结构信息
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CalibrationResultInfoChangedEventArgs.#ctor(GKG.UI.General.CalibrationResultKind,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="calibrationResultKind"></param>
+            <param name="resultInfo"></param>
+        </member>
+        <member name="T:GKG.UI.General.CalibrationResultKind">
+            <summary>
+            标定结果类型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CalibrationResultKind.CameraRatio">
+            <summary>
+            相机比例标定
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CalibrationResultKind.CameraVsGluevalveR0Offset">
+            <summary>
+            相机VS胶阀R0偏移
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CalibrationResultKind.CameraVsGluevalveNinetyOffset">
+            <summary>
+            相机VS胶阀90度偏移
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CalibrationResultKind.CameraVsLaser">
+            <summary>
+            相机V激光
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CalibrationResultKind.LaserVsGluevalve">
+            <summary>
+            激光V胶阀-改变
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CameraLightSourceCtrView">
+            <summary>
+            相机与光源控制-视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.CameraLightSourceCtrViewModel">
+            <summary>
+            相机与光源控制-视图模型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CameraLightSourceCtrViewModel._viewReference">
+            <summary>
+            页面布局根视图引用（用于UI上下文关联）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.CameraPreControl">
+            <summary>
+            相机视频显示控件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.EnabledScaleViewModel">
+            <summary>
+            是否开启刻度-开关按钮ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.EnabledMouseMoveViewModel">
+            <summary>
+            是否鼠标移动-开关按钮ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.SetTemplateSearchBoxViewModel">
+            <summary>
+            设置模板和搜索框-下拉框ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.AxisViewModel">
+            <summary>
+            坐标轴配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.DownLightSourceViewModel">
+            <summary>
+            下光源信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.UpLightSourceViewModel">
+            <summary>
+            上光源视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.LightSourceParamViewModel">
+            <summary>
+            光源参数视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.EnabledScale">
+            <summary>
+            是否开启刻度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.EnabledMouseMove">
+            <summary>
+            是否鼠标移动
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrViewModel.SetTemplateSearchBox">
+            <summary>
+            设置模板和搜索框枚举
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.CameraLightSourceCtrViewModel.AfterModified">
+            <summary>
+            事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrViewModel.CopyFrom(GKG.UI.General.CameraLightSourceCtrCfgInfo)">
+            <summary>
+            初始化
+            </summary>
+            <param name="cameraLightSourceCtrCfgInfo">相机显示配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrViewModel.CopyTo(GKG.UI.General.CameraLightSourceCtrCfgInfo)">
+            <summary>
+            复制到指定相机显示配置信息
+            </summary>
+            <param name="cameraLightSourceCtrCfgInfo">相机显示配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel的事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrViewModel.viewModel_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            界面配置信息改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrViewModel.onAfterModified">
+            <summary>
+            触发配置修改事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.UpLightSourceViewModel">
+            <summary>
+            上光源视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.UpLightSourceViewModel.AfterModified">
+            <summary>
+            数据变更事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.UpViewModel">
+            <summary>
+            Up 通道（
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.DownViewModel">
+            <summary>
+            Down 通道
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.LeftViewModel">
+            <summary>
+            Left 通道
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.RightViewModel">
+            <summary>
+            Right 通道
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.Up">
+            <summary>
+            Up 通道值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.Down">
+            <summary>
+            Down 通道值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.Left">
+            <summary>
+            Left 通道值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceViewModel.Right">
+            <summary>
+            Right 通道值
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceViewModel.Init(GKG.UI.General.UpLightSourceCfgInfo)">
+            <summary>
+            从配置模型加载数据
+            </summary>
+            <param name="cfgInfo">上光源配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceViewModel.Extract(GKG.UI.General.UpLightSourceCfgInfo)">
+            <summary>
+            提取数据到配置模型
+            </summary>
+            <param name="cfgInfo">上光源配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceViewModel.onChannelValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            通道值变更事件统一处理
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceViewModel.onAfterModified">
+            <summary>
+            触发数据变更事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.LightSourceParamViewModel">
+            <summary>
+            光源参数视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.LightSourceParamViewModel.AfterModified">
+            <summary>
+            数据变更事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.ExposureValueViewModel">
+            <summary>
+            曝光值（ms）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.ExposureGainViewModel">
+            <summary>
+            曝光增益（倍数）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.ContrastViewModel">
+            <summary>
+            对比度（%）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.ContrastThresholdViewModel">
+            <summary>
+            对比度阈值（灰度值0-255）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.ExposureValue">
+            <summary>
+            曝光值（ms）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.ExposureGain">
+            <summary>
+            曝光增益
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.Contrast">
+            <summary>
+            对比度（%）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamViewModel.ContrastThreshold">
+            <summary>
+            对比度阈值（灰度值0-255）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamViewModel.Init(GKG.UI.General.LightSourceParamCfgInfo)">
+            <summary>
+            从配置模型加载数据
+            </summary>
+            <param name="paramCfgInfo">光源参数配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamViewModel.Extract(GKG.UI.General.LightSourceParamCfgInfo)">
+            <summary>
+            提取数据到配置模型
+            </summary>
+            <param name="paramCfgInfo">光源参数配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamViewModel.onParamValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            参数值变更事件统一处理
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamViewModel.onAfterModified">
+            <summary>
+            触发数据变更事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CameraLightSourceCtrCfgInfo">
+            <summary>
+            相机与光源控制配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrCfgInfo.AxisCfgInfo">
+            <summary>
+            三维坐标位置配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrCfgInfo.EnabledScale">
+            <summary>
+            是否开启刻度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrCfgInfo.EnabledMouseMove">
+            <summary>
+            是否鼠标移动
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrCfgInfo.SetTemplateSearchBox">
+            <summary>
+            设置模板和搜索框枚举
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrCfgInfo.DownLightSourceCfgInfo">
+            <summary>
+            下光源信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrCfgInfo.UpLightSourceCfgInfo">
+            <summary>
+            上光源信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraLightSourceCtrCfgInfo.LightSourceParamCfgInfo">
+            <summary>
+            光源参数信息
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraLightSourceCtrCfgInfo.CopyFrom(GKG.UI.General.CameraLightSourceCtrCfgInfo)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="T:GKG.UI.General.AxisCfgInfo">
+            <summary>
+            三维坐标配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisCfgInfo.X">
+            <summary>
+            X轴坐标（mm）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisCfgInfo.Y">
+            <summary>
+            Y轴坐标（mm）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisCfgInfo.Z">
+            <summary>
+            Z轴坐标（mm）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisCfgInfo.CopyFrom(GKG.UI.General.AxisCfgInfo)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="T:GKG.UI.General.UpLightSourceCfgInfo">
+            <summary>
+            上光源信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceCfgInfo.Up">
+            <summary>
+            Up通道（0-255）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceCfgInfo.Down">
+            <summary>
+            Down通道（0-255）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceCfgInfo.Left">
+            <summary>
+            Left通道（0-255）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.UpLightSourceCfgInfo.Right">
+            <summary>
+            Right通道（0-255）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.UpLightSourceCfgInfo.CopyFrom(GKG.UI.General.UpLightSourceCfgInfo)">
+            <summary>
+            复制
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.LightSourceParamCfgInfo">
+            <summary>
+            光源参数信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamCfgInfo.ExposureValue">
+            <summary>
+            曝光值（单位：ms）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamCfgInfo.ExposureGain">
+            <summary>
+            曝光增益（倍数）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamCfgInfo.Contrast">
+            <summary>
+            对比度（%）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceParamCfgInfo.ContrastThreshold">
+            <summary>
+            对比度阈值（灰度值0-255）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceParamCfgInfo.CopyFrom(GKG.UI.General.LightSourceParamCfgInfo)">
+            <summary>
+            复制
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SetTemplateSearchBox">
+            <summary>
+            设置模板和搜索框枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SetTemplateSearchBox.TemplateBox">
+            <summary>
+            设置模板框
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SetTemplateSearchBox.SearchBox">
+            <summary>
+            设置搜索框
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CameraOperationView">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.CameraOperationViewModel">
+            <summary>
+            相机操作-视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.CameraOperationViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CameraOperationViewModel._viewReference">
+            <summary>
+            页面布局根视图引用（用于UI上下文关联）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationViewModel.IsMoveing">
+            <summary>
+            移动中状态
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationViewModel.CameraShowViewModel">
+            <summary>
+            图像显示设置配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationViewModel.XYAxisSpeedViewModel">
+            <summary>
+            XY轴速度配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationViewModel.ZAxisSpeedViewModel">
+            <summary>
+            Z轴速度配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationViewModel.UAAxisSpeedViewModel">
+            <summary>
+            UA轴速度配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationViewModel.MoveCommand">
+            <summary>
+            移动
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.#ctor(GKG.UI.General.CameraShowViewModel)">
+            <summary>
+            传递相机视频控件
+            </summary>
+            <param name="cameraShowViewModel"></param>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.Init(GKG.UI.General.CameraOperationCfgInfo)">
+            <summary>
+            初始化
+            </summary>
+            <param name="cameraOperationCfgInfo">相机操作配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.Extract(GKG.UI.General.CameraOperationCfgInfo)">
+            <summary>
+            提取参数
+            </summary>
+            <param name="cameraOperationCfgInfo">相机操作配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel的事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.onMoveCamera(GKG.UI.General.MoveDirection)">
+            <summary>
+            移动相机
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.viewModel_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            界面配置信息改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationViewModel.onAfterModified">
+            <summary>
+            触发配置修改事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.MoveDirection">
+            <summary>
+            移动方向枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.XForward">
+             <summary>
+            X正向移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.XHighSpeedForward">
+             <summary>
+            X正向高速移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.XNegative">
+             <summary>
+            X负向移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.XHighSpeedNegative">
+             <summary>
+            X负向高速移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.YForward">
+             <summary>
+            Y正向移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.YHighSpeedForward">
+             <summary>
+            Y正向高速移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.YNegative">
+             <summary>
+            Y负向移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.YHighSpeedNegative">
+             <summary>
+            Y负向高速移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.ZForward">
+             <summary>
+            Z正向移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.ZHighSpeedForward">
+             <summary>
+            Z正向高速移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.ZNegative">
+             <summary>
+            Z负向移动
+             </summary>
+        </member>
+        <member name="F:GKG.UI.General.MoveDirection.ZHighSpeedNegative">
+             <summary>
+            Z负向高速移动
+             </summary>
+        </member>
+        <member name="T:GKG.UI.General.AxisSpeedViewModel">
+            <summary>
+            轴速度配置信息
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.AxisSpeedViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisSpeedViewModel.LowSpeedViewModel">
+            <summary>
+            低速数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisSpeedViewModel.HighSpeedViewModel">
+            <summary>
+            高速数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisSpeedViewModel.LowSpeed">
+            <summary>
+            XY轴低速（mm/s）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisSpeedViewModel.HighSpeed">
+            <summary>
+            XY轴高速（mm/s）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisSpeedViewModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisSpeedViewModel.Init(GKG.UI.General.AxisSpeedCfgInfo)">
+            <summary>
+            
+            </summary>
+            <param name="axisSpeedCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.AxisSpeedViewModel.Extract(GKG.UI.General.AxisSpeedCfgInfo)">
+            <summary>
+            提取参数
+            </summary>
+            <param name="axisSpeedCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.AxisSpeedViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel的事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisSpeedViewModel.viewModel_ValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            界面配置信息改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.AxisSpeedViewModel.onAfterModified">
+            <summary>
+            触发配置修改事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CameraOperationCfgInfo">
+            <summary>
+            相机操作配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationCfgInfo.XYAxisSpeedCfgInfo">
+            <summary>
+            XY轴速度配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationCfgInfo.ZAxisSpeedCfgInfo">
+            <summary>
+            Z轴速度配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraOperationCfgInfo.UAAxisSpeedCfgInfo">
+            <summary>
+            UA轴速度配置信息
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraOperationCfgInfo.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.AxisSpeedCfgInfo">
+            <summary>
+            轴速度配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisSpeedCfgInfo.LowSpeed">
+            <summary>
+            XY轴低速（mm/s）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisSpeedCfgInfo.HighSpeed">
+            <summary>
+            XY轴高速（mm/s）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisSpeedCfgInfo.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.ControlCardStateInitCfgInfo">
+            <summary>
+            运控卡状态量初始化 配置模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ControlCardStateInitCfgInfo.ControlCardID">
+            <summary>
+            运控卡ID
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ControlCardStateInitCfgInfo.IOChannel">
+            <summary>
+            IO通道号
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从 JObject 反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitCfgInfo.ToJObject">
+            <summary>
+            序列化为 JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitCfgInfo.CopyFrom(GKG.UI.General.ControlCardStateInitCfgInfo)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.ControlCardStateInitViewModel">
+            <summary>
+            运控卡状态量初始化-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ControlCardStateInitViewModel.ControlCardIDViewModel">
+            <summary>
+            运控卡ID-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ControlCardStateInitViewModel.IOChannelViewModel">
+            <summary>
+            IO通道号-下拉框视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.ControlCardStateInitViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ControlCardStateInitViewModel.SelectedCardType">
+            <summary>
+            选中的卡类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ControlCardStateInitViewModel.SelectedIOChannel">
+            <summary>
+            选中的IO通道号
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitViewModel.subscribeValueChanges">
+            <summary>
+            订阅值变更
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值变更处理
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitViewModel.CopyFrom(GKG.UI.General.ControlCardStateInitCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitViewModel.CopyTo(GKG.UI.General.ControlCardStateInitCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.ControlCardStateInitView">
+            <summary>
+            单控双限位-视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ControlCardStateInitView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="M:GKG.UI.General.CylinderConfigView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.CylinderDelayCfgInfo">
+            <summary>
+            气缸延时-模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderDelayCfgInfo.DelayNumeric">
+            <summary>
+            气缸延时-当前输入值
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderDelayCfgInfo.CopyFrom(GKG.UI.General.CylinderDelayCfgInfo)">
+            <summary>
+            从另一个实例拷贝
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CylinderDelayViewModel">
+            <summary>
+            气缸延时-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderDelayViewModel.DelayTextViewModel">
+            <summary>
+            气缸超时时间-文本输入框视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.CylinderDelayViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderDelayViewModel.DelayNumeric">
+            <summary>
+            气缸超时时间，单位 ms
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CylinderDelayView">
+            <summary>
+            气缸延时配置界面
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderDelayView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderDelayView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.CylinderMotionMechanismCfgInfo">
+            <summary>
+            气缸型移动机构配置
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderMotionMechanismCfgInfo.ExtendStatus">
+            <summary>
+            伸缩状态
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderMotionMechanismCfgInfo.PositionNumber">
+            <summary>
+            位置编号
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从 JObject 反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismCfgInfo.ToJObject">
+            <summary>
+            序列化为 JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismCfgInfo.CopyFrom(GKG.UI.General.CylinderMotionMechanismCfgInfo)">
+            <summary>
+            从另一个实例拷贝
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CylinderMotionMechanismViewModel">
+            <summary>
+            气缸型移动机构-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderMotionMechanismViewModel.ExtendStatusViewModel">
+            <summary>
+            伸缩状态-开关按钮视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderMotionMechanismViewModel.PositionNumberViewModel">
+            <summary>
+            位置编号-数字输入框视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.CylinderMotionMechanismViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderMotionMechanismViewModel.ExtendStatus">
+            <summary>
+            伸缩状态
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CylinderMotionMechanismViewModel.PositionNumber">
+            <summary>
+            位置编号
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismViewModel.subscribeValueChanges">
+            <summary>
+            订阅值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismViewModel.CopyFrom(GKG.UI.General.CylinderMotionMechanismCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+            <param name="model">数据模型</param>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismViewModel.CopyTo(GKG.UI.General.CylinderMotionMechanismCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+            <param name="model">数据模型</param>
+        </member>
+        <member name="T:GKG.UI.General.CylinderMotionMechanismView">
+            <summary>
+            气缸型移动机构参数配置界面View
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CylinderMotionMechanismView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.DoubleControlDoubleLimitCfgInfo">
+            <summary>
+            双控双限位-模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitCfgInfo.FirstControlModel">
+            <summary>
+            控制1-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitCfgInfo.SecondControlModel">
+            <summary>
+            控制2-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitCfgInfo.FirstLimitModel">
+            <summary>
+            限位1-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitCfgInfo.SecondLimitModel">
+            <summary>
+            限位2-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitCfgInfo.CylinderDelayModel">
+            <summary>
+            气缸超时时间模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitCfgInfo.CopyFrom(GKG.UI.General.DoubleControlDoubleLimitCfgInfo)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.DoubleControlDoubleLimitViewModel">
+            <summary>
+            双控双限位-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitViewModel.FirstControlViewModel">
+            <summary>
+            控制1-运控卡IO通道视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitViewModel.SecondControlViewModel">
+            <summary>
+            控制2-运控卡IO通道视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitViewModel.FirstLimitViewModel">
+            <summary>
+            限位1-运控卡IO通道框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitViewModel.SecondLimitViewModel">
+            <summary>
+            限位2-运控卡IO通道框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlDoubleLimitViewModel.CylinderDelayViewModel">
+            <summary>
+            气缸超时时间视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.DoubleControlDoubleLimitViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitViewModel.subscribeValueChanges">
+            <summary>
+            订阅值变更
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值变更处理
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitViewModel.CopyFrom(GKG.UI.General.DoubleControlDoubleLimitCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitViewModel.CopyTo(GKG.UI.General.DoubleControlDoubleLimitCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.DoubleControlDoubleLimitView">
+            <summary>
+            双控双限位-视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlDoubleLimitView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.DoubleControlSingleLimitCfgInfo">
+            <summary>
+            双控单限位-模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitCfgInfo.FirstControlModel">
+            <summary>
+            控制1-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitCfgInfo.SecondControlModel">
+            <summary>
+            控制2-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitCfgInfo.LimitModel">
+            <summary>
+            限位-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitCfgInfo.CylinderDelayModel">
+            <summary>
+            气缸超时时间模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlSingleLimitCfgInfo.CopyFrom(GKG.UI.General.DoubleControlSingleLimitCfgInfo)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.DoubleControlSingleLimitViewModel">
+            <summary>
+            双控单限位-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitViewModel.FirstControlViewModel">
+            <summary>
+            控制1-运控卡IO通道视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitViewModel.SecondControlViewModel">
+            <summary>
+            控制2-运控卡IO通道视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitViewModel.LimitViewModel">
+            <summary>
+            限位-运控卡IO通道框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.DoubleControlSingleLimitViewModel.CylinderDelayViewModel">
+            <summary>
+            气缸超时时间视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.DoubleControlSingleLimitViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlSingleLimitViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlSingleLimitViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlSingleLimitViewModel.CopyFrom(GKG.UI.General.DoubleControlSingleLimitCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlSingleLimitViewModel.CopyTo(GKG.UI.General.DoubleControlSingleLimitCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.DoubleControlSingleLimitView">
+            <summary>
+            双控单限位视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlSingleLimitView.#ctor">
+            <summary>
+            双控单限位视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.DoubleControlSingleLimitView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.BarcodeType">
+            <summary>
+            条码类型枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.BarcodeType.QR">
+            <summary>
+            QR码
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.BarcodeType.Code128">
+            <summary>
+            Code128
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.BarcodeType.Code39">
+            <summary>
+            Code39
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.BarcodeType.EAN13">
+            <summary>
+            EAN13
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.ExternalScannerCfg">
+            <summary>
+            通用外接扫码器数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerCfg.Enable">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerCfg.BarcodeValidationString">
+            <summary>
+            条码校验字符串
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerCfg.BarcodeType">
+            <summary>
+            条码类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerCfg.ScannerType">
+            <summary>
+            扫码器类型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerCfg.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerCfg.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerCfg.CopyFrom(GKG.UI.General.ExternalScannerCfg)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.ExternalScannerType">
+            <summary>
+            扫码类型枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.ExternalScannerType.A">
+            <summary>
+            A类型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.ExternalScannerType.B">
+            <summary>
+            B类型
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.ExternalScannerViewModel">
+            <summary>
+            通用外接扫码器视图模型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.ExternalScannerViewModel._viewReference">
+            <summary>
+            视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.EnableViewModel">
+            <summary>
+            是否启用-开关按钮视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.BarcodeValidationStringViewModel">
+            <summary>
+            条码校验字符串-输入框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.BarcodeTypeViewModel">
+            <summary>
+            条码类型-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.ScannerTypeViewModel">
+            <summary>
+            扫码器类型-输入框视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.ExternalScannerViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.Enable">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.BarcodeValidationString">
+            <summary>
+            条码校验字符串
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.SelectedBarcodeType">
+            <summary>
+            选中的条码类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ExternalScannerViewModel.ScannerType">
+            <summary>
+            扫码器类型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerViewModel.CopyFrom(GKG.UI.General.ExternalScannerCfg)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerViewModel.CopyTo(GKG.UI.General.ExternalScannerCfg)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerViewModel.subscribeValueChanges">
+            <summary>
+            订阅值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值改变事件处理
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.ExternalScannerView">
+            <summary>
+            通用外接扫码器视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ExternalScannerView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.GlobalVisionViewModel">
+            <summary>
+            全局静态视觉对象管理
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.GlobalVisionViewModel.CameraShowViewModel">
+            <summary>
+            图像显示设置配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.GlobalVisionViewModel.CameraOperationViewModel">
+            <summary>
+            相机操作-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.GlobalVisionViewModel.AxisViewModel">
+            <summary>
+            相机的坐标轴信息
+            用于在教导时读取相机坐标轴信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.GlobalVisionViewModel.CurActiveViewImageControl">
+            <summary>
+            当前活动页面的相机视频显示控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.GlobalVisionViewModel.Init(GKG.UI.General.CameraShowCfgInfo,GKG.UI.General.CameraOperationCfgInfo)">
+            <summary>
+            初始化
+            </summary>
+            <param name="cameraShowCfgInfo">相机显示配置信息</param>
+            <param name="cameraOperationCfgInfo">相机显示配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.GlobalVisionViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.HeightSerialPortCfg">
+            <summary>
+            测高串口配置 数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortCfg.PortName">
+            <summary>
+            串口号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortCfg.BaudRate">
+            <summary>
+            波特率
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortCfg.DataBits">
+            <summary>
+            数据位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortCfg.StopBits">
+            <summary>
+            停止位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortCfg.Parity">
+            <summary>
+            串口校验类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortCfg.EnableCRC16">
+            <summary>
+            是否启用CRC16
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortCfg.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortCfg.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortCfg.CopyFrom(GKG.UI.General.HeightSerialPortCfg)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.SerialPortCfgTypes">
+            <summary>
+            串口配置相关枚举
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SerialPortCfgTypes.BaudRate">
+            <summary>
+            波特率枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.BaudRate.BaudRate4800">
+            <summary>
+            4800
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.BaudRate.BaudRate9600">
+            <summary>
+            9600
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.BaudRate.BaudRate19200">
+            <summary>
+            19200
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.BaudRate.BaudRate38400">
+            <summary>
+            38400
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.BaudRate.BaudRate57600">
+            <summary>
+            57600
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.BaudRate.BaudRate115200">
+            <summary>
+            115200
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SerialPortCfgTypes.DataBits">
+            <summary>
+            数据位枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.DataBits.Five">
+            <summary>
+            5位
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.DataBits.Six">
+            <summary>
+            6位
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.DataBits.Seven">
+            <summary>
+            7位
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.DataBits.Eight">
+            <summary>
+            8位
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SerialPortCfgTypes.StopBits">
+            <summary>
+            停止位枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.StopBits.None">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.StopBits.One">
+            <summary>
+            1位
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.StopBits.Two">
+            <summary>
+            2位
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.StopBits.OnePointFive">
+            <summary>
+            1.5位
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SerialPortCfgTypes.Parity">
+            <summary>
+            校验类型枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.Parity.None">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.Parity.Odd">
+            <summary>
+            奇校验
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.Parity.Even">
+            <summary>
+            偶校验
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.Parity.Mark">
+            <summary>
+            标记
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.SerialPortCfgTypes.Parity.Space">
+            <summary>
+            空格
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.HeightSerialPortViewModel">
+            <summary>
+            测高串口调试-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.PortNameViewModel">
+            <summary>
+            串口号-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.BaudRateViewModel">
+            <summary>
+            波特率-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.DataBitsViewModel">
+            <summary>
+            数据位-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.StopBitsViewModel">
+            <summary>
+            停止位-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.ParityViewModel">
+            <summary>
+            奇偶校验类型-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.EnableCRC16ViewModel">
+            <summary>
+            是否启用CRC16-开关按钮视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.HeightSerialPortViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.SelectedPortName">
+            <summary>
+            选中的串口号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.SelectedBaudRate">
+            <summary>
+            选中的波特率
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.SelectedDataBits">
+            <summary>
+            选中的数据位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.SelectedStopBits">
+            <summary>
+            选中的停止位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.SelectedParity">
+            <summary>
+            选中的串口校验类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HeightSerialPortViewModel.EnableCRC16">
+            <summary>
+            是否启用CRC16
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortViewModel.CopyFrom(GKG.UI.General.HeightSerialPortCfg)">
+            <summary>
+            从配置模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortViewModel.CopyTo(GKG.UI.General.HeightSerialPortCfg)">
+            <summary>
+            从ViewModel复制数据到配置模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortViewModel.subscribeValueChanges">
+            <summary>
+            订阅值改变
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值改变
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.HeightSerialPortView">
+            <summary>
+            测高串口调试 视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HeightSerialPortView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.HorizontalControlCardStateInitCfgInfo">
+            <summary>
+            运控卡状态量初始化 配置模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HorizontalControlCardStateInitCfgInfo.ControlCardID">
+            <summary>
+            运控卡ID
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HorizontalControlCardStateInitCfgInfo.channelID">
+            <summary>
+            IO通道号
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitCfgInfo.CopyFrom(GKG.UI.General.HorizontalControlCardStateInitCfgInfo)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.HorizontalControlCardStateInitViewModel">
+            <summary>
+            运控卡状态量初始化-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HorizontalControlCardStateInitViewModel.ChannelIDViewModel">
+            <summary>
+            通道ID-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HorizontalControlCardStateInitViewModel.ControlCardIDViewModel">
+            <summary>
+            兼容旧代码保留的属性，当前与 ChannelIDViewModel 指向同一个下拉框实例。
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HorizontalControlCardStateInitViewModel.IOChannelViewModel">
+            <summary>
+            兼容旧代码保留的属性，当前与 ChannelIDViewModel 指向同一个下拉框实例。
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.HorizontalControlCardStateInitViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HorizontalControlCardStateInitViewModel.SelectedCardType">
+            <summary>
+            选中的卡类型。UI 不再直接编辑，但仍保留用于兼容旧数据结构。
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.HorizontalControlCardStateInitViewModel.SelectedChannelID">
+            <summary>
+            选中的通道ID（保存/传后端用字符串）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitViewModel.subscribeValueChanges">
+            <summary>
+            订阅值变更
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值变更处理
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitViewModel.CopyFrom(GKG.UI.General.HorizontalControlCardStateInitCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitViewModel.CopyTo(GKG.UI.General.HorizontalControlCardStateInitCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.HorizontalControlCardStateInitView">
+            <summary>
+            运控卡ID-IO通道号-水平排列视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitView.#ctor">
+            <summary>
+            水平排列-运控卡ID-IO通道号
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.HorizontalControlCardStateInitView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.IOChannelType">
+            <summary>
+            IO通道号枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.IOChannelType.Input64">
+            <summary>
+            64位输入
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.IOChannelType.Output64">
+            <summary>
+            64位输出
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.IOChannelType.Input256">
+            <summary>
+            256位输入
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.IOChannelType.Output256">
+            <summary>
+            256位输出
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.IOStateInitCfgInfo">
+            <summary>
+            IO状态量初始化 配置模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.IOStateInitCfgInfo.IODeviceID">
+            <summary>
+            IO设备ID
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.IOStateInitCfgInfo.IOChannel">
+            <summary>
+            IO通道号（枚举）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从 JObject 反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitCfgInfo.ToJObject">
+            <summary>
+            序列化为 JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitCfgInfo.CopyFrom(GKG.UI.General.IOStateInitCfgInfo)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.IOStateInitViewModel">
+            <summary>
+            IO状态量初始化-视图模型（基础组件）
+            包含：IO设备ID 下拉框；IO通道号 下拉框
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.IOStateInitViewModel.IODeviceIDViewModel">
+            <summary>
+            IO设备ID-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.IOStateInitViewModel.IOChannelViewModel">
+            <summary>
+            IO通道号-下拉框视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.IOStateInitViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.IOStateInitViewModel.SelectedIODeviceID">
+            <summary>
+            选中的IO设备ID
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.IOStateInitViewModel.SelectedIOChannel">
+            <summary>
+            选中的IO通道号
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitViewModel.#ctor">
+            <summary>
+            构造函数 - 使用默认示例项
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitViewModel.CopyFrom(GKG.UI.General.IOStateInitCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitViewModel.CopyTo(GKG.UI.General.IOStateInitCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitViewModel.subscribeValueChanges">
+            <summary>
+            订阅值变更
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值变更事件处理
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.IOStateInitView">
+            <summary>
+            IO状态量初始化参数配置界面
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.IOStateInitView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.MessageBox">
+            <summary>
+            消息弹窗
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MessageBox.ShowConfirmDialog(System.String,System.String,Avalonia.Controls.Control)">
+            <summary>
+            显示确认对话框
+            </summary>
+            <param name="title">标题</param>
+            <param name="message">内容</param>
+            <param name="parentViewReference">父视图对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.General.MessageBox.ShowErrorDialog(System.String,System.String,Avalonia.Controls.Control)">
+            <summary>
+            显示错误对话框
+            </summary>
+            <param name="title">标题</param>
+            <param name="message">内容</param>
+            <param name="parentViewReference">父视图对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.General.MessageBox.ShowInfoDialog(System.String,System.String,Avalonia.Controls.Control)">
+            <summary>
+            显示消息对话框
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="parentViewReference">父视图对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:GKG.UI.General.MotorLinearMotionMechanismCfgInfo">
+            <summary>
+            电机型直线移动机构配置
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismCfgInfo.PositionNumber">
+            <summary>
+            位置编号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismCfgInfo.CoordinateValue">
+            <summary>
+            坐标值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismCfgInfo.MoveType">
+            <summary>
+            移动类型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从 JObject 反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismCfgInfo.ToJObject">
+            <summary>
+            序列化为 JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismCfgInfo.CopyFrom(GKG.UI.General.MotorLinearMotionMechanismCfgInfo)">
+            <summary>
+            从另一个实例拷贝（浅拷贝）
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.MotorMoveType">
+            <summary>
+            电机移动类型枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.MotorMoveType.MoveToSpecifiedPosition">
+            <summary>
+            移动指定位置
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.MotorMoveType.MoveToCoordinateValue">
+            <summary>
+            移动到坐标值
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.MotorLinearMotionMechanismViewModel">
+            <summary>
+            电机型直线移动机构-视图模型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.MotorLinearMotionMechanismViewModel._viewReference">
+            <summary>
+            视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismViewModel.PositionNumberViewModel">
+            <summary>
+            位置编号-数字输入框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismViewModel.CoordinateValueViewModel">
+            <summary>
+            坐标值-数字输入框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismViewModel.MoveTypeViewModel">
+            <summary>
+            移动类型-下拉框视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.MotorLinearMotionMechanismViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismViewModel.PositionNumber">
+            <summary>
+            位置编号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismViewModel.CoordinateValue">
+            <summary>
+            坐标值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorLinearMotionMechanismViewModel.MoveType">
+            <summary>
+            移动类型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismViewModel.#ctor">
+            <summary>
+            构造方法（初始化组件、命令、事件订阅）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismViewModel.subscribeValueChanges">
+            <summary>
+            订阅值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismViewModel.CopyFrom(GKG.UI.General.MotorLinearMotionMechanismCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+            <param name="model">数据模型</param>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismViewModel.CopyTo(GKG.UI.General.MotorLinearMotionMechanismCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+            <param name="model">数据模型</param>
+        </member>
+        <member name="T:GKG.UI.General.MotorLinearMotionMechanismView">
+            <summary>
+            电机型直线移动机构参数配置界面View
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorLinearMotionMechanismView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.MotorRotateMotionMechanismCfgInfo">
+            <summary>
+            电机型旋转移动机构配置
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismCfgInfo.PositionNumber">
+            <summary>
+            位置编号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismCfgInfo.CoordinateValue">
+            <summary>
+            坐标值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismCfgInfo.MotorRotateMoveType">
+            <summary>
+            移动类型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从 JObject 反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismCfgInfo.ToJObject">
+            <summary>
+            序列化为 JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismCfgInfo.CopyFrom(GKG.UI.General.MotorRotateMotionMechanismCfgInfo)">
+            <summary>
+            从另一个实例拷贝（浅拷贝）
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.MotorRotateMoveType">
+            <summary>
+            电机旋转移动类型枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.MotorRotateMoveType.MoveToSpecifiedPosition">
+            <summary>
+            移动指定位置
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.MotorRotateMoveType.MoveToCoordinateValue">
+            <summary>
+            移动到坐标值
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.MotorRotateMotionMechanismViewModel">
+            <summary>
+            电机型旋转移动机构-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismViewModel.PositionNumberViewModel">
+            <summary>
+            位置编号-数字输入框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismViewModel.CoordinateValueViewModel">
+            <summary>
+            坐标值-数字输入框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismViewModel.MotorRotateMoveTypeViewModel">
+            <summary>
+            移动类型-下拉框视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.MotorRotateMotionMechanismViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismViewModel.PositionNumber">
+            <summary>
+            位置编号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismViewModel.CoordinateValue">
+            <summary>
+            坐标值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.MotorRotateMotionMechanismViewModel.MotorRotateMoveType">
+            <summary>
+            移动类型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismViewModel.subscribeValueChanges">
+            <summary>
+            订阅值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismViewModel.CopyFrom(GKG.UI.General.MotorRotateMotionMechanismCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+            <param name="model">数据模型</param>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismViewModel.CopyTo(GKG.UI.General.MotorRotateMotionMechanismCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+            <param name="model">数据模型</param>
+        </member>
+        <member name="T:GKG.UI.General.MotorRotateMotionMechanismView">
+            <summary>
+            电机型旋转移动机构参数配置界面View
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.MotorRotateMotionMechanismView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.PositionTeachHeaderTextView">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachHeaderTextView.#ctor">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachHeaderTextView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.PositionTeachHeaderView">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachHeaderView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachHeaderView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.PositionTeachTextView">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachTextView.#ctor">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachTextView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.PositionTeachView">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachView.#ctor">
+            <summary>
+            相机操作视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PositionTeachView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.PreDispensingCfgView">
+            <summary>
+            预点胶功能参数视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingCfgView.#ctor">
+            <summary>
+            预点胶功能参数视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingCfgView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.PreDispensingViewModel">
+            <summary>
+            预点胶功能参数配置-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.FunctionHeadNumberViewModel">
+            <summary>
+            功能头编号ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.EnablePreDispensingViewModel">
+            <summary>
+            开启预点胶ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.EnableRealTimeHeightMeasurementViewModel">
+            <summary>
+            开启实时测高ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.Enable2DViewModel">
+            <summary>
+            开启2DViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.EnableAutoResetViewModel">
+            <summary>
+            开启自动重置ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.SinglePreDispensingCountViewModel">
+            <summary>
+            单次预点胶个数ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.PreDispensingTypeViewModel">
+            <summary>
+            预点胶类型ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.PreDispensingPointCountXViewModel">
+            <summary>
+            预点胶点数X个数ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.PreDispensingPointCountYViewModel">
+            <summary>
+            预点胶点数Y个数ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.DispensingStyleViewModel">
+            <summary>
+            点胶样式ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.DispensingWeightViewModel">
+            <summary>
+            点胶重量ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.CachedHeightValueViewModel">
+            <summary>
+            缓存测高值ViewModel
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.DotMatrix_LeftUpperPositionViewModel">
+            <summary>
+            点阵左上位置-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.DotMatrix_RightUpperPositionViewModel">
+            <summary>
+            点阵右上位置-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.DotMatrix_RightLowerPositionViewModel">
+            <summary>
+            点阵右下位置-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.FunctionHeadNumber">
+            <summary>
+            功能头编号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.EnablePreDispensing">
+            <summary>
+            开启预点胶
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.EnableRealTimeHeightMeasurement">
+            <summary>
+            开启实时测高
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.Enable2D">
+            <summary>
+            开启2D
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.EnableAutoReset">
+            <summary>
+            开启自动重置
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.SinglePreDispensingCount">
+            <summary>
+            单次预点胶个数
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.PreDispensingType">
+            <summary>
+            预点胶类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.PreDispensingPointCountX">
+            <summary>
+            预点胶点数X个数
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.PreDispensingPointCountY">
+            <summary>
+            预点胶点数Y个数
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.DispensingStyle">
+            <summary>
+            点胶样式
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.DispensingWeight">
+            <summary>
+            点胶重量（单位：g）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.CachedHeightValue">
+            <summary>
+            缓存测高值（单位：mm）
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.PreDispensingViewModel.AfterModified">
+            <summary>
+            数据变更事件（通知外部）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingViewModel.ResetCommand">
+            <summary>
+            重置参数命令
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingViewModel.CopyFrom(GKG.UI.General.PreDispensingCfgInfo)">
+            <summary>
+            从数据模型加载数据
+            </summary>
+            <param name="cfgInfo">预点胶参数配置模型</param>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingViewModel.CopyTo(GKG.UI.General.PreDispensingCfgInfo)">
+            <summary>
+            将数据回写到数据模型
+            </summary>
+            <param name="cfgInfo">待填充的预点胶参数配置模型</param>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel的变更事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingViewModel.onChildValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            子ViewModel值变更时触发全局事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingViewModel.onChildSelectionChanged(System.Object,System.EventArgs)">
+            <summary>
+            子ViewModel选中项变更时触发全局事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingViewModel.resetParameters">
+            <summary>
+            重置参数到默认值
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.PreDispensingCfgInfo">
+            <summary>
+            预点胶功能参数配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.FunctionHeadNumber">
+            <summary>
+            功能头编号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.EnablePreDispensing">
+            <summary>
+            开启预点胶
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.EnableRealTimeHeightMeasurement">
+            <summary>
+            开启实时测高
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.Enable2D">
+            <summary>
+            开启2D
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.EnableAutoReset">
+            <summary>
+            开启自动重置
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.SinglePreDispensingCount">
+            <summary>
+            单次预点胶个数
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.PreDispensingType">
+            <summary>
+            预点胶类型（选项：点、直线）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.PreDispensingPointCountX">
+            <summary>
+            预点胶点数X个数
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.PreDispensingPointCountY">
+            <summary>
+            预点胶点数Y个数
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.DispensingStyle">
+            <summary>
+            点胶样式（如：样式一、样式二）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.DispensingWeight">
+            <summary>
+            点胶重量（单位：g，建议取值范围 0.1-10.0）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.CachedHeightValue">
+            <summary>
+            缓存测高值（单位：mm，建议取值范围 0-50.0）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.DotMatrix_LeftUpperPositionInfo">
+            <summary>
+            点阵左上位置
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.DotMatrix_RightUpperPositionInfo">
+            <summary>
+            点阵右上位置
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.PreDispensingCfgInfo.DotMatrix_RightLowerPositionInfo">
+            <summary>
+            点阵右下位置
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingCfgInfo.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.PreDispensingCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.DispensingType">
+            <summary>
+            点胶类型枚举
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.DispensingType.Point">
+            <summary>
+            点
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.DispensingType.Line">
+            <summary>
+            直线
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SingleControlDoubleLimitCfgInfo">
+            <summary>
+            单控双限位-模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitCfgInfo.ControlModel">
+            <summary>
+            控制-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitCfgInfo.FirstLimitModel">
+            <summary>
+            限位1-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitCfgInfo.SecondLimitModel">
+            <summary>
+            限位2-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitCfgInfo.CylinderDelayModel">
+            <summary>
+            气缸超时时间模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitCfgInfo.CopyFrom(GKG.UI.General.SingleControlDoubleLimitCfgInfo)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.SingleControlDoubleLimitViewModel">
+            <summary>
+            单控双限位-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitViewModel.ControlViewModel">
+            <summary>
+            控制-运控卡IO通道视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitViewModel.FirstLimitViewModel">
+            <summary>
+            限位1-运控卡IO通道框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitViewModel.SecondLimitViewModel">
+            <summary>
+            限位2-运控卡IO通道框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlDoubleLimitViewModel.CylinderDelayViewModel">
+            <summary>
+            气缸超时时间视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.SingleControlDoubleLimitViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitViewModel.subscribeValueChanges">
+            <summary>
+            订阅值变更
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值变更处理
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitViewModel.CopyFrom(GKG.UI.General.SingleControlDoubleLimitCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitViewModel.CopyTo(GKG.UI.General.SingleControlDoubleLimitCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SingleControlDoubleLimitView">
+            <summary>
+            单轨双限位-视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlDoubleLimitView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.SingleControlSingleLimitCfgInfo">
+            <summary>
+            单控单限位-模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlSingleLimitCfgInfo.ControlModel">
+            <summary>
+            控制-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlSingleLimitCfgInfo.LimitModel">
+            <summary>
+            限位-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlSingleLimitCfgInfo.CylinderDelayModel">
+            <summary>
+            气缸超时时间模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitCfgInfo.CopyFrom(GKG.UI.General.SingleControlSingleLimitCfgInfo)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.SingleControlSingleLimitViewModel">
+            <summary>
+            单控单限位-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlSingleLimitViewModel.ControlViewModel">
+            <summary>
+            控制-运控卡IO通道视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlSingleLimitViewModel.LimitViewModel">
+            <summary>
+            限位-运控卡IO通道框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.SingleControlSingleLimitViewModel.CylinderDelayViewModel">
+            <summary>
+            气缸超时时间视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.SingleControlSingleLimitViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitViewModel.subscribeValueChanges">
+            <summary>
+            订阅值变更
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值变更处理
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（用于弹窗等UI操作）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitViewModel.CopyFrom(GKG.UI.General.SingleControlSingleLimitCfgInfo)">
+            <summary>
+            从数据模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitViewModel.CopyTo(GKG.UI.General.SingleControlSingleLimitCfgInfo)">
+            <summary>
+            从ViewModel复制数据到数据模型
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.SingleControlSingleLimitView">
+            <summary>
+            单轨单限位-视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.SingleControlSingleLimitView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.TemperatureSerialPortCfg">
+            <summary>
+            温度控制串口配置 数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortCfg.PortName">
+            <summary>
+            串口号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortCfg.BaudRate">
+            <summary>
+            波特率
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortCfg.DataBits">
+            <summary>
+            数据位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortCfg.StopBits">
+            <summary>
+            停止位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortCfg.Parity">
+            <summary>
+            串口校验类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortCfg.EnableCRC16">
+            <summary>
+            是否启用CRC16
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortCfg.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortCfg.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortCfg.CopyFrom(GKG.UI.General.TemperatureSerialPortCfg)">
+            <summary>
+            从另一个实例复制数据
+            </summary>
+            <param name="src">数据源</param>
+        </member>
+        <member name="T:GKG.UI.General.TemperatureSerialPortViewModel">
+            <summary>
+            温度控制串口调试-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.PortNameViewModel">
+            <summary>
+            串口号-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.BaudRateViewModel">
+            <summary>
+            波特率-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.DataBitsViewModel">
+            <summary>
+            数据位-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.StopBitsViewModel">
+            <summary>
+            停止位-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.ParityViewModel">
+            <summary>
+            奇偶校验类型-下拉框视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.EnableCRC16ViewModel">
+            <summary>
+            是否启用CRC16-开关按钮视图模型
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.TemperatureSerialPortViewModel.AfterModified">
+            <summary>
+            值改变事件
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.SelectedPortName">
+            <summary>
+            选中的串口号
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.SelectedBaudRate">
+            <summary>
+            选中的波特率
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.SelectedDataBits">
+            <summary>
+            选中的数据位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.SelectedStopBits">
+            <summary>
+            选中的停止位
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.SelectedParity">
+            <summary>
+            选中的串口校验类型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.TemperatureSerialPortViewModel.EnableCRC16">
+            <summary>
+            是否启用CRC16
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortViewModel.CopyFrom(GKG.UI.General.TemperatureSerialPortCfg)">
+            <summary>
+            从配置模型复制数据到ViewModel
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortViewModel.CopyTo(GKG.UI.General.TemperatureSerialPortCfg)">
+            <summary>
+            从ViewModel复制数据到配置模型
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortViewModel.subscribeValueChanges">
+            <summary>
+            订阅值改变
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortViewModel.onValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            值改变
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.TemperatureSerialPortView">
+            <summary>
+            温度控制串口调试 视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.TemperatureSerialPortView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.CameraShowCfgInfo">
+            <summary>
+            相机显示配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowCfgInfo.LightSourceCfgInfo">
+            <summary>
+            偏移标定信息（光源配置）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowCfgInfo.AxisCfgInfo">
+            <summary>
+            坐标轴配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowCfgInfo.ImageDisplayCfgInfo">
+            <summary>
+            图像显示设置配置信息
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowCfgInfo.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowCfgInfo.CopyFrom(GKG.UI.General.CameraShowCfgInfo)">
+            <summary>
+            复制
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.ImageDisplayCfgInfo">
+            <summary>
+            图像显示设置配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayCfgInfo.EnabledScale">
+            <summary>
+            是否开启刻度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayCfgInfo.EnabledReferenceCircle">
+            <summary>
+            是否开启参照圆
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayCfgInfo.Scale">
+            <summary>
+            刻度（mm）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayCfgInfo.ReferenceCircle">
+            <summary>
+            参照圆（mm）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayCfgInfo.EnabledBrightnessDebugging">
+            <summary>
+            是否开启调试亮度
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayCfgInfo.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayCfgInfo.CopyFrom(GKG.UI.General.ImageDisplayCfgInfo)">
+            <summary>
+            复制
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.LightSourceCfgInfo">
+            <summary>
+            光源信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceCfgInfo.R">
+            <summary>
+            R通道亮度（0-255）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceCfgInfo.G">
+            <summary>
+            G通道亮度（0-255）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceCfgInfo.B">
+            <summary>
+            B通道亮度（0-255）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceCfgInfo.D">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceCfgInfo.#ctor">
+            <summary>
+            D通道亮度（0-255）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceCfgInfo.FromJObject(Newtonsoft.JsonG.Linq.JObject)">
+            <summary>
+            从JObject反序列化
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceCfgInfo.ToJObject">
+            <summary>
+            序列化为JObject
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceCfgInfo.CopyFrom(GKG.UI.General.LightSourceCfgInfo)">
+            <summary>
+            复制
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.AxisViewModel">
+            <summary>
+            坐标轴配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisViewModel.XViewModel">
+            <summary>
+            X轴数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisViewModel.YViewModel">
+            <summary>
+            Y轴数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisViewModel.ZViewModel">
+            <summary>
+            Z轴数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisViewModel.X">
+            <summary>
+            X轴坐标
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisViewModel.Y">
+            <summary>
+            Y轴坐标
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.AxisViewModel.Z">
+            <summary>
+            Z轴坐标
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisViewModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.AxisViewModel.Init(GKG.UI.General.AxisCfgInfo)">
+            <summary>
+            
+            </summary>
+            <param name="axisCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.AxisViewModel.Extract(GKG.UI.General.AxisCfgInfo)">
+            <summary>
+            提取参数
+            </summary>
+            <param name="axisCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.AxisViewModel.UpdatePosition(System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            更新位置信息
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+        </member>
+        <member name="T:GKG.UI.General.CameraShowViewModel">
+            <summary>
+            相机显示-视图模型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.CameraShowViewModel._viewReference">
+            <summary>
+            页面布局根视图引用（用于UI上下文关联）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowViewModel.IsExpandedLightSource">
+            <summary>
+            是否展开RGBD光源信息栏
+            true:展示光源信息栏 否:展示坐标轴信息栏
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowViewModel.LightSourceViewModel">
+            <summary>
+            光源信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowViewModel.AxisViewModel">
+            <summary>
+            坐标轴配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowViewModel.ImageDisplayViewModel">
+            <summary>
+            图像显示设置配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowViewModel.IsDrawMap">
+            <summary>
+            是否处于 ROI 拖拽绘制模式。
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.CameraShowViewModel.DrawMapType">
+            <summary>
+            ROI 绘制类型：Square / Circle / Polygon。
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.CameraShowViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.RegisterActiveVisionView(GKG.UI.General.VisionControlShowView)">
+             <summary>
+            注册当前激活的视觉控件
+            vm全局只有一个实例，视觉控件有多个，固要设置当前使用的视觉控件
+             </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.UnregisterActiveVisionView(GKG.UI.General.VisionControlShowView)">
+            <summary>
+            取消注册
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel._imageControl_ImageClick(System.Object,AvaloniaVisionControl.ImageClickEventArgs)">
+            <summary>
+            鼠标点击事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.Init(GKG.UI.General.CameraShowCfgInfo)">
+            <summary>
+            初始化
+            </summary>
+            <param name="cameraShowCfgInfo">相机显示配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.CopyTo(GKG.UI.General.CameraShowCfgInfo)">
+            <summary>
+            复制到指定相机显示配置信息
+            </summary>
+            <param name="cameraShowCfgInfo">相机显示配置信息</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel的事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.viewModel_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            界面配置信息改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowViewModel.onAfterModified">
+            <summary>
+            触发配置修改事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.ImageDisplayViewModel">
+            <summary>
+            图像显示设置配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.EnabledReferenceCircleViewModel">
+            <summary>
+            是否开启参照圆-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.EnabledScaleViewModel">
+            <summary>
+            是否开启刻度-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.EnabledBrightnessDebuggingViewModel">
+            <summary>
+            是否开启调试亮度-数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.ScaleComboxViewModel">
+            <summary>
+            刻度（mm）-下拉框数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.ReferenceCircleViewModel">
+            <summary>
+            参照圆（mm）-数据模型
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.ImageDisplayViewModel._scaleItems">
+            <summary>
+            刻度选项数据源（预设可选的刻度值）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.EnabledScale">
+            <summary>
+            是否开启刻度（开关按钮）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.EnabledReferenceCircle">
+            <summary>
+            是否开启参照圆（开关按钮）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.EnabledBrightnessDebugging">
+            <summary>
+            是否开启调试亮度（开关按钮）
+            </summary>     
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.Scale">
+            <summary>
+            当前选中的刻度值（mm）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.ImageDisplayViewModel.ReferenceCircle">
+            <summary>
+            参照圆（mm）
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.ImageDisplayViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.Init(GKG.UI.General.ImageDisplayCfgInfo)">
+            <summary>
+            
+            </summary>
+            <param name="imageDisplayCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.Extract(GKG.UI.General.ImageDisplayCfgInfo)">
+            <summary>
+            提取参数
+            </summary>
+            <param name="imageDisplayCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.enabledDrawReferenceCircle(System.Boolean)">
+            <summary>
+            是否开启参照圆
+            </summary>
+            <param name="enabledReferenceCircle"></param>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.addElements">
+            <summary>
+            添加图元
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.clearElements">
+            <summary>
+            清除图元
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.getScaleItems">
+            <summary>
+            预设刻度选项
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel的事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.viewModel_ValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            界面配置信息改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.ImageDisplayViewModel.onAfterModified">
+            <summary>
+            触发配置修改事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.LightSourceViewModel">
+            <summary>
+            光源信息
+            </summary>
+        </member>
+        <member name="E:GKG.UI.General.LightSourceViewModel.AfterModified">
+            <summary>
+            事件（通知外部数据变更）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.RViewModel">
+            <summary>
+            R通道数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.GViewModel">
+            <summary>
+            G通道数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.BViewModel">
+            <summary>
+            B通道数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.DViewModel">
+            <summary>
+            D通道数据模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.R">
+            <summary>
+            R通道值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.G">
+            <summary>
+            G通道值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.B">
+            <summary>
+            B通道值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.LightSourceViewModel.D">
+            <summary>
+            D通道值
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.Init(GKG.UI.General.LightSourceCfgInfo)">
+            <summary>
+            
+            </summary>
+            <param name="lightSourceCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.Extract(GKG.UI.General.LightSourceCfgInfo)">
+            <summary>
+            提取参数
+            </summary>
+            <param name="lightSourceCfgInfo"></param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.subscribeChildViewModelEvents">
+            <summary>
+            订阅子ViewModel的事件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.rViewModel_ValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            R改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.gViewModel_ValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            R改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.bViewModel_ValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            B改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.dViewModel_ValueChanged(System.Object,GKG.UI.ValueChangedEventArgs)">
+            <summary>
+            D改变事件
+            </summary>
+            <param name="sender">发送者</param>
+            <param name="e">事件参数</param>
+        </member>
+        <member name="M:GKG.UI.General.LightSourceViewModel.onAfterModified">
+            <summary>
+            触发配置修改事件
+            </summary>
+        </member>
+        <member name="T:GKG.UI.General.CameraShowView">
+            <summary>
+            相机显示视图
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.CameraShowView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.General.VisionControlShowView">
+            <summary>
+            相机显示视图
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.VisionControlShowView._videoTimer">
+            <summary>
+            UI线程安全的定时器
+            </summary>
+        </member>
+        <member name="F:GKG.UI.General.VisionControlShowView.FrameIntervalMs">
+            <summary>
+            视频帧率（默认30帧/秒，间隔33ms）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.General.VisionControlShowView.CameraPreControl">
+            <summary>
+            相机视频显示控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.VisionControlShowView.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.VisionControlShowView.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)">
+            <summary>
+            控件显示自动注册
+            </summary>
+            <param name="e"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:GKG.UI.General.VisionControlShowView.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)">
+            <summary>
+            控件隐藏/卸载时，取消注册
+            </summary>
+            <param name="e"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:GKG.UI.General.VisionControlShowView.initVideoTimer">
+            <summary>
+            初始化视频定时器
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.VisionControlShowView.videoTimer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            定时器触发：刷新视频帧
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.VisionControlShowView.updateVideoFrame">
+            <summary>
+            更新视频帧
+            </summary>
+        </member>
+        <member name="M:GKG.UI.General.VisionControlShowView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="M:GKG.UI.General.XYPositionTeachHeaderTextView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="M:GKG.UI.General.XYPositionTeachTextView.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:GKG.UI.EnumExtensions">
+            <summary>
+            枚举扩展类
+            </summary>
+        </member>
+        <member name="M:GKG.UI.EnumExtensions.ToEnumItems``1(System.Collections.Generic.Dictionary{``0,System.String})">
+            <summary>
+            枚举字典转成下拉框数据源
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="displayNames"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GKG.UI.ComBoxItem">
+            <summary>
+            下拉框项信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComBoxItem.Value">
+            <summary>
+            原始值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComBoxItem.DisplayName">
+            <summary>
+            显示名称
+            </summary>
+        </member>
+        <member name="M:GKG.UI.ComBoxItem.Equals(System.Object)">
+            <summary>
+            重载等于方法,在下拉框赋值选中项时需要调用
+            同样的,Value对象也需要重载等于方法
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GKG.UI.ComBoxItem.GetHashCode">
+            <summary>
+            重写哈希码方法：基于相等性的核心字段计算哈希值
+            重写 GetHashCode 是为了配合 Equals 方法，确保 ComBoxItem 在哈希表等集合中能被正确处理
+            </summary>
+        </member>
+        <member name="T:GKG.UI.BasicControl`1">
+            <summary>
+            基础控件
+            </summary>
+            <typeparam name="TViewModel"></typeparam>
+        </member>
+        <member name="F:GKG.UI.BasicControl`1.LabelNameProperty">
+            <summary>
+            标签文本依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControl`1.LabelName">
+            <summary>
+            标签文本
+            </summary>
+        </member>
+        <member name="F:GKG.UI.BasicControl`1.WidthLevelProperty">
+            <summary>
+            宽度级别依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControl`1.WidthLevel">
+            <summary>
+            宽度级别
+            </summary>
+        </member>
+        <member name="F:GKG.UI.BasicControl`1.ShowOuterBorderProperty">
+            <summary>
+            是否显示 GKG 基础控件外层边框。
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControl`1.ShowOuterBorder">
+            <summary>
+            控制内部基础布局的外层边框，默认保持原有 GKG.UI 样式。
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControl`1.labelText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControl`1.border">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControl`1.contentControl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.BasicControl`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.BasicControl`1.InitializeComponent">
+            <summary>
+            自动生成的初始化方法（用于加载 XAML）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.BasicControl`1.ApplyOuterBorderState(System.Boolean)">
+            <summary>
+            应用外层边框显示状态；隐藏时只去掉 GKG 基础布局的外框，不影响内部输入控件本身的边框。
+            </summary>
+            <param name="showOuterBorder">是否显示外层边框</param>
+        </member>
+        <member name="M:GKG.UI.BasicControl`1.SetContent(System.Object,Avalonia.Layout.HorizontalAlignment)">
+            <summary>
+            将控件添加到 contentPanel 中，并指定水平对齐方式
+            </summary>
+            <param name="content">要添加的控件</param>
+            <param name="horizontalAlignment">水平对齐方式</param>
+        </member>
+        <member name="T:GKG.UI.BasicControl">
+            <summary>
+            基础控件-用于加载布局
+            </summary>
+        </member>
+        <member name="T:GKG.UI.BasicControlLayout">
+            <summary>
+            基础控件的布局
+            </summary>
+        </member>
+        <member name="M:GKG.UI.BasicControlLayout.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControlLayout.LabelTextControl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControlLayout.BorderControl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControlLayout.ContentControl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControlLayout.MainGrid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControlLayout.LabelColumn">
+            <summary>
+            2. 通过索引 0 获取第一列（Label 所在列），完全避开 Name 属性
+            </summary>
+        </member>
+        <member name="T:GKG.UI.BasicControlViewModel">
+            <summary>
+            基础控件VM
+            </summary>
+        </member>
+        <member name="E:GKG.UI.BasicControlViewModel.ValueChanged">
+            <summary>
+            统一的值变更事件（参数：旧值，新值）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.BasicControlViewModel.OnValueChanged(System.Object,System.Object)">
+            <summary>
+            触发值变更事件
+            </summary>
+            <param name="oldValue">旧值</param>
+            <param name="newValue">新值</param>
+        </member>
+        <member name="P:GKG.UI.BasicControlViewModel.TotalWidth">
+            <summary>
+            控件总宽度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControlViewModel.LabelWidth">
+            <summary>
+            标签宽度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.BasicControlViewModel.RightContentWidth">
+            <summary>
+            右侧区域宽度
+            </summary>
+        </member>
+        <member name="M:GKG.UI.BasicControlViewModel.UpdateRightContentWidth(System.Nullable{System.Double})">
+            <summary>
+            设置右侧区域宽度,仅界面控件调用
+            </summary>
+            <param name="width"></param>
+        </member>
+        <member name="M:GKG.UI.BasicControlViewModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.BasicControlViewModel.SetWidth(System.String)">
+            <summary>
+            根据宽度级别更新宽度
+            </summary>
+        </member>
+        <member name="T:GKG.UI.ValueChangedEventArgs">
+            <summary>
+            通用值变更事件参数（传递旧值和新值）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ValueChangedEventArgs.OldValue">
+            <summary>
+            旧值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ValueChangedEventArgs.NewValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.ValueChangedEventArgs.#ctor(System.Object,System.Object)">
+            <summary>
+            新值
+            </summary>
+        </member>
+        <member name="T:GKG.UI.CalendarDatePickerControl">
+            <summary>
+            带标题的日期选择器控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.CalendarDatePickerControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.CalendarDatePickerViewModel">
+            <summary>
+            数字输入框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.CalendarDatePickerViewModel.SelectedDate">
+            <summary>
+            当前值 
+            </summary>
+        </member>
+        <member name="P:GKG.UI.CalendarDatePickerViewModel.DisplayDateStart">
+            <summary>
+            日期范围开始时间  
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.CalendarDatePickerViewModel.DisplayDateEnd">
+            <summary>
+            日期范围结束时间 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.CalendarDatePickerViewModel.DisplayDate">
+            <summary>
+            指定日历弹窗默认显示的日期（不一定是选中日期）
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.CalendarDatePickerViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.CalendarDatePickerViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.ComboxControl">
+            <summary>
+            带标题的不可编辑的下拉框控件
+            </summary>
+        </member>
+        <member name="F:GKG.UI.ComboxControl._viewReference">
+            <summary>
+            视图引用（用于显示对话框）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.ComboxControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.ComboxControl.SetViewReference(Avalonia.Controls.Control)">
+            <summary>
+            设置视图引用（供对话框使用）
+            </summary>
+        </member>
+        <member name="T:GKG.UI.ComboxViewModel">
+            <summary>
+            下拉框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.ItemsSource">
+            <summary>
+            数据源（下拉框选项集合）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.SelectedItem">
+            <summary>
+            选中项（双向绑定）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.DisplayMemberPath">
+            <summary>
+            显示字段名（如 "Name"，告诉视图要显示数据源中的哪个字段）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.IsDropDownOpen">
+            <summary>
+            暴露 下拉框是否展开 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.PlaceholderText">
+            <summary>
+            暴露 未选中时的占位文本 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.IsEnabled">
+            <summary>
+            暴露 是否启用控件 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.MaxDropDownHeight">
+            <summary>
+            暴露 下拉列表的最大高度。这是列表部分的实际高度，而不是显示的元素数量 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ComboxViewModel.AutoScrollToSelectedItem">
+            <summary>
+            暴露 表示是否自动滚动到新选定的元素 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ConfigurationManager.ConfigChanged">
+            <summary>
+            配置变更通知
+            </summary>
+        </member>
+        <member name="M:GKG.UI.ConfigurationManager.InitializeFileWatcher">
+            <summary>
+            初始化文件监听器
+            </summary>
+        </member>
+        <member name="M:GKG.UI.ConfigurationManager.ReloadAndNotify">
+            <summary>
+            重新加载配置并通知变更
+            </summary>
+        </member>
+        <member name="T:GKG.UI.ConfigurationManager.BaseControlCfg">
+            <summary>
+            人员字段显示信息配置信息
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ConfigurationManager.BaseControlCfg.TotalWidthLevel">
+            <summary>
+            控件整体宽度级别
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ConfigurationManager.BaseControlCfg.TotalWidth">
+            <summary>
+            控件整体宽度
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ConfigurationManager.BaseControlCfg.LableTotal">
+            <summary>
+            左侧标签宽度
+            </summary>
+        </member>
+        <member name="T:GKG.UI.ConfigurationManager.BaseControlCfgList">
+             <summary>
+            用户字段配置信息配置信息列表
+             </summary>
+        </member>
+        <member name="M:GKG.UI.ConfigurationManager.BaseControlCfgList.LoadFromFile(System.String)">
+            <summary>
+            从文件中加载
+            </summary>
+            <returns>true:加载成功，false:加载失败</returns>
+        </member>
+        <member name="M:GKG.UI.ConfigurationManager.BaseControlCfgList.SaveToFile(System.String)">
+            <summary>
+            把内容写到文件中
+            </summary>
+            <param name="fileName">文件路径</param>
+        </member>
+        <member name="T:GKG.UI.DateTimeHmsPicker">
+            <summary>
+            无标题的时分秒选择器
+            </summary>
+        </member>
+        <member name="F:GKG.UI.DateTimeHmsPicker.SelectedDateTimeProperty">
+            <summary>
+            核心依赖属性：选中的完整时间：年月日时分秒
+            </summary>
+        </member>
+        <member name="F:GKG.UI.DateTimeHmsPicker.SelectedDateProperty">
+            <summary>
+            核心依赖属性：选中的日期
+            </summary>
+        </member>
+        <member name="F:GKG.UI.DateTimeHmsPicker.SelectedTimeProperty">
+            <summary>
+            核心依赖属性：选中的完整时间
+            </summary>
+        </member>
+        <member name="F:GKG.UI.DateTimeHmsPicker.SelectedHourProperty">
+            <summary>
+            时依赖属性：（内部绑定用）
+            </summary>
+        </member>
+        <member name="F:GKG.UI.DateTimeHmsPicker.SelectedMinuteProperty">
+            <summary>
+            分依赖属性：（内部绑定用）
+            </summary>
+        </member>
+        <member name="F:GKG.UI.DateTimeHmsPicker.SelectedSecondProperty">
+            <summary>
+            秒依赖属性：（内部绑定用）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.DateTimeHmsPicker.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.DateTimeHmsPicker.UpdateSelectedDateTime">
+            <summary>
+            同步修改完整时间
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:GKG.UI.DateTimeHmsPicker.SelectedDateTime">
+            <summary>
+            选中的完整时间：年月日时分秒
+            </summary>
+        </member>
+        <member name="P:GKG.UI.DateTimeHmsPicker.SelectedDate">
+            <summary>
+            选中的日期
+            </summary>
+        </member>
+        <member name="P:GKG.UI.DateTimeHmsPicker.SelectedTime">
+            <summary>
+            选中的完整时间的时间戳
+            </summary>
+        </member>
+        <member name="P:GKG.UI.DateTimeHmsPicker.SelectedHour">
+            <summary>
+            选中的小时
+            </summary>
+        </member>
+        <member name="P:GKG.UI.DateTimeHmsPicker.SelectedMinute">
+            <summary>
+            选中的分钟
+            </summary>
+        </member>
+        <member name="P:GKG.UI.DateTimeHmsPicker.SelectedSecond">
+            <summary>
+            选中的秒钟
+            </summary>
+        </member>
+        <member name="M:GKG.UI.DateTimeHmsPicker.MeasureOverride(Avalonia.Size)">
+            <summary>
+            设计时尺寸
+            </summary>
+            <param name="availableSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GKG.UI.EditableComboBoxControl">
+            <summary>
+            带标题的可编辑的下拉框控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.EditableComboBoxControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.EditableComboBoxControl.BindPropertyMethod">
+            <summary>
+             下拉框绑定相关属性
+            </summary>
+        </member>
+        <member name="M:GKG.UI.EditableComboBoxControl.InputTextBox_TextChanged(System.Object,Avalonia.Controls.TextChangedEventArgs)">
+            <summary>
+            文本框改变事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:GKG.UI.EditableComboBoxViewModel">
+            <summary>
+            下拉框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.IsEdit">
+            <summary>
+            暴露 是否启用控件 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.ItemsSource">
+            <summary>
+            数据源（下拉框选项集合）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.SelectedItem">
+            <summary>
+            选中项（双向绑定）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.DisplayMemberPath">
+            <summary>
+            显示字段名（如 "Name"，告诉视图要显示数据源中的哪个字段）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.IsDropDownOpen">
+            <summary>
+            暴露 下拉框是否展开 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.PlaceholderText">
+            <summary>
+            暴露 未选中时的占位文本 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.IsEnabled">
+            <summary>
+            暴露 是否启用控件 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.MaxDropDownHeight">
+            <summary>
+            暴露 下拉列表的最大高度。这是列表部分的实际高度，而不是显示的元素数量 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.EditableComboBoxViewModel.AutoScrollToSelectedItem">
+            <summary>
+            暴露 表示是否自动滚动到新选定的元素 属性（绑定到内部ComboBox）
+            </summary>
+        </member>
+        <member name="T:GKG.UI.GroupBoxControl">
+            <summary>
+            GroupBox组框自定义控件
+            </summary>
+        </member>
+        <member name="F:GKG.UI.GroupBoxControl.HeaderStrProperty">
+            <summary>
+            标题文本依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.GroupBoxControl.HeaderStr">
+            <summary>
+            GroupBox组框标题
+            </summary>
+        </member>
+        <member name="F:GKG.UI.GroupBoxControl.ContentAreaProperty">
+            <summary>
+            动态内容依赖属性（替代固定的contentStackPanel，支持任意控件）
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.GroupBoxControl.ContentArea">
+            <summary>
+            GroupBox的动态内容（可设置任意控件：StackPanel/Grid/Button等）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.GroupBoxControl.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="T:GKG.UI.NumericControl">
+            <summary>
+            带标题的数字输入框控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.NumericControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.NumericViewModel">
+            <summary>
+            数字输入框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.NumericViewModel.Value">
+            <summary>
+            当前值（双向绑定）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.NumericViewModel.Minimum">
+            <summary>
+            最小值Minimum 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericViewModel.Maximum">
+            <summary>
+            最小值Minimum 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericViewModel.Increment">
+            <summary>
+            步长
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericViewModel.DecimalPlaces">
+            <summary>
+            保留几位小数 
+            </summary>    
+        </member>
+        <member name="P:GKG.UI.NumericViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.NumericUpDownControl">
+            <summary>
+            数字输入框上下加减按钮布局控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.NumericUpDownControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.NumericUpDownViewModel">
+            <summary>
+            数字输入框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.NumericUpDownViewModel.Value">
+            <summary>
+            当前值（双向绑定）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.NumericUpDownViewModel.Minimum">
+            <summary>
+            最小值Minimum 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericUpDownViewModel.Maximum">
+            <summary>
+            最小值Minimum 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericUpDownViewModel.Increment">
+            <summary>
+            步长
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericUpDownViewModel.DecimalPlaces">
+            <summary>
+            保留几位小数 
+            </summary>    
+        </member>
+        <member name="P:GKG.UI.NumericUpDownViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericUpDownViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.NumericWithLableControl">
+            <summary>
+            带标题的数字输入框+标签控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.NumericWithLableControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.NumericWithLableViewModel">
+            <summary>
+            数字输入框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.Value">
+            <summary>
+            当前值（双向绑定）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.Minimum">
+            <summary>
+            最小值Minimum 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.Maximum">
+            <summary>
+            最小值Minimum 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.Increment">
+            <summary>
+            步长
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.DecimalPlaces">
+            <summary>
+            保留几位小数 
+            </summary>    
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.LableText">
+            <summary>
+            Lable显示的文本
+            </summary>
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.NumericWithLableViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.PathControl">
+            <summary>
+            矢量图控件
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathControl.FillColorProperty">
+            <summary>
+            填充颜色依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathControl.FillColor">
+            <summary>
+            填充颜色属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathControl.IconDataProperty">
+            <summary>
+             Path形状依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathControl.IconData">
+            <summary>
+             Path形状属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathControl.StrokeColorProperty">
+            <summary>
+             描边色依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathControl.StrokeColor">
+            <summary>
+             描边色属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathControl.StrokeThicknessProperty">
+            <summary>
+             描边厚度依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathControl.StrokeThickness">
+            <summary>
+             描边厚度属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathControl.IconSizeProperty">
+            <summary>
+            Icon尺寸依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathControl.IconSize">
+            <summary>
+            Icon尺寸属性
+            </summary>
+        </member>
+        <member name="M:GKG.UI.PathControl.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="T:GKG.UI.PathLableControl">
+            <summary>
+            带标题的矢量图控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.PathLableControl.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="T:GKG.UI.PathLableControlViewModel">
+            <summary>
+            带标题的时分秒选择器控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathLableControlViewModel.StrokeThickness">
+            <summary>
+            描边厚度属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathLableControlViewModel.StrokeColor">
+            <summary>
+            描边色属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathLableControlViewModel.FillColor">
+            <summary>
+            填充颜色
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathLableControlViewModel.IconData">
+            <summary>
+            填充图形
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathLableControlViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.PathLableControlViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.PathRenderControl">
+             <summary>
+            不带标题的 Path手动渲染图形控件（ICon在控件中绝对居中，可传入缩放尺寸），可根据状态来改变状态颜色和形状
+             </summary>
+        </member>
+        <member name="F:GKG.UI.PathRenderControl.FillColorProperty">
+            <summary>
+            填充颜色依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathRenderControl.FillColor">
+            <summary>
+            填充颜色属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathRenderControl.StrokeColorProperty">
+            <summary>
+            描边色依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathRenderControl.StrokeColor">
+            <summary>
+            描边色属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathRenderControl.StrokeThicknessProperty">
+            <summary>
+            描边厚度依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathRenderControl.StrokeThickness">
+            <summary>
+            描边厚度属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathRenderControl.IconSizeProperty">
+            <summary>
+            Icon尺寸依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathRenderControl.IconSize">
+            <summary>
+            Icon尺寸属性
+            </summary>
+        </member>
+        <member name="F:GKG.UI.PathRenderControl.IconDataPathProperty">
+            <summary>
+            矢量图路径字符串依赖属性
+            </summary>
+        </member>
+        <member name="P:GKG.UI.PathRenderControl.IconDataPath">
+            <summary>
+            矢量图路径字符串属性
+            </summary>
+        </member>
+        <member name="M:GKG.UI.PathRenderControl.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:GKG.UI.PathRenderControl.Render(Avalonia.Media.DrawingContext)">
+            <summary>
+            矢量图重绘
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:GKG.UI.SliderNumericControl">
+            <summary>
+             带标题的滑块+数字输入框
+            </summary>
+        </member>
+        <member name="M:GKG.UI.SliderNumericControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:GKG.UI.SliderNumericControl.DisableTrackClick(Avalonia.Controls.Slider)">
+            <summary>
+             
+            </summary>
+            <param name="slider">  </param>
+        </member>
+        <member name="T:GKG.UI.SliderNumericViewModel">
+            <summary>
+             
+            </summary>
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.Value">
+            <summary>
+            当前值
+            </summary>
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.Minimum">
+            <summary>
+            最小值 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.Maximum">
+            <summary>
+            最大值 
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.Increment">
+            <summary>
+            步长
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.DecimalPlaces">
+            <summary>
+            小数位数 
+            </summary>    
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.LableText">
+            <summary>
+            Lable 
+            </summary>
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.SliderNumericViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TextBlockControl">
+            <summary>
+            带标题的文本显示控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.TextBlockControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TextBlockViewModel">
+            <summary>
+            文本输入框-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TextBlockViewModel.Text">
+            <summary>
+            显示的文本
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TextBlockViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.TextBlockViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TextInputControl">
+            <summary>
+            带标题的文本输入框控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.TextInputControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TextInputViewModel">
+            <summary>
+            文本输入框-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TextInputViewModel.Text">
+            <summary>
+            显示的文本
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TextInputViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.TextInputViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TimeHmsPicker">
+            <summary>
+            无标题的时分秒选择器
+            </summary>
+        </member>
+        <member name="F:GKG.UI.TimeHmsPicker.SelectedTimeProperty">
+            <summary>
+            核心依赖属性：选中的完整时间
+            </summary>
+        </member>
+        <member name="F:GKG.UI.TimeHmsPicker.SelectedHourProperty">
+            <summary>
+            时依赖属性：（内部绑定用）
+            </summary>
+        </member>
+        <member name="F:GKG.UI.TimeHmsPicker.SelectedMinuteProperty">
+            <summary>
+            分依赖属性：（内部绑定用）
+            </summary>
+        </member>
+        <member name="F:GKG.UI.TimeHmsPicker.SelectedSecondProperty">
+            <summary>
+            秒依赖属性：（内部绑定用）
+            </summary>
+        </member>
+        <member name="M:GKG.UI.TimeHmsPicker.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimeHmsPicker.SelectedTime">
+            <summary>
+            选中的完整时间的时间戳
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimeHmsPicker.SelectedHour">
+            <summary>
+            选中的小时
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimeHmsPicker.SelectedMinute">
+            <summary>
+            选中的分钟
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimeHmsPicker.SelectedSecond">
+            <summary>
+            选中的秒钟
+            </summary>
+        </member>
+        <member name="M:GKG.UI.TimeHmsPicker.MeasureOverride(Avalonia.Size)">
+            <summary>
+            设计时尺寸
+            </summary>
+            <param name="availableSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GKG.UI.TimeHmsPickerControl">
+            <summary>
+            带标题的时分秒选择器控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.TimeHmsPickerControl.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TimeHmsPickerViewModel">
+            <summary>
+            带标题的时分秒选择器控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimeHmsPickerViewModel.SelectedTime">
+            <summary>
+            显示的时分秒
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimeHmsPickerViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.TimeHmsPickerViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TimePickerControl">
+            <summary>
+            带标题的时分选择器
+            </summary>
+        </member>
+        <member name="M:GKG.UI.TimePickerControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.TimePickerViewModel">
+            <summary>
+            数字输入框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimePickerViewModel.SelectedTime">
+            <summary>
+            当前值 
+            </summary>
+        </member>
+        <member name="P:GKG.UI.TimePickerViewModel.MinuteIncrement">
+            <summary>
+            设置分钟选择的步长（例如 15 表示只能选择 0、15、30、45 分）。默认值为 1  
+            </summary> 
+        </member>
+        <member name="T:GKG.UI.ToggleSwitchControl">
+            <summary>
+            下拉框控件
+            </summary>
+        </member>
+        <member name="M:GKG.UI.ToggleSwitchControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:GKG.UI.ToggleSwitchViewModel">
+            <summary>
+            数字输入框控件-视图模型
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ToggleSwitchViewModel.IsChecked">
+            <summary>
+            当前值（双向绑定）
+            </summary>
+        </member>
+        <member name="P:GKG.UI.ToggleSwitchViewModel.IsEnabled">
+            <summary>
+            是否禁用，缺省不禁用true
+            </summary> 
+        </member>
+        <member name="P:GKG.UI.ToggleSwitchViewModel.IsVisible">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+    </members>
+</doc>

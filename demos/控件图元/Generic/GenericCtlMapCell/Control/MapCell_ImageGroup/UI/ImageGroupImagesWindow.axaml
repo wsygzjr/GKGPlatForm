@@ -1,0 +1,53 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converts="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_ImageGroup.Converts"
+        x:Class="GKG.Map.MapCell.Generic.Control.MapCell_ImageGroup.UI.ImageGroupImagesWindow"
+        Title="图片列表"
+        Width="680" Height="420"
+        MinWidth="560" MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="5" Margin="0,0,0,10">
+      <Button x:Name="BtnAdd" Content="添加" Width="70" Height="28"/>
+      <Button x:Name="BtnReplace" Content="替换" Width="70" Height="28" IsEnabled="False"/>
+      <Button x:Name="BtnDelete" Content="删除" Width="70" Height="28" IsEnabled="False"/>
+      <Separator Width="1" Margin="5,0"/>
+      <Button x:Name="BtnMoveUp" Content="上移" Width="70" Height="28" IsEnabled="False"/>
+      <Button x:Name="BtnMoveDown" Content="下移" Width="70" Height="28" IsEnabled="False"/>
+      <Separator Width="1" Margin="5,0"/>
+      <TextBlock VerticalAlignment="Center" Text="当前索引" Margin="5,0,0,0"/>
+      <NumericUpDown x:Name="NumCurrentIndex" Width="120" Height="28" Minimum="0" Value="0" Increment="1" FormatString="0"/>
+    </StackPanel>
+
+    <Grid Grid.Row="1" ColumnDefinitions="*,240" ColumnSpacing="10">
+      <Border Grid.Column="0" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="3">
+        <ListBox x:Name="ItemsListBox" SelectionMode="Single" Background="White">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <Grid Margin="6,4" ColumnDefinitions="Auto,*">
+                <TextBlock VerticalAlignment="Center" Text="图片"/>
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding}" Margin="10,0,0,0"/>
+              </Grid>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </Border>
+
+      <Border Grid.Column="1" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="3" Padding="6">
+        <Image x:Name="PreviewImage" Stretch="Uniform"/>
+      </Border>
+    </Grid>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0" Spacing="10">
+      <Button x:Name="BtnOK" Content="确定" Width="80" Height="30"/>
+      <Button x:Name="BtnCancel" Content="取消" Width="80" Height="30"/>
+    </StackPanel>
+  </Grid>
+</Window>

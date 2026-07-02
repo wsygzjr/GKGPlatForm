@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:local="clr-namespace:Griffins.Map.CtlMapCell.Generic.TextButton.ViewModel"
+             xmlns:converts="clr-namespace:Griffins.Map.CtlMapCell.Generic.Convert"
+             x:Class="Griffins.Map.CtlMapCell.Generic.TextButton.View.TextButtonView"
+             x:DataType="local:TextButtonViewModel"
+             Width="300" 
+             Height="40">
+      <UserControl.Resources>
+        <converts:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    </UserControl.Resources>
+        <!-- 水平布局：文本框 + 按钮 -->
+    <Grid x:Name="MainGrid" ColumnDefinitions="* Auto" ColumnSpacing="8" Margin="2">
+        <TextBox x:Name="TextValueTextBox"
+                 VerticalAlignment="Stretch"
+                 Padding="6"
+                 BorderThickness="1"
+                 BorderBrush="#E0E0E0"
+                 Grid.Column="0"/>
+        <Button x:Name="ActionButton"
+                Width="80"
+                VerticalAlignment="Stretch"
+                Padding="0"
+                BorderThickness="0"
+                Grid.Column="1">
+            <TextBlock Text="{Binding ButtonName}"
+                       Foreground="{Binding TextColor, Converter={StaticResource ColorToBrushConverter}}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Button>
+    </Grid>
+</UserControl>

@@ -1,0 +1,97 @@
+{
+  "ImeModel": "TestImeModel",
+  "IsMutilMT": false,
+  "MMs": [
+    {
+      "Alias": "LoadUnload",
+      "InstanceName": "上下料",
+      "MMNumber": "LoadUnload",
+      "IsProxy": false,
+      "MMDevCategory": 0,
+      "UsesSubMMs": [
+        {
+          "InnerAlias": "MaterialBox",
+          "SubMMModel": "MaterialBox",
+          "SubMMAlias": "MaterialBox"
+        },
+        {
+          "InnerAlias": "MotorPushRod",
+          "SubMMModel": "PushRod",
+          "SubMMAlias": "PushRod_Motor"
+        },
+        {
+          "InnerAlias": "CylinderPushRod",
+          "SubMMModel": "PushRod",
+          "SubMMAlias": "PushRod_Cylinder"
+        }
+      ]
+    },
+    {
+      "Alias": "DevMngMM1",
+      "InstanceName": "设备管理",
+      "MMNumber": "DevMngMM",
+      "IsProxy": false,
+      "MMDevCategory": 0,
+      "UsesSubMMs": [
+        {
+          "InnerAlias": "MotionControlCardCfg",
+          "SubMMModel": "MotionControlCardCfg",
+          "SubMMAlias": "MotionControlCardCfg"
+        }
+      ]
+    }
+
+  ],
+  "SubMMs": [
+  	{
+      "Alias": "MotionControlCardCfg",
+      "InstanceName": "电气管理对象",
+      "SubMMModel": "MotionControlCardCfg",
+      "SubMMObjID": "D019035E-FCBF-4408-BDE4-7A024B358AAC",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    },
+	{
+      "Alias": "PushRod_Motor",
+      "InstanceName": "电机推杆",
+      "SubMMModel": "PushRod",
+      "SubMMObjID": "34A3A81E-A741-458C-AECE-4706811DFECA",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    },
+	{
+      "Alias": "PushRod_Cylinder",
+      "InstanceName": "气缸推杆",
+      "SubMMModel": "PushRod",
+      "SubMMObjID": "4CCC3359-F92C-4372-B35D-EE57E26ADCE6",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    },
+	{
+      "Alias": "MaterialBox",
+      "InstanceName": "料盒容器",
+      "SubMMModel": "MaterialBox",
+      "SubMMObjID": "5A02600E-D806-438F-9B56-459E62730461",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    }
+  ],
+  "MTCapabilityDatas": [
+    {
+      "MTNo": 1,
+      "Aliases": [
+        "LoadUnload",
+        "DevMngMM1"
+      ]
+    }
+  ],
+  "FoolProofObjDatas": [
+  ],
+  "CustomUIDataObjInsts": [
+    {
+      "Alias": "Simple_1",
+      "InstName": "示例1",
+      "ObjKind": "Simple"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:ImagePreProcessParamViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ImagePreProcessParamView">
+	<!-- 图像预处理界面View -->
+	<Grid Margin="5 0 5 0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+		<!-- 总体StackPanel水平排列 -->
+		<StackPanel Orientation="Horizontal">
+			<!-- 左边垂直排列 -->
+			<StackPanel Orientation="Vertical" Spacing="4">
+				<Label Content="黑白阈值控制"></Label>
+				<!-- 滑动数字输入框：低阈值 -->
+				<custom:SliderNumericControl
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				LabelName="低阈值 "
+				WidthLevel="Medium"
+				ViewModel="{Binding LowThresholdViewModel}"
+				/>
+				<!-- 滑动数字输入框：高阈值 -->
+				<custom:SliderNumericControl
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				LabelName="高阈值 "
+				WidthLevel="Medium"
+				ViewModel="{Binding HighThresholdViewModel}"
+				/>
+				<!-- 开关按钮：杂志处理 -->
+				<custom:ToggleSwitchControl
+				LabelName="杂志处理"
+				WidthLevel="Medium"
+				ViewModel="{Binding ImpurityProcessingViewModel}" />
+				<!-- 滑动数字输入框：杂志过滤 -->
+				<custom:SliderNumericControl
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				LabelName="杂质过滤 "
+				WidthLevel="Medium"
+				ViewModel="{Binding ImpurityFilterValueViewModel}"
+				/>
+				<!-- 滑动数字输入框：目标缝合 -->
+				<custom:SliderNumericControl
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				LabelName="目标缝合 "
+				WidthLevel="Medium"
+				ViewModel="{Binding TargetStitchingViewModel}"
+				/>
+				<!-- 开关按钮：面积筛选 -->
+				<custom:ToggleSwitchControl
+				LabelName="面积筛选"
+				WidthLevel="Medium"
+				ViewModel="{Binding EnableAreaFilterViewModel}" />
+				<!-- 滑动数字输入框：最小面积 -->
+				<custom:SliderNumericControl
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				LabelName="最小面积 "
+				WidthLevel="Medium"
+				ViewModel="{Binding MinimumAreaViewModel}"
+				/>
+				<!-- 滑动数字输入框：最大面积 -->
+				<custom:SliderNumericControl
+				VerticalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				LabelName="最大面积 "
+				WidthLevel="Medium"
+				ViewModel="{Binding MaximumAreaViewModel}"
+				/>
+			</StackPanel>
+			<!-- 中间垂直排列（单位） -->
+			<StackPanel Orientation="Vertical" Spacing="4">
+				<TextBlock Text="mm" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 190 0 0"></TextBlock>
+				<TextBlock Text="mm" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 22 0 0"></TextBlock>
+				<TextBlock Text="mm2" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 82 0 0"></TextBlock>
+				<TextBlock Text="mm2" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 22 0 0"></TextBlock>
+			</StackPanel>
+			<!-- 右边垂直排列 -->
+			<StackPanel Orientation="Vertical" Spacing="4" Margin="80 25 0 0">
+				<!-- 开关按钮：填充孔洞 -->
+				<custom:ToggleSwitchControl
+				WidthLevel="Medium"
+				LabelName="填充孔洞"
+				ViewModel="{Binding FillHolesViewModel}" />
+				<!-- 下拉框：极性 -->
+				<custom:ComboxControl
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				WidthLevel="Medium"
+				LabelName="极性"
+				ViewModel="{Binding PolarityViewModel }" />
+				<!-- 数字输入框：矩形度 -->
+				<custom:NumericControl
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				WidthLevel="Medium"
+				LabelName="矩形度 "
+				ViewModel="{Binding RectangularityViewModel}"
+				/>
+				<!-- 开关按钮：一维测量 -->
+				<custom:ToggleSwitchControl
+				LabelName="一维测量  "
+				WidthLevel="Medium"
+				ViewModel="{Binding EnableOneDimensionalMeasurementViewModel}"
+				/>
+				<!-- 数字输入框：检测框切片个数 -->
+				<custom:NumericControl
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				WidthLevel="Medium"
+				LabelName="检测框切片个数 "
+				ViewModel="{Binding DetectionFrameSliceCountViewModel}"
+				/>
+				<!-- 数字输入框+标签：允许胶带超出范围百分比 -->
+				<custom:NumericWithLableControl
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				LabelName="允许胶带超出范围百分比"
+				Margin="60 0 0 0"
+				WidthLevel="Medium"
+				ViewModel="{Binding GlueWidthExceedPercentViewModel}"
+				/>
+				<!-- 数字输入框：胶条数 -->
+				<custom:NumericControl
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				LabelName="胶条数 "
+				WidthLevel="Medium"
+				ViewModel="{Binding GlueStripCountViewModel}"
+				/>
+				<!-- 按钮：2D高级参数 弹出2D高级参数弹窗 -->
+				<Button Content="2D高级参数" FontSize="16" Background="LightBlue" Foreground="White" Command="{Binding ShowTwoDAdvancedParamWindowCommand}" Margin="120 0 0 0"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+
+
+
+</UserControl>

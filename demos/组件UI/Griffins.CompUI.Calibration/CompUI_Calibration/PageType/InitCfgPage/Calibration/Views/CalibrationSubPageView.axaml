@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.Calibration.Views"
+             xmlns:uiviews="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.Calibration.ViewModels"
+             xmlns:local="using:GKG.UI.General"
+             x:DataType="vm:CalibrationSubPageViewModel"
+             x:Class="Griffins.CompUI.Calibration.Views.CalibrationSubPageView">
+     
+    <!--标定子页面-->
+	<Grid ColumnDefinitions="auto,auto,*"  Height="900" Width="1920" >
+		  <views:CalibrationView Grid.Column="0"    HorizontalAlignment="Left"   
+                    DataContext="{Binding CalibrationViewModel}"   BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    Margin="0" MaxWidth="640" />
+           
+          <uiviews:CameraOperationView  Grid.Column="1"    HorizontalAlignment="Left"   
+                                       DataContext="{x:Static local:GlobalVisionViewModel.CameraOperationViewModel}"   MaxWidth="988"  BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    Margin="0"/>
+
+          <uiviews:CalibrationResultView Grid.Column="2"  MaxWidth="355"   BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    DataContext="{Binding CalibrationResultViewModel }"      HorizontalAlignment="Center"    HorizontalContentAlignment="Center"  
+                    Margin="0"/> 
+        
+    </Grid>
+
+</UserControl>

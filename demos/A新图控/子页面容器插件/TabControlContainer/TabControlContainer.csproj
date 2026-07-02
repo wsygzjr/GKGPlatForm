@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\Map\SubPageContainer</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="Assets\Icons\**" />
+    <Compile Remove="Assets\Icons\**" />
+    <EmbeddedResource Remove="Assets\Icons\**" />
+    <None Remove="Assets\Icons\**" />
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.3.3" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.3" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.3" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3" />
+		<PackageReference Include="Griffins.Map.UI" Version="7.1.0" />
+		<PackageReference Include="Griffins.Map2" Version="7.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="ResourceString.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ResourceString.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ConfigWindow.axaml.cs">
+	    <DependentUpon>ConfigWindow.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\WorkAreaView.axaml.cs">
+	    <DependentUpon>WorkAreaView.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\PreviewView.axaml.cs">
+	    <DependentUpon>PreviewView.axaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="ResourceString.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ResourceString.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+  <!-- 自定义目标：清理输出 -->
+  <Target Name="CleanOutputDependencies" AfterTargets="Build">
+    <ItemGroup>
+      <!-- 要删除的 DLL 文件 -->
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.UI.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map2.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.UI2.dll" />
+
+      <!-- 要删除的 PDB 文件 -->
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map.UI.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map2.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.UI2.pdb" />
+
+      <!-- 要删除的 XML 文件 -->
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map.UI.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map2.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.UI2.xml" />
+
+      <!-- 合并所有要删除的文件 -->
+      <AllFilesToDelete Include="@(DllsToDelete)" />
+      <AllFilesToDelete Include="@(PdbsToDelete)" />
+      <AllFilesToDelete Include="@(XmlsToDelete)" />
+    </ItemGroup>
+    <!-- 删除文件 -->
+    <Delete Files="@(AllFilesToDelete)" ContinueOnError="true" />
+  </Target>
+</Project>

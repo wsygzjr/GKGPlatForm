@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:DisableChecksParamViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.DisableChecksParamView">
+	<!-- 禁用界面 View -->
+	<StackPanel Orientation="Vertical" Spacing="4" Height="310" Width="1220">
+		<Border BorderBrush="#E0E0E0"
+				BorderThickness="1"
+				CornerRadius="4"
+				Background="Gray">
+			<!--定义内容区域-->
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="290"/>
+				</Grid.RowDefinitions>
+				<!--数据列表区域-->
+				<ScrollViewer Grid.Row="0"
+							  VerticalScrollBarVisibility="Visible">
+					<!--脚本结果展示 ListBox-->
+					<ListBox ItemsSource="{Binding }"
+							 Classes="StyleListBoxCard">
+					</ListBox>
+				</ScrollViewer>
+			</Grid>
+		</Border>
+	</StackPanel>
+</UserControl>

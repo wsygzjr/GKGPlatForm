@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.Map.CtlMapCell.Generic.Container.ViewModel"
+             xmlns:local="clr-namespace:Griffins.Map.CtlMapCell.Generic.Container.Converts"
+             mc:Ignorable="d" d:DesignWidth="139" d:DesignHeight="53"
+             x:DataType="vm:PanelViewModel"
+             x:Class="Griffins.Map.CtlMapCell.Generic.Container.View.PanelView">
+    <Design.DataContext>
+		<vm:PanelViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <local:BooleanToBorderThicknessConverter x:Key="BooleanToBorderThicknessConverter"/>
+    </UserControl.Resources>
+    <Border 
+        BorderThickness="{Binding ShowBorder, Converter={StaticResource BooleanToBorderThicknessConverter}}"
+        BorderBrush="Gray" 
+        HorizontalAlignment="Stretch" 
+        VerticalAlignment="Stretch">
+            <Panel x:Name="CustomPanel" 
+                   HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Stretch">
+            </Panel>
+    </Border>
+</UserControl>

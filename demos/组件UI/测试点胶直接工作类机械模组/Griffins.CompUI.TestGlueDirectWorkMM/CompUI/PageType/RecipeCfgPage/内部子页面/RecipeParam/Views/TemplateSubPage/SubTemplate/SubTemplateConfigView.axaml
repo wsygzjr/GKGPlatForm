@@ -1,0 +1,20 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.SubTemplate"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:SubTemplateConfigViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.SubTemplateConfigView">
+
+       <!-- 1 子模板子页面：垂直排列 -->  
+		  
+     <Border  Classes="border"   Margin="0 0 0 0"   Width="1718" > 
+           <views:SubTemplateListView Grid.Column="0"  VerticalAlignment="Top"
+	    DataContext="{Binding SubTemplateListViewModel}" 
+	    Margin="2" Height="730"   Width="1718"/> 
+     </Border> 
+
+</UserControl>

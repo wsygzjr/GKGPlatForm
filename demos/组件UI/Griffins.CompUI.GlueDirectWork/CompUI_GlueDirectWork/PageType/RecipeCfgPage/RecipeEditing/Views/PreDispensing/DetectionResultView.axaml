@@ -1,0 +1,124 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:DetectionResultViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.DetectionResultView">
+	<!-- 工具栏+检测结果界面View -->
+
+	<DockPanel LastChildFill="True" Margin="5">
+		<!-- 工具栏按钮水平排列 -->
+		<StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+			<StackPanel Margin="0 0 40 0" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0" Height="50">
+				<Button Content="相加" Classes="btnSave" Command="{Binding AddCommand}"/>
+				<Button Content="相减" Classes="btnSave" Command="{Binding SubtractCommand}"/>
+				<Button Content="正方形" Classes="btnSave" Command="{Binding AddSquareRoiCommand}"/>
+				<Button Content="圆形" Classes="btnSave" Command="{Binding AddCircleRoiCommand}"/>
+				<Button Content="多边形" Classes="btnSave" Command="{Binding AddPolygonRoiCommand}"/>
+				<Button Content="删除选中ROI" Classes="btnSave" Command="{Binding DeleteSelectedRoiCommand}" Width="100"/>
+				<Button Content="清除所有ROI" Classes="btnSave" Command="{Binding ClearAllRoisCommand}" Width="100"/>
+				<Button Content="测试当前script" Classes="btnSave" Command="{Binding TestCurrentScriptCommand}" Width="115"/>
+				<Button Content="测试所有script" Classes="btnSave" Command="{Binding TestAllScriptsCommand}" Width="115"/>
+				<Button Content="新建" Classes="btnSave" Command="{Binding NewScriptCommand}"/>
+				<Button Content="删除" Classes="btnSave" Command="{Binding DeleteScriptCommand}"/>
+				<Button Content="清空" Classes="btnSave" Command="{Binding ClearAllScriptsCommand}"/>
+			</StackPanel>
+			<!-- 检测逻辑下拉框 -->
+			<custom:ComboxControl
+			HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Center"
+			WidthLevel="Medium3"
+			LabelName="检测逻辑: "
+			ViewModel="{Binding DetectionLogicViewModel}" />
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="可编辑档案" FontSize="15"></TextBlock>
+				<TextBlock Text="当前编辑脚本:" Margin="80 0 0 0" FontSize="15"></TextBlock>
+				<TextBlock Text="{Binding SelectedScriptModelItem.ScriptName}" Width="50"></TextBlock>  <!-- 显示选中的脚本名称 -->
+				<Canvas Width="920">
+					<Button Content="保存" Classes="btnSave" Canvas.Right="53" Canvas.Bottom="30" Command="{Binding SaveCommand}"></Button>
+				</Canvas>
+			</StackPanel>
+		</StackPanel>
+		<!-- 检测结果 -->
+		<Border BorderBrush="#E0E0E0"
+				BorderThickness="1"
+				CornerRadius="4"
+				Background="Gray">
+
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="35" />
+					<RowDefinition Height="330" />
+				</Grid.RowDefinitions>
+
+				<!-- 列标题区域 -->
+				<Border Grid.Row="0" Height="35" Background="#F8F9FA" BorderBrush="#E9ECEF" BorderThickness="0,0,0,1">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<TextBlock Grid.Column="0"
+								   Text="脚本名称"
+								   Margin="12,0"
+								   VerticalAlignment="Center"
+								   FontWeight="SemiBold" />
+
+						<TextBlock Grid.Column="1"
+								   Text="检测结果"
+								   Margin="12,0"
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   FontWeight="SemiBold" />
+					</Grid>
+				</Border>
+				<!-- 数据列表区域 -->
+				<ScrollViewer Grid.Row="1"
+							  VerticalScrollBarVisibility="Auto">
+					<ListBox ItemsSource="{Binding ScriptModelList}"
+							 Classes="StyleListBoxCard ListBoxItem:selected TextBlock"
+							 SelectedItem="{Binding SelectedScriptModelItem}">
+						<!-- 每一项的显示位置（脚本名称、检测结果） -->
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Border Height="15">
+									<Grid>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="*" />
+										</Grid.ColumnDefinitions>
+
+										<!-- 脚本名称 -->
+										<TextBlock Grid.Column="0"
+												   Text="{Binding ScriptName}"
+												   Margin="10,0"
+												   VerticalAlignment="Center"
+												   TextTrimming="CharacterEllipsis" />
+
+										<!-- 检测结果 -->
+										<Border Grid.Column="1"
+												Margin="10,0"
+												CornerRadius="3">
+											<TextBlock Text="{Binding ScriptResult}"
+													   HorizontalAlignment="Center"
+													   VerticalAlignment="Center"
+													   TextTrimming="CharacterEllipsis"/>
+										</Border>
+									</Grid>
+								</Border>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</ScrollViewer>
+			</Grid>
+		</Border>
+
+	</DockPanel>
+</UserControl>

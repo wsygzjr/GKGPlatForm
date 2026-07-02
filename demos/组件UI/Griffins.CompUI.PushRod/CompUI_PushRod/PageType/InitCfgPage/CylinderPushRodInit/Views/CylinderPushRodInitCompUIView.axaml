@@ -1,0 +1,56 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.PushRod.CompUI_PushRod.PageType.InitCfgPage.CylinderPushRodInit.ViewModels"
+             xmlns:general="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="560"
+             x:DataType="vm:CylinderPushRodInitCompUIViewModel"
+             x:Class="Griffins.CompUI.PushRod.CompUI_PushRod.PageType.InitCfgPage.CylinderPushRodInit.Views.CylinderPushRodInitCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="16"/>
+    </Style>
+    <Style Selector="Border.SectionCard">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="14"/>
+      <Setter Property="BoxShadow" Value="0 4 12 0 #120F172A"/>
+    </Style>
+    <Style Selector="Border.InnerPanel">
+      <Setter Property="Background" Value="#F7FAFD"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="14,16"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="#1F3F75"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Classes="PageShell">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+      <Border Classes="SectionCard"
+              IsEnabled="{Binding CanEditCylinderConfig}">
+        <Grid RowDefinitions="Auto,16,Auto">
+          <TextBlock Classes="SectionTitle" Text="气缸推杆初始化配置"/>
+          <Border Grid.Row="2" Classes="InnerPanel">
+            <Grid RowDefinitions="Auto,12,*">
+              <TextBlock Classes="SectionTitle" Text="气缸初始化参数"/>
+              <general:CylinderConfigView Grid.Row="2"
+                                          DataContext="{Binding CylinderConfigViewModel}" />
+            </Grid>
+          </Border>
+        </Grid>
+      </Border>
+    </ScrollViewer>
+  </Border>
+</UserControl>

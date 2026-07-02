@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.ChartFuncCtlMapCell.ViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="GKG.Map.ChartFuncCtlMapCell.View.ChartValueMapOprtCellParamView"
+             x:DataType="vm:ChartValueMapOprtCellParamViewModel">
+    <Design.DataContext>
+        <vm:ChartValueMapOprtCellParamViewModel>
+			
+        </vm:ChartValueMapOprtCellParamViewModel>
+    </Design.DataContext>
+    <StackPanel Margin="20" Spacing="12">
+        <StackPanel Orientation="Horizontal" Spacing="0" VerticalAlignment="Center">
+            <CheckBox Content="是否显示单位" IsChecked="{Binding ShowUnit}"></CheckBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="0" VerticalAlignment="Center">
+           <TextBlock Text="单位：" Width="60" VerticalAlignment="Center" />
+           <TextBox Text="{Binding Unit}" Width="80"></TextBox>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

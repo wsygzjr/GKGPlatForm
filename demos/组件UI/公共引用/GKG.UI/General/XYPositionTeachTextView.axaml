@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+			 x:DataType="vm:BasePositionViewModel"
+			 x:Class="GKG.UI.General.XYPositionTeachTextView">
+	<!-- 横向铺满父列，避免固定宽度导致「相机到」被裁切 -->
+	<Grid RowDefinitions="Auto"
+		  ColumnDefinitions="76,76,*,*"
+		  ColumnSpacing="8"
+		  HorizontalAlignment="Stretch"
+		  VerticalAlignment="Center"
+		  MinWidth="400"
+		  MinHeight="38">
+		<TextBox Grid.Row="0" Grid.Column="0"
+				 HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+				 VerticalAlignment="Center" VerticalContentAlignment="Center"
+				 Padding="2" MinWidth="72" />
+		<TextBox Grid.Row="0" Grid.Column="1"
+				 HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+				 VerticalAlignment="Center" VerticalContentAlignment="Center"
+				 Padding="2" MinWidth="72" />
+
+		<Button Grid.Row="0" Grid.Column="2"
+				HorizontalAlignment="Stretch"
+				MinWidth="100"
+				Content="教导"
+				Command="{Binding TeachCommand}"
+				Classes="btn" />
+
+		<Button Grid.Row="0" Grid.Column="3"
+				HorizontalAlignment="Stretch"
+				MinWidth="100"
+				Content="{Binding MoveBtText}"
+				Command="{Binding MoveCommand}"
+				Classes="btn" />
+	</Grid>
+</UserControl>

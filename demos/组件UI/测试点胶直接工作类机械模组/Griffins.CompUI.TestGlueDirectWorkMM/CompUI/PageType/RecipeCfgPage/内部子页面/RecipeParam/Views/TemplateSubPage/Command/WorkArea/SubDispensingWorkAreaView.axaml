@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:SubDispensingWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:DispensingPageType.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.SubDispensingWorkAreaView">
+	
+   <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"   Width="876"  Height="290" HorizontalAlignment="Left"  VerticalAlignment="Center"   >
+             
+			<TextBlock Text="模板放置"  Classes="TextBlockWorkAreaViewTitle"  HorizontalAlignment="Left"  VerticalAlignment="Center" ></TextBlock> 
+
+             
+		     <!-- 模版下拉框 -->
+             <custom:ComboxControl  
+             Grid.Row="0"  Grid.Column="0"   Margin="10,10,10,25"
+					LabelName="模板:"
+					WidthLevel="Medium"   HorizontalAlignment="Left"  VerticalAlignment="Center" 
+					ViewModel="{Binding DispensingOrderViewModel}" 
+					/>   
+
+        </StackPanel>
+    </Border>
+</UserControl>

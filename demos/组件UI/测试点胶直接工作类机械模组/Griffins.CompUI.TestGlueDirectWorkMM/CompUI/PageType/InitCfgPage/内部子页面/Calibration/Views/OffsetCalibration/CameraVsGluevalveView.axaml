@@ -1,0 +1,60 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.ViewModels.OffsetCalibration"
+             x:DataType="vm:CameraVsGluevalveViewModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  
+             x:Class="Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views.CameraVsGluevalveView">
+    
+ <!--  垂直排列 -->
+	<StackPanel Orientation="Vertical"  >
+		   <!-- 阀 -->
+            <custom:ComboxControl 
+		        HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center" 
+		        LabelName="阀号选择"
+		        WidthLevel="Small1"
+		        ViewModel="{Binding ValveInfoModel }" />     
+
+	        <TabControl  TabStripPlacement="Top" Margin="0" FontSize="13"   MaxWidth="450" MinWidth="450" >
+                <TabItem Header="0度阀">
+                    <views:ZeroDegreevalvePositionView 
+                        DataContext="{Binding ZeroDegreevalvePosition}" 
+                        />
+                </TabItem>
+
+                <TabItem Header="0度相机">
+                    <views:CameraPositionView 
+                        DataContext="{Binding ZeroCameraPosition}" 
+                        />
+                </TabItem>
+
+                <TabItem Header="90度阀">
+                    <views:NinetyDegreevalvePositionView 
+                        DataContext="{Binding NinetyDegreevalvePosition}" 
+                        Margin="5"/>
+                </TabItem>
+        
+                <TabItem Header="90度相机">
+                    <views:CameraPositionView 
+                        DataContext="{Binding NinetyCameraPosition}" 
+                        />
+                </TabItem>
+        
+                <TabItem Header="公共参数">
+                    <views:CameraVsGluevalveComView 
+                        DataContext="{Binding CameraVsGluevalveComViewModel}" 
+                        />
+                </TabItem> 
+
+            </TabControl>
+    </StackPanel>
+
+        
+
+</UserControl>

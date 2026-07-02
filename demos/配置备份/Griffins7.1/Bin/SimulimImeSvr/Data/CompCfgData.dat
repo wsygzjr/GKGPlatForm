@@ -1,0 +1,1 @@
+[{"CompID":"test_DevMngMM1","AlarmEventInfoes":[{"EventID":10010,"AlarmKind":1}],"GenEventInfoes":[{"EventID":11001,"MethodParamInfoes":[{"ObjPropID":"1","ObjPropName":"1","GriffinsBaseValue":"{\"DataType\":1,\"Data\":\"True\"}"}]}]},{"CompID":"test_bl1","AlarmEventInfoes":[],"GenEventInfoes":[{"EventID":111,"MethodParamInfoes":[]}]}]

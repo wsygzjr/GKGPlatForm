@@ -1,0 +1,20 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels"
+             x:DataType="vm:IODeviceCfgViewModel"
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.IODeviceCfgView"             
+             xmlns:views="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views">
+     
+    
+	<!--【IO设备配置页面】-->
+	 <Grid Margin="0,5,0,0"  Height="840"  RowDefinitions="Auto"> 
+         <!--IO设备列表-->
+		<views:IODeviceInfoListView Grid.Column="0" 
+                                DataContext="{Binding IODeviceInfoListViewModel}"
+                                 /> 
+    </Grid>
+
+</UserControl>

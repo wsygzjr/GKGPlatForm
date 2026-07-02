@@ -1,0 +1,234 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing"
+			 xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 x:DataType="vm:ProgramEditingViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditingView">
+	<Grid Margin="8" ColumnDefinitions="320,8,*,16,Auto" RowDefinitions="*">
+		<!-- 左侧：树状结构 -->
+		<Border Grid.Column="0" BorderBrush="#CCCCCC" BorderThickness="1" Padding="8">
+			<TreeView ItemsSource="{Binding RootNodes}"
+					  SelectedItem="{Binding SelectedNode, Mode=TwoWay}">
+				<TreeView.Styles>
+					<Style Selector="TreeViewItem">
+						<Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+					</Style>
+				</TreeView.Styles>
+				<TreeView.ItemTemplate>
+					<TreeDataTemplate ItemsSource="{Binding Children}">
+						<TextBlock Text="{Binding Name}" />
+					</TreeDataTemplate>
+				</TreeView.ItemTemplate>
+			</TreeView>
+		</Border>
+
+		<!-- 中间：管理工作区（模板管理 / 区块管理） -->
+		<Border Grid.Column="2" BorderBrush="#CCCCCC" BorderThickness="1" Padding="12" Background="#FFFFFF">
+			<ContentControl Content="{Binding SelectedWorkspace}">
+				<ContentControl.DataTemplates>
+					<DataTemplate DataType="vm:TemplateManagementWorkspaceViewModel">
+						<views:TemplateManagementWorkspaceView />
+					</DataTemplate>
+					<DataTemplate DataType="vm:BlockManagementWorkspaceViewModel">
+						<views:BlockManagementWorkspaceView />
+					</DataTemplate>
+					<DataTemplate DataType="vm:BoardWorkspaceViewModel">
+						<views:BoardWorkspaceView />
+					</DataTemplate>
+					<DataTemplate DataType="vm:TemplateWorkspaceViewModel">
+						<views:TemplateWorkspaceView />
+					</DataTemplate>
+					<DataTemplate DataType="vm:BatchAreaGenerationWorkspaceViewModel">
+						<views:BatchAreaGenerationWorkspaceView />
+					</DataTemplate>
+					<DataTemplate DataType="vm:AreaEditingWorkspaceViewModel">
+						<views:AreaEditingWorkspaceView />
+					</DataTemplate>
+					<DataTemplate DataType="vm:SubTemplateManagementPlaceholderViewModel">
+						<views:SubTemplateManagementPlaceholderView />
+					</DataTemplate>
+					<!-- 其它节点工作区暂不实现：显示节点名（不出现“请选择节点”提示） -->
+					<DataTemplate DataType="vm:ProgramTreeNodeViewModel">
+						<TextBlock Text="{Binding Name}" FontSize="18" FontWeight="SemiBold" />
+					</DataTemplate>
+				</ContentControl.DataTemplates>
+			</ContentControl>
+		</Border>
+
+		<Grid Grid.Column="4" RowDefinitions="Auto,Auto" MinWidth="670" Margin="2,0,0,0">
+			<ScrollViewer Grid.Row="0"
+						  HorizontalScrollBarVisibility="Auto"
+						  VerticalScrollBarVisibility="Disabled"
+						  MaxHeight="620">
+				<gkgUI:CameraShowView
+				DataContext="{x:Static gkgUI:GlobalVisionViewModel.CameraShowViewModel}"
+				HorizontalAlignment="Left" />
+			</ScrollViewer>
+			<!-- Expander 贴顶对齐，避免在 * 行内纵向拉伸导致标题上下偏移 -->
+			<Expander Grid.Row="1"
+					  VerticalAlignment="Top"
+					  HorizontalAlignment="Stretch"
+					  ExpandDirection="Down"
+					  Padding="0"
+					  Header="运动控制"
+					  BorderThickness="0"
+					  IsExpanded="{Binding IsRightBottomPanelExpanded, Mode=TwoWay}">
+
+				<!-- 折叠的内容 -->
+				<Grid Height="230" RowDefinitions="120,Auto" ColumnDefinitions="*,*,180,*,*" Margin="8">
+					<StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Spacing="4" HorizontalAlignment="Center">
+						<Button Width="32" Height="32" Command="{Binding MoveYLargeNegativeCommand}">
+							<Image Source="/Assets/Images/向上远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Width="32" Height="32" Command="{Binding MoveYNegativeCommand}">
+							<Image Source="/Assets/Images/向上大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<TextBlock Text="Y" HorizontalAlignment="Center" />
+						<Button Width="32" Height="32" Command="{Binding MoveYPositiveCommand}" >
+							<Image Source="/Assets/Images/向下大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Width="32" Height="32" Command="{Binding MoveYLargePositiveCommand}">
+							<Image Source="/Assets/Images/向下远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+					</StackPanel>
+
+					<StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+						<Button Width="32" Height="32" Command="{Binding MoveXLargeNegativeCommand}">
+							<Image Source="/Assets/Images/向左远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Width="32" Height="32" Command="{Binding MoveXNegativeCommand}">
+							<Image Source="/Assets/Images/向左大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+
+						<TextBlock Text="X" VerticalAlignment="Center"/>
+
+						<Button Width="32" Height="32" Command="{Binding MoveXPositiveCommand}">
+							<Image Source="/Assets/Images/向右大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Width="32" Height="32" Command="{Binding MoveXLargePositiveCommand}">
+							<Image Source="/Assets/Images/向右远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+					</StackPanel>
+
+					<StackPanel Grid.Column="4" Grid.Row="0" Orientation="Vertical" Spacing="4" HorizontalAlignment="Center">
+						<Button Width="32" Height="32" Command="{Binding MoveZLargeNegativeCommand}">
+							<Image Source="/Assets/Images/向上远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Width="32" Height="32" Command="{Binding MoveZNegativeCommand}">
+							<Image Source="/Assets/Images/向上大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<TextBlock Text="Z" HorizontalAlignment="Center" />
+						<Button Width="32" Height="32" Command="{Binding MoveZPositiveCommand}">
+							<Image Source="/Assets/Images/向下大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Width="32" Height="32" Command="{Binding MoveZLargePositiveCommand}">
+							<Image Source="/Assets/Images/向下远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+					</StackPanel>
+
+					<Grid Grid.Row="0"
+						  Grid.RowSpan="2"
+						  Grid.Column="1"
+						  HorizontalAlignment="Center"
+						  VerticalAlignment="Center"
+						  ColumnDefinitions="Auto,2,Auto,2,Auto"
+						  RowDefinitions="Auto,2,Auto,2,Auto">
+						<Button Grid.Row="0" Grid.Column="0" Width="32" Height="32" Command="{Binding MoveRLargeNegativeCommand}">
+							<Image Source="/Assets/Images/向左远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Grid.Row="0" Grid.Column="4" Width="32" Height="32" Command="{Binding MoveRLargePositiveCommand}">
+							<Image Source="/Assets/Images/向右远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<TextBlock Text="R" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						<Button Grid.Row="4" Grid.Column="0" Width="32" Height="32" Command="{Binding MoveRNegativeCommand}">
+							<Image Source="/Assets/Images/向左大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Grid.Row="4" Grid.Column="4" Width="32" Height="32" Command="{Binding MoveRPositiveCommand}">
+							<Image Source="/Assets/Images/向右大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+					</Grid>
+
+					<Grid Grid.Row="0"
+						  Grid.RowSpan="2"
+						  Grid.Column="3"
+						  HorizontalAlignment="Center"
+						  VerticalAlignment="Center"
+						  ColumnDefinitions="Auto,2,Auto,2,Auto"
+						  RowDefinitions="Auto,2,Auto,2,Auto">
+						<Button Grid.Row="0" Grid.Column="0" Width="32" Height="32" Command="{Binding MoveULargeNegativeCommand}">
+							<Image Source="/Assets/Images/向左远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Grid.Row="0" Grid.Column="4" Width="32" Height="32" Command="{Binding MoveULargePositiveCommand}">
+							<Image Source="/Assets/Images/向右远大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<TextBlock Text="U" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						<Button Grid.Row="4" Grid.Column="0" Width="32" Height="32" Command="{Binding MoveUNegativeCommand}">
+							<Image Source="/Assets/Images/向左大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+						<Button Grid.Row="4" Grid.Column="4" Width="32" Height="32" Command="{Binding MoveUPositiveCommand}">
+							<Image Source="/Assets/Images/向右大于号.png"
+								   Width="32"
+								   Height="32"/>
+						</Button>
+					</Grid>
+
+
+					<StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+						<TextBlock Grid.Column="0" VerticalAlignment="Center" Text="A(°)" />
+						<TextBox Grid.Column="2"
+								 Height="30"
+								 Text="{Binding RAngle, Mode=TwoWay, StringFormat={}{0:0.000}}" />
+						<TextBlock Grid.Column="4" VerticalAlignment="Center" Text="u(°)" />
+						<TextBox Grid.Column="6"
+								 Height="30"
+								 Text="{Binding UAngle, Mode=TwoWay, StringFormat={}{0:0.000}}" />
+					</StackPanel>
+				</Grid>
+			</Expander>
+		</Grid>
+	</Grid>
+
+</UserControl>

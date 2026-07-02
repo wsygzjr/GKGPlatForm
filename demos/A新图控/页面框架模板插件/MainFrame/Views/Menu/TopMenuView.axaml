@@ -1,0 +1,70 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:MainFrame.ViewModels;assembly=MainFrame"
+			 xmlns:converter="clr-namespace:MainFrame.Converter"
+			 x:Class="MainFrameView.Views.Menu.TopMenuView"
+			 mc:Ignorable="d"
+			 x:DataType="vm:TopMenuViewModel"
+			 d:DesignWidth="800" d:DesignHeight="60">
+	<Design.DataContext>
+		<vm:TopMenuViewModel />
+	</Design.DataContext>
+	<UserControl.Resources>
+		<converter:EnumDisplayNameConverter x:Key="EnumDisplayNameConverter" />
+	</UserControl.Resources>
+	<UserControl.Styles>
+	</UserControl.Styles>
+
+	<DockPanel HorizontalAlignment="Stretch" LastChildFill="True" Height="80">
+
+		<!-- 窗口控制栏：Dock="Right" 固定靠右 -->
+		<StackPanel
+		DockPanel.Dock="Right"
+		Orientation="Horizontal"
+		VerticalAlignment="Center"
+		HorizontalAlignment="Right"
+		Margin="1,0,1,0" >
+			<!-- 最小化按钮 -->
+			<Button Command="{Binding MinimizeWinowWindowCommand }"
+					IsEnabled="{Binding IsMinimizeButtonEnabled}"
+					Width="30" Height="30"
+					Padding="0"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center">
+				<Image Width="15" Height="15"
+					   Source="{Binding MinimizeIcon}"
+					   Stretch="Uniform"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"/>
+			</Button>
+			<!-- 关闭按钮 -->
+			<Button Command="{Binding CloseWindowCommand}"
+					Width="30" Height="30"
+					Padding="0"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center">
+				<Image Width="15" Height="15"
+					   Source="{Binding CloseIcon}"
+					   Stretch="Uniform"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"/>
+			</Button>
+		</StackPanel>
+
+		<ContentControl
+		Content="{Binding CurrentContent}"
+		HorizontalAlignment="Stretch"
+		VerticalContentAlignment="{Binding VerticalContentAlignment}"
+		HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+		/>
+
+		<!--<DockPanel  LastChildFill="True" Background="Red">
+		--><!-- ContentHost：作为DockPanel最后一个子元素，自动填充左侧剩余所有区域 --><!--
+
+		</DockPanel>-->
+
+
+	</DockPanel>
+</UserControl>

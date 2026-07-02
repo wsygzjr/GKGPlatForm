@@ -1,0 +1,61 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels"
+             xmlns:views="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views"
+		     x:DataType="vm:ControlCardBaseCfgViewModel"
+                 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2" 
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.ControlCardBaseCfgView">
+
+	
+	 <Grid Margin="10" RowDefinitions="Auto,Auto,*"  RowSpacing="10" ColumnSpacing="10"  >
+        <!-- 1. 运控卡基础信息（卡号、配置文件路径） -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" RowSpacing="8" ColumnSpacing="8">
+            <!-- 卡号（复用自定义TextInput控件） -->
+            <TextBlock Text="运控卡号：" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                Text="{Binding CardNo, Mode=TwoWay}"  
+                Height="24"  Width="200"   HorizontalAlignment="Left" HorizontalContentAlignment="Left" TextAlignment="Left"  /> 
+
+            <!-- 配置文件路径  IsReadOnly="False"   -->
+            <TextBlock Text="配置文件：" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBox  Grid.Row="1" Grid.Column="1"  Text="{Binding CfgFilePath, Mode=TwoWay}" Height="24" Width="936"   HorizontalAlignment="Left" HorizontalContentAlignment="Left" TextAlignment="Left"  /> 
+        </Grid>
+
+        <!-- 2. 分割线 -->
+        <Separator Grid.Row="1" Height="1" Background="#E0E0E0"/>
+
+        <!-- 3. TabControl：展示所有轴配置 -->
+        <TabControl 
+            Grid.Row="2" 
+            ItemsSource="{Binding ControlCardAxisCfgViewModels}" 
+            SelectedItem="{Binding SelectedControlCardAxisCfgViewModel, Mode=TwoWay}"
+            > 
+    
+            <!-- TabItem的标题模板：显示“轴1、轴2...” -->
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="vm:ControlCardAxisCfgViewModel">
+                     <TextBlock Text="{Binding AxisName}"/> 
+                   <!-- <TextBlock Text="{Binding AxisName, StringFormat='轴{0}'}"/>  --><!-- 用轴索引格式化标题 -->
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <!-- TabItem的内容模板：加载单个轴的配置视图 -->
+              <TabControl.ContentTemplate>
+                <DataTemplate DataType="vm:ControlCardAxisCfgViewModel">
+                    <!-- 系统自动创建全新View，每次切换都销毁旧实例 -->
+                    <views:ControlCardAxisCfgView />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+         <!--  <TabControl.ContentTemplate>
+        <DataTemplate DataType="vm:ControlCardAxisCfgViewModel">
+            --><!-- 不再动态创建视图，而是使用缓存的实例 --><!--
+            <ContentControl Content="{Binding CachedView}"/>
+        </DataTemplate>
+    </TabControl.ContentTemplate>-->
+        </TabControl>
+    </Grid>
+
+</UserControl>

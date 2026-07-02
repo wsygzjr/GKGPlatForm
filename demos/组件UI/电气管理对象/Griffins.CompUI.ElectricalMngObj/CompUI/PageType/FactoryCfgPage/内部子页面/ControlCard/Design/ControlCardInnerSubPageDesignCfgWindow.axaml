@@ -1,0 +1,42 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+        d:DesignWidth="800" 
+        d:DesignHeight="450"
+        xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Design"
+        x:DataType="vm:DesignCfgViewModel"
+        x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Design.ControlCardInnerSubPageDesignCfgWindow"
+        Title="设计参数"
+        Padding="20"> 
+
+    <!-- 使用Grid作为根布局，比StackPanel更灵活，便于后续扩展 -->
+    <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, *">
+        <!-- 行间距和列间距 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="150"/> 
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0 0 10 0"> <!-- 标签和输入框之间的间距 -->
+
+            <!-- 文本标签：优化字体、对齐方式、垂直居中 -->
+            <TextBlock Text="宽度：" 
+                       VerticalAlignment="Center"
+                       FontSize="14"
+                       FontWeight="Normal"/>
+        </Grid>
+
+        <!-- 数值输入框：优化高度、边距、对齐方式 -->
+        <NumericUpDown Grid.Column="1"
+                       Value="{Binding DesignCfgInfoViewModel.Width}"
+                       Height="30"
+                       VerticalAlignment="Center"
+                       Minimum="0"  
+                       Increment="1" 
+                       Watermark="请输入宽度值"/>
+    </Grid>
+</Window>

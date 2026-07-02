@@ -1,0 +1,51 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:ui="using:GKG.UI"
+			 xmlns:views="clr-namespace:GKG.UI.General"
+			 xmlns:local="using:GKG.UI.General"
+			 xmlns:vision="using:AvaloniaVisionControl"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+			 x:DataType="vm:MotorRotateMotionMechanismViewModel"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:Class="GKG.UI.General.MotorRotateMotionMechanismView">
+	<!-- 电机型旋转移动机构参数配置界面View -->
+	<Grid Margin="5 0 5 0" HorizontalAlignment="Stretch" VerticalAlignment="Top" RowDefinitions="auto,auto,auto,auto">
+		<!-- 标题 -->
+		<Label Grid.Row="0" Content="电机型旋转移动机构参数配置界面" FontSize="20" HorizontalAlignment="Left" ></Label>
+		<!-- 数字输入框：位置编号 -->
+		<custom:NumericControl
+		Grid.Row="1"
+		VerticalAlignment="Center"
+		HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="位置编号:"
+		WidthLevel="Medium3"
+		ViewModel="{Binding PositionNumberViewModel}"
+		/>
+		<!-- 数字输入框：坐标值 -->
+		<custom:NumericControl
+		Grid.Row="2"
+		VerticalAlignment="Center"
+		HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="坐标值:"
+		WidthLevel="Medium3"
+		ViewModel="{Binding CoordinateValueViewModel}"
+		/>
+		<!-- 下拉框：移动类型 -->
+		<custom:ComboxControl
+		Grid.Row="3"
+		HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalContentAlignment="Center"
+		WidthLevel="Medium3"
+		LabelName="移动类型:"
+		ViewModel="{Binding MotorRotateMoveTypeViewModel }"
+		/>
+	</Grid>
+</UserControl>

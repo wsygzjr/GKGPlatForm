@@ -1,0 +1,309 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.MaterialBox.CompUI_MaterialBox.PageType.RecipeCfgPage.MaterialBoxConfig.ViewModels"
+             xmlns:convert="clr-namespace:Griffins.CompUI.MaterialBox.CompUI_MaterialBox.Converters"
+             xmlns:custom="using:GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="1400"
+             d:DesignHeight="900"
+             x:Name="Root"
+             x:DataType="vm:MaterialBoxConfigCompUIViewModel"
+             x:Class="Griffins.CompUI.MaterialBox.CompUI_MaterialBox.PageType.RecipeCfgPage.MaterialBoxConfig.Views.MaterialBoxConfigCompUIView">
+  <UserControl.Resources>
+    <convert:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter" />
+  </UserControl.Resources>
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="18"/>
+    </Style>
+    <Style Selector="Border.Card">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BoxShadow" Value="0 4 12 0 #120F172A"/>
+    </Style>
+    <Style Selector="Border.ContentPanel">
+      <Setter Property="Background" Value="#F7FAFD"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="14,16"/>
+    </Style>
+    <Style Selector="Border.FloatLabel">
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="BorderBrush" Value="#D9E8F6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="12,5"/>
+    </Style>
+    <Style Selector="Border.SubPanel">
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="12"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="#1F3F75"/>
+    </Style>
+    <Style Selector="TextBlock.FormLabel">
+      <Setter Property="Foreground" Value="#3C4652"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style Selector="Button.PrimaryAction">
+      <Setter Property="Background" Value="#1C5ED6"/>
+      <Setter Property="Foreground" Value="#FFF"/>
+      <Setter Property="BorderBrush" Value="#1C5ED6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="16,8"/>
+      <Setter Property="MinWidth" Value="108"/>
+      <Setter Property="Height" Value="36"/>
+    </Style>
+    <Style Selector="TabControl.LayerTabs">
+      <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style Selector="TabControl.OuterTabs">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Padding" Value="0,0,0,10"/>
+    </Style>
+    <Style Selector="TabControl.InnerTabs">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Padding" Value="0,0,0,10"/>
+    </Style>
+    <Style Selector="TabControl.LayerTabs TabItem">
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Padding" Value="18,9"/>
+    </Style>
+    <Style Selector="TabControl.LayerTabs TabItem:selected">
+      <Setter Property="Foreground" Value="#1C5ED6"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    <Style Selector="custom|TextInputControl">
+      <Setter Property="FixWidth" Value="False"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+    <Style Selector="ToggleButton.io-toggle"><Setter Property="MinWidth" Value="28"/><Setter Property="MinHeight" Value="28"/><Setter Property="Background" Value="#BDBDBD"/><Setter Property="BorderBrush" Value="#9E9E9E"/><Setter Property="BorderThickness" Value="1"/><Setter Property="Padding" Value="0"/><Setter Property="Template"><ControlTemplate><Grid><Border Width="16" Height="16" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8" HorizontalAlignment="Center" VerticalAlignment="Center" /></Grid></ControlTemplate></Setter></Style>
+    <Style Selector="ToggleButton.io-toggle:checked"><Setter Property="Background" Value="#2ECC71"/><Setter Property="BorderBrush" Value="#27AE60"/></Style>
+    <Style Selector="ToggleButton.io-toggle:disabled"><Setter Property="Opacity" Value="0.4"/></Style>
+  </UserControl.Styles>
+  <Border Classes="PageShell">
+  <Grid RowDefinitions="Auto,Auto">
+    <Grid Grid.Row="0" RowDefinitions="Auto,Auto" ColumnDefinitions="*" RowSpacing="14">
+      <Border Grid.Row="0" Grid.Column="0" Classes="Card">
+        <DockPanel LastChildFill="True">
+          <Border Classes="FloatLabel" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="16,-9,0,0">
+            <TextBlock Classes="SectionTitle" Text="料盒参数与上下料操作"/>
+          </Border>
+          <Border Classes="ContentPanel" Margin="12,6,12,12">
+            <TabControl Classes="LayerTabs OuterTabs">
+              <TabItem Header="上料">
+                <TabControl Classes="LayerTabs InnerTabs">
+                  <TabItem Header="上层料盒">
+                    <Grid ColumnDefinitions="121,168,116,112,40,104,200,88,110,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="18">
+                      <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadUpperLayerBox.SlotCountViewModel}"/>
+                      <TextBlock Grid.Row="0" Grid.Column="2" Classes="FormLabel" Text="禁用槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="3" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding LoadUpperLayerBox.DisabledSlotCountViewModel}"/>
+                      <Button Grid.Row="0" Grid.Column="4" Classes="PrimaryAction" Content="禁用配置" Tag="LoadUpper" HorizontalAlignment="Left" Click="OnOpenDisableSlotDialog"/>
+                      <TextBlock Grid.Row="0" Grid.Column="6" Classes="FormLabel" Text="报警槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadUpperLayerBox.AlarmSlotCountViewModel}"/>
+
+                      <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="首槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadUpperLayerBox.FirstSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="教导1" Command="{Binding LoadUpperTeachFirstCommand}"/>
+                      <Button Grid.Row="1" Grid.Column="3" Classes="PrimaryAction" Content="移动到" Command="{Binding LoadUpperMoveToCommand}"/>
+                      <TextBlock Grid.Row="1" Grid.Column="6" Classes="FormLabel" Text="当前位置"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadUpperInOutOperation.CurrentPositionViewModel}"/>
+
+                      <TextBlock Grid.Row="2" Grid.Column="0" Classes="FormLabel" Text="末槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="2" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadUpperLayerBox.LastSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="2" Grid.Column="2" Classes="PrimaryAction" Content="教导2" Command="{Binding LoadUpperTeachLastCommand}"/>
+                      <Button Grid.Row="2" Grid.Column="3" Classes="PrimaryAction" Content="运动" Command="{Binding LoadUpperMoveCommand}"/>
+
+                      <TextBlock Grid.Row="3" Grid.Column="0" Classes="FormLabel" Text="槽间距(mm)"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="1" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding LoadUpperLayerBox.SlotPitchMmViewModel}"/>
+                      <Button Grid.Row="3" Grid.Column="2" Classes="PrimaryAction" Content="计算间距" HorizontalAlignment="Left" Command="{Binding LoadUpperCalculateDistanceCommand}"/>
+                      <CheckBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="步距(mm)" IsChecked="{Binding LoadUpperInOutOperation.EnableStepDistance, Mode=TwoWay}"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadUpperInOutOperation.StepDistanceMmViewModel}"/>
+
+                      <Grid Grid.Row="2" Grid.Column="9" RowSpan="2" ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="16" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Button x:Name="BtnLoadUpperMoveUp" Grid.Column="0" Classes="PrimaryAction" Content="上移"
+                                PointerPressed="LoadUpperMoveUp_OnPointerPressed"
+                                PointerReleased="LoadUpperMove_OnPointerReleased"/>
+                        <Button x:Name="BtnLoadUpperMoveDown" Grid.Column="1" Classes="PrimaryAction" Content="下移"
+                                PointerPressed="LoadUpperMoveDown_OnPointerPressed"
+                                PointerReleased="LoadUpperMove_OnPointerReleased"/>
+                        <Button Grid.Row="1" Grid.Column="0" Classes="PrimaryAction" Content="轴停止" Command="{Binding LoadUpperAxisStopCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="1" Classes="PrimaryAction" Content="料盒夹紧" Command="{Binding LoadUpperClampCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="料盒张开" Command="{Binding LoadUpperReleaseCommand}"/>
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+                  <TabItem Header="下层料盒">
+                    <Grid ColumnDefinitions="121,168,116,112,40,104,200,88,110,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="18">
+                      <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadLowerLayerBox.SlotCountViewModel}"/>
+                      <TextBlock Grid.Row="0" Grid.Column="2" Classes="FormLabel" Text="禁用槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="3" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding LoadLowerLayerBox.DisabledSlotCountViewModel}"/>
+                      <Button Grid.Row="0" Grid.Column="4" Classes="PrimaryAction" Content="禁用配置" Tag="LoadLower" HorizontalAlignment="Left" Click="OnOpenDisableSlotDialog"/>
+                      <TextBlock Grid.Row="0" Grid.Column="6" Classes="FormLabel" Text="报警槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadLowerLayerBox.AlarmSlotCountViewModel}"/>
+
+                      <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="首槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadLowerLayerBox.FirstSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="教导1" Command="{Binding LoadLowerTeachFirstCommand}"/>
+                      <Button Grid.Row="1" Grid.Column="3" Classes="PrimaryAction" Content="移动到" Command="{Binding LoadLowerMoveToCommand}"/>
+                      <TextBlock Grid.Row="1" Grid.Column="6" Classes="FormLabel" Text="当前位置"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadLowerInOutOperation.CurrentPositionViewModel}"/>
+
+                      <TextBlock Grid.Row="2" Grid.Column="0" Classes="FormLabel" Text="末槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="2" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadLowerLayerBox.LastSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="2" Grid.Column="2" Classes="PrimaryAction" Content="教导2" Command="{Binding LoadLowerTeachLastCommand}"/>
+                      <Button Grid.Row="2" Grid.Column="3" Classes="PrimaryAction" Content="运动" Command="{Binding LoadLowerMoveCommand}"/>
+
+                      <TextBlock Grid.Row="3" Grid.Column="0" Classes="FormLabel" Text="槽间距(mm)"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="1" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding LoadLowerLayerBox.SlotPitchMmViewModel}"/>
+                      <Button Grid.Row="3" Grid.Column="2" Classes="PrimaryAction" Content="计算间距" HorizontalAlignment="Left" Command="{Binding LoadLowerCalculateDistanceCommand}"/>
+                      <CheckBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="步距(mm)" IsChecked="{Binding LoadLowerInOutOperation.EnableStepDistance, Mode=TwoWay}"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding LoadLowerInOutOperation.StepDistanceMmViewModel}"/>
+
+                      <Grid Grid.Row="2" Grid.Column="9" RowSpan="2" ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="16" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Button x:Name="BtnLoadLowerMoveUp" Grid.Column="0" Classes="PrimaryAction" Content="上移"
+                                PointerPressed="LoadLowerMoveUp_OnPointerPressed"
+                                PointerReleased="LoadLowerMove_OnPointerReleased"/>
+                        <Button x:Name="BtnLoadLowerMoveDown" Grid.Column="1" Classes="PrimaryAction" Content="下移"
+                                PointerPressed="LoadLowerMoveDown_OnPointerPressed"
+                                PointerReleased="LoadLowerMove_OnPointerReleased"/>
+                        <Button Grid.Row="1" Grid.Column="0" Classes="PrimaryAction" Content="轴停止" Command="{Binding LoadLowerAxisStopCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="1" Classes="PrimaryAction" Content="料盒夹紧" Command="{Binding LoadLowerClampCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="料盒张开" Command="{Binding LoadLowerReleaseCommand}"/>
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+                </TabControl>
+              </TabItem>
+              <TabItem Header="下料">
+                <TabControl Classes="LayerTabs InnerTabs">
+                  <TabItem Header="上层料盒">
+                    <Grid ColumnDefinitions="121,168,116,112,40,104,200,88,110,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="18">
+                      <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadUpperLayerBox.SlotCountViewModel}"/>
+                      <TextBlock Grid.Row="0" Grid.Column="2" Classes="FormLabel" Text="禁用槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="3" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding UnloadUpperLayerBox.DisabledSlotCountViewModel}"/>
+                      <Button Grid.Row="0" Grid.Column="4" Classes="PrimaryAction" Content="禁用配置" Tag="UnloadUpper" HorizontalAlignment="Left" Click="OnOpenDisableSlotDialog"/>
+                      <TextBlock Grid.Row="0" Grid.Column="6" Classes="FormLabel" Text="报警槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadUpperLayerBox.AlarmSlotCountViewModel}"/>
+
+                      <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="首槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadUpperLayerBox.FirstSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="教导1" Command="{Binding UnloadUpperTeachFirstCommand}"/>
+                      <Button Grid.Row="1" Grid.Column="3" Classes="PrimaryAction" Content="移动到" Command="{Binding UnloadUpperMoveToCommand}"/>
+                      <TextBlock Grid.Row="1" Grid.Column="6" Classes="FormLabel" Text="当前位置"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadUpperInOutOperation.CurrentPositionViewModel}"/>
+
+                      <TextBlock Grid.Row="2" Grid.Column="0" Classes="FormLabel" Text="末槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="2" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadUpperLayerBox.LastSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="2" Grid.Column="2" Classes="PrimaryAction" Content="教导2" Command="{Binding UnloadUpperTeachLastCommand}"/>
+                      <Button Grid.Row="2" Grid.Column="3" Classes="PrimaryAction" Content="运动" Command="{Binding UnloadUpperMoveCommand}"/>
+
+                      <TextBlock Grid.Row="3" Grid.Column="0" Classes="FormLabel" Text="槽间距(mm)"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="1" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding UnloadUpperLayerBox.SlotPitchMmViewModel}"/>
+                      <Button Grid.Row="3" Grid.Column="2" Classes="PrimaryAction" Content="计算间距" HorizontalAlignment="Left" Command="{Binding UnloadUpperCalculateDistanceCommand}"/>
+                      <CheckBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="步距(mm)" IsChecked="{Binding UnloadUpperInOutOperation.EnableStepDistance, Mode=TwoWay}"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadUpperInOutOperation.StepDistanceMmViewModel}"/>
+
+                      <Grid Grid.Row="2" Grid.Column="9" RowSpan="2" ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="16" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Button x:Name="BtnUnloadUpperMoveUp" Grid.Column="0" Classes="PrimaryAction" Content="上移"
+                                PointerPressed="UnloadUpperMoveUp_OnPointerPressed"
+                                PointerReleased="UnloadUpperMove_OnPointerReleased"/>
+                        <Button x:Name="BtnUnloadUpperMoveDown" Grid.Column="1" Classes="PrimaryAction" Content="下移"
+                                PointerPressed="UnloadUpperMoveDown_OnPointerPressed"
+                                PointerReleased="UnloadUpperMove_OnPointerReleased"/>
+                        <Button Grid.Row="1" Grid.Column="0" Classes="PrimaryAction" Content="轴停止" Command="{Binding UnloadUpperAxisStopCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="1" Classes="PrimaryAction" Content="料盒夹紧" Command="{Binding UnloadUpperClampCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="料盒张开" Command="{Binding UnloadUpperReleaseCommand}"/>
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+                  <TabItem Header="下层料盒">
+                    <Grid ColumnDefinitions="121,168,116,112,40,104,200,88,110,*" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="18">
+                      <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadLowerLayerBox.SlotCountViewModel}"/>
+                      <TextBlock Grid.Row="0" Grid.Column="2" Classes="FormLabel" Text="禁用槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="3" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding UnloadLowerLayerBox.DisabledSlotCountViewModel}"/>
+                      <Button Grid.Row="0" Grid.Column="4" Classes="PrimaryAction" Content="禁用配置" Tag="UnloadLower" HorizontalAlignment="Left" Click="OnOpenDisableSlotDialog"/>
+                      <TextBlock Grid.Row="0" Grid.Column="6" Classes="FormLabel" Text="报警槽数"/>
+                      <custom:TextInputControl Grid.Row="0" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadLowerLayerBox.AlarmSlotCountViewModel}"/>
+
+                      <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="首槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadLowerLayerBox.FirstSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="教导1" Command="{Binding UnloadLowerTeachFirstCommand}"/>
+                      <Button Grid.Row="1" Grid.Column="3" Classes="PrimaryAction" Content="移动到" Command="{Binding UnloadLowerMoveToCommand}"/>
+                      <TextBlock Grid.Row="1" Grid.Column="6" Classes="FormLabel" Text="当前位置"/>
+                      <custom:TextInputControl Grid.Row="1" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadLowerInOutOperation.CurrentPositionViewModel}"/>
+
+                      <TextBlock Grid.Row="2" Grid.Column="0" Classes="FormLabel" Text="末槽PCB高度(mm)"/>
+                      <custom:TextInputControl Grid.Row="2" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadLowerLayerBox.LastSlotPcbHeightMmViewModel}"/>
+                      <Button Grid.Row="2" Grid.Column="2" Classes="PrimaryAction" Content="教导2" Command="{Binding UnloadLowerTeachLastCommand}"/>
+                      <Button Grid.Row="2" Grid.Column="3" Classes="PrimaryAction" Content="运动" Command="{Binding UnloadLowerMoveCommand}"/>
+
+                      <TextBlock Grid.Row="3" Grid.Column="0" Classes="FormLabel" Text="槽间距(mm)"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="1" LabelName="" WidthLevel="Small3" IsEnabled="False" ViewModel="{Binding UnloadLowerLayerBox.SlotPitchMmViewModel}"/>
+                      <Button Grid.Row="3" Grid.Column="2" Classes="PrimaryAction" Content="计算间距" HorizontalAlignment="Left" Command="{Binding UnloadLowerCalculateDistanceCommand}"/>
+                      <CheckBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="步距(mm)" IsChecked="{Binding UnloadLowerInOutOperation.EnableStepDistance, Mode=TwoWay}"/>
+                      <custom:TextInputControl Grid.Row="3" Grid.Column="8" LabelName="" WidthLevel="Small3" ViewModel="{Binding UnloadLowerInOutOperation.StepDistanceMmViewModel}"/>
+
+                      <Grid Grid.Row="2" Grid.Column="9" RowSpan="2" ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="16" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Button x:Name="BtnUnloadLowerMoveUp" Grid.Column="0" Classes="PrimaryAction" Content="上移"
+                                PointerPressed="UnloadLowerMoveUp_OnPointerPressed"
+                                PointerReleased="UnloadLowerMove_OnPointerReleased"/>
+                        <Button x:Name="BtnUnloadLowerMoveDown" Grid.Column="1" Classes="PrimaryAction" Content="下移"
+                                PointerPressed="UnloadLowerMoveDown_OnPointerPressed"
+                                PointerReleased="UnloadLowerMove_OnPointerReleased"/>
+                        <Button Grid.Row="1" Grid.Column="0" Classes="PrimaryAction" Content="轴停止" Command="{Binding UnloadLowerAxisStopCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="1" Classes="PrimaryAction" Content="料盒夹紧" Command="{Binding UnloadLowerClampCommand}"/>
+                        <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="料盒张开" Command="{Binding UnloadLowerReleaseCommand}"/>
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+                </TabControl>
+              </TabItem>
+            </TabControl>
+          </Border>
+        </DockPanel>
+      </Border>
+      <Border Grid.Row="1" Classes="Card">
+        <DockPanel LastChildFill="True">
+          <Border Classes="FloatLabel" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="16,-9,0,0">
+            <TextBlock Classes="SectionTitle" Text="其他参数"/>
+          </Border>
+          <Border Classes="ContentPanel" Margin="12,6,12,12">
+            <Grid ColumnDefinitions="152,110,152,110" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="16">
+              <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="上料Z运行速度(mm/s)"/>
+              <custom:TextInputControl Grid.Row="0" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding OtherParameters.UpperZAxisSpeedMmSViewModel}"/>
+              <TextBlock Grid.Row="0" Grid.Column="2" Classes="FormLabel" Text="上料Z运行加速度(mm/s²)"/>
+              <custom:TextInputControl Grid.Row="0" Grid.Column="3" LabelName="" WidthLevel="Small3" ViewModel="{Binding OtherParameters.UpperZAxisAccelerationMmSSViewModel}"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="下料Z运行速度(mm/s)"/>
+              <custom:TextInputControl Grid.Row="1" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding OtherParameters.LowerZAxisSpeedMmSViewModel}"/>
+              <TextBlock Grid.Row="1" Grid.Column="2" Classes="FormLabel" Text="下料Z运行加速度(mm/s²)"/>
+              <custom:TextInputControl Grid.Row="1" Grid.Column="3" LabelName="" WidthLevel="Small3" ViewModel="{Binding OtherParameters.LowerZAxisAccelerationMmSSViewModel}"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Classes="FormLabel" Text="物料到位感应时间(ms)"/>
+              <custom:TextInputControl Grid.Row="2" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding OtherParameters.MaterialInPlaceSenseTimeMsViewModel}"/>
+            </Grid>
+          </Border>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </Grid>
+  </Border>
+</UserControl>
+
+

@@ -1,0 +1,20 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/Valve/.vs
+/Valve/DispensingFunctionHeadSubMachineModules/bin/Debug
+/Valve/DispensingFunctionHeadSubMachineModules/obj/Debug
+/Valve/DispensingFunctionHeadSubMachineModules/obj
+/Valve/GlueDispensingDevice/bin/Debug/net9.0
+/Valve/GlueDispensingDevice/obj
+/Valve/Griffins.DispensingFunctionHeadSubMachineModules/bin/Debug
+/Valve/Griffins.DispensingFunctionHeadSubMachineModules/obj
+/Valve/Valve/bin/Debug/net9.0
+/Valve/Valve/obj
+/Valve/GKG.DispensingFunctionHeadSubMachineModules/bin/Debug
+/Valve/GKG.DispensingFunctionHeadSubMachineModules/obj
+/.vs
+/MesureHeight/.vs
+/MesureHeight/GKG.MeasureHeightFunctionHeadSubMachineModules/obj
+/MesureHeight/MeasureHeightFunctionHeadSubMachineModules/obj

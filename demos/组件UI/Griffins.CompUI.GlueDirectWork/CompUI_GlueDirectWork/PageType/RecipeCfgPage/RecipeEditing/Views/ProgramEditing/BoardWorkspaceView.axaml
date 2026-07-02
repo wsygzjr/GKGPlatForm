@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="720" d:DesignHeight="520"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:BoardWorkspaceViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing.BoardWorkspaceView">
+
+	<ScrollViewer Padding="16,12" HorizontalScrollBarVisibility="Disabled">
+		<StackPanel Spacing="10">
+			<Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+				<custom:NumericUpDownControl Grid.Row="0" Grid.Column="0"
+											 LabelName="拐角平滑系数"
+											 WidthLevel="Medium"
+											 FixWidth="False"
+											 HorizontalAlignment="Left"
+											 ViewModel="{Binding CornerSmoothingCoeff}" />
+				<Button Grid.Row="0" Grid.Column="1"
+						Content="整板预览"
+						Margin="12,0,0,0"
+						VerticalAlignment="Top"
+						MinWidth="96"
+						Command="{Binding FullBoardPreviewCommand}" />
+
+				<custom:NumericUpDownControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+											 LabelName="胶量报警后继续点胶"
+											 WidthLevel="Medium"
+											 FixWidth="False"
+											 HorizontalAlignment="Left"
+											 ViewModel="{Binding GlueAlarmContinueDispensing}" />
+
+				<custom:NumericUpDownControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+											 LabelName="定时提醒校准时间间隔"
+											 WidthLevel="Medium"
+											 FixWidth="False"
+											 HorizontalAlignment="Left"
+											 ViewModel="{Binding CalibrationReminderInterval}" />
+			</Grid>
+
+			<StackPanel Spacing="8" Margin="0,4,0,0">
+				<CheckBox Content="启用拐角平滑" IsChecked="{Binding EnableCornerSmoothing, Mode=TwoWay}" />
+				<CheckBox Content="暂停后恢复是否排胶称重" IsChecked="{Binding PauseResumeGlueWeighing, Mode=TwoWay}" />
+				<CheckBox Content="暂停后回待机位" IsChecked="{Binding PauseReturnStandby, Mode=TwoWay}" />
+			</StackPanel>
+
+			<StackPanel Spacing="8" Margin="0,12,0,0">
+				<TextBlock Text="整板基准点" FontSize="15" FontWeight="SemiBold" />
+				<custom:NumericControl LabelName="X"
+									   WidthLevel="Medium"
+									   FixWidth="False"
+									   HorizontalAlignment="Left"
+									   ViewModel="{Binding RefPointX}" />
+				<custom:NumericControl LabelName="Y"
+									   WidthLevel="Medium"
+									   FixWidth="False"
+									   HorizontalAlignment="Left"
+									   ViewModel="{Binding RefPointY}" />
+				<custom:NumericControl LabelName="Z"
+									   WidthLevel="Medium"
+									   FixWidth="False"
+									   HorizontalAlignment="Left"
+									   ViewModel="{Binding RefPointZ}" />
+				<Button Content="教导"
+							VerticalAlignment="Bottom"
+							MinWidth="72"
+							Command="{Binding TeachCommand}" />
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

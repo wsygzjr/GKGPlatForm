@@ -1,0 +1,217 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:GKG.UI.General"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+			 xmlns:vision="using:AvaloniaVisionControl"
+             xmlns:local="using:GKG.UI.General"    
+
+             x:DataType="vm:CameraLightSourceCtrViewModel"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+             x:Class="GKG.UI.General.CameraLightSourceCtrView"> 
+ 
+                  <!-- 左边垂直排列显示相机刻度亮度、相机框 、下光源信息、上光源视图模型、光源参数视图模型  -->    
+         
+<Grid  RowDefinitions="Auto,Auto,Auto,Auto" 	ColumnDefinitions="Auto" 
+				  RowSpacing="4"   HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="670"   Height="1020"  >
+  <Border Classes="border" Margin="0,0" Width="658" >
+	<!-- 相机刻度、亮度等调整    --> 
+	<StackPanel Grid.Row="0"  Grid.Column="0"  Margin="2" 
+		Orientation="Horizontal" Spacing="0" HorizontalAlignment="Center"   Width="650" Height="35" >
+
+				<!-- 刻度是否启用	开关按钮 -->
+				<TextBlock   HorizontalAlignment="Center"
+					VerticalAlignment="Center"    Text="开启刻度"  Width="80"   /> 
+				<ToggleSwitch 
+						IsChecked="{Binding EnabledScale , Mode=TwoWay}"
+						HorizontalAlignment="Center"
+						OffContent=""  OnContent=""
+						MinWidth="60" Width="100" />  
+
+			<!--是否鼠标移动  ToggleSwitchViewModel EnabledMouseMoveViewModel  -->
+				<TextBlock    HorizontalAlignment="Center"
+					VerticalAlignment="Center"    Text="鼠标移动"  Width="80"   /> 
+				<ToggleSwitch  
+						IsChecked="{Binding EnabledMouseMove , Mode=TwoWay}"
+						HorizontalAlignment="Center"
+						OffContent=""  OnContent=""
+						MinWidth="60"  Width="100"  />  
+	</StackPanel>
+ </Border>
+	<!-- 视觉控件 -->
+	<StackPanel Grid.Row="1"  Grid.Column="0"  Margin="2" 
+		Orientation="Horizontal" Spacing="0" HorizontalAlignment="Center"  Background="Gray"    Width="670" Height="550" > 
+			<!-- 相机视频显示控件 --> 
+				<views:VisionControlShowView 
+								  Width="670" 
+								  Height="550"
+								  DataContext="{x:Static local:GlobalVisionViewModel.CameraShowViewModel}"/> 
+	</StackPanel> 
+	
+	<custom:GroupBoxControl HeaderStr="设置灯光"   Grid.Row="2"  Grid.Column="0"   Margin="2"   HorizontalAlignment="Center"  VerticalAlignment="Top"  Width="668"  Height="240"  > 
+        <custom:GroupBoxControl.ContentArea> 
+              <Grid    RowDefinitions="Auto,Auto" 	ColumnDefinitions="Auto"  Margin="0 10 0 0" 
+				  RowSpacing="4"   HorizontalAlignment="Center"  VerticalAlignment="Center"  Width="660"  Height="180"   >
+
+						<!--下光源信息 LightSourceViewModel   -->  
+				   <Grid Grid.Row="0"  Grid.Column="0"  ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto"  Height="90" 
+									HorizontalAlignment="Center" VerticalAlignment="Center"    RowSpacing="0"   ColumnSpacing="1"  >
+								<!-- R -->
+						<custom:SliderNumericControl
+								Grid.Row="0"  Grid.Column="0"   
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="R"
+								WidthLevel="Medium3"
+								ViewModel="{Binding DownLightSourceViewModel.RViewModel}"
+								/>
+								<!-- G -->
+						<custom:SliderNumericControl
+								Grid.Row="0"  Grid.Column="1"  
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="G"
+								WidthLevel="Medium3"
+								ViewModel="{Binding DownLightSourceViewModel.GViewModel}"
+								/>
+								<!-- B -->
+						<custom:SliderNumericControl
+								Grid.Row="1"  Grid.Column="0"  
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="B"
+								WidthLevel="Medium3"
+								ViewModel="{Binding DownLightSourceViewModel.BViewModel}"
+								/>
+								<!-- D -->
+						<custom:SliderNumericControl
+								Grid.Row="1"  Grid.Column="1" 
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="D"
+								WidthLevel="Medium3"
+								ViewModel="{Binding DownLightSourceViewModel.DViewModel}"
+								/>
+					</Grid> 
+				
+						<!--上光源视图模型  UpLightSourceViewModel UpLightSourceViewModel  -->
+				   <Grid Grid.Row="1"  Grid.Column="0"  ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto"  Height="90" 
+									HorizontalAlignment="Center" VerticalAlignment="Center"    RowSpacing="0"   ColumnSpacing="1"  >
+								<!-- 上 -->
+						<custom:SliderNumericControl
+								Grid.Row="0"  Grid.Column="0"   
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="上"
+								WidthLevel="Medium3"
+								ViewModel="{Binding UpLightSourceViewModel.UpViewModel }"
+								/>
+								<!-- 下 -->
+						<custom:SliderNumericControl
+								Grid.Row="0"  Grid.Column="1"  
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="下"
+								WidthLevel="Medium3"
+								ViewModel="{Binding UpLightSourceViewModel.DownViewModel }"
+								/>
+								<!-- 左 -->
+						<custom:SliderNumericControl
+								Grid.Row="1"  Grid.Column="0"  
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="左"
+								WidthLevel="Medium3"
+								ViewModel="{Binding UpLightSourceViewModel.LeftViewModel }"
+								/>
+								<!-- D -->
+						<custom:SliderNumericControl
+								Grid.Row="1"  Grid.Column="1" 
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="右"
+								WidthLevel="Medium3"
+								ViewModel="{Binding UpLightSourceViewModel.RightViewModel }"
+								/>
+					</Grid> 
+		
+              </Grid>
+        </custom:GroupBoxControl.ContentArea>
+    </custom:GroupBoxControl> 
+
+    <custom:GroupBoxControl HeaderStr="设置对比度"   Grid.Row="3"  Grid.Column="0"   Margin="2 10 2 10"   HorizontalAlignment="Center"  VerticalAlignment="Top"  Width="668"  Height="130"  > 
+        <custom:GroupBoxControl.ContentArea> 
+						<!--光源参数视图模型  LightSourceParamViewModel LightSourceParamViewModel    --> 
+				   <Grid Grid.Row="2"  Grid.Column="0"  ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto"  Height="90" 
+									HorizontalAlignment="Center" VerticalAlignment="Center"    RowSpacing="0"   ColumnSpacing="1"  >	
+								<!-- 对比度 -->
+						<custom:SliderNumericControl
+								Grid.Row="1"  Grid.Column="0"  
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="对比度（%）"
+								WidthLevel="Medium3"
+								ViewModel="{Binding LightSourceParamViewModel.ContrastViewModel }"
+								/>
+								<!-- 对比度阈值 -->
+						<custom:SliderNumericControl
+								Grid.Row="1"  Grid.Column="1" 
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="对比度阈值"
+								WidthLevel="Medium3"
+								ViewModel="{Binding LightSourceParamViewModel.ContrastThresholdViewModel }"
+								/>
+		   						<!-- 曝光值 -->
+						<custom:SliderNumericControl
+								Grid.Row="0"  Grid.Column="0"   
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="曝光值（ms）"
+								WidthLevel="Medium3"
+								ViewModel="{Binding LightSourceParamViewModel.ExposureValueViewModel }"
+								/>
+								<!-- 曝光增益 -->
+						<custom:SliderNumericControl
+								Grid.Row="0"  Grid.Column="1"  
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								HorizontalContentAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="曝光增益"
+								WidthLevel="Medium3"
+								ViewModel="{Binding LightSourceParamViewModel.ExposureGainViewModel }"
+								/>
+					</Grid>  
+	      </custom:GroupBoxControl.ContentArea>
+    </custom:GroupBoxControl> 
+</Grid> 
+		
+
+
+</UserControl>

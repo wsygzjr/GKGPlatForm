@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GD.InitCfgPage.ViewModels"
+			 xmlns:conv="clr-namespace:Avalonia.Data.Converters;assembly=Avalonia.Base"
+			 mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="120"
+			 x:Class="Griffins.CompUI.GD.InitCfgPage.Views.SingleTrackStationCompUIView"
+			 x:DataType="vm:SingleTrackStationCompUIViewModel"
+			 Tag="{Binding ViewTag, Mode=TwoWay}">
+	<Design.DataContext>
+		<vm:SingleTrackStationCompUIViewModel />
+	</Design.DataContext>
+	<StackPanel Orientation="Vertical" Spacing="10" Margin="10">
+		<!-- 配置选项 -->
+		<StackPanel Orientation="Vertical" Spacing="5">
+			<TextBlock Text="配置选项" FontWeight="Bold" FontSize="16" />
+			<StackPanel Orientation="Vertical" Spacing="5" Margin="10,0,0,0">
+				<CheckBox Content="是否支持影子工位" IsChecked="{Binding SupportShadowStation}" />
+				<CheckBox Content="是否启用接近感应器" IsChecked="{Binding EnableProximitySensor}" />
+				<CheckBox Content="是否启用出板卡料信号" IsChecked="{Binding EnableBoardJamSignal}" />
+			</StackPanel>
+		</StackPanel>
+
+		<!-- 速度挡位列表 -->
+		<StackPanel Orientation="Vertical" Spacing="5">
+			<TextBlock Text="速度挡位列表" FontWeight="Bold" FontSize="16" />
+			<StackPanel Orientation="Vertical" Spacing="5" Margin="10,0,0,0">
+				<ListBox ItemsSource="{Binding GearSpeedList}" SelectedItem="{Binding SelectedItem}" Height="200" SelectionMode="Single">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid ColumnDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch" Margin="5">
+								<CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" Margin="5" VerticalAlignment="Center" />
+								<TextBlock Grid.Column="1" Text="{Binding Index}" Margin="5" VerticalAlignment="Center" Width="50" />
+								<NumericUpDown Grid.Column="2" Value="{Binding Gear}" Margin="5" Minimum="1" Maximum="10" Width="80" />
+								<NumericUpDown Grid.Column="3" Value="{Binding Speed}" Margin="5" Minimum="0" Maximum="1000" Width="80" />
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+				<!-- 操作按钮 -->
+				<StackPanel Orientation="Horizontal" Spacing="5" HorizontalAlignment="Center">
+					<Button Content="添加" Command="{Binding AddCommand}" />
+					<Button Content="删除" Command="{Binding DeleteCommand}" />
+					<Button Content="全选" Command="{Binding SelectAllCommand}" />
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+	</StackPanel>
+</UserControl>

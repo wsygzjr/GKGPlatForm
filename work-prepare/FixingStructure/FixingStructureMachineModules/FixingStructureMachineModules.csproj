@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net9.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GF_Gereric" Version="7.1.0" />
+    <PackageReference Include="GKG" Version="1.0.0" />
+    <PackageReference Include="Griffins" Version="7.1.0" />
+    <PackageReference Include="Griffins.ImeIOT" Version="7.1.0" />
+    <PackageReference Include="Griffins.IOT" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FixingStructureSubMachineModules\FixingStructureSubMachineModules.csproj" />
+  </ItemGroup>
+
+</Project>

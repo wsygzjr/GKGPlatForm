@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Company>Griffins</Company>
+		<Copyright>Copyright © Griffins 2025</Copyright>
+		<AssemblyVersion>7.1.0.0</AssemblyVersion>
+		<FileVersion>7.1.0.0</FileVersion>
+		<AssemblyTitle>GKG.GaoChAuto.MotionControl</AssemblyTitle>
+		<Product>GKG.GaoChAuto.MotionControl</Product>
+		<TargetFramework>net9.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>F:\Griffins7.1\Bin\Share\MotionControl\</OutputPath>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+
+		<PackageReference Include="GF_Gereric" Version="7.1.0">
+			<ExcludeAssets>runtime</ExcludeAssets>
+		</PackageReference>
+		
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\MotionControl\MotionControl.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="ResourceA.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ResourceA.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="ResourceA.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+	
+</Project>

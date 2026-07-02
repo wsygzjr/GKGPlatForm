@@ -1,0 +1,186 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.ViewModels"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="vm:ControlCardListViewModel"
+             x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.Views.ControlCardListCfgView">
+
+    <UserControl.Styles>
+        <Style Selector="Border.page-card">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+        <Style Selector="Button.toolbar-primary">
+            <Setter Property="Background" Value="#1C5ED6" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#1C5ED6" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Button.toolbar-danger">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#FF3D3D" />
+            <Setter Property="BorderBrush" Value="#FF3D3D" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Button.action-outline">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#1C5ED6" />
+            <Setter Property="BorderBrush" Value="#1C5ED6" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Button.action-danger">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#FF3D3D" />
+            <Setter Property="BorderBrush" Value="#FF3D3D" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F1F4F8" />
+            <Setter Property="Foreground" Value="#5C5F63" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="0,0,1,1" />
+        </Style>
+        <Style Selector="DataGridCell">
+            <Setter Property="BorderBrush" Value="#E8EAEE" />
+        </Style>
+        <Style Selector="DataGridRow">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#111111" />
+        </Style>
+        <Style Selector="DataGridRow:selected">
+            <Setter Property="Background" Value="#F2F7FF" />
+            <Setter Property="Foreground" Value="#1C5ED6" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Classes="page-card">
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Spacing="8"
+                        Margin="0,0,0,12">
+                <Button Content="新增"
+                        Classes="toolbar-primary"
+                        MinWidth="72"
+                        Height="34"
+                        Command="{Binding AddCommand}" />
+                <Button Content="删除"
+                        Classes="toolbar-danger"
+                        MinWidth="72"
+                        Height="34"
+                        Command="{Binding DeleteCheckedCommand}" />
+            </StackPanel>
+
+            <DataGrid Name="ControlCardDataGrid"
+                      ItemsSource="{Binding ControlCardList}"
+                      AutoGenerateColumns="False"
+                      Background="#FFFFFF"
+                      BorderBrush="#E0E3E9"
+                      BorderThickness="1"
+                      GridLinesVisibility="All"
+                      HeadersVisibility="Column"
+                      IsReadOnly="False"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedControlCard, Mode=TwoWay}"
+                      RowHeight="38">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="90"
+                                            CanUserSort="False">
+                        <DataGridTemplateColumn.Header>
+                            <Border Padding="8,0">
+                                <CheckBox HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          MinWidth="18"
+                                          MinHeight="18"
+                                          ToolTip.Tip="全选"
+                                          IsChecked="{Binding DataContext.IsAllChecked, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}" />
+                            </Border>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="vm:ControlCardViewModel">
+                                <CheckBox HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="序号"
+                                        Binding="{Binding MotionCardCustomID, Mode=OneWay}"
+                                        IsReadOnly="True"
+                                        Width="80" />
+
+                    <DataGridTextColumn Header="卡类型"
+                                        Binding="{Binding SelectedControlCardKindDisplay, Mode=OneWay}"
+                                        IsReadOnly="True"
+                                        Width="155" />
+
+                    <DataGridTextColumn Header="卡种类"
+                                        Binding="{Binding SelectedControlCardTypeDisplay, Mode=OneWay}"
+                                        IsReadOnly="True"
+                                        Width="110" />
+
+                    <DataGridTextColumn Header="运控卡名"
+                                        Binding="{Binding MotionCardName, Mode=OneWay}"
+                                        IsReadOnly="True"
+                                        Width="120" />
+
+                    <DataGridTextColumn Header="轴数"
+                                        Binding="{Binding AxisCountDisplay, Mode=OneWay}"
+                                        IsReadOnly="True"
+                                        Width="70" />
+
+                    <DataGridTextColumn Header="状态量数"
+                                        Binding="{Binding StateChannelCountDisplay, Mode=OneWay}"
+                                        IsReadOnly="True"
+                                        Width="108" />
+
+                    <DataGridTextColumn Header="模拟量数"
+                                        Binding="{Binding AnalogChannelCountDisplay, Mode=OneWay}"
+                                        IsReadOnly="True"
+                                        Width="108" />
+
+                    <DataGridTemplateColumn Header="操作"
+                                            Width="250"
+                                            IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="vm:ControlCardViewModel">
+                                <StackPanel Orientation="Horizontal"
+                                            Spacing="4"
+                                            HorizontalAlignment="Center">
+                                    <Button Content="编辑"
+                                            Classes="action-outline"
+                                            MinWidth="68"
+                                            Height="30"
+                                            Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding}" />
+                                    <Button Content="配置"
+                                            Classes="action-outline"
+                                            MinWidth="68"
+                                            Height="30"
+                                            Command="{Binding DataContext.OpenConfigCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding}" />
+                                    <Button Content="删除"
+                                            Classes="action-danger"
+                                            MinWidth="68"
+                                            Height="30"
+                                            Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding}"
+                                            IsEnabled="{Binding CanDelete}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Border>
+</UserControl>

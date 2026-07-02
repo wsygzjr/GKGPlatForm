@@ -1,0 +1,196 @@
+MaterialBoxSubMM Runtime Commands
+=================================
+
+说明
+----
+1. `MaterialRack`:
+   - `0` = 上料上层
+   - `1` = 上料下层
+   - `2` = 下料上层
+   - `3` = 下料下层
+2. `ZAxisSelect`:
+   - `0` = 上料运输轴
+   - `1` = 下料运输轴
+3. 除特殊说明外，返回统一包含:
+   - `Result`
+   - `errorMsg`
+   - `data`
+
+运输轴命令
+----------
+1. `MoveTo`
+   - 作用: 移动到指定槽位或指定绝对位置
+   - 参数:
+     - `MaterialRack`
+     - `ZAxisSelect`
+     - `SlotIndex` 或 `Pos` / `Position`
+     - `MaxSpeed`
+     - `Acc` 可选
+
+2. `MoveToFirstSlot`
+   - 作用: 移动到首槽位置
+   - 参数:
+     - `MaterialRack`
+     - `ZAxisSelect`
+     - `MaxSpeed`
+     - `Acc` 可选
+
+3. `MoveToLastSlot`
+   - 作用: 移动到末槽位置
+   - 参数:
+     - `MaterialRack`
+     - `ZAxisSelect`
+     - `MaxSpeed`
+     - `Acc` 可选
+
+4. `MoveToNextSlot`
+   - 作用: 移动到下一个可用槽位
+   - 参数:
+     - `MaterialRack`
+     - `ZAxisSelect`
+     - `MaxSpeed`
+     - `Acc` 可选
+     - `CurrentSlotIndex` 可选，界面传 1-based
+
+5. `MoveToInitialPosition`
+   - 作用: 移动到当前料盒位配置的初始位置
+   - 参数:
+     - `MaterialRack`
+     - `ZAxisSelect`
+     - `MaxSpeed` 可选
+     - `Acc` 可选
+
+6. `MagazineMotion`
+   - 作用: 连续运动模式驱动运输轴
+   - 参数:
+     - `MaterialRack` 或 `ZAxisSelect`
+     - `Direction`
+     - `MaxSpeed`
+     - `Acc` 可选
+
+7. `ZMoveUp`
+   - 作用: `Step` 大于 0 时按指定步距相对向上移动；`Step` 为空或小于等于 0 时连续向上运动
+   - 参数:
+     - `MaterialRack` 或 `ZAxisSelect`
+     - `Step` 可选；大于 0 时执行一次相对位移，否则进入连续运动
+     - `MaxSpeed`
+     - `Acc` 可选
+
+8. `ZMoveDown`
+   - 作用: `Step` 大于 0 时按指定步距相对向下移动；`Step` 为空或小于等于 0 时连续向下运动
+   - 参数:
+     - `MaterialRack` 或 `ZAxisSelect`
+     - `Step` 可选；大于 0 时执行一次相对位移，否则进入连续运动
+     - `MaxSpeed`
+     - `Acc` 可选
+
+9. `ZAxisStop`
+    - 作用: 立即停止指定运输轴当前的连续运动
+    - 参数:
+      - `MaterialRack` 或 `ZAxisSelect`
+    - 说明:
+      - 当前实现发送 `StopContinueMoveInstruction`
+      - 对相对位移过程是否可中断，取决于底层驱动支持
+
+料盒命令
+--------
+1. `MagazineClamp`
+   - 作用: 夹紧指定储料位料盒
+   - 参数:
+     - `MaterialRack`
+     - `CylinderIndex` 可选
+
+2. `MagazineUnclamp`
+   - 作用: 松开指定储料位料盒
+   - 参数:
+     - `MaterialRack`
+     - `CylinderIndex` 可选
+
+3. `ResetMaterialBoxState`
+   - 作用: 按当前配方重建料盒槽位状态，并恢复当前槽位索引
+   - 参数:
+     - `MaterialRack`
+
+查询命令
+--------
+1. `GetAxisInfos`
+   - 作用: 读取电器管理返回的轴信息列表
+   - 返回 data:
+     - 轴信息数组
+
+2. `GetIOInfos`
+   - 作用: 读取储料装置当前绑定的 IO 列表与实时状态
+   - 参数:
+     - `MaterialRack` 可选；不传时返回上料/下料全部料盒位
+
+3. `GetAxisPos`
+   - 作用: 读取指定运输轴当前位置
+   - 参数:
+     - `MaterialRack` 或 `ZAxisSelect`
+
+料盒子机械模组能力方法
+----------------------
+1. `UpfeedMoveNextSlot`
+   - 作用: 上料料盒执行一次“切换到下一槽位”流程
+   - 失败事件:
+     - `UpfeedMoveFailed`
+     - `UpfeedCassetteEmpty`
+     - `UpfeedNoCassette`
+   - 预警事件:
+     - `UpfeedMaterialInsufficientWarning`
+
+2. `DownfeedMoveNextSlot`
+   - 作用: 下料料盒执行一次“切换到下一槽位”流程
+   - 失败事件:
+     - `DownfeedMoveFailed`
+     - `DownfeedCassetteFull`
+     - `DownfeedNoCassette`
+   - 预警事件:
+     - `DownfeedSlotInsufficientWarning`
+
+说明:
+- 储料装置对象和运输机构对象只有普通方法，不定义能力方法。
+- `Storage*`、`Transport*`、`ControlCylinder` 均按普通方法使用。
+
+普通方法参数约定
+----------------
+1. `TransportMove`
+   - 作用: 控制指定运输轴移动到绝对位置
+   - 参数:
+     - `ZAxisSelect` 或 `MaterialRack`
+     - `Position` 或 `Pos`
+     - `MaxSpeed` 可选；不传时回退到当前轴运动参数
+     - `Acc` 可选；不传时回退到当前轴运动参数
+   - 轴选择:
+     - `ZAxisSelect=0` = 上料机械手实例
+     - `ZAxisSelect=1` = 下料机械手实例
+     - `MaterialRack=0/1` = 上料机械手实例
+     - `MaterialRack=2/3` = 下料机械手实例
+
+2. `TransportGetCurrentPosition`
+   - 作用: 读取指定运输轴当前位置
+   - 参数:
+     - `ZAxisSelect` 或 `MaterialRack`
+
+3. `TransportGetMotionParameters`
+   - 作用: 读取指定运输轴当前运动参数
+   - 参数:
+     - `ZAxisSelect` 或 `MaterialRack`
+
+4. `StorageReset` / `StorageResetState` / `StorageOpen` / `StorageClose` / `StorageGetCount` / `StorageGetCurrentSlotState` / `StorageGetAvailableSlots` / `StorageGetInitialPosition`
+   - 作用: 控制或查询指定料盒位
+   - 参数:
+     - `MaterialRack`
+
+5. `ControlCylinder`
+   - 作用: 控制指定料盒位气缸
+   - 参数:
+     - `MaterialRack`
+     - `CylinderIndex` 可选
+     - `bState`
+
+6. `GetFeedPortMaterialState`
+   - 作用: 读取送料口/接料口有料状态
+   - 参数:
+     - `Type`
+     - `Index`

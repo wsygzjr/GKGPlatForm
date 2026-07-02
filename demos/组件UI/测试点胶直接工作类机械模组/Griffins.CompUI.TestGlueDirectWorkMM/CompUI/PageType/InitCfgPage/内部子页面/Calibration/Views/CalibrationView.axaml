@@ -1,0 +1,69 @@
+﻿<UserControl  
+              xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.ViewModels"
+             x:DataType="vm:CalibrationViewModel"
+             x:Class="Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views.CalibrationView">
+
+
+       <!--      <Button 
+                Content="标定选项卡3"  
+                Classes="btnCancel"  />-->
+       <!--        
+   <UserControl.Resources>
+    --><!-- 定义带 Key 的样式 --><!--
+    <Style x:Key="CustomTabControlStyle" TargetType="TabControl">
+        <Setter Property="Background" Value="#F5F7FA" />
+        <Setter Property="BorderThickness" Value="0 0 1 0" />
+        <Setter Property="BorderBrush" Value="#E0E0E0" />
+    </Style>
+
+    <Style x:Key="CustomTabItemStyle" TargetType="TabItem">
+        <Setter Property="Padding" Value="15 20" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="#333333" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="CustomTabItemSelectedStyle" TargetType="TabItem" BasedOn="{StaticResource CustomTabItemStyle}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="#2F80ED" />
+        <Setter Property="BorderBrush" Value="#2F80ED" />
+    </Style>
+</UserControl.Resources>-->
+           
+	    <TabControl Margin="0" TabStripPlacement="Left"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="640"  MaxWidth="640" >
+
+            <TabItem Header="偏移标定"> 
+                <views:OffsetCalibrationView 
+                    DataContext="{Binding OffsetCalibrationViewModel}"   BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    />
+            </TabItem>
+
+             <TabItem Header="激光测高标定">
+                <views:LaserAltimetryCalibrationView   
+                    DataContext="{Binding LaserAltimetryCalibrationViewModel}"   BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    />
+            </TabItem>
+
+             <TabItem Header="相机比例标定">
+                <views:CameraRatioCalibrationView   
+                    DataContext="{Binding CameraRatioCalibrationViewModel}"   BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    />
+            </TabItem>
+
+             <TabItem Header="飞拍标定">
+                <views:FlyingPhotoCalibrationView  
+                    DataContext="{Binding FlyingPhotoCalibrationViewModel}"   BorderBrush="#CCCCCC" BorderThickness="1.5" 
+                    />
+            </TabItem>
+        </TabControl>
+
+
+
+</UserControl>

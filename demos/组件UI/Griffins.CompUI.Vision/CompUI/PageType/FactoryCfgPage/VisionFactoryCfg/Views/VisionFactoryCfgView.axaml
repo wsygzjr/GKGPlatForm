@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.Vision.CompUI.PageType.FactoryCfgPage.VisionFactoryCfg.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="450"
+			 x:Class="Griffins.CompUI.Vision.CompUI.PageType.FactoryCfgPage.VisionFactoryCfg.Views.VisionFactoryCfgView"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:VisionFactoryCfgViewModel">
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="10" Orientation="Vertical" Spacing="16" HorizontalAlignment="Left">
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="10">
+        <StackPanel Orientation="Vertical" Spacing="3">
+          <TextBlock Text="视觉分析出厂配置" FontWeight="Bold" FontSize="18" />
+          <TextBlock Text="选择本工位使用的视觉分析类型。" Foreground="#66000000" TextWrapping="Wrap" />
+        </StackPanel>
+      </Border>
+
+      <custom:ComboxControl LabelName="视觉分析类型"
+                            WidthLevel="Medium"
+                            HorizontalAlignment="Left"
+                            ViewModel="{Binding VisionComboxViewModel}" />
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

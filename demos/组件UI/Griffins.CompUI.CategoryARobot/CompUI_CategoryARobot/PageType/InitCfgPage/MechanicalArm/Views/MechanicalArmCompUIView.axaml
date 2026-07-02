@@ -1,0 +1,169 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+             xmlns:vm="clr-namespace:Griffins.CompUI.CategoryARobot.CompUI_CategoryARobot.PageType.InitCfgPage.MechanicalArm.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             xmlns:views="clr-namespace:Griffins.CompUI.CategoryARobot.CompUI_CategoryARobot.PageType.InitCfgPage.MechanicalArm.Views"
+             x:DataType="vm:MechanicalArmCompUIViewModel"
+             x:Class="Griffins.CompUI.CategoryARobot.CompUI_CategoryARobot.PageType.InitCfgPage.MechanicalArm.Views.MechanicalArmCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+
+  <UserControl.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://GKG.UI/Styles/Styles.axaml" />
+    <Style Selector="Border.sectionBorder">
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="BorderBrush" Value="#D0D0D0" />
+      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Padding" Value="12,10" />
+    </Style>
+    <Style Selector="TextBlock.sectionTitle">
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+  </UserControl.Styles>
+
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+    <!-- 左宽右宽：左侧保证表格完整显示，右侧占满剩余宽度 -->
+    <Grid Margin="10,8"
+          MinWidth="1180"
+          ColumnDefinitions="720,*"
+          ColumnSpacing="16">
+
+      <!-- 左侧：点位运动 + 分段速度列表 -->
+      <StackPanel Grid.Column="0" Spacing="12">
+        <Border Classes="sectionBorder">
+          <StackPanel Spacing="6">
+            <TextBlock Classes="sectionTitle" Text="点位运动模式" />
+            <custom:ComboxControl
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Left"
+              VerticalContentAlignment="Center"
+              WidthLevel="Medium"
+              LabelName="点位运动模式"
+              ViewModel="{Binding PointMoveModeViewModel}" />
+            <custom:NumericControl
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Left"
+              VerticalContentAlignment="Center"
+              WidthLevel="Medium"
+              LabelName="轴号"
+              ViewModel="{Binding AxisNumberViewModel}" />
+            <custom:ComboxControl
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Left"
+              VerticalContentAlignment="Center"
+              WidthLevel="Medium"
+              LabelName="分段速度模式"
+              ViewModel="{Binding SegmentSpeedModeViewModel}" />
+          </StackPanel>
+        </Border>
+
+        <Border Classes="sectionBorder">
+          <StackPanel Spacing="10">
+            <TextBlock Classes="sectionTitle" Text="分段速度列表" />
+            <views:MechanicalArmCommandListCompUIView DataContext="{Binding}" />
+          </StackPanel>
+        </Border>
+      </StackPanel>
+
+      <!-- 右侧：双列 Medium，填满可用宽度 -->
+      <StackPanel Grid.Column="1" Spacing="12" MinWidth="440">
+        <Border Classes="sectionBorder">
+          <StackPanel Spacing="8">
+            <TextBlock Classes="sectionTitle" Text="2D位置比较参数" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="16" RowSpacing="8">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <custom:ComboxControl Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="比较模式" ViewModel="{Binding PositionComparison2DParametersViewModel.ComparisonModeViewModel}" />
+              <custom:ToggleSwitchControl Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="启用比较" ViewModel="{Binding PositionComparison2DParametersViewModel.ComparisonEnabledToggleViewModel}" />
+
+              <custom:TextInputControl Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="轴列表(逗号分隔)" ViewModel="{Binding PositionComparison2DParametersViewModel.AxisListViewModel}" />
+              <custom:TextInputControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="通道列表(逗号分隔)" ViewModel="{Binding PositionComparison2DParametersViewModel.ChannelListViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="GPO通道0" ViewModel="{Binding PositionComparison2DParametersViewModel.GpoChannel0ViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="GPO通道1" ViewModel="{Binding PositionComparison2DParametersViewModel.GpoChannel1ViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="起始电平(0高1低)" ViewModel="{Binding PositionComparison2DParametersViewModel.StartLevelViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="输出方式(0脉冲1电平)" ViewModel="{Binding PositionComparison2DParametersViewModel.OutputModeViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="脉冲宽度(us)" ViewModel="{Binding PositionComparison2DParametersViewModel.PulseWidthViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="关闭脉冲时间(us)" ViewModel="{Binding PositionComparison2DParametersViewModel.PulseOffTimeViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="最大误差(pulse)" ViewModel="{Binding PositionComparison2DParametersViewModel.MaxPositionErrorViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="比较源(0规划1编码器)" ViewModel="{Binding PositionComparison2DParametersViewModel.ComparisonSourceViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="坐标系编号" ViewModel="{Binding PositionComparison2DParametersViewModel.CoordinateSystemIdViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="前瞻拐弯时间(ms)" ViewModel="{Binding PositionComparison2DParametersViewModel.AnticipationCorneringTimeViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="最大加速度" ViewModel="{Binding PositionComparison2DParametersViewModel.MaxAccelerationViewModel}" />
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <Border Classes="sectionBorder">
+          <StackPanel Spacing="8">
+            <TextBlock Classes="sectionTitle" Text="运控前瞻参数" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="16" RowSpacing="8">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <custom:NumericUpDownControl Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="前瞻段数" ViewModel="{Binding ArcFeedForwardParametersViewModel.FeedForwardSegmentsViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="时间常数" ViewModel="{Binding ArcFeedForwardParametersViewModel.FeedForwardTimeConstantViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="向心加速度" ViewModel="{Binding ArcFeedForwardParametersViewModel.CentripetalAccelerationViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="曲率限制参数" ViewModel="{Binding ArcFeedForwardParametersViewModel.RadiusRatioSquaredViewModel}" />
+
+              <custom:TextInputControl Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="机床配置文件" ViewModel="{Binding ArcFeedForwardParametersViewModel.MachineConfigFileNameViewModel}" />
+              <custom:ToggleSwitchControl Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="S平滑段" ViewModel="{Binding ArcFeedForwardParametersViewModel.SmoothingSegmentToggleViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="S段加速度" ViewModel="{Binding ArcFeedForwardParametersViewModel.SmoothingSegmentAccelerationViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="S段比例" ViewModel="{Binding ArcFeedForwardParametersViewModel.SmoothingSegmentRatioViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="S段最小长度" ViewModel="{Binding ArcFeedForwardParametersViewModel.SmoothingSegmentMinLengthViewModel}" />
+              <custom:TextInputControl Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="VMax(逗号分隔)" ViewModel="{Binding ArcFeedForwardParametersViewModel.VMaxViewModel}" />
+
+              <custom:TextInputControl Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="AMax(逗号分隔)" ViewModel="{Binding ArcFeedForwardParametersViewModel.AMaxViewModel}" />
+              <custom:TextInputControl Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="VVariationMax(逗号分隔)" ViewModel="{Binding ArcFeedForwardParametersViewModel.VVariationMaxViewModel}" />
+
+              <custom:TextInputControl Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="PULSE(逗号分隔)" ViewModel="{Binding ArcFeedForwardParametersViewModel.PulseViewModel}" />
+              <custom:TextInputControl Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="AxisRelation(逗号分隔)" ViewModel="{Binding ArcFeedForwardParametersViewModel.AxisRelationViewModel}" />
+
+              <custom:ToggleSwitchControl Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="轨迹预处理" ViewModel="{Binding ArcFeedForwardParametersViewModel.TrajectoryPreprocessingToggleViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="预处理误差" ViewModel="{Binding ArcFeedForwardParametersViewModel.TrajectoryPreprocessingErrorViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="8" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="预处理最小角度" ViewModel="{Binding ArcFeedForwardParametersViewModel.TrajectoryPreprocessingMinAngleViewModel}" />
+              <custom:NumericUpDownControl Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="预处理最大角度" ViewModel="{Binding ArcFeedForwardParametersViewModel.TrajectoryPreprocessingMaxAngleViewModel}" />
+
+              <custom:NumericUpDownControl Grid.Row="9" Grid.Column="0" HorizontalAlignment="Left" WidthLevel="Medium" LabelName="向心加速度开关(0/1)" ViewModel="{Binding ArcFeedForwardParametersViewModel.CentripetalAccelerationSwitchViewModel}" />
+            </Grid>
+          </StackPanel>
+        </Border>
+      </StackPanel>
+
+    </Grid>
+  </ScrollViewer>
+</UserControl>

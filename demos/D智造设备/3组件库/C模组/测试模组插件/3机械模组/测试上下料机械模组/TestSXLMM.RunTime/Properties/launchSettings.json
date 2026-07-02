@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "TestSXLMM.RunTime": {
+      "commandName": "Project"
+    },
+    "配置文件 1": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\IotGwSvr\\TestIotGwSvr.exe"
+    }
+  }
+}

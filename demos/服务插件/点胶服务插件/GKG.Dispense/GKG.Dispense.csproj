@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>GKG.Dispense</AssemblyName>
+		<RootNamespace>GKG.Dispense</RootNamespace>
+		<OutputType>library</OutputType>
+		<OutputPath>F:\Griffins7.1\Dlls</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Griffins.PF" Version="7.1.0" />
+	</ItemGroup>
+
+</Project>

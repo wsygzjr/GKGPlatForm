@@ -1,0 +1,4 @@
+**/bin/
+**/obj/
+.vs/
+!../Griffins7.1/Bin

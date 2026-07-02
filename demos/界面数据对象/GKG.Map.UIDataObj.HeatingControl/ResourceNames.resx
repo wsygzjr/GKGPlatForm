@@ -1,0 +1,590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="HeatingControl" xml:space="preserve">
+		<value>加热控制</value>
+	</data>
+	<data name="IsDualValve" xml:space="preserve">
+		<value>\b双阀模式</value>
+	</data>
+	<data name="IsDualTrack" xml:space="preserve">
+		<value>\b双轨模式</value>
+	</data>
+	<data name="RightValveDispensingHead_Switch" xml:space="preserve">
+		<value>\b右阀点胶头-关/开</value>
+	</data>
+	<data name="RightValveDispensingHead_CurrentTemperature" xml:space="preserve">
+		<value>\b右阀点胶头-当前温度</value>
+	</data>
+	<data name="RightValveDispensingHead_SetTemperature" xml:space="preserve">
+		<value>\b右阀点胶头-设定温度</value>
+	</data>
+	<data name="RightValveDispensingHead_TemperatureRange" xml:space="preserve">
+		<value>\b右阀点胶头-温度范围</value>
+	</data>
+	<data name="RightValveDispensingHead_IdleCloseInterval" xml:space="preserve">
+		<value>\b右阀点胶头-空闲关闭间隔</value>
+	</data>
+	<data name="RightValveDispensingHead_PreheatTime" xml:space="preserve">
+		<value>\b右阀点胶头-预热时间</value>
+	</data>
+	<data name="RightValveDispensingHead_HeatingTime" xml:space="preserve">
+		<value>\b右阀点胶头-加热时间</value>
+	</data>
+	<data name="RightValveDispensingHead_DetectionEnabled" xml:space="preserve">
+		<value>\b右阀点胶头-检测开启</value>
+	</data>
+	<data name="RightValveDispensingHead_WorkEnabled" xml:space="preserve">
+		<value>\b右阀点胶头-工作开启</value>
+	</data>
+	<data name="RightValveDispensingHead_DelayTime" xml:space="preserve">
+		<value>\b右阀点胶头-延迟时间</value>
+	</data>
+	<data name="RightValveCartridgeHeating_Switch" xml:space="preserve">
+		<value>\b右阀胶筒加热-关/开</value>
+	</data>
+	<data name="RightValveCartridgeHeating_CurrentTemperature" xml:space="preserve">
+		<value>\b右阀胶筒加热-当前温度</value>
+	</data>
+	<data name="RightValveCartridgeHeating_SetTemperature" xml:space="preserve">
+		<value>\b右阀胶筒加热-设定温度</value>
+	</data>
+	<data name="RightValveCartridgeHeating_TemperatureRange" xml:space="preserve">
+		<value>\b右阀胶筒加热-温度范围</value>
+	</data>
+	<data name="RightValveCartridgeHeating_IdleCloseInterval" xml:space="preserve">
+		<value>\b右阀胶筒加热-空闲关闭间隔</value>
+	</data>
+	<data name="RightValveCartridgeHeating_PreheatTime" xml:space="preserve">
+		<value>\b右阀胶筒加热-预热时间</value>
+	</data>
+	<data name="RightValveCartridgeHeating_HeatingTime" xml:space="preserve">
+		<value>\b右阀胶筒加热-加热时间</value>
+	</data>
+	<data name="RightValveCartridgeHeating_DetectionEnabled" xml:space="preserve">
+		<value>\b右阀胶筒加热-检测开启</value>
+	</data>
+	<data name="RightValveCartridgeHeating_WorkEnabled" xml:space="preserve">
+		<value>\b右阀胶筒加热-工作开启</value>
+	</data>
+	<data name="RightValveCartridgeHeating_DelayTime" xml:space="preserve">
+		<value>\b右阀胶筒加热-延迟时间</value>
+	</data>
+	<data name="LeftValveDispensingHead_Switch" xml:space="preserve">
+		<value>\b左阀点胶头-关/开</value>
+	</data>
+	<data name="LeftValveDispensingHead_CurrentTemperature" xml:space="preserve">
+		<value>\b左阀点胶头-当前温度</value>
+	</data>
+	<data name="LeftValveDispensingHead_SetTemperature" xml:space="preserve">
+		<value>\b左阀点胶头-设定温度</value>
+	</data>
+	<data name="LeftValveDispensingHead_TemperatureRange" xml:space="preserve">
+		<value>\b左阀点胶头-温度范围</value>
+	</data>
+	<data name="LeftValveDispensingHead_IdleCloseInterval" xml:space="preserve">
+		<value>\b左阀点胶头-空闲关闭间隔</value>
+	</data>
+	<data name="LeftValveDispensingHead_PreheatTime" xml:space="preserve">
+		<value>\b左阀点胶头-预热时间</value>
+	</data>
+	<data name="LeftValveDispensingHead_HeatingTime" xml:space="preserve">
+		<value>\b左阀点胶头-加热时间</value>
+	</data>
+	<data name="LeftValveDispensingHead_DetectionEnabled" xml:space="preserve">
+		<value>\b左阀点胶头-检测开启</value>
+	</data>
+	<data name="LeftValveDispensingHead_WorkEnabled" xml:space="preserve">
+		<value>\b左阀点胶头-工作开启</value>
+	</data>
+	<data name="LeftValveDispensingHead_DelayTime" xml:space="preserve">
+		<value>\b左阀点胶头-延迟时间</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_Switch" xml:space="preserve">
+		<value>\b左阀胶筒加热-关/开</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_CurrentTemperature" xml:space="preserve">
+		<value>\b左阀胶筒加热-当前温度</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_SetTemperature" xml:space="preserve">
+		<value>\b左阀胶筒加热-设定温度</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_TemperatureRange" xml:space="preserve">
+		<value>\b左阀胶筒加热-温度范围</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_IdleCloseInterval" xml:space="preserve">
+		<value>\b左阀胶筒加热-空闲关闭间隔</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_PreheatTime" xml:space="preserve">
+		<value>\b左阀胶筒加热-预热时间</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_HeatingTime" xml:space="preserve">
+		<value>\b左阀胶筒加热-加热时间</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_DetectionEnabled" xml:space="preserve">
+		<value>\b左阀胶筒加热-检测开启</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_WorkEnabled" xml:space="preserve">
+		<value>\b左阀胶筒加热-工作开启</value>
+	</data>
+	<data name="LeftValveCartridgeHeating_DelayTime" xml:space="preserve">
+		<value>\b左阀胶筒加热-延迟时间</value>
+	</data>
+	<data name="ARailPreheatLeft_Switch" xml:space="preserve">
+		<value>\bA轨预热-左-关/开</value>
+	</data>
+	<data name="ARailPreheatLeft_CurrentTemperature" xml:space="preserve">
+		<value>\bA轨预热-左-当前温度</value>
+	</data>
+	<data name="ARailPreheatLeft_SetTemperature" xml:space="preserve">
+		<value>\bA轨预热-左-设定温度</value>
+	</data>
+	<data name="ARailPreheatLeft_TemperatureRange" xml:space="preserve">
+		<value>\bA轨预热-左-温度范围</value>
+	</data>
+	<data name="ARailPreheatLeft_IdleCloseInterval" xml:space="preserve">
+		<value>\bA轨预热-左-空闲关闭间隔</value>
+	</data>
+	<data name="ARailPreheatLeft_PreheatTime" xml:space="preserve">
+		<value>\bA轨预热-左-预热时间</value>
+	</data>
+	<data name="ARailPreheatLeft_HeatingTime" xml:space="preserve">
+		<value>\bA轨预热-左-加热时间</value>
+	</data>
+	<data name="ARailPreheatLeft_DetectionEnabled" xml:space="preserve">
+		<value>\bA轨预热-左-检测开启</value>
+	</data>
+	<data name="ARailPreheatLeft_WorkEnabled" xml:space="preserve">
+		<value>\bA轨预热-左-工作开启</value>
+	</data>
+	<data name="ARailPreheatLeft_DelayTime" xml:space="preserve">
+		<value>\bA轨预热-左-延迟时间</value>
+	</data>
+	<data name="ARailPreheatLeft2_Switch" xml:space="preserve">
+		<value>\bA轨预热-左(2)-关/开</value>
+	</data>
+	<data name="ARailPreheatLeft2_CurrentTemperature" xml:space="preserve">
+		<value>\bA轨预热-左(2)-当前温度</value>
+	</data>
+	<data name="ARailPreheatLeft2_SetTemperature" xml:space="preserve">
+		<value>\bA轨预热-左(2)-设定温度</value>
+	</data>
+	<data name="ARailPreheatLeft2_TemperatureRange" xml:space="preserve">
+		<value>\bA轨预热-左(2)-温度范围</value>
+	</data>
+	<data name="ARailPreheatLeft2_IdleCloseInterval" xml:space="preserve">
+		<value>\bA轨预热-左(2)-空闲关闭间隔</value>
+	</data>
+	<data name="ARailPreheatLeft2_PreheatTime" xml:space="preserve">
+		<value>\bA轨预热-左(2)-预热时间</value>
+	</data>
+	<data name="ARailPreheatLeft2_HeatingTime" xml:space="preserve">
+		<value>\bA轨预热-左(2)-加热时间</value>
+	</data>
+	<data name="ARailPreheatLeft2_DetectionEnabled" xml:space="preserve">
+		<value>\bA轨预热-左(2)-检测开启</value>
+	</data>
+	<data name="ARailPreheatLeft2_WorkEnabled" xml:space="preserve">
+		<value>\bA轨预热-左(2)-工作开启</value>
+	</data>
+	<data name="ARailPreheatLeft2_DelayTime" xml:space="preserve">
+		<value>\bA轨预热-左(2)-延迟时间</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_Switch" xml:space="preserve">
+		<value>\bA轨胶板工位-中-关/开</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_CurrentTemperature" xml:space="preserve">
+		<value>\bA轨胶板工位-中-当前温度</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_SetTemperature" xml:space="preserve">
+		<value>\bA轨胶板工位-中-设定温度</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_TemperatureRange" xml:space="preserve">
+		<value>\bA轨胶板工位-中-温度范围</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_IdleCloseInterval" xml:space="preserve">
+		<value>\bA轨胶板工位-中-空闲关闭间隔</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_PreheatTime" xml:space="preserve">
+		<value>\bA轨胶板工位-中-预热时间</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_HeatingTime" xml:space="preserve">
+		<value>\bA轨胶板工位-中-加热时间</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_DetectionEnabled" xml:space="preserve">
+		<value>\bA轨胶板工位-中-检测开启</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_WorkEnabled" xml:space="preserve">
+		<value>\bA轨胶板工位-中-工作开启</value>
+	</data>
+	<data name="ARailGlueBoardStationMiddle_DelayTime" xml:space="preserve">
+		<value>\bA轨胶板工位-中-延迟时间</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_Switch" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-关/开</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_CurrentTemperature" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-当前温度</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_SetTemperature" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-设定温度</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_TemperatureRange" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-温度范围</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_IdleCloseInterval" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-空闲关闭间隔</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_PreheatTime" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-预热时间</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_HeatingTime" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-加热时间</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_DetectionEnabled" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-检测开启</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_WorkEnabled" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-工作开启</value>
+	</data>
+	<data name="ARailDispensingStationMiddle2_DelayTime" xml:space="preserve">
+		<value>\bA轨点胶工位-中(2)-延迟时间</value>
+	</data>
+	<data name="ARailPreheatRight_Switch" xml:space="preserve">
+		<value>\bA轨预热-右-关/开</value>
+	</data>
+	<data name="ARailPreheatRight_CurrentTemperature" xml:space="preserve">
+		<value>\bA轨预热-右-当前温度</value>
+	</data>
+	<data name="ARailPreheatRight_SetTemperature" xml:space="preserve">
+		<value>\bA轨预热-右-设定温度</value>
+	</data>
+	<data name="ARailPreheatRight_TemperatureRange" xml:space="preserve">
+		<value>\bA轨预热-右-温度范围</value>
+	</data>
+	<data name="ARailPreheatRight_IdleCloseInterval" xml:space="preserve">
+		<value>\bA轨预热-右-空闲关闭间隔</value>
+	</data>
+	<data name="ARailPreheatRight_PreheatTime" xml:space="preserve">
+		<value>\bA轨预热-右-预热时间</value>
+	</data>
+	<data name="ARailPreheatRight_HeatingTime" xml:space="preserve">
+		<value>\bA轨预热-右-加热时间</value>
+	</data>
+	<data name="ARailPreheatRight_DetectionEnabled" xml:space="preserve">
+		<value>\bA轨预热-右-检测开启</value>
+	</data>
+	<data name="ARailPreheatRight_WorkEnabled" xml:space="preserve">
+		<value>\bA轨预热-右-工作开启</value>
+	</data>
+	<data name="ARailPreheatRight_DelayTime" xml:space="preserve">
+		<value>\bA轨预热-右-延迟时间</value>
+	</data>
+	<data name="ARailPreheatRight2_Switch" xml:space="preserve">
+		<value>\bA轨预热-右(2)-关/开</value>
+	</data>
+	<data name="ARailPreheatRight2_CurrentTemperature" xml:space="preserve">
+		<value>\bA轨预热-右(2)-当前温度</value>
+	</data>
+	<data name="ARailPreheatRight2_SetTemperature" xml:space="preserve">
+		<value>\bA轨预热-右(2)-设定温度</value>
+	</data>
+	<data name="ARailPreheatRight2_TemperatureRange" xml:space="preserve">
+		<value>\bA轨预热-右(2)-温度范围</value>
+	</data>
+	<data name="ARailPreheatRight2_IdleCloseInterval" xml:space="preserve">
+		<value>\bA轨预热-右(2)-空闲关闭间隔</value>
+	</data>
+	<data name="ARailPreheatRight2_PreheatTime" xml:space="preserve">
+		<value>\bA轨预热-右(2)-预热时间</value>
+	</data>
+	<data name="ARailPreheatRight2_HeatingTime" xml:space="preserve">
+		<value>\bA轨预热-右(2)-加热时间</value>
+	</data>
+	<data name="ARailPreheatRight2_DetectionEnabled" xml:space="preserve">
+		<value>\bA轨预热-右(2)-检测开启</value>
+	</data>
+	<data name="ARailPreheatRight2_WorkEnabled" xml:space="preserve">
+		<value>\bA轨预热-右(2)-工作开启</value>
+	</data>
+	<data name="ARailPreheatRight2_DelayTime" xml:space="preserve">
+		<value>\bA轨预热-右(2)-延迟时间</value>
+	</data>
+	<data name="BRailPreheatLeft_Switch" xml:space="preserve">
+		<value>\bB轨预热-左-关/开</value>
+	</data>
+	<data name="BRailPreheatLeft_CurrentTemperature" xml:space="preserve">
+		<value>\bB轨预热-左-当前温度</value>
+	</data>
+	<data name="BRailPreheatLeft_SetTemperature" xml:space="preserve">
+		<value>\bB轨预热-左-设定温度</value>
+	</data>
+	<data name="BRailPreheatLeft_TemperatureRange" xml:space="preserve">
+		<value>\bB轨预热-左-温度范围</value>
+	</data>
+	<data name="BRailPreheatLeft_IdleCloseInterval" xml:space="preserve">
+		<value>\bB轨预热-左-空闲关闭间隔</value>
+	</data>
+	<data name="BRailPreheatLeft_PreheatTime" xml:space="preserve">
+		<value>\bB轨预热-左-预热时间</value>
+	</data>
+	<data name="BRailPreheatLeft_HeatingTime" xml:space="preserve">
+		<value>\bB轨预热-左-加热时间</value>
+	</data>
+	<data name="BRailPreheatLeft_DetectionEnabled" xml:space="preserve">
+		<value>\bB轨预热-左-检测开启</value>
+	</data>
+	<data name="BRailPreheatLeft_WorkEnabled" xml:space="preserve">
+		<value>\bB轨预热-左-工作开启</value>
+	</data>
+	<data name="BRailPreheatLeft_DelayTime" xml:space="preserve">
+		<value>\bB轨预热-左-延迟时间</value>
+	</data>
+	<data name="BRailPreheatLeft2_Switch" xml:space="preserve">
+		<value>\bB轨预热-左(2)-关/开</value>
+	</data>
+	<data name="BRailPreheatLeft2_CurrentTemperature" xml:space="preserve">
+		<value>\bB轨预热-左(2)-当前温度</value>
+	</data>
+	<data name="BRailPreheatLeft2_SetTemperature" xml:space="preserve">
+		<value>\bB轨预热-左(2)-设定温度</value>
+	</data>
+	<data name="BRailPreheatLeft2_TemperatureRange" xml:space="preserve">
+		<value>\bB轨预热-左(2)-温度范围</value>
+	</data>
+	<data name="BRailPreheatLeft2_IdleCloseInterval" xml:space="preserve">
+		<value>\bB轨预热-左(2)-空闲关闭间隔</value>
+	</data>
+	<data name="BRailPreheatLeft2_PreheatTime" xml:space="preserve">
+		<value>\bB轨预热-左(2)-预热时间</value>
+	</data>
+	<data name="BRailPreheatLeft2_HeatingTime" xml:space="preserve">
+		<value>\bB轨预热-左(2)-加热时间</value>
+	</data>
+	<data name="BRailPreheatLeft2_DetectionEnabled" xml:space="preserve">
+		<value>\bB轨预热-左(2)-检测开启</value>
+	</data>
+	<data name="BRailPreheatLeft2_WorkEnabled" xml:space="preserve">
+		<value>\bB轨预热-左(2)-工作开启</value>
+	</data>
+	<data name="BRailPreheatLeft2_DelayTime" xml:space="preserve">
+		<value>\bB轨预热-左(2)-延迟时间</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_Switch" xml:space="preserve">
+		<value>\bB轨胶板工位-中-关/开</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_CurrentTemperature" xml:space="preserve">
+		<value>\bB轨胶板工位-中-当前温度</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_SetTemperature" xml:space="preserve">
+		<value>\bB轨胶板工位-中-设定温度</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_TemperatureRange" xml:space="preserve">
+		<value>\bB轨胶板工位-中-温度范围</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_IdleCloseInterval" xml:space="preserve">
+		<value>\bB轨胶板工位-中-空闲关闭间隔</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_PreheatTime" xml:space="preserve">
+		<value>\bB轨胶板工位-中-预热时间</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_HeatingTime" xml:space="preserve">
+		<value>\bB轨胶板工位-中-加热时间</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_DetectionEnabled" xml:space="preserve">
+		<value>\bB轨胶板工位-中-检测开启</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_WorkEnabled" xml:space="preserve">
+		<value>\bB轨胶板工位-中-工作开启</value>
+	</data>
+	<data name="BRailGlueBoardStationMiddle_DelayTime" xml:space="preserve">
+		<value>\bB轨胶板工位-中-延迟时间</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_Switch" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-关/开</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_CurrentTemperature" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-当前温度</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_SetTemperature" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-设定温度</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_TemperatureRange" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-温度范围</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_IdleCloseInterval" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-空闲关闭间隔</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_PreheatTime" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-预热时间</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_HeatingTime" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-加热时间</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_DetectionEnabled" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-检测开启</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_WorkEnabled" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-工作开启</value>
+	</data>
+	<data name="BRailDispensingStationMiddle2_DelayTime" xml:space="preserve">
+		<value>\bB轨点胶工位-中(2)-延迟时间</value>
+	</data>
+	<data name="BRailPreheatRight_Switch" xml:space="preserve">
+		<value>\bB轨预热-右-关/开</value>
+	</data>
+	<data name="BRailPreheatRight_CurrentTemperature" xml:space="preserve">
+		<value>\bB轨预热-右-当前温度</value>
+	</data>
+	<data name="BRailPreheatRight_SetTemperature" xml:space="preserve">
+		<value>\bB轨预热-右-设定温度</value>
+	</data>
+	<data name="BRailPreheatRight_TemperatureRange" xml:space="preserve">
+		<value>\bB轨预热-右-温度范围</value>
+	</data>
+	<data name="BRailPreheatRight_IdleCloseInterval" xml:space="preserve">
+		<value>\bB轨预热-右-空闲关闭间隔</value>
+	</data>
+	<data name="BRailPreheatRight_PreheatTime" xml:space="preserve">
+		<value>\bB轨预热-右-预热时间</value>
+	</data>
+	<data name="BRailPreheatRight_HeatingTime" xml:space="preserve">
+		<value>\bB轨预热-右-加热时间</value>
+	</data>
+	<data name="BRailPreheatRight_DetectionEnabled" xml:space="preserve">
+		<value>\bB轨预热-右-检测开启</value>
+	</data>
+	<data name="BRailPreheatRight_WorkEnabled" xml:space="preserve">
+		<value>\bB轨预热-右-工作开启</value>
+	</data>
+	<data name="BRailPreheatRight_DelayTime" xml:space="preserve">
+		<value>\bB轨预热-右-延迟时间</value>
+	</data>
+	<data name="BRailPreheatRight2_Switch" xml:space="preserve">
+		<value>\bB轨预热-右(2)-关/开</value>
+	</data>
+	<data name="BRailPreheatRight2_CurrentTemperature" xml:space="preserve">
+		<value>\bB轨预热-右(2)-当前温度</value>
+	</data>
+	<data name="BRailPreheatRight2_SetTemperature" xml:space="preserve">
+		<value>\bB轨预热-右(2)-设定温度</value>
+	</data>
+	<data name="BRailPreheatRight2_TemperatureRange" xml:space="preserve">
+		<value>\bB轨预热-右(2)-温度范围</value>
+	</data>
+	<data name="BRailPreheatRight2_IdleCloseInterval" xml:space="preserve">
+		<value>\bB轨预热-右(2)-空闲关闭间隔</value>
+	</data>
+	<data name="BRailPreheatRight2_PreheatTime" xml:space="preserve">
+		<value>\bB轨预热-右(2)-预热时间</value>
+	</data>
+	<data name="BRailPreheatRight2_HeatingTime" xml:space="preserve">
+		<value>\bB轨预热-右(2)-加热时间</value>
+	</data>
+	<data name="BRailPreheatRight2_DetectionEnabled" xml:space="preserve">
+		<value>\bB轨预热-右(2)-检测开启</value>
+	</data>
+	<data name="BRailPreheatRight2_WorkEnabled" xml:space="preserve">
+		<value>\bB轨预热-右(2)-工作开启</value>
+	</data>
+	<data name="BRailPreheatRight2_DelayTime" xml:space="preserve">
+		<value>\bB轨预热-右(2)-延迟时间</value>
+	</data>
+</root>

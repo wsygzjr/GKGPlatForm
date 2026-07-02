@@ -1,0 +1,88 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:TwoDWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:DispensingPageType.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.TwoDWorkAreaView">
+	
+
+    <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"   Width="876"  Height="610" HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+             
+			<TextBlock Text="2D设置"  Classes="TextBlockWorkAreaViewTitle" ></TextBlock> 
+
+                 
+            <!--   视图模型GlueDspensingPositionViewModel -->  
+            <Grid    RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+                RowSpacing="0"   Height="80" Width="580" Margin="0"  HorizontalAlignment="Left" VerticalAlignment="Center" > 
+                 <!--   --><!-- 坐标表头 --><!--
+                    <gkgUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="0"  
+                        Margin="0" Height="35"    HorizontalAlignment="Left" VerticalAlignment="Center" />   
+                    --><!-- 坐标数据 --><!--
+                    <gkgUI:PositionTeachView    Grid.Row="1"  Grid.Column="0" 
+                        DataContext="{Binding InitalPositionViewModel}" 
+                        Margin="0" Height="50"  HorizontalAlignment="Left" VerticalAlignment="Center" />   -->
+            </Grid> 
+             
+            <Grid    Margin="0,0,0,0"  RowDefinitions="*,*"  ColumnDefinitions="*,*"   RowSpacing="0" ColumnSpacing="0"  >   
+                     
+			                <!-- 胶宽检测开关  -->
+			                <custom:ToggleSwitchControl  Grid.Row="0"  Grid.Column="0" 
+						                HorizontalAlignment="Left"
+				                HorizontalContentAlignment="Center"
+				                VerticalAlignment="Center"
+				                VerticalContentAlignment="Center"
+				                LabelName="胶宽检测"
+				                WidthLevel="Small" 
+				                ViewModel="{Binding IsGlueWidthDetectionEnabledViewModel }" />
+
+                             <custom:ComboxControl  Grid.Row="0"  Grid.Column="1" 
+		                        HorizontalAlignment="Left"
+		                        HorizontalContentAlignment="Center"
+		                        VerticalAlignment="Center"
+		                        VerticalContentAlignment="Center"
+		                        LabelName="检测方式"
+		                        WidthLevel="Small"
+		                        ViewModel="{Binding DetectionModeViewModel  }" /> 
+                     
+                            <custom:TextBlockControl   Grid.Row="1"  Grid.Column="0" 
+                             HorizontalAlignment="Left"
+				                HorizontalContentAlignment="Center"
+				                VerticalAlignment="Center"
+				                VerticalContentAlignment="Center"
+					                LabelName="指令序号"
+					                WidthLevel="Small"  
+					                ViewModel="{Binding SerialNumberViewModel }"
+					                />  
+            
+                </Grid>
+
+           
+            <StackPanel   Orientation="Horizontal"   >
+              
+                    <Button 
+                    Content="创建模板"   Classes="btnSave"
+                    Command="{Binding CreateTemplateCommand}" 
+                    Cursor="Hand"> 
+                </Button> 
+
+                    <Button 
+                    Content="测试模板"   Classes="btnSave"
+                    Command="{Binding TestTemplateCommand}" 
+                    Cursor="Hand"> 
+                </Button> 
+            </StackPanel>
+        </StackPanel>
+      
+
+    </Border>
+
+</UserControl>

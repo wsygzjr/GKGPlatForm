@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.RailAdjustWidth.CompUI_RailAdjustWidth.PageType.FactoryCfgPage.AdjustWidthFactory.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="360"
+             x:DataType="vm:AdjustWidthFactoryCompUIViewModel"
+             x:Class="Griffins.CompUI.RailAdjustWidth.CompUI_RailAdjustWidth.PageType.FactoryCfgPage.AdjustWidthFactory.Views.AdjustWidthFactoryCompUIView">
+  <Design.DataContext>
+    <vm:AdjustWidthFactoryCompUIViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="10" Orientation="Vertical" Spacing="16">
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="10">
+        <StackPanel Orientation="Vertical" Spacing="3">
+          <TextBlock Text="轨道调宽出厂配置" FontWeight="Bold" FontSize="18" />
+          <TextBlock Text="轨道能力与宽度范围" FontWeight="SemiBold" />
+          <TextBlock Text="设置前后轨是否可移动，以及允许的最大/最小宽度。" Foreground="#66000000" TextWrapping="Wrap" />
+        </StackPanel>
+      </Border>
+
+      <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+        <Border Grid.Column="0" BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+          <StackPanel Orientation="Vertical" Spacing="12">
+            <TextBlock Text="前轨" FontWeight="Bold" />
+            <custom:ToggleSwitchControl WidthLevel="Medium"
+                                       LabelName="前轨是否可移动"
+                                       ViewModel="{Binding FrontRailIsMovableViewModel}" />
+          </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+          <StackPanel Orientation="Vertical" Spacing="12">
+            <TextBlock Text="后轨" FontWeight="Bold" />
+            <custom:ToggleSwitchControl WidthLevel="Medium"
+                                       LabelName="后轨是否可移动"
+                                       ViewModel="{Binding BackRailIsMovableViewModel}" />
+          </StackPanel>
+        </Border>
+      </Grid>
+
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+        <StackPanel Orientation="Vertical" Spacing="12">
+          <TextBlock Text="宽度范围 (mm)" FontWeight="Bold" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+            <custom:TextInputControl Grid.Column="0"
+                                    WidthLevel="Medium"
+                                    LabelName="最大宽度"
+                                    ViewModel="{Binding MaxWidthViewModel}" />
+            <custom:TextInputControl Grid.Column="1"
+                                    WidthLevel="Medium"
+                                    LabelName="最小宽度"
+                                    ViewModel="{Binding MinWidthViewModel}" />
+          </Grid>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,21 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:GriffinsGeneralTestMM"
+        x:Class="GriffinsGeneralTestMM.FormAllSubMMWindow"
+        x:DataType="vm:FormAllSubMMViewModel" 
+        Title="子机械模组"
+        Width="647" Height="382"
+        MinWidth="624" MinHeight="365"
+        ShowInTaskbar="False"
+        Closing="Window_Closing">
+     
+       <!-- 子机械模组主界面 -->
+    <!-- 模拟FlowLayoutPanel（自动滚动+ 横向排列）  Margin="2" ItemSpacing="25"      Margin="10" -->
+    <ScrollViewer BorderThickness="2" BorderBrush="Black" >
+        <WrapPanel x:Name="SubMMWrapPanel"  
+                     HorizontalAlignment="Center"   
+                        VerticalAlignment="Top"
+                     />
+    </ScrollViewer>
+ 
+</Window>

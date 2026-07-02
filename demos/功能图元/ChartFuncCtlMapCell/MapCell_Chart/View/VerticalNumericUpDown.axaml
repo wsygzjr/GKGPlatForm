@@ -1,0 +1,74 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="40" d:DesignHeight="32"
+             x:Class="GKG.Map.ChartFuncCtlMapCell.View.VerticalNumericUpDown">
+
+    <Grid ColumnDefinitions="*, 18">
+        <!-- === 左侧：文本框区域 === -->
+        <Border Grid.Column="0"
+                CornerRadius="0"
+                BorderThickness="1,1,0,1"
+                BorderBrush="#D0D0D0"
+                Background="White">
+
+            <TextBox Name="InputBox"
+                     Margin="0"
+                     Padding="0,0,5,0"
+                     BorderThickness="0"
+                     VerticalAlignment="Stretch"
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     Background="Transparent"
+                     TextChanged="InputBox_TextChanged" />
+        </Border>
+
+        <!-- === 右侧：按钮区域 === -->
+        <Grid Grid.Column="1" RowDefinitions="*,*">
+            <!-- 加号按钮 -->
+            <RepeatButton Name="BtnUp" 
+                          Grid.Row="0"
+
+                          MinWidth="0"
+                          Margin="0"
+                          Padding="0"
+                          CornerRadius="0"      
+                          BorderThickness="1,1,1,1"
+
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          
+                          FontSize="6"
+                          BorderBrush="#D0D0D0"
+                          Background="#F5F5F5"
+
+                          Content="&#x25B2;"
+                          Click="OnUpClick"  />
+
+            <!-- 减号按钮 -->
+            <RepeatButton Name="BtnDown"  
+                          Grid.Row="1"
+
+                          MinWidth="0"
+                          Margin="0"
+                          Padding="0"
+                          CornerRadius="0"
+                          BorderThickness="1,0,1,1"
+
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center"
+
+                          FontSize="6"
+                          BorderBrush="#D0D0D0"
+                          Background="#F5F5F5"
+
+                          Content="&#x25BC;"
+                          Click="OnDownClick" />
+        </Grid>
+    </Grid>
+</UserControl>

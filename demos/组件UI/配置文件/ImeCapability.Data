@@ -1,0 +1,137 @@
+{
+  "ImeModel": "TestImeModel",
+  "DefaultCepfNumber": "TestCepfNumber",
+  "Events": [
+    {
+      "EventID": "TestCapabData_Event",
+      "EventName": "测试设备能力事件",
+      "Aliases": [
+        "test_bl1",
+        "test_bzsxl1"
+      ]
+    }
+  ],
+  "IsMutilMT": false,
+  "MMs": [
+    {
+      "Alias": "test_DevMngMM1",
+      "InstanceName": "测试设备管理机械模组1",
+      "MMNumber": "test_DevMngMM",
+      "IsProxy": false,
+      "MMDevCategory": 0,
+      "UsesSubMMs": []
+    },
+    {
+      "Alias": "test_bl1",
+      "InstanceName": "测试备料机械模组11",
+      "MMNumber": "test_bl",
+      "IsProxy": false,
+      "MMDevCategory": 0,
+      "UsesSubMMs": [
+        {
+          "InnerAlias": "sjfx",
+          "SubMMModel": "Test_SJFX",
+          "SubMMAlias": "Test_SJFX1"
+        }
+      ]
+    },
+    {
+      "Alias": "test_bzsxl1",
+      "InstanceName": "测试上下料机械模组1",
+      "MMNumber": "test_bzsxl",
+      "IsProxy": false,
+      "MMDevCategory": 0,
+      "UsesSubMMs": [
+        {
+          "InnerAlias": "TLXSL001",
+          "SubMMModel": "Test_TLXSL",
+          "SubMMAlias": "Test_TLXSL1"
+        },
+        {
+          "InnerAlias": "TLXXL001",
+          "SubMMModel": "Test_TLXXL",
+          "SubMMAlias": "Test_TLXXL1"
+        }
+      ]
+    },
+    {
+      "Alias": "test_ys1",
+      "InstanceName": "测试印刷机械模组1",
+      "MMNumber": "test_ys",
+      "IsProxy": false,
+      "MMDevCategory": 0,
+      "UsesSubMMs": [
+        {
+          "InnerAlias": "YSGDGNT001",
+          "SubMMModel": "Test_YSGDGNT",
+          "SubMMAlias": "Test_YSGDGNT1"
+        },
+        {
+          "InnerAlias": "sjfx",
+          "SubMMModel": "Test_SJFX",
+          "SubMMAlias": "Test_SJFX1"
+        }
+      ]
+    }
+  ],
+  "SubMMs": [
+    {
+      "Alias": "TestCfg",
+      "InstanceName": "电气管理对象子机械模组1",
+      "SubMMModel": "MotionControlCardCfg",
+      "SubMMObjID": "12112c0c-8edb-4723-95ad-6bf876bf8629",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    },
+    {
+      "Alias": "Test_TLXSL1",
+      "InstanceName": "测试推料型上料子机械模组1",
+      "SubMMModel": "Test_TLXSL",
+      "SubMMObjID": "42112c0c-8edb-4723-95ad-6bf876bf8629",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    },
+    {
+      "Alias": "Test_TLXXL1",
+      "InstanceName": "测试推料型下料子机械模组1",
+      "SubMMModel": "Test_TLXXL",
+      "SubMMObjID": "d50d9472-61cc-4d07-b1d9-2aec60eae835",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    },
+    {
+      "Alias": "Test_YSGDGNT1",
+      "InstanceName": "测试印刷刮刀功能头1",
+      "SubMMModel": "Test_YSGDGNT",
+      "SubMMObjID": "036cb945-b602-45bf-8967-a599d10de4e0",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    },
+    {
+      "Alias": "Test_SJFX1",
+      "InstanceName": "测试视觉分析模块1",
+      "SubMMModel": "Test_SJFX",
+      "SubMMObjID": "1f579524-4b22-47f9-9b9b-9ad8dfdf2880",
+      "IsProxy": false,
+      "SubMMDevCategory": 0
+    }
+  ],
+  "MTCapabilityDatas": [
+    {
+      "MTNo": 1,
+      "Aliases": [
+        "test_bl1",
+        "test_bzsxl1",
+        "test_ys1"
+      ]
+    }
+  ],
+  "FoolProofObjDatas": [],
+  "CustomUIDataObjInsts": [
+    {
+      "Alias": "Simple_1",
+      "InstName": "示例1",
+      "ObjKind": "Simple"
+    }
+  ]
+}

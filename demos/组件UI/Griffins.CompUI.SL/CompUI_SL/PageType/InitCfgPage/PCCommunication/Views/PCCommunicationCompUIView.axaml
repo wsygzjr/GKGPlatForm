@@ -1,0 +1,34 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.SL.InitCfgPage.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+			 xmlns:conv="clr-namespace:Avalonia.Data.Converters;assembly=Avalonia.Base"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:PcCommunicationCompUIViewModel"
+			 x:Class="Griffins.CompUI.SL.InitCfgPage.Views.PcCommunicationCompUIView"
+			 Tag="{Binding ViewTag, Mode=TwoWay}">
+	<StackPanel Orientation="Vertical" Spacing="20" Margin="0 30 0 0">
+
+		<StackPanel Orientation="Horizontal" Spacing="12">
+			<custom:ToggleSwitchControl WidthLevel="Medium2"
+										LabelName="是否启用与下位机通讯"
+										ViewModel="{Binding UpperCommunicationViewModel}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Spacing="12">
+			<custom:ToggleSwitchControl WidthLevel="Medium2"
+										LabelName="是否启用与上位机通讯"
+										ViewModel="{Binding SlaveCommunicationViewModel}"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Spacing="12">
+			<custom:ToggleSwitchControl WidthLevel="Medium2"
+										LabelName="是否支持SMEMA"
+										ViewModel="{Binding SupSMEMAViewModel}"/>
+		</StackPanel>
+
+	</StackPanel>
+
+</UserControl>

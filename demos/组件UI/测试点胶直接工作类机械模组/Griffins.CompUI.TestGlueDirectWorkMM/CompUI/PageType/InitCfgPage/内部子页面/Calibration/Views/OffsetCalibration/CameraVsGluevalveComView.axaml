@@ -1,0 +1,59 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.ViewModels.OffsetCalibration"
+             x:DataType="vm:CameraVsGluevalveComViewModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             x:Class="Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views.CameraVsGluevalveComView">
+
+
+     <!--90度阀位置选项卡    MaxWidth="300" MinWidth="300" -->
+	<StackPanel Orientation="Vertical" > 
+        
+         <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*"
+              RowSpacing="0"  HorizontalAlignment="Center"   >
+              
+                 <!-- 校正提醒倒计时 -->
+           <custom:TextBlockControl
+            Grid.Row="0"  Grid.Column="0"  
+                     VerticalAlignment="Center" 
+			LabelName="校正提醒倒计时"
+			WidthLevel="Small1"  
+			ViewModel="{Binding CorrectionReminderCountdownViewModel}"
+			/> 
+
+            <!-- 校正提醒 -->
+             <custom:NumericControl
+            Grid.Row="1"  Grid.Column="0"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center" 
+			LabelName="校正提醒"
+			WidthLevel="Small1"  
+			ViewModel="{Binding CorrectionReminderViewModel}"
+			/> 
+
+                <!-- 停机提醒 -->
+             <custom:NumericControl
+            Grid.Row="2"  Grid.Column="0"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" 
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center" 
+			LabelName="停机提醒"
+			WidthLevel="Small1"  
+			ViewModel="{Binding StopMachineReminderViewModel}"
+			/> 
+             
+           <Button Content="重置"   Grid.Row="3"  Grid.Column="0" 
+                   Command="{Binding ResetCommand}"
+                Classes="btn"  />
+        </Grid>
+
+    </StackPanel>
+
+</UserControl>

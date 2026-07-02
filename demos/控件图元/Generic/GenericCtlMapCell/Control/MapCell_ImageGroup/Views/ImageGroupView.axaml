@@ -1,0 +1,26 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_ImageGroup.ViewModels"
+             xmlns:converts="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_ImageGroup.Converts"
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
+             x:DataType="vm:ImageGroupViewModel"
+             x:Class="GKG.Map.MapCell.Generic.Control.MapCell_ImageGroup.Views.ImageGroupView">
+    <Design.DataContext>
+        <vm:ImageGroupViewModel/>
+    </Design.DataContext>
+    
+    <Border x:Name="OuterBorder"
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch"
+            Opacity="{Binding Opacity}"
+            IsEnabled="{Binding IsEnabled}"
+            ToolTip.Tip="{Binding ToolTipTip}">
+        <Image x:Name="ImageControl"
+               Source="{Binding CurrentImage}"
+               Stretch="{Binding Stretch}"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"/>
+    </Border>
+</UserControl>

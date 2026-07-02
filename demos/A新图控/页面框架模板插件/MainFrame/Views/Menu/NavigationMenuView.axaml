@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:MainFrame.ViewModels;assembly=MainFrame"
+			 xmlns:customMenuCmdConfig="clr-namespace:Griffins.Map.UI.CustomMenuCmdConfig;assembly=Griffins.Map.UI"
+			 xmlns:converter="clr-namespace:MainFrame.Converter"
+			 x:Class="MainFrameView.Views.Menu.NavigationMenuView"
+			 mc:Ignorable="d"
+			 x:DataType="vm:NavigationMenuViewModel"
+			 d:DesignWidth="150" d:DesignHeight="400">
+	<Design.DataContext>
+		<vm:NavigationMenuViewModel />
+	</Design.DataContext>
+
+	<!-- 引入转换器 -->
+	<UserControl.Resources>
+		<converter:EnumDisplayNameConverter x:Key="EnumDisplayNameConverter" />
+	</UserControl.Resources>
+
+	<UserControl.Styles>
+	</UserControl.Styles>
+
+	<DockPanel HorizontalAlignment="Stretch" LastChildFill="True" Height="980" Width="200">
+		<ContentControl
+		Content="{Binding CurrentContent}"
+		HorizontalAlignment="Stretch"
+		VerticalContentAlignment="{Binding VerticalContentAlignment}"
+		HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+		/>
+	</DockPanel>
+
+</UserControl>

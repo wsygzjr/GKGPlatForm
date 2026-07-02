@@ -1,0 +1,131 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:GKG.Map.AuxiliaryInfoFuncCtlMapCell.ViewModel"
+        xmlns:local="using:GKG.Map.AuxiliaryInfoFuncCtlMapCell.Convert"
+        mc:Ignorable="d" 
+        x:Class="GKG.Map.AuxiliaryInfoFuncCtlMapCell.View.TipDialogView"
+        x:DataType="vm:TipDialogViewModel"
+        Title="{Binding Title}" 
+        Width="490" 
+        SizeToContent="Height" 
+        CanResize="False" 
+        WindowStartupLocation="CenterOwner" 
+        SystemDecorations="None" 
+        Topmost="True" 
+        Background="Transparent"
+        TransparencyLevelHint="Transparent"> 
+    
+    <Window.Resources>
+        <local:DialogIconGeometryConverter x:Key="IconGeometryConverter" />
+        <local:DialogIconColorConverter x:Key="IconColorConverter" />
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="Button.DialogBtn">
+            <Setter Property="MinWidth" Value="88"/> 
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="Background" Duration="0:0:0.2"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button.DialogBtn:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#005A9E"/>
+        </Style>
+        <Style Selector="Button.DialogBtn:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="#004578"/>
+        </Style>
+    </Window.Styles>
+
+    <Border Padding="15">
+        
+        <Border Background="White"
+                BorderBrush="#D1D5DB"
+                BorderThickness="1"
+                CornerRadius="6"
+                BoxShadow="0 8 25 0 #20000000"
+                ClipToBounds="True">
+
+            <Border BorderThickness="0,4,0,0" BorderBrush="#0078D4">
+                <Grid RowDefinitions="Auto, *, Auto">
+                    
+                    <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#F0F0F0" Padding="20,12">
+                        <TextBlock Text="{Binding Title}" 
+                                   FontWeight="Bold" 
+                                   Foreground="#111111" 
+                                   FontSize="15" 
+                                   FontFamily="Microsoft YaHei UI"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Grid Grid.Row="1" Margin="24,30,24,30" ColumnDefinitions="Auto, *">
+                        <PathIcon Grid.Column="0" 
+                                  Width="44" Height="44"
+                                  Margin="0,0,20,0"
+                                  VerticalAlignment="Center" 
+                                  Data="{Binding IconType, Converter={StaticResource IconGeometryConverter}}"
+                                  Foreground="{Binding IconType, Converter={StaticResource IconColorConverter}}"/>
+                        
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="6">
+                            <TextBlock Text="{Binding Message}" 
+                                       FontSize="15" 
+                                       FontFamily="Microsoft YaHei UI"
+                                       Foreground="#333333" 
+                                       TextWrapping="Wrap"
+                                       LineHeight="22"
+                                       IsVisible="{Binding Message, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                       
+                            <TextBlock Text="{Binding Message2}" 
+                                       FontSize="15" 
+                                       FontFamily="Microsoft YaHei UI"
+                                       Foreground="#D32F2F" 
+                                       FontWeight="Bold" 
+                                       TextWrapping="Wrap" 
+                                       IsVisible="{Binding Message2, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+                            <TextBlock Text="{Binding TipTime}" 
+                                       FontSize="12" 
+                                       FontFamily="Microsoft YaHei UI"
+                                       Foreground="#AAAAAA"
+                                       Margin="0,4,0,0"
+                                       IsVisible="{Binding TipTime, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Border Grid.Row="2" Background="#F8F9FA" BorderThickness="0,1,0,0" BorderBrush="#EAECEF" Padding="20,12">
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Right" 
+                                    Spacing="12"> 
+                            <Button Classes="DialogBtn" 
+                                    Content="{Binding Btn1Text}" 
+                                    IsVisible="{Binding IsBtn1Visible}" 
+                                    Command="{Binding Btn1Command}"/>
+                            
+                            <Button Classes="DialogBtn" 
+                                    Content="{Binding Btn2Text}" 
+                                    IsVisible="{Binding IsBtn2Visible}" 
+                                    Command="{Binding Btn2Command}"/>
+                            
+                            <Button Classes="DialogBtn" 
+                                    Content="{Binding Btn3Text}" 
+                                    IsVisible="{Binding IsBtn3Visible}" 
+                                    Command="{Binding Btn3Command}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Border>
+    </Border>
+</Window>

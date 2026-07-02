@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HasDualLane" xml:space="preserve">
+    <value>双轨</value>
+  </data>
+  <data name="HasLeftIonizer" xml:space="preserve">
+    <value>左静电消除</value>
+  </data>
+  <data name="HasRightIonizer" xml:space="preserve">
+    <value>右静电消除</value>
+  </data>
+  <data name="ProductionInformation" xml:space="preserve">
+    <value>生产信息</value>
+  </data>
+  <data name="HasDualValve" xml:space="preserve">
+    <value>双阀</value>
+  </data>
+  <data name="CurrentRecipeName" xml:space="preserve">
+    <value>程序名称</value>
+  </data>
+  <data name="MachineRunTime" xml:space="preserve">
+    <value>运行时间</value>
+  </data>
+  <data name="UtilizationRate" xml:space="preserve">
+    <value>设备使用率</value>
+  </data>
+  <data name="TargetProductionCount" xml:space="preserve">
+    <value>目标生产数量</value>
+  </data>
+  <data name="TargetProductionType" xml:space="preserve">
+    <value>目标生产类型</value>
+  </data>
+  <data name="Uph" xml:space="preserve">
+    <value>每小时产出</value>
+  </data>
+  <data name="BatchTotalDispensedWeight" xml:space="preserve">
+    <value>总耗胶量</value>
+  </data>
+  <data name="IsNgDryRunEnabled" xml:space="preserve">
+    <value>空跑坏板</value>
+  </data>
+  <data name="ExternalScaleStatus" xml:space="preserve">
+    <value>外部称重状态</value>
+  </data>
+  <data name="IsSolventPumpRunning" xml:space="preserve">
+    <value>正在清洗液泵</value>
+  </data>
+  <data name="IsScheduledSolventPumpEnabled" xml:space="preserve">
+    <value>定时清洗液泵</value>
+  </data>
+  <data name="IsHoldAfterDispenseEnabled" xml:space="preserve">
+    <value>禁用点胶后自动出板</value>
+  </data>
+  <data name="LaneACycleTime" xml:space="preserve">
+    <value>A轨运行周期</value>
+  </data>
+  <data name="LaneABoardProcessTime" xml:space="preserve">
+    <value>A轨单板时间</value>
+  </data>
+  <data name="LaneALoadTime" xml:space="preserve">
+    <value>A轨进板时间</value>
+  </data>
+  <data name="LaneAUnloadTime" xml:space="preserve">
+    <value>A轨出板时间</value>
+  </data>
+  <data name="LaneAMarkTime" xml:space="preserve">
+    <value>A轨Mark时间</value>
+  </data>
+  <data name="LaneADispenseTime" xml:space="preserve">
+    <value>A轨点胶时间</value>
+  </data>
+  <data name="LaneATotalBigBoardCount" xml:space="preserve">
+    <value>A轨大板总产量</value>
+  </data>
+  <data name="LaneATotalSmallBoardCount" xml:space="preserve">
+    <value>A轨小板总产量</value>
+  </data>
+  <data name="LaneACurrentBigBoardCount" xml:space="preserve">
+    <value>A轨大板目前产量</value>
+  </data>
+  <data name="LaneACurrentSmallBoardCount" xml:space="preserve">
+    <value>A轨小板目前产量</value>
+  </data>
+  <data name="LaneBBarcode" xml:space="preserve">
+    <value>B轨条码</value>
+  </data>
+  <data name="LaneABarcode1" xml:space="preserve">
+    <value>A轨条码</value>
+  </data>
+  <data name="LaneBCycleTime" xml:space="preserve">
+    <value>B轨运行周期</value>
+  </data>
+  <data name="LaneBBoardProcessTime" xml:space="preserve">
+    <value>B轨单板时间</value>
+  </data>
+  <data name="LaneBLoadTime" xml:space="preserve">
+    <value>B轨进板时间</value>
+  </data>
+  <data name="LaneBUnloadTime" xml:space="preserve">
+    <value>B轨出板时间</value>
+  </data>
+  <data name="LaneBMarkTime" xml:space="preserve">
+    <value>B轨Mark时间</value>
+  </data>
+  <data name="LaneBDispenseTime" xml:space="preserve">
+    <value>B轨点胶时间</value>
+  </data>
+  <data name="LaneBTotalBigBoardCount" xml:space="preserve">
+    <value>B轨大板总产量</value>
+  </data>
+  <data name="LaneBTotalSmallBoardCount" xml:space="preserve">
+    <value>B轨小板总产量</value>
+  </data>
+  <data name="LaneBCurrentBigBoardCount" xml:space="preserve">
+    <value>B轨大板目前产量</value>
+  </data>
+  <data name="LaneBCurrentSmallBoardCount" xml:space="preserve">
+    <value>B轨小板目前产量</value>
+  </data>
+  <data name="CurrentValveRecipe" xml:space="preserve">
+    <value>当前阀配方参数</value>
+  </data>
+  <data name="MaxUsageHours" xml:space="preserve">
+    <value>最长使用时间</value>
+  </data>
+  <data name="ElapsedUsageHours" xml:space="preserve">
+    <value>已使用时间</value>
+  </data>
+  <data name="LeftValveShotWeight" xml:space="preserve">
+    <value>左阀单点胶重</value>
+  </data>
+  <data name="LeftValveTotalGlueWeight" xml:space="preserve">
+    <value>左阀胶水总量</value>
+  </data>
+  <data name="LeftValveRemainingGlueAmount" xml:space="preserve">
+    <value>左阀当前胶水余量</value>
+  </data>
+  <data name="IsLeftValveAutoShotWeighingEnabled" xml:space="preserve">
+    <value>左阀自动单点称重</value>
+  </data>
+  <data name="IsLeftValveAutoQuantitativeWeighingEnabled" xml:space="preserve">
+    <value>左阀自动定量称重</value>
+  </data>
+  <data name="IsLeftIonizerEnabled" xml:space="preserve">
+    <value>左阀静电消除</value>
+  </data>
+  <data name="RightValveShotWeight" xml:space="preserve">
+    <value>右阀单点胶重</value>
+  </data>
+  <data name="RightValveTotalGlueWeight" xml:space="preserve">
+    <value>右阀胶水总量</value>
+  </data>
+  <data name="RightValveRemainingGlueAmount" xml:space="preserve">
+    <value>右阀当前胶水余量</value>
+  </data>
+  <data name="IsRightValveAutoShotWeighingEnabled" xml:space="preserve">
+    <value>右阀自动单点称重</value>
+  </data>
+  <data name="IsRightValveAutoQuantitativeWeighingEnabled" xml:space="preserve">
+    <value>右阀自动定量称重</value>
+  </data>
+  <data name="IsRightIonizerEnabled" xml:space="preserve">
+    <value>右阀静电消除</value>
+  </data>
+</root>

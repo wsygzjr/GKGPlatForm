@@ -1,0 +1,208 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+	    xmlns:convert="clr-namespace:PageMngControl.Converters"
+		xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+        xmlns:vm1="using:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.TrajectorySequence"
+		x:DataType="vm:SelectDispensingTrajectoryWindowViewModel" 
+        xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"    
+        xmlns:converters="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters" 
+        x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.SelectDispensingTrajectoryWindow"
+        Title="">
+       
+   
+        <!-- 实例化转换器（可自定义颜色） -->
+    <Window.Resources>
+        <ResourceDictionary> 
+         
+            <converters:IntToBoolConverter x:Key="IntToBoolConverter"/> 
+            <converters:CustomBoolToColorConverter x:Key="CustomBoolToColorConverter"/> 
+            
+            <!-- bool转换形状  -->
+            <converters:CustomBoolToGeometryConverter x:Key="CustomBoolToGeometryConverter"/>
+            <!--  string转换形状  -->
+            <converters:StringToGeometryConverter x:Key="StringToGeometryConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+          <!-- 轨迹列表：横向排列 --> 
+ <StackPanel Orientation="Vertical"  HorizontalAlignment="Left"  VerticalAlignment="Stretch"    Margin="15 0 0 0"   Width="1520"   Height="604"  >
+   <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Stretch"    Margin="0 0 0 0"   >
+        <!-- 左侧显示:轨迹列表栏 --> 
+        <StackPanel  Spacing="0" Margin="1 1 1 1" Width="866"  Height="604"  >
+                <DataGrid    ItemsSource="{Binding ItemsSource }"
+                    SelectedItem="{Binding SelectedItem , Mode=TwoWay}"
+                    AutoGenerateColumns="False"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    IsReadOnly="False" 
+                    SelectionMode="Single"
+                    RowHeight="40"  Width="784"   Height="600" 
+                    CanUserResizeColumns="True" VerticalAlignment="Top"
+                    CanUserSortColumns="True"  HorizontalAlignment="Left"  Margin="6,0,0,1"  Classes="StyleDataGrid"  > 
+      
+                <DataGrid.Columns> 
+                    <!-- 全选列（不变） -->
+                <DataGridTemplateColumn Width="70" IsReadOnly="True">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox Classes="CheckBoxStyle"  
+                                        IsChecked="{Binding DataContext.IsSelectAll, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                        Content="全选"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm1:TrajectorySequenceBaseModel">
+                            <CheckBox Classes="CheckBoxStyle" 
+                                        IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn> 
+
+                    <!-- 1. 序号（只读） -->
+                    <DataGridTextColumn 
+                            Header="序号" 
+                            Binding="{Binding SerialNumber}" 
+                            Width="68"
+                            IsReadOnly="True"  /> 
+
+                    <!-- 2. 子模板ID（只读） -->
+                  <!--  <DataGridTextColumn   Header="轨迹ID"  Binding="{Binding TrackID }"   Width="100"    IsReadOnly="True"/> -->
+                          
+                        <!-- 3. 计算轨迹类型（可编辑：ComboBox） -->
+                <DataGridTemplateColumn 
+                    Header="类型"   Width="90"   > 
+                        <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm1:TrajectorySequenceModel"> 
+                                <ComboBox  IsEnabled="False" 
+			                        Margin="2"  Width="66"  
+		                            ItemsSource="{Binding CalculateTrajectoryTypeModel.ItemsSource, Mode=OneWay}" 
+                                    SelectedItem="{Binding CalculateTrajectoryTypeModel.SelectedItem, Mode=TwoWay}"  > 
+				                        <ComboBox.ItemTemplate>
+					                        <DataTemplate   DataType="ui:ComBoxItem">
+						                        <StackPanel Orientation="Horizontal" Spacing="2"> 
+					     	                        <TextBlock Text="{Binding DisplayName}" /> 
+					                            </StackPanel>
+					                        </DataTemplate>
+				                        </ComboBox.ItemTemplate>
+                                </ComboBox> 
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- 3. 是否点胶（可编辑：ToggleSwitch） -->
+                <DataGridTemplateColumn 
+                    Header="点胶"  Width="70"
+                    >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm1:TrajectorySequenceModel">
+                            <!-- 绑定到 IsDispensingViewModel.IsChecked（双向同步） -->
+                            <ToggleSwitch   IsEnabled="False" 
+                                IsChecked="{Binding IsDispensingViewModel.IsChecked, Mode=TwoWay}"
+                                HorizontalAlignment="Center"
+                                OffContent=""  OnContent=""
+                                MinWidth="60"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- 4. 样式  --> 
+                <DataGridTemplateColumn 
+                    Header="样式"   Width="220"   > 
+                        <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm1:TrajectorySequenceModel">   
+                         <ComboBox    IsEnabled="False" 
+			                        Classes="DataGrid_ComboBoxStyle" Width="210" 
+		                        ItemsSource="{Binding SelectedStyleModel.ItemsSource, Mode=TwoWay}" 
+                                SelectedItem="{Binding SelectedStyleModel.SelectedItem, Mode=TwoWay}"  > 
+				                    <ComboBox.ItemTemplate>
+					                    <DataTemplate   DataType="ui:ComBoxItem">
+						                    <StackPanel Orientation="Horizontal"  > 
+					     	                    <TextBlock Text="{Binding DisplayName}" /> 
+					                        </StackPanel>
+					                    </DataTemplate>
+				                    </ComboBox.ItemTemplate>
+                            </ComboBox> 
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                     
+                <!-- 5. 重量单位  -->
+                    <DataGridTemplateColumn 
+                    Header="重量单位"   Width="90"   > 
+                        <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm1:TrajectorySequenceModel"> 
+                                <ComboBox    IsEnabled="False"  
+			                        Margin="2"  Width="66" 
+		                            ItemsSource="{Binding WeightUnitModel.ItemsSource, Mode=OneWay}" 
+                                    SelectedItem="{Binding WeightUnitModel.SelectedItem, Mode=TwoWay}"  > 
+				                        <ComboBox.ItemTemplate>
+					                        <DataTemplate   DataType="ui:ComBoxItem">
+						                        <StackPanel Orientation="Horizontal" Spacing="2"> 
+					     	                        <TextBlock Text="{Binding DisplayName}" /> 
+					                            </StackPanel>
+					                        </DataTemplate>
+				                        </ComboBox.ItemTemplate>
+                                </ComboBox> 
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                      
+                <!-- 6. 重量值（可编辑：NumericUpDown） -->
+                <DataGridTemplateColumn 
+                    Header="重量" 
+                    Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm1:TrajectorySequenceModel">
+                            <!-- 绑定到 WeightViewModel.Value（支持数值输入/调节） -->
+                            <NumericUpDown    IsEnabled="False" 
+                                Value="{Binding WeightViewModel.Value, Mode=TwoWay}"
+                                Minimum="{Binding WeightViewModel.Minimum}"
+                                Increment="{Binding WeightViewModel.Increment}"
+                                HorizontalAlignment="Stretch"
+                                Padding="2"  Width="130" />  
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn> 
+                     
+                </DataGrid.Columns> 
+            </DataGrid>
+        </StackPanel>
+
+         <!--垂直排列: 轨迹成像框     --> 
+         <StackPanel Orientation="Horizontal"   
+                Height="600" Width="584" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"  
+                IsVisible="{Binding ItemsSource.Count,Converter={StaticResource IntToBoolConverter},FallbackValue=False}"> 
+
+                <!-- Path2Control：保留原有属性 -->
+                <custom:PathRenderControl UseLayoutRounding="True"
+                    IconSize="220,220"
+                    IconDataPath="{Binding Source={StaticResource CircleGeometry}}" 
+                    FillColor="Transparent"
+                    StrokeColor="{Binding SelectedItem.IsDispensingViewModel.IsChecked, Converter={StaticResource CustomBoolToColorConverter},ConverterParameter='Gray,Green'}"
+                    StrokeThickness="6"/> 
+
+         </StackPanel>
+
+   </StackPanel> 
+
+        <!-- 3. 按钮区（保存/取消）  -->
+    <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="0 0 0 0">
+        <Button 
+            Content="取消" 
+            Command="{Binding CancelCommand}"  
+            Classes="btnCancel"  />
+             
+        <Button 
+            Content="确认"    Classes="btnSave"
+            Command="{Binding SaveCommand}" 
+            Cursor="Hand"> 
+        </Button>
+    </StackPanel>
+ 
+ </StackPanel> 
+</Window>

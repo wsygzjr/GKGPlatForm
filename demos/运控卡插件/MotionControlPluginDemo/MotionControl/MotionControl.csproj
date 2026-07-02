@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Company>Griffins</Company>
+		<Copyright>Copyright © Griffins 2025</Copyright>
+		<AssemblyVersion>7.1.0.0</AssemblyVersion>
+		<FileVersion>7.1.0.0</FileVersion>
+		<AssemblyTitle>MotionControl</AssemblyTitle>
+		<Product>MotionControl</Product>
+		<TargetFramework>net9.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<OutputPath>F:\Griffins7.1\Bin\Share\MotionControl\</OutputPath>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GF_Gereric" Version="7.1.0">
+			<!--<ExcludeAssets>runtime</ExcludeAssets>-->
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+	
+</Project>

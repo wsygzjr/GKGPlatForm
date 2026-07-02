@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.Vision.CompUI.PageType.InitCfgPage.VisionInitCfg.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="450"
+             x:Class="Griffins.CompUI.Vision.CompUI.PageType.InitCfgPage.VisionInitCfg.Views.VisionInitCfgView"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             x:DataType="vm:VisionInitCfgViewModel">
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="10" Spacing="12" HorizontalAlignment="Left">
+      <custom:ComboxControl LabelName="X轴绑定"
+                            WidthLevel="Medium"
+                            ViewModel="{Binding VisionComboxViewModelX}" />
+      <custom:ComboxControl LabelName="Y轴绑定"
+                            WidthLevel="Medium"
+                            ViewModel="{Binding VisionComboxViewModelY}" />
+      <custom:ComboxControl LabelName="Z轴绑定"
+                            WidthLevel="Medium"
+                            ViewModel="{Binding VisionComboxViewModelZ}" />
+      <custom:ComboxControl LabelName="飞拍切换IO绑定"
+                            WidthLevel="Medium"
+                            ViewModel="{Binding VisionComboxViewModelChange}" />
+      <custom:ComboxControl LabelName="相机触发IO绑定"
+                            WidthLevel="Medium"
+                            ViewModel="{Binding VisionComboxViewModelTrig}" />
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

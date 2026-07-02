@@ -1,0 +1,70 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Mark"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"
+             xmlns:local="using Griffins.UI.General"    
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:MarkPointViewModel"
+             xmlns:convert="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters"  
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.MarkPointView">
+
+    
+    <!-- 转换器 -->
+    <UserControl.Resources>		
+        <convert:ListCountToBoolConverter x:Key="ListCountToBoolConverter"/> 
+        <convert:BoolToDisplayNameConverter x:Key="BoolToDisplayNameConverter"  /> <!-- 添加默认显示文本 -->
+	</UserControl.Resources>  
+
+     <!-- 1Mark子页面：水平排列 --> 
+ <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center"   Margin="0 0 0 0"   Width="1605"   Height="630" >
+		 <!--左侧显示： Mark点项配置 ： 垂直排列-->  
+                <!-- 左侧显示:轨迹列表栏 -->
+    <DockPanel Margin="0" LastChildFill="True"  Width="350"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="630"  >  
+          <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"  Spacing="0" Margin="1 0 0 1" Width="349"  HorizontalAlignment="Left" > 
+                        <Button Content="添加"  Command="{Binding MarkPointItemConfigViewModel.AddCommand}"  Classes="DataGrid_btnAddStyle" MinWidth="60" />  
+          </StackPanel>
+	<!-- 遍历Mark识别数据点位：卡片 -->   
+   <!--  <TextBlock Text="{Binding PointName}"></TextBlock>-->
+       <!--左侧显示DataGrid 绑定数据源   -->  
+        <DataGrid    ItemsSource="{Binding MarkPointItemConfigViewModel.ItemsSource }"    
+                      SelectedItem="{Binding MarkPointItemConfigViewModel.SelectedItem , Mode=TwoWay}" 
+            AutoGenerateColumns="False"
+            BorderBrush="LightGray"
+            BorderThickness="1"
+            IsReadOnly="False" 
+            SelectionMode="Extended"
+            RowHeight="187"  Width="349"  Height="588"
+            CanUserResizeColumns="True" VerticalAlignment="Top"
+            CanUserSortColumns="True"  HorizontalAlignment="Left"  Margin="0,2,2,2"   Classes="StyleDataGrid"  > 
+      
+           <DataGrid.Columns> 
+                <DataGridTemplateColumn 
+                    Header="Mark识别点数据" 
+                    Width="346"  
+                    IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                        <!-- 定义表头样式，设置文本居中 --> 
+                    <DataGridTemplateColumn.CellTemplate>
+                         <DataTemplate DataType="vm:MarkPointPositionInfoViewModel"> 
+	                            <views:MarkPointPositionInfoView Grid.Column="0"  VerticalAlignment="Top"
+	                                                    DataContext="{Binding }" 
+	                                                    Margin="1 2 1 2" Height="185"   Width="347"/>   
+                         </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate> 
+                </DataGridTemplateColumn>
+                                   
+            </DataGrid.Columns> 
+    </DataGrid> 
+ </DockPanel>        
+	 
+  <!--    
+    --><!--右侧显示相机栏  --><!--  
+	<gkgUI:CameraShowView Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" 
+        DataContext="{x:Static local:GlobalVisionViewModel.CameraShowViewModel}" 
+        BorderBrush="#CCCCCC" BorderThickness="1.5"  
+                        Margin="0" Width="815"  Height="731"  /> -->
+  </StackPanel>
+
+</UserControl>

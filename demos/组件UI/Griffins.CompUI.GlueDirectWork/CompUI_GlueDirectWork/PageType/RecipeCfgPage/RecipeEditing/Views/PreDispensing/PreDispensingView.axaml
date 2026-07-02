@@ -1,0 +1,178 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 xmlns:uiviews="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 x:DataType="vm:PreDispensingViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.PreDispensingView">
+
+	<UserControl.Styles>
+		<Style Selector="Button.btn">
+			<Setter Property="Background" Value="#2B8BD6" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="BorderBrush" Value="#2B8BD6" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="CornerRadius" Value="0" />
+			<Setter Property="Padding" Value="22,6" />
+			<Setter Property="Height" Value="35" />
+			<Setter Property="MinWidth" Value="88" />
+			<Setter Property="Margin" Value="8,0,8,0" />
+		</Style>
+		<!-- 底部主操作条：蓝底白字 + 左侧小图标 -->
+		<Style Selector="Button.btnAction">
+			<Setter Property="Background" Value="#2B8BD6" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="BorderBrush" Value="#2B8BD6" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="CornerRadius" Value="0" />
+			<Setter Property="Padding" Value="14,8" />
+			<Setter Property="MinHeight" Value="38" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Margin" Value="6,0" />
+		</Style>
+		<Style Selector="Button.btnAction TextBlock">
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+	</UserControl.Styles>
+
+	<UserControl.Resources>
+		<SolidColorBrush x:Key="PreTableLineBrush" Color="#CCCCCC" />
+		<SolidColorBrush x:Key="PreTableLabelBgBrush" Color="#C5DFFB" />
+	</UserControl.Resources>
+
+	<!-- 总宽 600 = 185+115+185+115，减轻标签与下拉文字截断 -->
+	<StackPanel Orientation="Vertical" Margin="0" HorizontalAlignment="Left" MinWidth="600" Width="600">
+
+		<Border BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1" CornerRadius="0" Background="White">
+			<Grid RowDefinitions="38,38,38,38,38,38,38,38,38">
+				<Grid Grid.Row="0" ColumnDefinitions="185,*" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding EnablePreDispensingLabelViewModel}" />
+					</Border>
+					<custom:ToggleSwitchControl LabelName="" WidthLevel="Small" FixWidth="False" ViewModel="{Binding EnablePreDispensingViewModel}" Grid.Column="1"  />
+				</Grid>
+
+				<Grid Grid.Row="1" ColumnDefinitions="185,*" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding EnableRealTimeHeightMeasurementLabelViewModel}" />
+					</Border>
+					<custom:ToggleSwitchControl Grid.Column="1" LabelName="" FixWidth="False" WidthLevel="Small" ViewModel="{Binding EnableRealTimeHeightMeasurementViewModel}" />
+				</Grid>
+
+				<Grid Grid.Row="2" ColumnDefinitions="185,*" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding Enable2DLabelViewModel}" />
+					</Border>
+					<custom:ToggleSwitchControl Grid.Column="1" LabelName="" FixWidth="False" WidthLevel="Small" ViewModel="{Binding Enable2DViewModel}" />
+				</Grid>
+
+				<Grid Grid.Row="3" ColumnDefinitions="185,*" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding EnableAutoResetLabelViewModel}" />
+					</Border>
+					<custom:ToggleSwitchControl Grid.Column="1" LabelName="" FixWidth="False" WidthLevel="Small" ViewModel="{Binding EnableAutoResetViewModel}" />
+				</Grid>
+
+				<Grid Grid.Row="4" ColumnDefinitions="185,*" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding SinglePreDispensingCountLabelViewModel}" />
+					</Border>
+					<custom:TextInputControl Grid.Column="1" LabelName="" WidthLevel="Small" FixWidth="False" ViewModel="{Binding SinglePreDispensingCountViewModel}" />
+				</Grid>
+
+				<Grid Grid.Row="5" ColumnDefinitions="185,*" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding DispensingTypeLabelViewModel}" />
+					</Border>
+					<Border Grid.Column="1" Background="White" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="0,0,0,1">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0">
+							<RadioButton GroupName="PreDispensingType" Content="打点" IsChecked="{Binding IsPointType, Mode=TwoWay}" VerticalAlignment="Center" />
+							<RadioButton GroupName="PreDispensingType" Content="打线" IsChecked="{Binding IsLineType, Mode=TwoWay}" VerticalAlignment="Center" Margin="16,0,0,0" />
+						</StackPanel>
+					</Border>
+				</Grid>
+
+				<Grid Grid.Row="6" ColumnDefinitions="185,115,185,115" ColumnSpacing="0">
+							<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+								<custom:TextBlockControl LabelName="" FixWidth="True" WidthLevel="Medium2" ViewModel="{Binding XCountLabelViewModel}" />
+							</Border>
+							<Border Grid.Column="1" Background="White" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="0,0,1,1">
+								<custom:TextInputControl LabelName="" FixWidth="False" WidthLevel="Small" ViewModel="{Binding XCountViewModel}" />
+							</Border>
+							<Border Grid.Column="2" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="0,0,1,1">
+								<custom:TextBlockControl LabelName="" FixWidth="True" WidthLevel="Medium2" ViewModel="{Binding YCountLabelViewModel}" />
+							</Border>
+							<Border Grid.Column="3" Background="White" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="0,0,0,1">
+								<custom:TextInputControl LabelName="" FixWidth="False" WidthLevel="Small" ViewModel="{Binding YCountViewModel}" />
+							</Border>
+				</Grid>
+
+				<Grid Grid.Row="7" ColumnDefinitions="185,115,185,115" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding DispensingStyleLabelViewModel}" />
+					</Border>
+					<Border Grid.Column="1" Background="White" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="0,0,1,1">
+						<custom:ComboxControl LabelName="" WidthLevel="Small" FixWidth="False" ViewModel="{Binding DispensingStyleViewModel}" />
+					</Border>
+					<Border Grid.Column="2" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding DispensingPointCountLabelViewModel}" />
+					</Border>
+					<Border Grid.Column="3" Background="White" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,0,1">
+						<custom:TextInputControl LabelName="" WidthLevel="Small" FixWidth="False" ViewModel="{Binding DispensingPointCountViewModel}" />
+					</Border>
+				</Grid>
+
+				<Grid Grid.Row="8" ColumnDefinitions="185,*" ColumnSpacing="0">
+					<Border Grid.Column="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,0">
+						<custom:TextBlockControl LabelName="" WidthLevel="Medium2" FixWidth="True" ViewModel="{Binding RemainingCountLabelViewModel}" />
+					</Border>
+					<Border Grid.Column="1" Background="White" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="0,0,0,0">
+						<Grid ColumnDefinitions="*,Auto" Margin="0">
+							<custom:TextInputControl Grid.Column="0" LabelName="" WidthLevel="Small" FixWidth="False" ViewModel="{Binding RemainingCountViewModel}" HorizontalAlignment="Stretch" />
+							<Button Grid.Column="1" Content="重置" Command="{Binding ResetCommand}" Classes="btn" VerticalAlignment="Center" />
+						</Grid>
+					</Border>
+				</Grid>
+			</Grid>
+		</Border>
+
+		<Border BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1" Background="White" ClipToBounds="False">
+			<Grid ColumnDefinitions="72,*" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+				<Grid Grid.Column="0" RowDefinitions="38,38,38,38" Width="72">
+					<Border Grid.Row="0" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Small" Width="72" FixWidth="False" MaxWidth="72" ViewModel="{Binding DotMatrixLabelViewModel}" />
+					</Border>
+					<Border Grid.Row="1" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Small" Width="72" FixWidth="False" MaxWidth="72" ViewModel="{Binding LeftUpperLabelViewModel}" />
+					</Border>
+					<Border Grid.Row="2" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,1">
+						<custom:TextBlockControl LabelName="" WidthLevel="Small" Width="72" FixWidth="False" MaxWidth="72" ViewModel="{Binding LeftLowerLabelViewModel}" />
+					</Border>
+					<Border Grid.Row="3" Background="{StaticResource PreTableLabelBgBrush}" BorderBrush="{StaticResource PreTableLineBrush}" BorderThickness="1,0,1,0">
+						<custom:TextBlockControl LabelName="" WidthLevel="Small" Width="72" FixWidth="False" MaxWidth="72" ViewModel="{Binding RightUpperLabelViewModel}" />
+					</Border>
+				</Grid>
+
+				<StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Stretch" ClipToBounds="False">
+					<uiviews:XYPositionTeachHeaderTextView Height="38" HorizontalAlignment="Stretch" Margin="0" />
+					<uiviews:XYPositionTeachTextView Height="38" HorizontalAlignment="Stretch" DataContext="{Binding DotMatrix_LeftUpperPositionViewModel}" Margin="0" />
+					<uiviews:XYPositionTeachTextView Height="38" HorizontalAlignment="Stretch" DataContext="{Binding DotMatrix_LeftLowerPositionViewModel}" Margin="0" />
+					<uiviews:XYPositionTeachTextView Height="38" HorizontalAlignment="Stretch" DataContext="{Binding DotMatrix_RightUpperPositionViewModel}" Margin="0" />
+				</StackPanel>
+			</Grid>
+		</Border>
+
+		<Grid ColumnDefinitions="*,*,*,*" Margin="0,14,0,0" HorizontalAlignment="Stretch">
+			<Button Grid.Column="0" Classes="btnAction" Command="{Binding DryRunCommand}" Content="试运行"/>
+			<Button Grid.Column="1" Classes="btnAction" Command="{Binding CreateTemplateCommand}" Content="创建模板"/>
+			<Button Grid.Column="2" Classes="btnAction" Command="{Binding PreDispensingRunCommand}" Content="预点胶运行"/>
+			<Button Grid.Column="3" Classes="btnAction" Command="{Binding SaveCommand}" Content="保存"/>
+		</Grid>
+
+	</StackPanel>
+</UserControl>

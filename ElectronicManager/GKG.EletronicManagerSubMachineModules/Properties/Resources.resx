@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FactoryParametersNull" xml:space="preserve">
+    <value>EletronicFactoryParameters为空，无法初始化运控卡</value>
+  </data>
+  <data name="MotionControlCardInformationsEmpty" xml:space="preserve">
+    <value>MotionControlCardInformations为空，未配置任何运控卡</value>
+  </data>
+  <data name="MotionCardIdEmpty" xml:space="preserve">
+    <value>运控卡配置MotionCardID为空，类型:{0}</value>
+  </data>
+  <data name="MotionCardIdDuplicate" xml:space="preserve">
+    <value>运控卡配置MotionCardID重复:{0}</value>
+  </data>
+  <data name="MotionCardInitFailed" xml:space="preserve">
+    <value>运控卡初始化失败，类型:{0}，ID:{1}，返回码:{2}</value>
+  </data>
+  <data name="BeforeSwitchPFNotImplemented" xml:space="preserve">
+    <value>BeforeSwitchPF 尚未实现。</value>
+  </data>
+  <data name="AfterStopWorkNotImplemented" xml:space="preserve">
+    <value>AfterStopWork 尚未实现。</value>
+  </data>
+  <data name="AxisConfigNotLoaded" xml:space="preserve">
+    <value>当前未加载轴配置信息，无法构建RobotDriver。</value>
+  </data>
+  <data name="AxisInfoNotFoundById" xml:space="preserve">
+    <value>未找到对应轴ID的轴信息: {0}</value>
+  </data>
+  <data name="AxisIdsAcrossMultipleMotionCards" xml:space="preserve">
+    <value>请求的轴ID列表跨越了多张运控卡，当前仅支持同一张卡创建RobotDriver。</value>
+  </data>
+  <data name="MotionCardInstanceNotFoundByCardGuid" xml:space="preserve">
+    <value>未找到所属运控卡实例: {0}</value>
+  </data>
+  <data name="IoStateConfigNotLoaded" xml:space="preserve">
+    <value>当前未加载IO状态量配置信息，无法获取状态量实例。</value>
+  </data>
+  <data name="IoStateInfoNotFoundByGuid" xml:space="preserve">
+    <value>未找到对应IOGuid的IO状态量信息: {0}</value>
+  </data>
+  <data name="IoStateDeviceGuidNotConfigured" xml:space="preserve">
+    <value>IO状态量未配置DeviceGuid: {0}</value>
+  </data>
+  <data name="IoStateChannelIdNotConfigured" xml:space="preserve">
+    <value>IO状态量未配置ChannelId: {0}</value>
+  </data>
+  <data name="MotionCardStateIoTableNotFound" xml:space="preserve">
+    <value>未找到IO所属运控卡状态量实例表: {0}</value>
+  </data>
+  <data name="StateIoInstanceNotFound" xml:space="preserve">
+    <value>未找到对应IO状态量实例，CardGuid:{0}, ChannelId:{1}</value>
+  </data>
+</root>

@@ -1,0 +1,152 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2026</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>Griffins.CompUI.EletronicManager</AssemblyTitle>
+    <Product>Griffins.CompUI.EletronicManager</Product>
+    <AssemblyName>Griffins.CompUI.EletronicManager</AssemblyName>
+    <RootNamespace>Griffins.CompUI.EletronicManager</RootNamespace>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Bin\Share\CompUI\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="App.axaml.cs" />
+    <Compile Remove="Program.cs" />
+    <Compile Remove="ViewLocator.cs" />
+    <Compile Remove="CompUI_EletronicManager\PageType\RecipeCfgPage\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="App.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GKG" Version="1.0.0" />
+    <PackageReference Include="GKG.ElectronicControl" Version="1.0.0" />
+    <PackageReference Include="GKG.UI" Version="7.1.0" />
+    <PackageReference Include="Griffins.ImeIOT" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.UI2" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.Map2" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.ImeIOT.Map" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Griffins.Map.UI" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Newtonsoft.JsonG" Version="7.1.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Avalonia" Version="11.3.3" ExcludeAssets="runtime" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.3" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EletronicManagerSubMachineModules">
+      <HintPath>F:\Griffins7.1\Bin\Share\ImeIOT\SubMM\EletronicManagerSubMachineModules.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ResourceA.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceA.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceA.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="CleanOutputDependencies" AfterTargets="Build">
+    <ItemGroup>
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map.UI.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Map2.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.UI2.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.ImeIOT.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.dll" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map.UI.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.Map2.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.UI2.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.ImeIOT.pdb" />
+      <PdbsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.pdb" />
+      <DllsToDelete Include="$(OutputPath)Griffins.Commu.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map.UI.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.Map2.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.UI2.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.ImeIOT.xml" />
+      <XmlsToDelete Include="$(OutputPath)Griffins.ImeIOT.Map.xml" />
+      <DllsToDelete Include="$(OutputPath)Griffins.WorkFlow.xml" />
+      <AllFilesToDelete Include="@(DllsToDelete)" />
+      <AllFilesToDelete Include="@(PdbsToDelete)" />
+      <AllFilesToDelete Include="@(XmlsToDelete)" />
+    </ItemGroup>
+    <Delete Files="@(AllFilesToDelete)" ContinueOnError="true" />
+  </Target>
+	<!-- 自定义目标：清理输出 -->
+
+	<Target Name="CleanOutputDependencies" AfterTargets="Build">
+
+		<ItemGroup>
+
+			<!-- 要删除的 DLL 文件 -->
+
+			<DllsToDelete Include="$(OutputPath)GKG.dll" />
+			<DllsToDelete Include="$(OutputPath)GKG.UI.dll" />
+			<DllsToDelete Include="$(OutputPath)AvaloniaVisionControl.dll" />
+			<DllsToDelete Include="$(OutputPath)BasicRobotSubMachineModules.dll" />
+			<DllsToDelete Include="$(OutputPath)CategoryARobotSubMachineModules.dll" />
+			<DllsToDelete Include="$(OutputPath)DispensingFunctionHeadSubMachineModules.dll" />
+			<DllsToDelete Include="$(OutputPath)GKG.ElectronicControl.dll" />
+			<DllsToDelete Include="$(OutputPath)GKG.MotionControl.dll" />
+			<DllsToDelete Include="$(OutputPath)PokaYoke.dll" />
+			<DllsToDelete Include="$(OutputPath)WeighingBalanceSubMachineModules.dll" />
+			<DllsToDelete Include="$(OutputPath)Valve.dll" />
+
+
+			<!-- 要删除的 PDB 文件 -->
+
+			<DllsToDelete Include="$(OutputPath)GKG.pdb" />
+			<PdbsToDelete Include="$(OutputPath)GKG.UI.pdb" />
+			<PdbsToDelete Include="$(OutputPath)AvaloniaVisionControl.pdb" />
+			<DllsToDelete Include="$(OutputPath)BasicRobotSubMachineModules.pdb" />
+			<PdbsToDelete Include="$(OutputPath)CategoryARobotSubMachineModules.pdb" />
+			<PdbsToDelete Include="$(OutputPath)DispensingFunctionHeadSubMachineModules.pdb" />
+			<DllsToDelete Include="$(OutputPath)GKG.ElectronicControl.pdb" />
+			<PdbsToDelete Include="$(OutputPath)GKG.MotionControl.pdb" />
+			<PdbsToDelete Include="$(OutputPath)PokaYoke.pdb" />
+			<PdbsToDelete Include="$(OutputPath)Valve.pdb" />
+			<PdbsToDelete Include="$(OutputPath)WeighingBalanceSubMachineModules.pdb" />
+
+
+
+			<!-- 要删除的 XML 文件 -->
+
+			<DllsToDelete Include="$(OutputPath)GKG.xml" />
+			<XmlsToDelete Include="$(OutputPath)GKG.UI.xml" />
+			<XmlsToDelete Include="$(OutputPath)AvaloniaVisionControl.xml" />
+
+
+
+			<!-- 合并所有要删除的文件 -->
+
+			<AllFilesToDelete Include="@(DllsToDelete)" />
+			<AllFilesToDelete Include="@(PdbsToDelete)" />
+			<AllFilesToDelete Include="@(XmlsToDelete)" />
+		</ItemGroup>
+
+		<!-- 删除文件 -->
+
+		<Delete Files="@(AllFilesToDelete)" ContinueOnError="true" />
+	</Target>
+</Project>

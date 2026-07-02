@@ -1,0 +1,228 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:common="using:PageTypeSimple.InitCfgPage.Calibration.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"    
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:ThicknessMeasurementWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:DispensingPageType.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.ThicknessMeasurementWorkAreaView">
+	
+    <!--测厚度工作区--> 
+  <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"  Width="860"  Height="290" HorizontalAlignment="Left"  VerticalAlignment="Top"   > 
+
+        <TextBlock Text="测厚设置"  Classes="TextBlockWorkAreaViewTitle" TextAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" ></TextBlock> 
+
+           <StackPanel Orientation="Horizontal"   Width="860"  HorizontalAlignment="Left"  VerticalAlignment="Top"   > 
+                     <!-- 测试值（mm）  --> 
+               <custom:TextBlockControl 
+			    LabelName="测试值(mm)"
+			    WidthLevel="Small"  
+			    ViewModel="{Binding TestValueLabelViewModel}"
+			    /> 
+              <!-- 厚度值（mm）  --> 
+               <custom:TextBlockControl 
+			    LabelName="厚度值(mm)"
+			    WidthLevel="Small"  
+			    ViewModel="{Binding ThicknessLabelViewModel}"
+			    /> 
+            
+
+           </StackPanel>
+                 
+           <!--      --> 
+           <DockPanel Margin="0" LastChildFill="True"  Width="860"  >  
+                <!--1. 顶部操作菜单（添加按钮）--> 
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="1" Margin="0 0 0 1" > 
+                           <!-- 位置  视图模型  --> 
+                    <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,Auto" 
+                                RowSpacing="0"   Height="70" Width="876" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                              
+                      <!-- <TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Top"  Width="90"
+                                        FontFamily="SimSun"     FontSize="14"  Text="基准点位置" Margin="0,2,4,0"    Background="red"  />-->
+                        
+                       <Grid   Grid.Row="0"  Grid.Column="0"  RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+                            RowSpacing="0"  HorizontalAlignment="Left"  Height="70" Width="580" > 
+                                <!-- 坐标表头 -->
+                                <views:PositionTeachHeaderWithNameView    Grid.Row="0"  Grid.Column="0"  
+                                    Margin="0"   Width="580"  />   
+                                <!-- 坐标数据 -->
+                                <views:PositionTeachWithNameView    Grid.Row="1"  Grid.Column="0" 
+                                    DataContext="{Binding BasePositionViewModel }" 
+                                    Margin="0"   Width="580"  />   
+                        </Grid> 
+
+                    
+                         <Button    Grid.Row="0"  Grid.Column="1" 
+                                Content="插入测厚点"   Margin="10,18"   
+                                Command="{Binding AddThicknessPositionCommand }" 
+                                Classes="DataGrid_btnAddStyle" Width="95" VerticalAlignment="Bottom" />    
+                    </Grid>
+                </StackPanel>
+            
+                    <!-- 位置  视图模型   -->  
+                <DataGrid   ItemsSource="{Binding ThicknessMeasurementPositionViewModels }"     
+                    AutoGenerateColumns="False"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    IsReadOnly="False" 
+                    SelectionMode="Extended"
+                    RowHeight="40"  Width="860"  Height="170"
+                    CanUserResizeColumns="True" VerticalAlignment="Top" 
+                    CanUserSortColumns="True"  HorizontalAlignment="Left"  Margin="0,2,2,2"   Classes="StyleDataGrid"  > 
+      
+                        <DataGrid.Columns>  
+                            <!-- 1. 点位名称（只读） -->
+                            <DataGridTextColumn 
+                                    Header="点位" 
+                                    Binding="{Binding HightShowName}" 
+                                    Width="80"
+                                    IsReadOnly="True"  /> 
+
+                            <DataGridTemplateColumn 
+                                Header="X" 
+                                Width="100"  
+                                IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                    <!-- 定义表头样式，设置文本居中 --> 
+                                <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:ThicknessMeasurementPositionViewModel">
+                                            <NumericUpDown 
+                                            Value="{Binding XViewModel.Value, Mode=TwoWay}"
+                                            Minimum="{Binding XViewModel.Minimum}"
+                                            Increment="{Binding XViewModel.Increment}"
+                                            HorizontalAlignment="Stretch"  Width="95"   Classes="DataGrid_NumericUpDownStyle" />   
+                                        </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate> 
+                            </DataGridTemplateColumn> 
+
+                            <DataGridTemplateColumn 
+                                Header="Y" 
+                                Width="100"  
+                                IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                    <!-- 定义表头样式，设置文本居中 --> 
+                                <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:ThicknessMeasurementPositionViewModel">
+                                            <NumericUpDown 
+                                            Value="{Binding YViewModel.Value, Mode=TwoWay}"
+                                            Minimum="{Binding YViewModel.Minimum}"
+                                            Increment="{Binding YViewModel.Increment}"
+                                            HorizontalAlignment="Stretch"  Width="95"   Classes="DataGrid_NumericUpDownStyle" />   
+                                        </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate> 
+                            </DataGridTemplateColumn>  
+                                  
+                            <DataGridTemplateColumn 
+                                Header="Z" 
+                                Width="100"  
+                                IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                    <!-- 定义表头样式，设置文本居中 --> 
+                                <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:ThicknessMeasurementPositionViewModel">
+                                            <NumericUpDown 
+                                            Value="{Binding ZViewModel.Value, Mode=TwoWay}"
+                                            Minimum="{Binding ZViewModel.Minimum}"
+                                            Increment="{Binding ZViewModel.Increment}"
+                                            HorizontalAlignment="Stretch"  Width="95"   Classes="DataGrid_NumericUpDownStyle" />   
+                                        </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate> 
+                            </DataGridTemplateColumn> 
+
+                              <DataGridTemplateColumn 
+                                Header="厚度(mm)" 
+                                Width="100"  
+                                IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                    <!-- 定义表头样式，设置文本居中 --> 
+                                <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:ThicknessMeasurementPositionViewModel">
+                                            <NumericUpDown 
+                                            Value="{Binding ThicknessViewModel.Value, Mode=TwoWay}"
+                                            Minimum="{Binding ThicknessViewModel.Minimum}"
+                                            Increment="{Binding ThicknessViewModel.Increment}"
+                                            HorizontalAlignment="Stretch"  Width="95"   Classes="DataGrid_NumericUpDownStyle" />   
+                                        </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate> 
+                            </DataGridTemplateColumn> 
+                              <DataGridTemplateColumn 
+                                Header="上限(mm)" 
+                                Width="100"  
+                                IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                    <!-- 定义表头样式，设置文本居中 --> 
+                                <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:ThicknessMeasurementPositionViewModel">
+                                            <NumericUpDown 
+                                            Value="{Binding UpperLimitViewModel.Value, Mode=TwoWay}"
+                                            Minimum="{Binding UpperLimitViewModel.Minimum}"
+                                            Increment="{Binding UpperLimitViewModel.Increment}"
+                                            HorizontalAlignment="Stretch"  Width="95"   Classes="DataGrid_NumericUpDownStyle" />   
+                                        </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate> 
+                            </DataGridTemplateColumn> 
+                              <DataGridTemplateColumn 
+                                Header="下限(mm)" 
+                                Width="100"  
+                                IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                    <!-- 定义表头样式，设置文本居中 --> 
+                                <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="vm:ThicknessMeasurementPositionViewModel">
+                                            <NumericUpDown 
+                                            Value="{Binding LowerLimitViewModel.Value, Mode=TwoWay}"
+                                            Minimum="{Binding LowerLimitViewModel.Minimum}"
+                                            Increment="{Binding LowerLimitViewModel.Increment}"
+                                            HorizontalAlignment="Stretch"  Width="95"   Classes="DataGrid_NumericUpDownStyle" />   
+                                        </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate> 
+                            </DataGridTemplateColumn> 
+                          
+
+                            <!-- 操作列（删除按钮） -->
+                            <DataGridTemplateColumn 
+                                Header="操作" 
+                                Width="200" 
+                                IsReadOnly="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="vm:ThicknessMeasurementPositionViewModel">
+                                        <StackPanel Orientation="Horizontal" Spacing="1" VerticalAlignment="Center" >
+                                           
+                                            <Button   Grid.Row="0"  Grid.Column="4"   Width="50"
+                                            Content="激光到"   
+                                            Command="{Binding MoveCommand}"   VerticalAlignment="Center"   > 
+                                            </Button> 
+
+                                            <Button   Grid.Row="0"  Grid.Column="4"   Width="50"
+                                            Content="相机到"   
+                                            Command="{Binding MoveCommand}"  VerticalAlignment="Center"   > 
+                                            </Button> 
+                                              
+                                         <Button  Grid.Row="0"  Grid.Column="3"     Width="40"
+                                            Content="教导" 
+                                            Command="{Binding TeachCommand}"   VerticalAlignment="Center"  />
+                       
+                                            <Button 
+                                            Content="×" 
+                                            Command="{Binding DataContext.DeleteThicknessPositionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding}" 
+                                              Width="40" > </Button>      
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            
+
+                        </DataGrid.Columns> 
+                </DataGrid> 
+            </DockPanel>
+             
+        </StackPanel>
+      
+
+    </Border>
+      
+</UserControl>

@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="720" d:DesignHeight="480"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:TemplateWorkspaceViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing.TemplateWorkspaceView">
+
+	<ScrollViewer Padding="16,12" HorizontalScrollBarVisibility="Disabled">
+		<StackPanel Spacing="14" Width="300" HorizontalAlignment="Left">
+			<custom:TextInputControl LabelName="模板名"
+									 WidthLevel="Medium"
+									 HorizontalAlignment="Left"
+									 FixWidth="False"
+									 ViewModel="{Binding TemplateNameViewModel}" />
+
+			<StackPanel Spacing="8">
+				<TextBlock Text="模板基准点" FontSize="15" FontWeight="SemiBold" />
+					<custom:NumericControl LabelName="X"
+										   WidthLevel="Small"
+										   FixWidth="False"
+										   HorizontalAlignment="Stretch"
+										   ViewModel="{Binding RefPointX}" />
+					<custom:NumericControl LabelName="Y"
+										   WidthLevel="Small"
+										   FixWidth="False"
+										   HorizontalAlignment="Stretch"
+										   ViewModel="{Binding RefPointY}" />
+					<Button Content="教导"
+							VerticalAlignment="Bottom"
+							MinWidth="72"
+							Command="{Binding TeachCommand}" />
+			</StackPanel>
+
+			<StackPanel Spacing="8">
+				<custom:ComboxControl LabelName="模板mark点"
+									  WidthLevel="Medium"
+									  HorizontalAlignment="Stretch"
+									  FixWidth="False"
+									  ViewModel="{Binding MarkComboboxViewModel}" />
+
+				<custom:NumericControl LabelName="X"
+									   WidthLevel="Small"
+									   HorizontalAlignment="Stretch"
+									   FixWidth="False"
+									   ViewModel="{Binding MarkPointX}" />
+				<custom:NumericControl LabelName="Y"
+									   WidthLevel="Small"
+									   HorizontalAlignment="Stretch"
+									   FixWidth="False"
+									   ViewModel="{Binding MarkPointY}" />
+				<Button Content="识别"
+						VerticalAlignment="Bottom"
+						MinWidth="72"
+						Command="{Binding RecognizeCommand}" />
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

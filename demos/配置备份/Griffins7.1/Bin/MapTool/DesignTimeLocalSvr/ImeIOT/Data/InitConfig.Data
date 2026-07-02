@@ -1,0 +1,9 @@
+{
+    "ImeModel": "TestImeModel",
+    "MMs": [],
+    "SubMMs": [{
+            "Alias": "Test_YSGDGNT1",
+            "SubMMModel": "Calibration",
+            "CfgInfo": "W3siSUQiOiJQYXJhbTEiLCJWYWx1ZSI6IntcIkRhdGFUeXBlXCI6NCxcIkRhdGFcIjpcIjBcIn0ifSx7IklEIjoiUGFyYW0yIiwiVmFsdWUiOiJ7XCJEYXRhVHlwZVwiOjUsXCJEYXRhXCI6XCJcIn0ifV0="
+        }]
+}

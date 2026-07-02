@@ -1,0 +1,117 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.FixingStructure.CompUI_FixingStructure.PageType.RecipeCfgPage.AxisFixRecipeConfig.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="1200"
+             d:DesignHeight="520"
+             x:DataType="vm:AxisFixRecipeConfigCompUIViewModel"
+             x:Class="Griffins.CompUI.FixingStructure.CompUI_FixingStructure.PageType.RecipeCfgPage.AxisFixRecipeConfig.Views.AxisFixRecipeConfigCompUIView">
+  <UserControl.Styles>
+    <Style Selector="Border.PageShell">
+      <Setter Property="Background" Value="#F1F4F8"/>
+      <Setter Property="Padding" Value="18"/>
+    </Style>
+    <Style Selector="Border.Card">
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#E0E3E9"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BoxShadow" Value="0 4 12 0 #120F172A"/>
+    </Style>
+    <Style Selector="Border.ContentPanel">
+      <Setter Property="Background" Value="#F7FAFD"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="BorderBrush" Value="#E8EAEE"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="14,16"/>
+    </Style>
+    <Style Selector="TextBlock.SectionTitle">
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="#1F3F75"/>
+    </Style>
+    <Style Selector="TextBlock.FormLabel">
+      <Setter Property="Foreground" Value="#3C4652"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style Selector="Button.PrimaryAction">
+      <Setter Property="Background" Value="#1C5ED6"/>
+      <Setter Property="Foreground" Value="#FFF"/>
+      <Setter Property="BorderBrush" Value="#1C5ED6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="4"/>
+      <Setter Property="Padding" Value="16,8"/>
+      <Setter Property="MinWidth" Value="96"/>
+      <Setter Property="Height" Value="36"/>
+    </Style>
+    <Style Selector="custom|TextInputControl">
+      <Setter Property="FixWidth" Value="False"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border Classes="PageShell">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Auto">
+      <StackPanel Spacing="16">
+        <Border Classes="Card" Padding="14">
+          <Grid RowDefinitions="Auto,16,Auto">
+            <TextBlock Classes="SectionTitle" Text="移动轨迹参数"/>
+            <Border Grid.Row="2" Classes="ContentPanel">
+              <Grid ColumnDefinitions="132,120,40,132,120"
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="10"
+                    RowSpacing="14">
+                <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="起始速度(mm/s)"/>
+                <custom:TextInputControl Grid.Row="0" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding StartSpeedViewModel}"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Classes="FormLabel" Text="最大速度(mm/s)"/>
+                <custom:TextInputControl Grid.Row="0" Grid.Column="4" LabelName="" WidthLevel="Small3" ViewModel="{Binding MaxSpeedViewModel}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="加速度(mm/s&#178;)"/>
+                <custom:TextInputControl Grid.Row="1" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding AccelerationViewModel}"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" Classes="FormLabel" Text="减速度(mm/s&#178;)"/>
+                <custom:TextInputControl Grid.Row="1" Grid.Column="4" LabelName="" WidthLevel="Small3" ViewModel="{Binding DecelerationViewModel}"/>
+              </Grid>
+            </Border>
+          </Grid>
+        </Border>
+
+        <Border Classes="Card" Padding="14">
+          <Grid RowDefinitions="Auto,16,Auto">
+            <TextBlock Classes="SectionTitle" Text="固定位置与手动操作"/>
+            <Border Grid.Row="2" Classes="ContentPanel">
+              <Grid ColumnDefinitions="132,120,100,100,20,108,120,100,100"
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="10"
+                    RowSpacing="14">
+                <TextBlock Grid.Row="0" Grid.Column="0" Classes="FormLabel" Text="固定位置(mm)"/>
+                <custom:TextInputControl Grid.Row="0" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding FixingPositionViewModel}"/>
+                <Button Grid.Row="0" Grid.Column="2" Classes="PrimaryAction" Content="教导1" Command="{Binding TeachFixingPositionCommand}"/>
+                <Button Grid.Row="0" Grid.Column="3" Classes="PrimaryAction" Content="移动到" Command="{Binding MoveToFixingPositionCommand}"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="5" Classes="FormLabel" Text="当前位置(mm)"/>
+                <custom:TextInputControl Grid.Row="0" Grid.Column="6" LabelName="" WidthLevel="Small3" ViewModel="{Binding CurrentPositionViewModel}"/>
+                <Button x:Name="Button_MoveUp" Grid.Row="0" Grid.Column="7" Classes="PrimaryAction" Content="上移"
+                        PointerPressed="MoveUpButton_OnPointerPressed"
+                        PointerReleased="MoveButton_OnPointerReleased"/>
+                <Button x:Name="Button_MoveDown" Grid.Row="0" Grid.Column="8" Classes="PrimaryAction" Content="下移"
+                        PointerPressed="MoveDownButton_OnPointerPressed"
+                        PointerReleased="MoveButton_OnPointerReleased"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Classes="FormLabel" Text="松开位置(mm)"/>
+                <custom:TextInputControl Grid.Row="1" Grid.Column="1" LabelName="" WidthLevel="Small3" ViewModel="{Binding ReleaseFixingPositionViewModel}"/>
+                <Button Grid.Row="1" Grid.Column="2" Classes="PrimaryAction" Content="教导2" Command="{Binding TeachReleasePositionCommand}"/>
+                <Button Grid.Row="1" Grid.Column="3" Classes="PrimaryAction" Content="移动到" Command="{Binding MoveToReleasePositionCommand}"/>
+                <Button Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Classes="PrimaryAction" Content="轴停止" Command="{Binding AxisStopCommand}"/>
+              </Grid>
+            </Border>
+          </Grid>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+  </Border>
+</UserControl>

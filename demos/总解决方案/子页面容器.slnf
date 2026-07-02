@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "总解决方案.sln",
+    "projects": [
+      "..\\A新图控\\子页面容器插件\\GridControlContainer\\GridControlContainer.csproj",
+      "..\\A新图控\\子页面容器插件\\TabControlContainer\\TabControlContainer.csproj"
+    ]
+  }
+}

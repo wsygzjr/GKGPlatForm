@@ -1,0 +1,84 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:IOWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:DispensingPageType.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.IOWorkAreaView">
+	
+    	
+  <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"   Width="876"  Height="610" HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+             
+			<TextBlock Text="IO设置"  Classes="TextBlockWorkAreaViewTitle" ></TextBlock> 
+
+                   <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
+                        RowSpacing="0"   Height="120" Width="876" HorizontalAlignment="Left" VerticalAlignment="Center"  >
+					   
+							<custom:ComboxControl 
+								Grid.Row="0"  Grid.Column="0"  
+								HorizontalAlignment="Left"
+								HorizontalContentAlignment="Center"
+								VerticalAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="IO类型"
+								WidthLevel="Small"
+								ViewModel="{Binding IOTypeViewModel  }" /> 
+
+							 <custom:ComboxControl  
+								Grid.Row="0"  Grid.Column="1"  
+								HorizontalAlignment="Left"
+								HorizontalContentAlignment="Center"
+								VerticalAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="功能类型"
+								WidthLevel="Small"
+								ViewModel="{Binding IOFunctionViewModel  }" />   
+					   
+
+							<custom:NumericControl
+									Grid.Row="1"  Grid.Column="0" 
+								HorizontalAlignment="Left"
+								HorizontalContentAlignment="Center"
+								VerticalAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="超时时间（ms）"
+								WidthLevel="Small" 
+								ViewModel="{Binding TimeoutViewModel }"
+								/> 
+
+							<!-- 状态开关  -->
+							<custom:ToggleSwitchControl 
+								Grid.Row="1"  Grid.Column="1"  Grid.ColumnSpan="2"
+										HorizontalAlignment="Left"
+								HorizontalContentAlignment="Center"
+								VerticalAlignment="Center"
+								VerticalContentAlignment="Center"
+								LabelName="状态开关"
+								WidthLevel="Small" 
+								ViewModel="{Binding IsActiveViewModel}" />
+		 
+					   
+							<custom:TextBlockControl
+								Grid.Row="2"  Grid.Column="0"  
+								LabelName="指令序号"
+								WidthLevel="Small"  
+								ViewModel="{Binding CommandIndexViewModel }"
+								/> 
+
+                   </Grid>
+		   
+            
+        </StackPanel>
+      
+
+  </Border>
+	 
+</UserControl>

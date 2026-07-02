@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.RWS.CompUI_RWS.PageType.FactoryCfgPage.WorkStationFactoryConfig.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="360"
+             x:DataType="vm:WorkStationFactoryConfigCompUIViewModel"
+             x:Class="Griffins.CompUI.RWS.CompUI_RWS.PageType.FactoryCfgPage.WorkStationFactoryConfig.Views.WorkStationFactoryConfigCompUIView">
+  <Design.DataContext>
+    <vm:WorkStationFactoryConfigCompUIViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="10" Orientation="Vertical" Spacing="16">
+      <Border BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="10">
+        <StackPanel Orientation="Vertical" Spacing="3">
+          <TextBlock Text="轨道工位出厂配置" FontWeight="Bold" FontSize="18" />
+          <TextBlock Text="电气配置与工位能力设置" FontWeight="SemiBold" />
+          <TextBlock Text="用于设置感应器、挡板以及轨道进出能力。" Foreground="#66000000" TextWrapping="Wrap" />
+        </StackPanel>
+      </Border>
+
+      <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+        <Border Grid.Column="0" BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+          <StackPanel Orientation="Vertical" Spacing="12">
+            <TextBlock Text="电气配置" FontWeight="Bold" />
+
+            <Border BorderBrush="#22000000" BorderThickness="1" CornerRadius="4" Padding="10">
+              <StackPanel Orientation="Vertical" Spacing="8">
+                <TextBlock Text="感应器配置" FontWeight="SemiBold" />
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                  <custom:ToggleSwitchControl Grid.Column="0" WidthLevel="Medium2" LabelName="是否有接近感应器" ViewModel="{Binding HasProximitySensorViewModel}" />
+                  <custom:ToggleSwitchControl Grid.Column="1" WidthLevel="Medium2" LabelName="是否有左感应器" ViewModel="{Binding HasLeftSensorViewModel}" />
+                  <custom:ToggleSwitchControl Grid.Column="2" WidthLevel="Medium2" LabelName="是否有右感应器" ViewModel="{Binding HasRightSensorViewModel}" />
+                </Grid>
+              </StackPanel>
+            </Border>
+
+            <Border BorderBrush="#22000000" BorderThickness="1" CornerRadius="4" Padding="10">
+              <StackPanel Orientation="Vertical" Spacing="8">
+                <TextBlock Text="挡板配置" FontWeight="SemiBold" />
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                  <custom:ToggleSwitchControl Grid.Column="0" WidthLevel="Medium2" LabelName="是否有左挡板" ViewModel="{Binding HasLeftBlockViewModel}" />
+                  <custom:ToggleSwitchControl Grid.Column="1" WidthLevel="Medium2" LabelName="是否有右挡板" ViewModel="{Binding HasRightBlockViewModel}" />
+                </Grid>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="#33000000" BorderThickness="1" CornerRadius="6" Padding="12">
+          <StackPanel Orientation="Vertical" Spacing="12">
+            <TextBlock Text="工位能力" FontWeight="Bold" />
+
+            <Border BorderBrush="#22000000" BorderThickness="1" CornerRadius="4" Padding="10">
+              <StackPanel Orientation="Vertical" Spacing="8">
+                <TextBlock Text="进出方向能力" FontWeight="SemiBold" />
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto">
+                  <custom:ToggleSwitchControl Grid.Row="0" Grid.Column="0" WidthLevel="Medium2" LabelName="是否支持左进" ViewModel="{Binding IsSupportLeftInViewModel}" />
+                  <custom:ToggleSwitchControl Grid.Row="0" Grid.Column="1" WidthLevel="Medium2" LabelName="是否支持左出" ViewModel="{Binding IsSupportLeftOutViewModel}" />
+                  <custom:ToggleSwitchControl Grid.Row="1" Grid.Column="0" WidthLevel="Medium2" LabelName="是否支持右进" ViewModel="{Binding IsSupportRightInViewModel}" />
+                  <custom:ToggleSwitchControl Grid.Row="1" Grid.Column="1" WidthLevel="Medium2" LabelName="是否支持右出" ViewModel="{Binding IsSupportRightOutViewModel}" />
+                </Grid>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Border>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

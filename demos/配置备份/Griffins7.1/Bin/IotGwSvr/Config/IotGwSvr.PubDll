@@ -1,0 +1,56 @@
+{
+  "DllsPath": "F:\\Griffins7.1\\Dlls",
+  "Cpu备注": "win-x64，win-x64, win-arm,win-arm64, osx-64，osx-arm64，linux-x64，linux-arm，linux-arm64",
+  "Cpu": "win-x64",
+  "Pub": [
+    "Newtonsoft.JsonG",
+    "GF_Gereric",
+    "Griffins",
+    "Griffins.PF",
+
+    "Griffins.PFMng.Center",
+
+    "Griffins.PF.DB.MySqlDB.DBManager",
+    "Griffins.PF.DB.SqlDB.DBManager",
+
+    "Griffins.Gateway",
+    "Griffins.Gateway.Cmd",
+    "Griffins.Gateway.NorthIntf.Server",
+
+    "Griffins.UserMng.GW",
+    "Griffins.IOT.IotMP",
+
+
+    "Griffins.WorkFlow",
+    "Griffins.WorkFlow.ElsaActivity",
+    "Griffins.WorkFlow.Executor",
+    "Griffins.Map2",
+    "Griffins.ImeIOT",
+
+    "GriffinsGeneralTestMM",
+	"GKG.UI",
+	"GKG",
+	"GKG.ElectronicControl",
+	"GKG.EletronicManager",
+	"GKG.Maths",
+	"GKG.MotionControl",
+	"GKG.Robot",
+	"GKG.MotionCalculator",
+	"PokaYoke"
+  ],
+  "Windows": {
+    "Pub": [],
+    "X86": null,
+    "X64": [
+      "sni.dll"
+    ],
+    "Arm": null,
+    "Arm64": null
+  },
+  "Linux": {
+    "Pub": [],
+    "X64": null,
+    "Arm": null,
+    "Arm64": null
+  }
+}

@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.UI.General"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="vm:CylinderConfigViewModel"
+             x:Class="GKG.UI.General.CylinderConfigView">
+
+  <StackPanel Orientation="Vertical"
+              Spacing="12"
+              Margin="0,20,10,10"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top">
+
+    <Grid ColumnDefinitions="40,*"
+          ColumnSpacing="6">
+      <TextBlock Grid.Column="0"
+                 VerticalAlignment="Center"
+                 Text="类型" />
+      <custom:ComboxControl Grid.Column="1"
+                            LabelName=""
+                            WidthLevel="Small"
+                            ViewModel="{Binding ConfigTypeViewModel}" />
+    </Grid>
+
+    <ContentControl Content="{Binding CurrentLimitViewModel}">
+      <ContentControl.DataTemplates>
+        <DataTemplate DataType="vm:SingleControlSingleLimitViewModel">
+          <vm:SingleControlSingleLimitView DataContext="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="vm:SingleControlDoubleLimitViewModel">
+          <vm:SingleControlDoubleLimitView DataContext="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="vm:DoubleControlSingleLimitViewModel">
+          <vm:DoubleControlSingleLimitView DataContext="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="vm:DoubleControlDoubleLimitViewModel">
+          <vm:DoubleControlDoubleLimitView DataContext="{Binding}" />
+        </DataTemplate>
+      </ContentControl.DataTemplates>
+    </ContentControl>
+
+  </StackPanel>
+</UserControl>

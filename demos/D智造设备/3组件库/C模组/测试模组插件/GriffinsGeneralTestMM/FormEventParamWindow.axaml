@@ -1,0 +1,41 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:GriffinsGeneralTestMM"
+          x:DataType="vm:FormEventParamWindowViewModel" 
+        x:Class="GriffinsGeneralTestMM.FormEventParamWindow"
+        xmlns:uiviews="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+        Title="事件参数"
+        Width="800" Height="330"
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False">  
+          
+
+    <!-- 布局根容器：DockPanel，替代WinForm的Dock布局 -->
+    <DockPanel LastChildFill="True">
+        <!-- 底部按钮栏 -->
+        <StackPanel DockPanel.Dock="Bottom" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0 8 16 8" Height="36"
+                    Spacing="8">
+            <!-- 确认按钮：绑定ViewModel的ConfirmCommand -->
+            <Button Content="确认"  
+                    Width="75" Height="33" Classes="ButtonType1" 
+                    Command="{Binding ConfirmCommand}"/>
+            <!-- 取消按钮：绑定ViewModel的CancelCommand -->
+            <Button Content="取消" 
+                    Width="75" Height="33"  Classes="ButtonType2" 
+                    Command="{Binding CancelCommand}"/>
+        </StackPanel>
+
+          <!-- 属性列表   -->
+        <uiviews:PropertyValueListView  
+            BorderBrush="LightGray"
+            BorderThickness="1.5"
+            DataContext="{Binding ParamValueViewModel}" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Margin="0 0 0 2"/> 
+             
+    </DockPanel>
+</Window>

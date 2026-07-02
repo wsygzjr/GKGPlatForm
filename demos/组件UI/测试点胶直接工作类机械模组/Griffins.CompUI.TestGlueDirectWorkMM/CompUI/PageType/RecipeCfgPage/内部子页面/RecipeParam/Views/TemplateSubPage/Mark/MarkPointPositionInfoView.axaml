@@ -1,0 +1,63 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Mark" 
+			 xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"
+			 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:MarkPointPositionInfoViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.MarkPointPositionInfoView">
+
+    <!--Mark点位置信息:卡片 -->
+     
+        <!--下部分显示Mark点列表栏--> 
+  <Border  Classes="borderCard"  >
+    <!-- 2.1 Mark基础配置参数-视图模型 3行2列  Height="85" -->
+	<Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
+			RowSpacing="0"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="340"   >
+		<!--Mark方式-下拉框数据模型 MarkModeModel -->
+
+       <custom:ComboxControl    
+		    Margin="8 3 3 3"  Grid.Row="0"  Grid.Column="0" 
+		    HorizontalAlignment="Left"
+		    HorizontalContentAlignment="Stretch" 
+            Foreground="#333333"
+            Background ="Transparent"
+		    VerticalAlignment="Stretch"
+		    LabelName="Mark操作类型:"
+		    WidthLevel="Small"
+		    ViewModel="{Binding MarkOpKindModel }" />    
+
+        <Button   Grid.Row="0"  Grid.Column="1" Content="×"  Width="35" Height="35"   Margin="1 2 2 1"  FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                            Classes="DataGrid_btnDeleteStyle" 
+                            Command="{Binding DataContext.MarkPointItemConfigViewModel.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                            CommandParameter="{Binding}"> 
+        </Button>  
+             
+   <!--MarkPointRecognizeCfgInfoView绑定的数据源为：MarkPointListViewModel->SelectedItem->MarkPositionOperateViewModel-->
+        <!--位置调整栏-->
+        <Grid   Grid.Row="1"  Grid.Column="0"  Grid.ColumnSpan="2" RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+            RowSpacing="0"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Height="77" Width="340" > 
+              <!--  --><!-- 坐标表头 --><!--
+                <gkgUI:PositionTeachHeaderTextView    Grid.Row="0"  Grid.Column="0"  
+                    Margin="0" Height="35"  Width="336"  />   
+                --><!-- 坐标数据  --><!--
+                <gkgUI:PositionTeachTextView    Grid.Row="1"  Grid.Column="0" 
+                    DataContext="{Binding  CamreaPositionViewModel }" 
+                    Margin="0" Height="38"  Width="336" />   -->
+        </Grid>
+
+        <!--按钮栏 --> 
+        <StackPanel Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"  Spacing="10" Margin="5 2 2 2"    Width="340"  HorizontalAlignment="Right" VerticalAlignment="Center" > 
+                    <Button Content="创建模板" Command="{Binding CreateTemplateCommand}" Classes="btnSave" MinWidth="60" Padding="2 3"/> 
+                    <Button Content="测试模版" Command="{Binding TestTemplateCommand}" Classes="btnSave" MinWidth="60" Padding="2 3"/> 
+                    <Button Content="搜索定位" Command="{Binding SearchLocationCommand}" Classes="btnSave" MinWidth="60" Padding="2 3"/>  
+        </StackPanel>
+
+
+	</Grid>
+
+   </Border>
+</UserControl>

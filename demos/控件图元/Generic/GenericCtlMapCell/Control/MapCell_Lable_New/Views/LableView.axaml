@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.Control.Lable.ViewModel"
+             xmlns:lableconverts="clr-namespace:GKG.Map.MapCell.Generic.Control.Lable.Converts"
+             x:Class="GKG.Map.MapCell.Generic.Control.Lable.View.LableView"
+             x:DataType="vm:LableViewModel"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+
+  <UserControl.Resources>
+    <lableconverts:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    <lableconverts:StringToThicknessConverter x:Key="StringToThicknessConverter"/>
+    <lableconverts:StringToFontFamilyConverter x:Key="StringToFontFamilyConverter"/>
+    <lableconverts:BoolToFontStyleConverter x:Key="BoolToFontStyleConverter"/>
+    <lableconverts:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter"/>
+    
+    <lableconverts:CursorTypeConverter x:Key="CursorTypeConverter" />
+    <lableconverts:HorizontalAlignConverter x:Key="HorizontalAlignConverter" />
+    <lableconverts:VerticalAlignConverter x:Key="VerticalAlignConverter" />
+    <lableconverts:TextAlignConverter x:Key="TextAlignConverter" />
+    <lableconverts:BoolToTextDecorationConverter x:Key="BoolToTextDecorationConverter" />
+  </UserControl.Resources>
+
+  <Border x:Name="RootBorder"
+          Cursor="{Binding CursorType, Converter={StaticResource CursorTypeConverter}}"
+          Background="{Binding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
+          BorderBrush="{Binding BorderBrush, Converter={StaticResource ColorToBrushConverter}}"
+          BorderThickness="{Binding BorderThickness, Converter={StaticResource StringToThicknessConverter}}"
+          Opacity="{Binding Opacity}"
+          Margin="{Binding Margin, Converter={StaticResource StringToThicknessConverter}}"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          ClipToBounds="True"
+          ToolTip.Tip="{Binding ToolTip}">
+          
+      <TextBlock x:Name="LableText"
+                 Text="{Binding LableText}"
+                 IsEnabled="{Binding IsEnabled}"
+                 Foreground="{Binding ForegroundColor, Converter={StaticResource ColorToBrushConverter}}"
+                 FontSize="{Binding FontSize}"
+                 FontFamily="{Binding FontFamily, Converter={StaticResource StringToFontFamilyConverter}}"
+                 FontWeight="{Binding IsBold, Converter={StaticResource BoolToFontWeightConverter}}"
+                 FontStyle="{Binding IsItalic, Converter={StaticResource BoolToFontStyleConverter}}"
+                 TextDecorations="{Binding IsUnderline, Converter={StaticResource BoolToTextDecorationConverter}}"
+                 Padding="{Binding Padding, Converter={StaticResource StringToThicknessConverter}}"
+                 HorizontalAlignment="{Binding HorizontalAlign, Converter={StaticResource HorizontalAlignConverter}}"
+                 VerticalAlignment="{Binding VerticalAlign, Converter={StaticResource VerticalAlignConverter}}"
+                 TextAlignment="{Binding TextAlignment, Converter={StaticResource TextAlignConverter}}"
+                 TextWrapping="Wrap" />
+  </Border>
+</UserControl>

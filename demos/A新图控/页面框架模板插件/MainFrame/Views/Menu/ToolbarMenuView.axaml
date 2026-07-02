@@ -1,0 +1,26 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:MainFrame.ViewModels;assembly=MainFrame"
+             xmlns:customMenuCmdConfig="clr-namespace:Griffins.Map.UI.CustomMenuCmdConfig;assembly=Griffins.Map.UI"
+             xmlns:converter="clr-namespace:MainFrame.Converter"
+             x:Class="MainFrameView.Views.Menu.ToolbarMenuView"
+             mc:Ignorable="d"
+             x:DataType="vm:ToolbarMenuViewModel"
+             d:DesignWidth="150" d:DesignHeight="400">
+	<Design.DataContext>
+		<vm:ToolbarMenuViewModel />
+	</Design.DataContext>
+	
+    
+	<DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+		<ContentControl
+				  Content="{Binding CurrentContent}" 
+				  VerticalAlignment="Stretch" 
+				  HorizontalAlignment="Stretch"
+                  VerticalContentAlignment="{Binding VerticalContentAlignment}"
+                  HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
+                  />
+	</DockPanel>
+</UserControl>

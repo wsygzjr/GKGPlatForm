@@ -1,0 +1,80 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:YourNamespace.ViewModels"
+        x:Class="GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.View.OutGlueWaxSetWindowView"
+        Width="450" Height="400"
+        SystemDecorations="None" 
+        ShowInTaskbar="False" 
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Background="Transparent" 
+        TransparencyLevelHint="Transparent">
+
+    <Window.Styles>
+        <Style Selector="Button.BlueBtn">
+            <Setter Property="Background" Value="#5B9BD5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+        <Style Selector="Button.BlueBtn:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#4A88C5"/>
+        </Style>
+    </Window.Styles>
+
+    <Border Background="White" Margin="20" BoxShadow="0 0 15 2 #CC0C80E8">
+        <Grid RowDefinitions="60, *, 70">
+            
+            <Border Grid.Row="0" Background="#EAEAEA">
+                <TextBlock Text="{Binding Title}" FontSize="28" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
+            <Grid Grid.Row="1" Margin="30,20,30,0" RowDefinitions="Auto,Auto,Auto,Auto"
+                  ColumnDefinitions="Auto, *" HorizontalAlignment="Center">
+                
+                <Grid.Styles>
+                    <Style Selector="TextBlock">
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0,0,10,0"/>
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                    </Style>
+                    <Style Selector="TextBox">
+                        <Setter Property="Width" Value="120"/>
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0,10"/>
+                    </Style>
+                </Grid.Styles>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding PointsLabel}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Points}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="排胶间隔:"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding IntervalTime}"/>
+
+                <RadioButton Grid.Row="2" Grid.Column="0" Content="排胶次数:" GroupName="ModeGroup"
+                             IsChecked="{Binding IsTimesMode}" FontSize="16" Foreground="#4A90E2"
+                             HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Times}" IsEnabled="{Binding IsTimesMode}"/>
+
+                <RadioButton Grid.Row="3" Grid.Column="0" Content="持续排胶时间(s):" GroupName="ModeGroup"
+                             IsChecked="{Binding IsTotalTimeMode}" FontSize="16"
+                             HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding TotalTime}" IsEnabled="{Binding IsTotalTimeMode}"/>
+
+            </Grid>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="40">
+                <Button Classes="BlueBtn" Content="💾 保存" Command="{Binding SaveCommand}"/>
+                <Button Classes="BlueBtn" Content="✖ 取消" Command="{Binding CancelCommand}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

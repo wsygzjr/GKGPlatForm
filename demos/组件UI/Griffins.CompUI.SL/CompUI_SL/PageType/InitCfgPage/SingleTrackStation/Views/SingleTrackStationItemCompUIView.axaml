@@ -1,0 +1,100 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.SL.InitCfgPage.ViewModels"
+			 xmlns:conv="clr-namespace:Avalonia.Data.Converters;assembly=Avalonia.Base"
+			 xmlns:gkgUI="using:GKG.UI"
+			 mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="400"
+			 x:Class="Griffins.CompUI.SL.InitCfgPage.Views.SingleTrackStationItemCompUIView"
+			 x:DataType="vm:SingleTrackStationItemCompUIViewModel"
+			 Tag="{Binding ViewTag, Mode=TwoWay}"
+			 x:Name="Root">
+	<Design.DataContext>
+		<vm:SingleTrackStationItemCompUIViewModel />
+	</Design.DataContext>
+
+	<!-- 单层轨道工位界面 -->
+	<Grid Margin="10" RowDefinitions="Auto,Auto,*,Auto" ColumnDefinitions="*">
+
+		<!-- 顶部配置选项标题与开关 -->
+		<StackPanel Grid.Row="0" Orientation="Vertical">
+			<TextBlock Text="配置选项" FontWeight="Bold" FontSize="16" Margin="0,0,0,5" />
+			<Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+				<Label Grid.Row="0" Grid.Column="0" Content="是否支持影子工位" VerticalContentAlignment="Center" />
+				<ToggleSwitch Grid.Row="0" Grid.Column="1" IsChecked="{Binding SupportShadowStation}" Margin="5,0"/>
+				<Label Grid.Row="1" Grid.Column="0" Content="是否启用接近感应器" VerticalContentAlignment="Center" />
+				<ToggleSwitch Grid.Row="1" Grid.Column="1" IsChecked="{Binding EnableProximitySensor}" Margin="5,0"/>
+				<Label Grid.Row="2" Grid.Column="0" Content="是否启用出板卡料信号" VerticalContentAlignment="Center" />
+				<ToggleSwitch Grid.Row="2" Grid.Column="1" IsChecked="{Binding EnableBoardJamSignal}" Margin="5,0"/>
+			</Grid>
+		</StackPanel>
+
+		<!-- 顶部列标题与功能按钮 -->
+		<Grid Grid.Row="1" ColumnDefinitions="*,Auto">
+			<TextBlock Grid.Column="0" Text="速度挡位列表" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="0,10,0,5" />
+			<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" Margin="10,10,0,5">
+				<Button Content="添加" Command="{Binding AddCommand}" />
+				<Button Content="删除" Command="{Binding DeleteCommand}" />
+			</StackPanel>
+		</Grid>
+
+		<!-- 数据列表 -->
+		<DataGrid Grid.Row="2"
+				  ItemsSource="{Binding GearSpeedList}"
+				  SelectedItem="{Binding SelectedItem}"
+				  AutoGenerateColumns="False"
+				  BorderBrush="LightGray"
+				  BorderThickness="1"
+				  IsReadOnly="False"
+				  SelectionMode="Single"
+				  RowHeight="40"
+				  VerticalAlignment="Stretch"
+				  HorizontalAlignment="Stretch"
+				  CanUserSortColumns="False"
+				  Margin="0,0,0,6" Classes="StyleDataGrid">
+
+			<!-- 列表行数据自定义样式 -->
+			<DataGrid.Columns>
+				<DataGridTemplateColumn Width="70">
+					<DataGridTemplateColumn.HeaderTemplate>
+						<DataTemplate>
+							<CheckBox IsChecked="{Binding DataContext.IsSelectAll, Mode=TwoWay,
+							ElementName=Root}"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center" />
+						</DataTemplate>
+					</DataGridTemplateColumn.HeaderTemplate>
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+									  HorizontalAlignment="Center"
+									  VerticalAlignment="Center" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<!-- 列表-序号 -->
+				<DataGridTextColumn Header="序号" Binding="{Binding Index}" Width="68" IsReadOnly="True" />
+
+				<!-- 列表-挡位 -->
+				<DataGridTemplateColumn Header="挡位" Width="150">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<NumericUpDown Value="{Binding Gear, Mode=TwoWay}" Minimum="1" Maximum="10" HorizontalAlignment="Stretch" MinWidth="130" MaxWidth="300" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<!-- 列表-速度 -->
+				<DataGridTemplateColumn Header="速度" Width="150">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<NumericUpDown Value="{Binding Speed, Mode=TwoWay}" Minimum="0" Maximum="1000" HorizontalAlignment="Stretch" MinWidth="130" MaxWidth="300" />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

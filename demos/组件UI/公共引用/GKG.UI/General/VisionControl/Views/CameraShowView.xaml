@@ -1,0 +1,233 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:GKG.UI"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:GKG.UI.General"
+             xmlns:local="using:GKG.UI.General"    
+			 xmlns:vision="using:AvaloniaVisionControl"
+			 xmlns:vm="clr-namespace:GKG.UI.General"
+             x:DataType="vm:CameraShowViewModel"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"   
+             x:Class="GKG.UI.General.CameraShowView"> 
+ 
+<Grid  RowDefinitions="Auto,Auto,Auto" 	ColumnDefinitions="Auto"
+				  RowSpacing="4"   HorizontalAlignment="Center"  VerticalAlignment="Top"  Width="814"  Height="605"   >
+	    <!-- 相机刻度、亮度等调整    -->
+		 <Border Classes="border" Margin="6,0,6,0" Width="802" >
+			<Grid Grid.Row="0"  Grid.Column="0" 
+				ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowDefinitions="Auto"
+					  RowSpacing="2"  ColumnSpacing="5" HorizontalAlignment="Left"  Width="800"    >
+
+					<!-- 刻度是否启用	开关按钮 -->
+					<TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Center"
+						VerticalAlignment="Center"    Text="开启刻度"  Margin="0,0,10,0 " /> 
+					<ToggleSwitch Grid.Row="0"  Grid.Column="1"   
+							IsChecked="{Binding ImageDisplayViewModel.EnabledScale , Mode=TwoWay}"
+							HorizontalAlignment="Center"
+							OffContent=""  OnContent=""
+							MinWidth="60"/> 
+
+					<!-- 刻度: -->
+					<ComboBox  
+					Grid.Row="0"  Grid.Column="2"   
+						Width="110"
+						ItemsSource="{Binding ImageDisplayViewModel.ScaleComboxViewModel.ItemsSource, Mode=TwoWay}" 
+						SelectedItem="{Binding ImageDisplayViewModel.ScaleComboxViewModel.SelectedItem, Mode=TwoWay}"  > 
+							<ComboBox.ItemTemplate>
+									<DataTemplate   DataType="ui:ComBoxItem">
+									<StackPanel Orientation="Horizontal"  > 
+					     				<TextBlock Text="{Binding DisplayName}" /> 
+									</StackPanel>
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>   
+
+					<!--  是否启用参照圆	开关按钮 -->
+					   <TextBlock  Grid.Row="0"  Grid.Column="3"  HorizontalAlignment="Center"
+						VerticalAlignment="Center"    Text="开启参照圆"    Margin="20,0,20,0" /> 
+					<ToggleSwitch Grid.Row="0"  Grid.Column="4"   
+							IsChecked="{Binding ImageDisplayViewModel.EnabledReferenceCircle ,  Mode=TwoWay}"
+							HorizontalAlignment="Center"
+							OffContent=""  OnContent=""
+							MinWidth="60"/> 
+			 
+			 
+					 <NumericUpDown Width="110"
+							Grid.Row="0"  Grid.Column="5"   
+							Value="{Binding ImageDisplayViewModel.ReferenceCircle , Mode=TwoWay}"
+							Minimum="{Binding ImageDisplayViewModel.ReferenceCircleViewModel.Minimum}"
+							Increment="{Binding ImageDisplayViewModel.ReferenceCircleViewModel.Increment}"
+							HorizontalAlignment="Stretch" />   
+
+					<!--  开启调试亮度	开关按钮 -->
+					   <TextBlock  Grid.Row="0"  Grid.Column="6"  HorizontalAlignment="Center"
+						VerticalAlignment="Center"    Text="调试亮度"   Margin="20,0,5,0"/> 
+					<ToggleSwitch Grid.Row="0"  Grid.Column="7"   
+							IsChecked="{Binding ImageDisplayViewModel.EnabledBrightnessDebugging , Mode=TwoWay}"
+							HorizontalAlignment="Center"
+							OffContent=""  OnContent=""
+							MinWidth="60"/>  
+				</Grid>
+		</Border>
+	
+	<!-- 视觉控件  -->
+		<StackPanel Grid.Row="1"  Grid.Column="0"  Margin="2"  Background="Gray" 
+			Orientation="Horizontal" Spacing="0" HorizontalAlignment="Center"  Height="500" MaxHeight="500" MinHeight="500"  Width="810"  > 
+			    <!-- 相机视频显示控件 -->
+            <!--<ContentControl Content="{Binding CameraPreControl}"/> -->
+			<views:VisionControlShowView 
+								 Height="500"
+								  Width="810"
+								  DataContext="{x:Static local:GlobalVisionViewModel.CameraShowViewModel}"
+								 />
+			<!--<ContentControl Content="{x:Static local:GlobalVisionViewModel.WorkAreaView}" 
+				  Height="500"
+				  Width="810" /> --> 
+		<!--	<Image
+			Source="F:\Griffins7.1\Bin\image\1.png"
+			Height="300" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"
+			Stretch="Uniform"
+			/> -->
+
+		<!--	<Image
+			Source="{StaticResource SvgLogo }"
+			Height="300" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"
+			Stretch="Uniform"
+			/>-->
+		</StackPanel>
+	
+			
+	<!-- 调光和坐标:带边框的 Grid  -->
+	<Border Classes="border" 	Grid.Row="2"  Grid.Column="0"  Width="810"  Margin="2"  Height="58">
+	    <!--切换显示坐标和RGBD设置-->
+		<Expander VerticalAlignment="Top"  Width="812"  Height="55"  >
+			<!-- 重写 Expander 模板，直接内嵌两个 Grid，无需任何自定义属性绑定 -->
+			<Expander.Template>
+				<ControlTemplate TargetType="Expander">
+			
+					<Grid  RowDefinitions="Auto"  ColumnDefinitions="*,54"  >
+					
+						<!-- 2. 展开时显示的 Grid（直接内嵌，无需绑定外部属性） -->
+						<ContentPresenter 	Grid.Row="0"  Grid.Column="0"  Height="54"
+							x:Name="ExpandedContent"
+							IsVisible="{Binding !IsExpandedLightSource}" 
+							Margin="0,0,0,0">
+							<ContentPresenter.Content> 
+								<!-- 1.IsExpandedLightSource为false，表单内容缺省显示坐标      -->
+								<Grid  ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="*"   Height="50"
+										HorizontalAlignment="Center"   RowSpacing="0"   ColumnSpacing="1" >
+									<!-- X -->
+									<custom:TextBlockControl
+									Grid.Row="0"  Grid.Column="0"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Center"
+									LabelName="X"
+									WidthLevel="Small2"
+									ViewModel="{Binding AxisViewModel.XViewModel}"
+									/>
+									<!-- Y -->
+									<custom:TextBlockControl
+									Grid.Row="0"  Grid.Column="1"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Center"
+									LabelName="Y"
+									WidthLevel="Small2"
+									ViewModel="{Binding AxisViewModel.YViewModel}"
+									/>
+									<!-- Z -->
+									<custom:TextBlockControl
+									Grid.Row="0"  Grid.Column="2"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Center"
+									LabelName="Z"
+									WidthLevel="Small2"
+									ViewModel="{Binding AxisViewModel.ZViewModel}"
+									/>
+								</Grid>
+							</ContentPresenter.Content>
+						</ContentPresenter>
+
+						<!-- 3. 折叠时显示的 Grid（直接内嵌） -->
+						<ContentPresenter 	Grid.Row="0"  Grid.Column="0"  Height="54"
+							x:Name="CollapsedContent"
+							IsVisible="{Binding IsExpandedLightSource}" 
+							Margin="0,0,0,0">
+							<ContentPresenter.Content>
+								<!-- 2. IsExpandedLightSource为true，表单内容显示RGBD     -->
+									<Grid  ColumnDefinitions="Auto,Auto,Auto,Auto" RowDefinitions="Auto"  Height="50" 
+										   HorizontalAlignment="Center" VerticalAlignment="Center"    RowSpacing="0"   ColumnSpacing="1"  >
+										<!-- R -->
+										<custom:SliderNumericControl
+										Grid.Row="0"  Grid.Column="0"   
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Center"
+										LabelName="R"
+										WidthLevel="Small3"
+										ViewModel="{Binding LightSourceViewModel.RViewModel}"
+										/>
+										<!-- G -->
+										<custom:SliderNumericControl
+										Grid.Row="0"  Grid.Column="1"  
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Center"
+										LabelName="G"
+										WidthLevel="Small3"
+										ViewModel="{Binding LightSourceViewModel.GViewModel}"
+										/>
+										<!-- B -->
+										<custom:SliderNumericControl
+										Grid.Row="0"  Grid.Column="2"  
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Center"
+										LabelName="B"
+										WidthLevel="Small3"
+										ViewModel="{Binding LightSourceViewModel.BViewModel}"
+										/>
+										<!-- D -->
+										<custom:SliderNumericControl
+										Grid.Row="0"  Grid.Column="3" 
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										HorizontalContentAlignment="Center"
+										VerticalContentAlignment="Center"
+										LabelName="D"
+										WidthLevel="Small3"
+										ViewModel="{Binding LightSourceViewModel.DViewModel}"
+										/>
+									</Grid> 
+			 
+							</ContentPresenter.Content>
+						</ContentPresenter>
+
+							<!-- 1. 展开/折叠触发按钮（右侧） -->
+						<ToggleButton  	Grid.Row="0"  Grid.Column="1" Width="50"
+							x:Name="ExpanderToggleButton"
+							Content="切换"
+							IsChecked="{Binding IsExpandedLightSource}"
+							HorizontalAlignment="Left"
+							Margin="0,0,0,10" /> <!-- 与内容区间距 -->
+
+					</Grid>
+				</ControlTemplate>
+			</Expander.Template>
+		</Expander>
+	</Border>
+			
+
+</Grid>
+
+</UserControl>

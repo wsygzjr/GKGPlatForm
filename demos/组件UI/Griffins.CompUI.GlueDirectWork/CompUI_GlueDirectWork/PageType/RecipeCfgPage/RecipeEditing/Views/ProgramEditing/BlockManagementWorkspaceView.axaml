@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+             x:DataType="vm:BlockManagementWorkspaceViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.ProgramEditing.BlockManagementWorkspaceView">
+
+  <Grid RowDefinitions="Auto,8,*">
+    <StackPanel Orientation="Horizontal" Spacing="8">
+      <TextBlock Text="{Binding Title}" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,12,0"/>
+      <Button Content="增加轨迹区块" Command="{Binding AddTrajectoryBlockCommand}" />
+      <Button Content="增加子区域区块" Command="{Binding AddSubAreaBlockCommand}" />
+      <Button Content="批量删除" Command="{Binding DeleteCheckedBlocksCommand}" />
+    </StackPanel>
+
+    <DataGrid Grid.Row="2"
+              ItemsSource="{Binding Blocks}"
+              SelectedItem="{Binding SelectedBlock, Mode=TwoWay}"
+              AutoGenerateColumns="False"
+              HeadersVisibility="Column"
+              GridLinesVisibility="All">
+      <DataGrid.Columns>
+        <DataGridTemplateColumn Width="40">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <CheckBox IsChecked="{Binding IsChecked}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTextColumn Header="序列" Binding="{Binding Order}" Width="*" IsReadOnly="True"/>
+        <DataGridTextColumn Header="区块名" Binding="{Binding Name}" Width="2*" />
+        <DataGridTextColumn Header="区块类型" Binding="{Binding BlockTypeDisplayName}" Width="*" IsReadOnly="True"/>
+        <DataGridTemplateColumn Header="操作" Width="*">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button Content="删除"
+                      Command="{Binding DataContext.DeleteBlockItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      CommandParameter="{Binding}" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</UserControl>
+

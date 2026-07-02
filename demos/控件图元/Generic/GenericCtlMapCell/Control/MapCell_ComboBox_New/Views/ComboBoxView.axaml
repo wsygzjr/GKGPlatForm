@@ -1,0 +1,111 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_ComboBox.ViewModels"
+             xmlns:converts="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_ComboBox.Converts"
+             mc:Ignorable="d" d:DesignWidth="180" d:DesignHeight="36"
+             x:Class="GKG.Map.MapCell.Generic.Control.MapCell_ComboBox.Views.ComboBoxView"
+             x:Name="This" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+             
+  <Design.DataContext>
+    <vm:ComboBoxViewModel/>
+  </Design.DataContext>
+
+  <UserControl.Resources>
+    <converts:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    <converts:StringToFontFamilyConverter x:Key="StringToFontFamilyConverter"/>
+    <converts:BoolToFontStyleConverter x:Key="BoolToFontStyleConverter"/>
+    <converts:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter"/>
+    <converts:StringToThicknessConverter x:Key="StringToThicknessConverter"/>
+  </UserControl.Resources>
+
+  <UserControl.Styles>
+    <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="TextBox:readonly /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+    <Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+
+    <Style Selector="ToggleButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="ToggleButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style Selector="ToggleButton:checked /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+  </UserControl.Styles>
+
+  <Border x:Name="RootBorder"
+          Opacity="{Binding Opacity}"
+          Margin="{Binding Margin, Converter={StaticResource StringToThicknessConverter}}"
+          ClipToBounds="True"
+          Background="{Binding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
+          BorderBrush="{Binding BorderBrush, Converter={StaticResource ColorToBrushConverter}}"
+          BorderThickness="{Binding BorderThickness, Converter={StaticResource StringToThicknessConverter}}"
+          Padding="{Binding Padding, Converter={StaticResource StringToThicknessConverter}}">
+          
+    <Grid Background="Transparent" ClipToBounds="True">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="24" />
+      </Grid.ColumnDefinitions>
+
+      <TextBox x:Name="InputTextBox"
+               Grid.Column="0"
+               Watermark="{Binding PlaceholderText}"
+               IsEnabled="{Binding IsEditable}"
+               IsReadOnly="{Binding !IsEditable}"
+               Background="Transparent"
+               BorderThickness="0"
+               VerticalAlignment="Center"
+               Foreground="{Binding ForegroundColor, Converter={StaticResource ColorToBrushConverter}}"
+               FontFamily="{Binding FontFamily, Converter={StaticResource StringToFontFamilyConverter}}"
+               FontSize="{Binding FontSize}"
+               FontStyle="{Binding IsItalic, Converter={StaticResource BoolToFontStyleConverter}}"
+               FontWeight="{Binding IsBold, Converter={StaticResource BoolToFontWeightConverter}}"/>
+
+      <ToggleButton x:Name="DropDownToggle"
+                    Grid.Column="1"
+                    IsChecked="{Binding IsDropDownOpen, Mode=TwoWay}"
+                    Background="Transparent"
+                    BorderThickness="0">
+        <Viewbox Width="12" Height="12" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform">
+          <Canvas Width="12" Height="12">
+            <Path x:Name="DropDownChevron" Data="M 2 4.5 L 6 8 L 10 4.5" StrokeThickness="1.5" StrokeLineCap="Round" Stroke="#8A8F98"/>
+          </Canvas>
+        </Viewbox>
+      </ToggleButton>
+
+      <Popup x:Name="DropDownPopup"
+             PlacementTarget="{Binding #RootBorder}"
+             Placement="Bottom"
+             IsOpen="{Binding IsDropDownOpen, Mode=TwoWay}">
+        <Border x:Name="DropDownBorder"
+                MaxHeight="{Binding MaxDropDownHeight}"
+                BorderBrush="{Binding BorderBrush, Converter={StaticResource ColorToBrushConverter}}"
+                BorderThickness="1"
+                Background="{Binding BackgroundColor, Converter={StaticResource ColorToBrushConverter}}">
+          <ListBox x:Name="ItemsListBox"
+                   ItemsSource="{Binding Items}"
+                   Background="Transparent"
+                   BorderThickness="0" />
+        </Border>
+      </Popup>
+    </Grid>
+  </Border>
+</UserControl>

@@ -1,0 +1,124 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:CoatingWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:DispensingPageType.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.CoatingWorkAreaView">
+  
+    <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"   Width="876"  Height="610" HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+             
+			<TextBlock Text="涂覆设置" VerticalAlignment="Center"  Classes="TextBlockWorkAreaViewTitle" ></TextBlock> 
+
+           <StackPanel Orientation="Horizontal"   Width="872"  HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+                 <custom:ComboxControl 
+		            HorizontalAlignment="Left"
+		            HorizontalContentAlignment="Center"
+		            VerticalAlignment="Center"
+		            VerticalContentAlignment="Center"
+		            LabelName="点胶前后样式选择"
+		            WidthLevel="Small"
+		            ViewModel="{Binding SelectedBeforeAfterLineStyleModel  }" />  
+                <custom:ComboxControl 
+		            HorizontalAlignment="Left"
+		            HorizontalContentAlignment="Center"
+		            VerticalAlignment="Center"
+		            VerticalContentAlignment="Center"
+		            LabelName="点胶中样式选择"
+		            WidthLevel="Small"
+		            ViewModel="{Binding SelectedMiddleLineStyleModel  }" />  
+                 <custom:ComboxControl 
+		            HorizontalAlignment="Left"
+		            HorizontalContentAlignment="Center"
+		            VerticalAlignment="Center"
+		            VerticalContentAlignment="Center"
+		            LabelName="形状选择"
+		            WidthLevel="Small"
+		            ViewModel="{Binding CoatingShapeViewModel  }" />  
+
+           </StackPanel>
+                 
+            <!-- 位置  视图模型GlueDspensingPositionViewModel --> 
+            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+                        RowSpacing="0"   Height="145" Width="876" HorizontalAlignment="Left" VerticalAlignment="Center" > 
+            
+                <Grid   Grid.Row="1"  Grid.Column="0"  RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
+                    RowSpacing="0"   Height="80"  HorizontalAlignment="Left" VerticalAlignment="Center" > 
+
+                        <TextBlock  Grid.Row="0"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+                                FontFamily="SimSun"     FontSize="14"  Text=""      />
+                        <!-- 坐标表头 --><!--
+                        <gkgUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="1"  
+                            Margin="0"      HorizontalAlignment="Left" VerticalAlignment="Center" />   
+                        --><!-- 初始位置数据 --><!--
+                         <TextBlock  Grid.Row="1"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+                                FontFamily="SimSun"     FontSize="14"  Text="初始位置"      />
+
+                        <gkgUI:PositionTeachView    Grid.Row="1"  Grid.Column="1"    
+                            DataContext="{Binding InitialPositionViewModel}" 
+                            Margin="0"    HorizontalAlignment="Left" VerticalAlignment="Center"  Height="40"  />   -->
+                       <!-- X向位置数据 -->
+                        <TextBlock  Grid.Row="2"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+                                FontFamily="SimSun"     FontSize="14"  Text="X向位置"      />
+
+                       <!-- <gkgUI:PositionTeachView    Grid.Row="2"  Grid.Column="1" 
+                            DataContext="{Binding XEndPositionViewModel}" 
+                            Margin="0"   HorizontalAlignment="Left" VerticalAlignment="Center" Height="40"   />   -->
+                       <!-- Y向位置数据 -->
+                        <TextBlock  Grid.Row="3"  Grid.Column="0"  HorizontalAlignment="Left"   VerticalAlignment="Center" 
+                                FontFamily="SimSun"     FontSize="14"  Text="Y向位置"      />
+
+<!--                        <gkgUI:PositionTeachView    Grid.Row="3"  Grid.Column="1"  
+                            DataContext="{Binding YEndPositionViewModel}" 
+                            Margin="0"     HorizontalAlignment="Left" VerticalAlignment="Center" Height="40"  /> -->  
+                </Grid>
+            </Grid> 
+            
+            <StackPanel Orientation="Horizontal"   >
+            
+		            <custom:NumericControl
+			            Grid.Row="2"  Grid.Column="0" 
+			            HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName="重量"
+		                WidthLevel="Small" 
+		                ViewModel="{Binding WeightViewModel }"
+		                /> 
+                     <custom:ComboxControl 
+		                HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName=""
+		                WidthLevel="Small5"
+		                ViewModel="{Binding WeightTypeViewModel  }" />  
+            
+		            <custom:NumericControl  
+			            Grid.Row="2"  Grid.Column="0" 
+			            HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName="间距（mm）"
+		                WidthLevel="Small" 
+		                ViewModel="{Binding SpacingViewModel }"
+		                /> 
+            </StackPanel>
+        </StackPanel>
+      
+
+    </Border>
+
+    
+
+</UserControl>

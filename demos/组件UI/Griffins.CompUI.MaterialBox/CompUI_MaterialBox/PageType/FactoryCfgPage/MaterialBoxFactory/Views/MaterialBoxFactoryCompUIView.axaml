@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.MaterialBox.CompUI_MaterialBox.PageType.FactoryCfgPage.MaterialBoxFactory.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             mc:Ignorable="d"
+             d:DesignWidth="720"
+             d:DesignHeight="420"
+             x:DataType="vm:MaterialBoxFactoryCompUIViewModel"
+             x:Class="Griffins.CompUI.MaterialBox.CompUI_MaterialBox.PageType.FactoryCfgPage.MaterialBoxFactory.Views.MaterialBoxFactoryCompUIView"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+  <Border Background="#F1F4F8" Padding="18">
+    <Border BorderThickness="1"
+            BorderBrush="#E0E3E9"
+            Background="#FFFFFF"
+            CornerRadius="4"
+            Padding="16">
+      <Grid RowDefinitions="Auto,20,Auto"
+            ColumnDefinitions="140,220,40,140,220">
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="5"
+                   Text="&#26009;&#21475;&#25968;&#37327;&#37197;&#32622;"
+                   FontSize="15"
+                   FontWeight="SemiBold"
+                   Foreground="#1F3F75" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   Text="&#36865;&#26009;&#21475;&#20010;&#25968;" />
+        <custom:TextInputControl Grid.Row="2"
+                                 Grid.Column="1"
+                                 LabelName=""
+                                 WidthLevel="Small3"
+                                 ViewModel="{Binding FeedingPortCountViewModel}" />
+
+        <TextBlock Grid.Row="2"
+                   Grid.Column="3"
+                   VerticalAlignment="Center"
+                   Text="&#20986;&#26009;&#21475;&#20010;&#25968;" />
+        <custom:TextInputControl Grid.Row="2"
+                                 Grid.Column="4"
+                                 LabelName=""
+                                 WidthLevel="Small3"
+                                 ViewModel="{Binding ReceivePortCountViewModel}" />
+      </Grid>
+    </Border>
+  </Border>
+</UserControl>

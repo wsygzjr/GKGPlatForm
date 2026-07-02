@@ -1,0 +1,12 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+       <Button Classes="btnA" Content="test1"/>
+    </Border>
+  </Design.PreviewWith>
+     
+    <!--嵌套样式文件：引用样式文件--> 
+      <!-- 基础库控件样式 -->
+    <StyleInclude Source="avares://GKG.UI/Styles/BasicControlStyles.axaml"/>    
+</Styles>

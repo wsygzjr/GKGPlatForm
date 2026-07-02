@@ -1,0 +1,156 @@
+﻿<Window x:Class="GKG.Map.ChartFuncCtlMapCell.View.HistoryChartWndView"
+		xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:l="using:GKG.Map.ChartFuncCtlMapCell.View"
+		xmlns:sp="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+		mc:Ignorable="d"
+		Title="查询历史图表" Height="760" Width="1380"
+		Topmost="True"
+		WindowStartupLocation="CenterScreen"
+		Background="#F4F6F9">
+
+	<Window.Styles>
+		<Style>
+			<StyleInclude Source="avares://GKG.Map.ChartFuncCtlMapCell/Styles/ControlStyles.axaml" />
+		</Style>
+
+		<Style Selector="TextBlock.Label">
+			<Setter Property="Foreground" Value="#666666"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="TextBlock.Value">
+			<Setter Property="Foreground" Value="#111111"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+	</Window.Styles>
+
+	<Grid Margin="16" PointerPressed="OnBackgroundPointerPressed">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="340"/> </Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/> <RowDefinition Height="*"/>    </Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Grid.Column="0"
+				Background="White" CornerRadius="8" Padding="20" Margin="0,0,16,16"
+				BoxShadow="0 2 10 0 #0A000000"> <StackPanel Spacing="16">
+					<StackPanel Orientation="Horizontal" Name="Sp_TimeSlot" VerticalAlignment="Center">
+						<TextBlock Classes="Label" Text="时间范围：" Margin="0,0,10,0" FontWeight="Bold"/>
+
+						<TextBox x:Name="StartDateTextBox" Width="100" Height="32" Margin="0,0,8,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#F8F9FA" IsReadOnly="True" Text="2025/09/26" />
+						<l:VerticalNumericUpDown Name="StartHourNumeric" Width="55" Height="32" Margin="0,0,4,0" Value="0" Minimum="0" Maximum="23" />
+						<TextBlock Classes="Label" Margin="0,0,8,0" Text="时" />
+						<l:VerticalNumericUpDown Name="StartMinuteNumeric" Width="55" Height="32" Margin="0,0,4,0" Value="0" Minimum="0" Maximum="59" />
+						<TextBlock Classes="Label" Margin="0,0,8,0" Text="分" />
+
+						<Border BorderThickness="1" BorderBrush="#D0D0D0" CornerRadius="4" Width="32" Height="32" Background="White" Margin="0,0,16,0">
+							<Button Name="StartCalendarBtn" Background="Transparent" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Cursor="Hand">
+								<PathIcon Data="M21 6v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V2h2v2h8V2h2v2h1a2 2 0 0 1 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14z" Width="16" Height="16" Foreground="#0078D4"/>
+								<Button.Flyout><Flyout Placement="Bottom"><Calendar Name="StartDatePicker" PointerExited="StartDatePicker_PointerExited" /></Flyout></Button.Flyout>
+							</Button>
+						</Border>
+
+						<TextBlock Text="至" Margin="0,0,16,0" VerticalAlignment="Center" Foreground="#AAAAAA"/>
+
+						<TextBox x:Name="EndDateTextBox" Width="100" Height="32" Margin="0,0,8,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#F8F9FA" IsReadOnly="True" Text="2025/09/26"/>
+						<l:VerticalNumericUpDown Name="EndHourNumeric" Width="55" Height="32" Margin="0,0,4,0" Value="23" Minimum="0" Maximum="23" />
+						<TextBlock Classes="Label" Text="时" Margin="0,0,8,0"/>
+						<l:VerticalNumericUpDown Name="EndMinuteNumeric" Width="55" Height="32" Margin="0,0,4,0" Value="59" Minimum="0" Maximum="59" />
+						<TextBlock Classes="Label" Text="分" Margin="0,0,8,0"/>
+
+						<Border BorderThickness="1" BorderBrush="#D0D0D0" CornerRadius="4" Width="32" Height="32" Background="White">
+							<Button Name="EndCalendarBtn" Background="Transparent" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Cursor="Hand">
+								<PathIcon Data="M21 6v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V2h2v2h8V2h2v2h1a2 2 0 0 1 2 2zM5 8h14V6H5v2zm14 12V10H5v10h14z" Width="16" Height="16" Foreground="#0078D4"/>
+								<Button.Flyout><Flyout Placement="Bottom"><Calendar Name="EndDatePicker" PointerExited="EndDatePicker_PointerExited" /></Flyout></Button.Flyout>
+							</Button>
+						</Border>
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="16">
+						<TextBlock Classes="Label" Text="图表类型：" FontWeight="Bold"/>
+						<ComboBox Name="ChartChooseBox" Width="160" Height="32" Background="#F8F9FA">
+							<ComboBox.ItemTemplate>
+								<DataTemplate><TextBlock Text="{Binding}" VerticalAlignment="Center"/></DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+
+						<Border Width="1" Height="20" Background="#E0E0E0" Margin="8,0"/>
+
+						<TextBlock Classes="Label" Text="下限:"/>
+						<TextBlock x:Name="ChartDownLimitValueTextBlock" Classes="Value" Text="0.00" Width="40"/>
+
+						<TextBlock Classes="Label" Text="上限:"/>
+						<TextBlock x:Name="ChartUpLimitValueTextBlock" Classes="Value" Text="0.00" Width="40"/>
+
+						<Border Width="1" Height="20" Background="#E0E0E0" Margin="8,0"/>
+
+						<Button Name="RefreshChartButton" Classes="Blue" Content="查 询" Width="80" Height="32" CornerRadius="4"/>
+						<Button Name="CleanChartDataButton" Content="清除数据" Width="80" Height="32" CornerRadius="4" Background="#FFF0F0" Foreground="#D32F2F" BorderBrush="#FFCDD2" BorderThickness="1"/>
+						<Button Name="ExportChartFileButton" Content="导出文件" Width="80" Height="32" CornerRadius="4" Background="#F0F8FF" Foreground="#0078D4" BorderBrush="#BBDEFB" BorderThickness="1"/>
+					</StackPanel>
+				</StackPanel>
+		</Border>
+
+		<Border Grid.Row="1" Grid.Column="0"
+				Background="White" CornerRadius="8" Padding="15" Margin="0,0,16,0"
+				BoxShadow="0 2 10 0 #0A000000">
+			<sp:AvaPlot Name="HistoryPlot" />
+		</Border>
+
+		<Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+				Background="White" CornerRadius="8" Padding="20"
+				BoxShadow="0 2 10 0 #0A000000">
+
+			<Grid RowDefinitions="Auto, Auto, *">
+
+				<TextBlock Grid.Row="0" Text="数据统计看板" FontSize="16" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,16"/>
+
+				<Border Grid.Row="1" Background="#F8F9FA" CornerRadius="6" Padding="16" Margin="0,0,0,16" BorderBrush="#EAECEF" BorderThickness="1">
+					<UniformGrid Columns="2" Rows="3">
+						<StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+							<TextBlock Classes="Label" Text="CPK:" Width="40"/>
+							<TextBlock x:Name="ChartCpkTextBlock" Classes="Value" Text="0.000" Foreground="#0078D4" FontSize="15"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+							<TextBlock Classes="Label" Text="Mean:" Width="45"/>
+							<TextBlock x:Name="ChartDataMeanTextBlock" Classes="Value" Text="0.000"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+							<TextBlock Classes="Label" Text="CPU:" Width="40"/>
+							<TextBlock x:Name="ChartCPUTextBlock" Classes="Value" Text="0.000"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+							<TextBlock Classes="Label" Text="CPL:" Width="45"/>
+							<TextBlock x:Name="ChartCPLTextBlock" Classes="Value" Text="0.000"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Classes="Label" Text="Max:" Width="40"/>
+							<TextBlock x:Name="ChartMaxTextBlock" Classes="Value" Text="0.000" Foreground="#D32F2F"/>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Classes="Label" Text="Min:" Width="45"/>
+							<TextBlock x:Name="ChartMinTextBlock" Classes="Value" Text="0.000" Foreground="#388E3C"/>
+						</StackPanel>
+					</UniformGrid>
+				</Border>
+
+				<Grid Grid.Row="2">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock Grid.Row="0" Text="采集数据记录" Classes="Label" FontWeight="Bold" Margin="0,0,0,8"/>
+
+					<ListBox Grid.Row="1" x:Name="MyListBox" Background="Transparent"
+							 BorderThickness="1" BorderBrush="#EAECEF" CornerRadius="4" Padding="5"/>
+				</Grid>
+			</Grid>
+		</Border>
+
+	</Grid>
+</Window>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GKG.PushRodSubMachineModules": {
+      "commandName": "Project"
+    },
+    "测试服务": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\IotGwSvr\\TestIotGwSvr.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\IotGwSvr"
+    }
+  }
+}

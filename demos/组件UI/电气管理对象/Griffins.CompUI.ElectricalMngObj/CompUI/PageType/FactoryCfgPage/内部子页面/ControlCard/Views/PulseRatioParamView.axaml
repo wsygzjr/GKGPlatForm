@@ -1,0 +1,41 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+              xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels.Axis"
+             x:DataType="vm:PulseRatioParamViewModel"
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.PulseRatioParamView" 
+                 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"  >
+
+<!--	<TextBlock Text="脉冲比参数配置" VerticalAlignment="Top"/>-->
+
+<Grid Margin="0,0,0,0"
+      RowDefinitions="*,*"  
+      RowSpacing="0" ColumnSpacing="0"  >             
+
+    <!-- 无需显式写 ColumnDefinitions（单列默认 * 宽度，自适应父容器） -->
+
+    <!-- 脉冲比 -->
+    <custom:NumericWithLableControl 
+        Grid.Row="0"   
+        HorizontalAlignment="Center"
+        HorizontalContentAlignment="Center"
+        VerticalAlignment="Center"
+        LabelName="脉冲比:"
+        WidthLevel="Medium"
+        ViewModel="{Binding PulseRatioViewModel}" />
+
+    <!-- 每转脉冲 -->
+    <custom:NumericWithLableControl 
+        Grid.Row="1"  
+        HorizontalAlignment="Center"
+        HorizontalContentAlignment="Center"
+        VerticalAlignment="Center"
+        LabelName="每转脉冲:"
+        WidthLevel="Medium"        
+        ViewModel="{Binding PulsesPerRevolutionViewModel}" />
+
+</Grid>
+
+</UserControl>

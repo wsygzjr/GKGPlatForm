@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Company>Griffins</Company>
+    <Copyright>Copyright © Griffins 2025</Copyright>
+    <AssemblyVersion>7.1.0.0</AssemblyVersion>
+    <FileVersion>7.1.0.0</FileVersion>
+    <AssemblyTitle>Griffins.Map.UIDataObj.Simple</AssemblyTitle>
+    <Product>Griffins.Map.UIDataObj.Simple</Product>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>F:\Griffins7.1\Bin\Share\Map\UIDataObj\</OutputPath>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Griffins.ImeIOT" Version="7.1.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Griffins.Map2\Griffins.Map2.csproj">
+      <Private>False</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ResourceNames.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceNames.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <!--<Target Name="CopySpecifiedNuGetPackagesToOutput" AfterTargets="Build">
+    <ItemGroup>
+      --><!-- 在这里写你要复制的包 DLL，支持通配符 --><!--
+      <NugetPackageToCopy Include="$(NuGetPackageRoot)Griffins.ImeIOT\**\*.dll" />
+      <NugetPackageToCopy Include="$(NuGetPackageRoot)Griffins.WorkFlow\**\*.dll" />
+      --><!-- 继续加你需要的包 --><!--
+    </ItemGroup>
+
+    --><!-- 复制到插件输出目录 --><!--
+    <Copy SourceFiles="@(NugetPackageToCopy)"
+          DestinationFolder="$(OutputPath)"
+          SkipUnchangedFiles="true"
+          OverwriteReadOnlyFiles="true" />
+  </Target>-->
+</Project>

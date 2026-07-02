@@ -1,0 +1,36 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!-- Tab按钮样式（修复Avalonia不支持BorderBottomBrush的问题） -->
+	<Style Selector="Button.tab-button">
+		<Setter Property="Background" Value="#F0F0F0" />
+		<Setter Property="Foreground" Value="#333333" />
+		<Setter Property="BorderThickness" Value="1,1,1,0" />
+		<!-- 底部边框初始设为0 -->
+		<Setter Property="BorderBrush" Value="#CCCCCC" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Cursor" Value="Hand" />
+		<Setter Property="Padding" Value="15,5" />
+
+		<!-- 未选中状态 -->
+		<Style Selector="^:not(:pointerover):not(:pressed):not(:selected)">
+			<Setter Property="Background" Value="#F0F0F0" />
+		</Style>
+
+		<!-- 鼠标悬停 -->
+		<Style Selector="^:pointerover:not(:pressed):not(:selected)">
+			<Setter Property="Background" Value="#E0E0E0" />
+		</Style>
+
+		<!-- 选中状态（使用边框和背景色组合实现底部高亮效果） -->
+		<Style Selector="^:selected">
+			<Setter Property="Background" Value="White" />
+			<Setter Property="Foreground" Value="#007ACC" />
+			<Setter Property="BorderThickness" Value="1,1,1,2" />
+			<!-- 增加底部边框厚度 -->
+			<Setter Property="BorderBrush" Value="#007ACC" />
+			<!-- 底部边框使用主题色 -->
+			<Setter Property="FontWeight" Value="Medium" />
+		</Style>
+	</Style>
+</Styles>

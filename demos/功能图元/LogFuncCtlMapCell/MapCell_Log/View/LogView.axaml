@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:GKG.Map.LogFuncCtlMapCell.ViewModel"
+             x:Class="GKG.Map.LogFuncCtlMapCell.View.LogView"
+             x:DataType="vm:LogViewModel"
+             Background="{Binding BackgroundColor}"
+             Foreground="{Binding TextColor}"
+             FontFamily="{Binding FontFamily}"
+             FontSize="{Binding FontSize}">
+
+    <TabControl Background="Transparent">
+        
+        <TabItem Header="实时监控">
+            <Grid RowDefinitions="Auto,*">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5,0,10">
+                    <Button Content="清空列表" Command="{Binding ClearRealTimeLogsCommand}" 
+                            Background="#333333" Foreground="White" Padding="10,5"/>
+                </StackPanel>
+                
+                <DataGrid Grid.Row="1" ItemsSource="{Binding RealTimeLogs}" 
+                          AutoGenerateColumns="False" IsReadOnly="True" 
+                          GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                          Background="Transparent" RowBackground="Transparent">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="时间" Binding="{Binding Time}" Width="120"/>
+                        <DataGridTextColumn Header="模组" Binding="{Binding ModuleAlias}" Width="150"/>
+                        <DataGridTextColumn Header="级别" Binding="{Binding LogLevel}" Width="80"/>
+                        <DataGridTextColumn Header="错误码" Binding="{Binding ErrorCode}" Width="100"/>
+                        <DataGridTextColumn Header="线程" Binding="{Binding ThreadID}" Width="60"/>
+                        <DataGridTextColumn Header="日志内容" Binding="{Binding LogText}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="历史追溯">
+            <Grid RowDefinitions="Auto,*">
+                <WrapPanel Grid.Row="0" Margin="0,5,0,10" VerticalAlignment="Center">
+                    <TextBlock Text="开始时间:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <DatePicker SelectedDate="{Binding SearchStartTime}" Margin="0,0,15,0"/>
+                    
+                    <TextBlock Text="结束时间:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <DatePicker SelectedDate="{Binding SearchEndTime}" Margin="0,0,15,0"/>
+
+                    <TextBlock Text="模组名:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <TextBox Text="{Binding SearchModuleText}" Width="120" Margin="0,0,15,0" Watermark="模糊搜索"/>
+
+                    <Button Content="查询历史" Command="{Binding QueryHistoricalLogsCommand}" 
+                            Background="#007ACC" Foreground="White" Padding="15,5"/>
+                </WrapPanel>
+
+                <DataGrid Grid.Row="1" ItemsSource="{Binding HistoricalLogs}" 
+                          AutoGenerateColumns="False" IsReadOnly="True" 
+                          GridLinesVisibility="All" HeadersVisibility="Column"
+                          Background="Transparent" RowBackground="Transparent">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="时间" Binding="{Binding Time}" Width="120"/>
+                        <DataGridTextColumn Header="模组" Binding="{Binding ModuleAlias}" Width="150"/>
+                        <DataGridTextColumn Header="级别" Binding="{Binding LogLevel}" Width="80"/>
+                        <DataGridTextColumn Header="错误码" Binding="{Binding ErrorCode}" Width="100"/>
+                        <DataGridTextColumn Header="线程" Binding="{Binding ThreadID}" Width="60"/>
+                        <DataGridTextColumn Header="日志内容" Binding="{Binding LogText}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </TabItem>
+        
+    </TabControl>
+</UserControl>

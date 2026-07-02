@@ -1,0 +1,76 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:custom="using:Griffins.UI"
+        xmlns:vm="clr-namespace:GriffinsGeneralTestMM"
+        x:Class="GriffinsGeneralTestMM.FormTestMMMainWindow"
+        x:DataType="vm:FormTestMMMainViewModel"
+        Title="测试模组插件管理"
+        Width="520" Height="202" 
+        Closing="Window_Closing"
+        SystemDecorations="BorderOnly">
+
+    <!-- 绑定ViewModel（MVVM核心：View仅依赖VM）   -->
+    <Window.DataContext>
+        <vm:FormTestMMMainViewModel  />
+    </Window.DataContext>
+        <DockPanel>
+            <!-- 自定义标题栏 -->
+            <Border DockPanel.Dock="Top" Height="30" Background="White" PointerPressed="Border_PointerPressed">
+                <DockPanel>
+                    <TextBlock Text="测试模组插件管理" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </DockPanel>
+            </Border>
+            <!-- 布局 -->
+            <StackPanel Margin="12,0,12,12" Spacing="8"  HorizontalAlignment="Left" VerticalAlignment="Center" >
+                <!-- 运行模式分组：绑定IsTestMode          --> 
+                        <custom:GroupBoxControl HeaderStr="运行模式" Margin="0 5 0 0"  Width="240"  HorizontalAlignment="Left" VerticalAlignment="Center" >
+					        <custom:GroupBoxControl.ContentArea>
+						           <StackPanel Orientation="Horizontal" Margin="10,10,0,5" VerticalAlignment="Center" Spacing="33">
+                                         <!-- 演示模式：绑定!IsTestMode（用BoolConverters.Not转换） -->
+                                        <RadioButton Content="演示模式" 
+                                                     IsChecked="{Binding IsTestMode, Converter={x:Static BoolConverters.Not}}" 
+                                                     GroupName="RunMode"/>
+                                        <!-- 测试模式：直接绑定IsTestMode -->
+                                        <RadioButton Content="测试模式" 
+                                                     IsChecked="{Binding IsTestMode}" 
+                                                     GroupName="RunMode"/> 
+                                    </StackPanel>
+					        </custom:GroupBoxControl.ContentArea>
+				        </custom:GroupBoxControl> 
+
+                <!-- 演示面板：绑定启用状态 -->
+                <StackPanel Orientation="Vertical" Width="520" Height="45" IsEnabled="{Binding IsDemoPanelEnabled}">
+                <!--    <Grid>
+                    </Grid>-->
+
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" >
+                
+                        <!-- 复选框：双向绑定ClosAllMsgShow -->
+                        <CheckBox Content="关闭所有信息显示" 
+                                 Margin="16,12,0,0"
+                                 IsChecked="{Binding ClosAllMsgShow, Mode=TwoWay}"/> 
+
+                        <TextBlock Text="执行延迟时间百分比：" Margin="22,12,0,0"  VerticalAlignment="Center"  />
+                        <!-- 数值框：双向绑定ExecPercent -->
+                        <NumericUpDown Value="{Binding ExecPercent, Mode=TwoWay}" 
+                                      Minimum="0" Maximum="200" 
+                                      Width="142"  
+                                      Margin="6,12,0,0"/>
+                    </StackPanel>
+
+                </StackPanel>
+        
+            
+                <!-- 按钮组：绑定Command替代Click事件 -->
+                <StackPanel Orientation="Horizontal" Spacing="28" HorizontalAlignment="Center" >
+                    <Button Content="机械模组监视" 
+                            Width="104"   Classes="ButtonType1" 
+                            Command="{Binding ButtonMMCommand}"/>
+                    <Button Content="子机械模组监视" 
+                            Width="123"   Classes="ButtonType1" 
+                            Command="{Binding ButtonSubMMCommand}"/>
+                </StackPanel>
+            </StackPanel>
+    </DockPanel>
+
+</Window>

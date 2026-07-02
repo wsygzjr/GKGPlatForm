@@ -1,0 +1,26 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="GriffinsGeneralTestMM.FormMessageDetailWindow"
+        xmlns:vm="clr-namespace:GriffinsGeneralTestMM"
+        x:DataType="vm:FormMessageDetailViewModel" 
+        Title="信息"
+        Width="1074" Height="662"
+        MinWidth="400" MinHeight="300"
+        WindowStartupLocation="CenterOwner"  
+       >  
+
+    <!-- 用ScrollViewer包裹文本控件，支持滚动（替代WinForms TextBox的Multiline） -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto">
+        <!-- TextBlock支持换行和文本展示  --> 
+        <TextBlock Text="{Binding Message}"
+                   Padding="10"
+                   TextWrapping="Wrap" 
+                   FontSize="14"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"/>
+    </ScrollViewer>
+</Window>

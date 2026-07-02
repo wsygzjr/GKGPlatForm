@@ -1,0 +1,26 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.View.TestRecipeCfgCompUIView"
+             x:DataType="vm:TestRecipeCfgCompUIViewModel"
+             Tag="{Binding ViewTag, Mode=TwoWay}">
+    <Design.DataContext>
+		<vm:TestRecipeCfgCompUIViewModel/>
+    </Design.DataContext>
+    <Border BorderThickness="2"
+            BorderBrush="Blue" >
+        <Grid RowDefinitions="auto,auto">
+            <StackPanel Orientation="Horizontal" Spacing="0" VerticalAlignment="Center" Grid.Row="0">
+                <TextBlock Text="访问后端：" Width="60" VerticalAlignment="Center" />
+                <Button Content="测试" Command="{Binding ButtonClickCommand}" IsEnabled="{Binding ReadOnly, Converter={x:Static BoolConverters.Not}}"></Button>
+            </StackPanel>
+             <StackPanel Orientation="Horizontal" Spacing="0" VerticalAlignment="Center" Grid.Row="1">
+                <TextBlock Text="输入值：" Width="60" VerticalAlignment="Center" />
+                <TextBox Watermark="请输入值" Text="{Binding Text}" IsReadOnly="{Binding ReadOnly}"></TextBox>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

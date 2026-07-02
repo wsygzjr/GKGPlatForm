@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37111.16 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EletronicManagerSubMachineModules", "EletronicManagerSubMachineModules.csproj", "{1E9402F0-41F9-C41E-6B05-72B60E572894}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.EletronicManagerSubMachineModules", "..\GKG.EletronicManagerSubMachineModules\GKG.EletronicManagerSubMachineModules.csproj", "{7B3A666F-C88C-5CBA-4A47-3EE9D605DCD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E9402F0-41F9-C41E-6B05-72B60E572894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9402F0-41F9-C41E-6B05-72B60E572894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9402F0-41F9-C41E-6B05-72B60E572894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9402F0-41F9-C41E-6B05-72B60E572894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3A666F-C88C-5CBA-4A47-3EE9D605DCD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3A666F-C88C-5CBA-4A47-3EE9D605DCD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3A666F-C88C-5CBA-4A47-3EE9D605DCD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3A666F-C88C-5CBA-4A47-3EE9D605DCD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {089E29AB-CA3C-49D0-A6BA-FEA4C9D3B490}
+	EndGlobalSection
+EndGlobal

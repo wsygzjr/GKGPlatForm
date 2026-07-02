@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.ViewModels"
+			 xmlns:gkgUI="clr-namespace:GKG.UI.General;assembly=GKG.UI"
+			 xmlns:views="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views"
+			 xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+			 x:DataType="vm:PassConditionParamViewModel"
+			 x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.RecipeEditing.Views.PassConditionParamView">
+	<!-- 通过条件编辑界面 View -->
+	<!-- 自定义模板 -->
+	<Grid Margin="5 0 5 0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+			<Grid RowDefinitions="110,310" ColumnDefinitions="1220" Height="510">
+				<!-- 整体水平排列 -->
+				<StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+					<!-- 第一列垂直排列 -->
+					<StackPanel Orientation="Vertical" Spacing="4">
+						<!-- 通过条件下拉框 -->
+						<custom:ComboxControl
+						Grid.Row="0" Grid.Column="0"
+						HorizontalAlignment="Center"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						WidthLevel="Medium"
+						LabelName="通过条件 "
+						ViewModel="{Binding PassConditionCombo }" />
+						<!-- 条件下拉框 -->
+						<custom:ComboxControl
+						HorizontalAlignment="Center"
+						Grid.Row="1" Grid.Column="0"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						WidthLevel="Medium"
+						LabelName="条件 "
+						ViewModel="{Binding ConditionCombo }" />
+					</StackPanel>
+					<!-- 第二列垂直排列 -->
+					<StackPanel Orientation="Vertical" Spacing="4" Margin="120 0 0 0">
+						<!-- 下拉框：数值调节方式 -->
+						<custom:ComboxControl
+						HorizontalAlignment="Center"
+						Grid.Row="0" Grid.Column="1"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						WidthLevel="Medium"
+						LabelName="数值调节方式 "
+						ViewModel="{Binding ValueAdjustModeCombo }" />
+						<!-- 数字输入框：选中的值 -->
+						<custom:NumericWithLableControl
+						HorizontalAlignment="Center"
+						Grid.Row="1" Grid.Column="1"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						WidthLevel="Medium"
+						LabelName="选中的值 "
+						ViewModel="{Binding SelectedValueViewModel}"
+						/>
+					</StackPanel>
+				</StackPanel>
+				<TabControl TabStripPlacement="Top" BorderBrush="#CCCCCC" BorderThickness="1.5" Grid.Row="1" Grid.Column="0">
+					<TabItem Header="脚本">
+						<views:ScriptParamView  HorizontalAlignment="Left" VerticalAlignment="Top"
+												DataContext="{Binding ScriptParamViewModel}"
+												Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5"  Width="1220" Height="310" />
+					</TabItem>
+				</TabControl>
+			</Grid>
+	</Grid>
+
+
+</UserControl>

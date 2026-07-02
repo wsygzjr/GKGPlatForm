@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"
+             xmlns:local="using Griffins.UI.General"    
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:AutoGenerateAreaViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.AutoGenerateAreaView">
+
+      <StackPanel Orientation="Vertical" Spacing="0" Margin="0" VerticalAlignment="Top"   Width="1505" >      
+          
+           
+         <StackPanel Orientation="Horizontal" Spacing="4" Margin="2" VerticalAlignment="Top"  Width="1474" Height="30"  >   
+                <TextBlock Text="区域自动生成方式" VerticalAlignment="Center"   HorizontalAlignment="Left" />
+                        
+                <ComboBox  IsEnabled="True" Height="28" FontSize="13"
+			        Margin="0"  Width="95"  
+		            ItemsSource="{Binding AutoGenerateModeComboBox.ItemsSource, Mode=OneWay}" 
+                    SelectedItem="{Binding AutoGenerateModeComboBox.SelectedItem, Mode=TwoWay}"  > 
+				        <ComboBox.ItemTemplate>
+					        <DataTemplate   DataType="ui:ComBoxItem">
+						        <StackPanel Orientation="Horizontal" Spacing="0"> 
+					     	        <TextBlock Text="{Binding DisplayName}" /> 
+					            </StackPanel>
+					        </DataTemplate>
+				        </ComboBox.ItemTemplate>
+                </ComboBox>   
+          </StackPanel>
+           
+		<StackPanel  Margin="2" 
+			Orientation="Horizontal" Spacing="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="697"   Width="1475"  > 
+			
+                  <!-- 区域自动生成的参数设置工作区 -->  
+                <ContentControl Content="{Binding WorkAreaView}"   BorderBrush="#CCCCCC" BorderThickness="1.5" VerticalAlignment="Stretch"  HorizontalAlignment="Left"  Height="697" />  
+
+			    <!--    --><!-- 相机视频显示控件  --><!--
+                 <gkgUI:CameraShowView  Grid.Row="0"  Grid.Column="1"   Height="697" 
+                           DataContext="{x:Static local:GlobalVisionViewModel.CameraShowViewModel}" 
+                      Width="815"  /> -->
+		 
+		</StackPanel>
+
+       </StackPanel>
+
+</UserControl>

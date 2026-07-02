@@ -1,0 +1,116 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_TextBox.ViewModels"
+             xmlns:converts="clr-namespace:GKG.Map.MapCell.Generic.Control.MapCell_TextBox.Converts"
+             mc:Ignorable="d"
+             d:DesignWidth="180"
+             d:DesignHeight="36"
+             x:Class="GKG.Map.MapCell.Generic.Control.MapCell_TextBox.Views.TextBoxView"
+             x:Name="This"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+  <Design.DataContext>
+    <vm:TextBoxViewModel/>
+  </Design.DataContext>
+  <UserControl.Resources>
+    <!-- 颜色/光标/字体等从属性面板模型到 Avalonia UI 类型的转换器 -->
+    <converts:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+    <converts:CursorTypeToCursorConverter x:Key="CursorTypeToCursorConverter"/>
+    <!-- 将四个数值（左/上/右/下）合成为 Thickness，用于边框线宽与 Margin -->
+    <converts:ThicknessFrom4IntsConverter x:Key="ThicknessFrom4IntsConverter"/>
+    <converts:StringToFontFamilyConverter x:Key="StringToFontFamilyConverter"/>
+    <converts:BoolToFontStyleConverter x:Key="BoolToFontStyleConverter"/>
+    <converts:BoolToFontWeightConverter x:Key="BoolToFontWeightConverter"/>
+  </UserControl.Resources>
+
+  <!-- 文本内容：双向绑定，编辑时回写到属性模型 -->
+  <TextBox x:Name="InputTextBox"
+           Text="{Binding CommonInfo.Text, Mode=TwoWay}"
+           Background="{Binding BrushInfo.BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"
+           Foreground="{Binding TextInfo.FontColor, Converter={StaticResource ColorToBrushConverter}}"
+           IsEnabled="{Binding CommonInfo.Enabled}"
+           IsReadOnly="{Binding CommonInfo.IsReadOnly}"
+           Opacity="{Binding OpacityValue}"
+           Cursor="{Binding CommonInfo.HoverCursor, Converter={StaticResource CursorTypeToCursorConverter}}"
+           BorderBrush="{Binding BrushInfo.BorderColor, Converter={StaticResource ColorToBrushConverter}}"
+           FontFamily="{Binding TextInfo.FontFamily, Converter={StaticResource StringToFontFamilyConverter}}"
+           FontSize="{Binding TextInfo.FontSize}"
+           FontStyle="{Binding TextInfo.IsItalic, Converter={StaticResource BoolToFontStyleConverter}}"
+           FontWeight="{Binding TextInfo.IsBold, Converter={StaticResource BoolToFontWeightConverter}}"
+           Padding="6">
+    <TextBox.Styles>
+      <Style Selector="TextBox#InputTextBox">
+        <!-- 默认边框颜色 -->
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.BorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox /template/ ScrollViewer">
+        <Setter Property="Cursor" Value="{Binding Cursor, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox /template/ TextPresenter">
+        <Setter Property="Cursor" Value="{Binding Cursor, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="SelectionForegroundBrush" Value="{Binding SelectionForegroundBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="SelectionBrush" Value="{Binding SelectionBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="VerticalAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox /template/ ContentPresenter">
+        <Setter Property="Cursor" Value="{Binding Cursor, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="VerticalAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox /template/ Border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox /template/ Border#border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:pointerover">
+        <Setter Property="Background" Value="{Binding BrushInfo.BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.BorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:focus-within">
+        <Setter Property="Background" Value="{Binding BrushInfo.BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.SelectedBorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:focus">
+        <!-- 聚焦时使用选中边框颜色 -->
+        <Setter Property="Background" Value="{Binding BrushInfo.BackgroundColor, Converter={StaticResource ColorToBrushConverter}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.SelectedBorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:pointerover /template/ Border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:pointerover /template/ Border#border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:focus-within /template/ Border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.SelectedBorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:focus-within /template/ Border#border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.SelectedBorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:focus /template/ Border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.SelectedBorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+      <Style Selector="TextBox#InputTextBox:focus /template/ Border#border">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BrushInfo.SelectedBorderColor, Converter={StaticResource ColorToBrushConverter}}"/>
+        <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}}"/>
+      </Style>
+    </TextBox.Styles>
+  </TextBox>
+</UserControl>

@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "GKG.EletronicManagerSubMachineModules": {
+      "commandName": "Project"
+    },
+    "配置文件 1": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\IotGwSvr\\TestIotGwSvr.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\IotGwSvr"
+    },
+    "模组测试工具": {
+      "commandName": "Executable",
+      "executablePath": "F:\\Griffins7.1\\Bin\\智造设备\\智造设备管理平台\\测试工具\\模组测试工具\\ImeCompTest.exe",
+      "workingDirectory": "F:\\Griffins7.1\\Bin\\智造设备\\智造设备管理平台\\测试工具\\模组测试工具"
+    }
+  }
+}

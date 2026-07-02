@@ -1,0 +1,41 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels"
+		     x:DataType="vm:ControlCardAxisCfgViewModel"
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.ControlCardAxisCfgView"
+               xmlns:views="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views" 
+             >
+
+
+ <!--   运控卡轴配置-->  
+    <!-- 3.  网格  -->
+    <Grid   Margin="0" 
+          ColumnDefinitions="*,*"   
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"   
+          RowSpacing="0" ColumnSpacing="0"  Height="670" >
+
+        <!-- 3.1 【回零参数配置界面】- 第1行第1列 -->
+        <views:ReturnToZeroParamView  Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" DataContext="{Binding ReturnToZeroParamViewModel}"/>
+
+        <!-- 3.2 【轴状态逻辑参数配置界面】- 第1行第2列 -->
+        <views:AxisStateLogicParamView  Grid.Row="0" Grid.Column="1" DataContext="{Binding AxisStateLogicParamViewModel}"/>
+
+        <!-- 3.3 【脉冲比参数配置界面】- 第2行第2列 -->
+        <views:PulseRatioParamView  Grid.Row="1" Grid.Column="1" DataContext="{Binding PulseRatioParamViewModel}"/>
+        <!-- 3.5 【编码器类型配置界面】- 第3行第2列 -->
+        <views:EncoderTypeParamView  Grid.Row="2" Grid.Column="1"  DataContext="{Binding EncoderTypeParamViewModel}"/>
+
+        <!-- 3.4 【软限位参数配置界面】- 第4行第1列 -->
+        <views:SoftLimitParamView  Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" DataContext="{Binding SoftLimitParamViewModel}"/>
+
+
+        <!-- 3.6 【脉冲输入模式配置界面】- 第4行第2列 -->
+        <views:PulseInputModeParamView  Grid.Row="3" Grid.Column="1" DataContext="{Binding PulseInputModeParamViewModel}"/>
+
+        <!-- 3.7 【脉冲输出模式配置界面】- 第5行第2列（剩余列留空，不影响布局） -->
+        <views:PulseOutputModeParamView Grid.Row="4" Grid.Column="1" DataContext="{Binding PulseOutputModeParamViewModel}"/>
+    </Grid>
+</UserControl>

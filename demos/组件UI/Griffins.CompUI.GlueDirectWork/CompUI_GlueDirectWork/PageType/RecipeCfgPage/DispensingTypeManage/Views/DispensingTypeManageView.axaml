@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.DispensingTypeManage.ViewModels"
+             xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+             x:DataType="vm:DispensingTypeManageViewModel"
+             x:Class="Griffins.CompUI.GlueDirectWork.PageType.RecipeCfgPage.DispensingTypeManage.Views.DispensingTypeManageView">
+
+  <Grid Margin="10" RowDefinitions="Auto,8,*" ColumnDefinitions="*">
+
+    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" RowDefinitions="Auto" VerticalAlignment="Top">
+      <TextBlock Grid.Column="0"
+                 Text="点胶类型管理"
+                 FontSize="22"
+                 FontWeight="SemiBold"
+                 VerticalAlignment="Center" />
+
+      <Button Grid.Column="1" Content="新增" MinWidth="75" Command="{Binding AddCommand}" HorizontalAlignment="Right"/>
+    </Grid>
+
+    <Border Grid.Row="2" BorderThickness="1" BorderBrush="#D0D0D0" Padding="0"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+      <DataGrid ItemsSource="{Binding Items}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                AutoGenerateColumns="False"
+                HeadersVisibility="Column"
+                CanUserResizeColumns="False"
+                CanUserSortColumns="False"
+                CanUserReorderColumns="False"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto"
+                RowHeight="34"
+                IsReadOnly="{Binding ReadOnly}">
+        <DataGrid.Styles>
+          <Style Selector="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+          </Style>
+          <Style Selector="DataGridCell">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0" />
+          </Style>
+        </DataGrid.Styles>
+
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="序号" Binding="{Binding SerialNumber}" Width="90" IsReadOnly="True" />
+          <DataGridTextColumn Header="胶水名" Binding="{Binding DispensingName, Mode=TwoWay}" Width="*" />
+          <DataGridTemplateColumn Header="操作" Width="110" IsReadOnly="True">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate DataType="vm:DispensingTypeItemViewModel">
+                <Button Content="删除"
+                        MinWidth="64"
+                        Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                        CommandParameter="{Binding .}" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+        </DataGrid.Columns>
+      </DataGrid>
+    </Border>
+
+  </Grid>
+</UserControl>

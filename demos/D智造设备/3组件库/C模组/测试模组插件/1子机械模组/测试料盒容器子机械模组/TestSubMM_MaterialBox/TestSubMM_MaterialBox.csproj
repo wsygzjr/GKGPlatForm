@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!--<UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>-->
+	  <Company>Griffins</Company>
+	  <Copyright>Copyright © Griffins 2025</Copyright>
+	  <AssemblyVersion>7.1.0.0</AssemblyVersion>
+	  <FileVersion>7.1.0.0</FileVersion>
+	  <AssemblyTitle>TestSubMM_MaterialBox</AssemblyTitle>
+	  <Product>TestSubMM_MaterialBox</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GriffinsGeneralTestMM\GriffinsGeneralTestMM.csproj" />
+  </ItemGroup>
+</Project>

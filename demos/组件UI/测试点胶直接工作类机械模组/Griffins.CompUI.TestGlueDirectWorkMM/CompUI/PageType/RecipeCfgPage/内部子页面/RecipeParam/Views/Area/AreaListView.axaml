@@ -1,0 +1,108 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.Area"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:AreaListViewModel"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.AreaListView"
+              
+             xmlns:convert="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters" 
+             >
+
+    <!--区域列表视图模型-->
+ <!-- 转换器 + 按钮样式（关键：添加删除按钮样式，避免不可交互） -->
+    <UserControl.Resources>
+        <convert:ListCountToBoolConverter x:Key="ListCountToBoolConverter"/> 
+    </UserControl.Resources>  
+
+    <!-- 左侧显示:区域列表栏 -->
+    <DockPanel Margin="1" LastChildFill="True"  Width="1860">
+        <!--1. 顶部操作菜单（添加按钮）--> 
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="4" Margin="0 0 0 1"   >
+            <Button Content="添加" 
+                    Command="{Binding AddCommand}"   Classes="DataGrid_btnAddStyle"  /> <!-- 给添加按钮也加样式，区分颜色 -->
+        </StackPanel>
+         
+        <!-- 区域列表 -->
+        <TabControl TabStripPlacement="Left"   
+                    BorderBrush="#CCCCCC" 
+                    BorderThickness="1.5"   Width="1860"
+                    ItemsSource="{Binding ItemsSource }" 
+                    SelectedItem="{Binding SelectedItem , Mode=TwoWay}"> 
+
+            <TabControl.ItemTemplate >
+                
+
+                <DataTemplate DataType="vm:AreaItemViewModel"  > 
+                  
+                    <StackPanel Orientation="Horizontal" Spacing="4" Margin="2" VerticalAlignment="Center" Width="196">
+                        <TextBlock Text="{Binding AreaNameViewModel.Text }" VerticalAlignment="Center"  Width="75" />
+                        
+                 <!--       <ComboBox  IsEnabled="True" Height="28" FontSize="13"
+			                Margin="0"  Width="150"  
+		                    ItemsSource="{Binding EditModeComboBox.ItemsSource, Mode=OneWay}" 
+                            SelectedItem="{Binding EditModeComboBox.SelectedItem, Mode=TwoWay}"  > 
+				                <ComboBox.ItemTemplate>
+					                <DataTemplate   DataType="ui:ComBoxItem">
+						                <StackPanel Orientation="Horizontal" Spacing="0"> 
+					     	                <TextBlock Text="{Binding DisplayName}" /> 
+					                    </StackPanel>
+					                </DataTemplate>
+				                </ComboBox.ItemTemplate>
+                        </ComboBox> -->
+
+                        <Button Content="×"  Width="28" Height="28"  FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                Classes="DataGrid_btnDeleteStyle" 
+                                Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" 
+                                CommandParameter="{Binding}">
+                             <!-- 禁用条件：当列表只有1条数据时，禁用当前行的删除按钮 -->
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource ListCountToBoolConverter}"> 
+                                            <Binding Path="DataContext.ItemsSource.Count" RelativeSource="{RelativeSource AncestorType=TabControl}"/> 
+                                            <Binding Path="IsDummy" FallbackValue="False"/>
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                        </Button>
+
+                        <Button Content="示意图"  Width="55" Height="28"  FontSize="12"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                        Classes="DataGrid_btnDeleteStyle" 
+                                        Command="{Binding DataContext.ViewSchematicDiagramCommand, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" 
+                                        CommandParameter="{Binding}"> 
+                        </Button>
+                         
+
+                    </StackPanel>  
+                </DataTemplate>
+      
+            </TabControl.ItemTemplate>
+                          
+
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="vm:AreaItemViewModel" >
+                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0 0 0 2"   Width="1512"  > 
+                     
+                          <TabControl Margin="0" TabStripPlacement="Top"  BorderBrush="#CCCCCC" BorderThickness="1.5" Width="1505"  Height="792">
+
+                                <TabItem Header="区域参数设置"> 
+                                    <views:AutoGenerateAreaView  HorizontalAlignment="Left"
+                                        DataContext="{Binding AutoGenerateAreaViewModel}" 
+                                        Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5" />
+                                </TabItem>  
+                                <TabItem Header="区域编辑">  
+                                    <views:DispensingExecutionListView  HorizontalAlignment="Left"
+	                                    DataContext="{Binding DispensingExecutionListViewModel}" 
+	                                    Margin="0"  BorderBrush="#CCCCCC" BorderThickness="1.5"  />  
+                                </TabItem> 
+                         </TabControl>
+
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </DockPanel>
+</UserControl>
+

@@ -1,0 +1,111 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Mark"
+			 xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"
+			 xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+			 xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+			 x:DataType="vm:MarkBasicConfigViewModel"
+             xmlns:convert="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters"
+			 x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.MarkBasicConfigView">
+
+
+	  <UserControl.Resources> 
+		<convert:MarkModeToIsVisibleConverter x:Key="MarkModeToIsVisibleConverter"/> 
+	</UserControl.Resources>
+	
+	   <!-- 垂直排列 --> 
+ <StackPanel Orientation="Vertical"  HorizontalAlignment="Center"   Margin="0 0 0 0"    > 
+	<!-- 2.1 Mark基础配置参数-视图模型 3行2列 -->
+	 <Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+			RowSpacing="0"  HorizontalAlignment="Left"   >
+		<!--Mark方式-下拉框数据模型 MarkModeModel -->
+		<custom:ComboxControl
+		Grid.Row="0"  Grid.Column="0" 
+		HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="Mark方式"
+		WidthLevel="Small"
+		ViewModel="{Binding MarkModeModel }" />
+
+		<!-- 备份Mark方式-下拉框数据模型  BackupMarkModeModel -->
+	<!--	<custom:ComboxControl
+		Grid.Row="0"  Grid.Column="1"
+			HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="备份Mark"
+		WidthLevel="Small9"
+		 IsVisible="{Binding SelectedMarkMode, Converter={StaticResource MarkModeToIsVisibleConverter}}"
+		ViewModel="{Binding BackupMarkModeModel }" />-->
+		
+		<!-- 偏差值报警-数字输入框数据模型  -->
+		<custom:NumericControl
+			Grid.Row="2"  Grid.Column="0" 
+			HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="偏差值报警"
+		WidthLevel="Small"
+		 IsVisible="{Binding SelectedMarkMode, Converter={StaticResource MarkModeToIsVisibleConverter}}"
+		ViewModel="{Binding DeviationAlarmValueViewModel }"
+		/> 
+	</Grid>
+
+	 <Grid   Grid.Row="0"  Grid.Column="1"  RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto"
+			RowSpacing="0"  HorizontalAlignment="Left"   >
+	 
+		<!--未找到mark时自动跳过-开关按钮数据模型  -->
+		<custom:ToggleSwitchControl 
+		Grid.Row="0"  Grid.Column="0"
+				HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="未找到跳过"
+		WidthLevel="Small9"
+		 IsVisible="{Binding SelectedMarkMode, Converter={StaticResource MarkModeToIsVisibleConverter}}"
+		ViewModel="{Binding AutoSkipWhenNotFoundViewModel}" />
+		 
+		<custom:ToggleSwitchControl 
+			Grid.Row="0"  Grid.Column="1"
+		    HorizontalAlignment="Left"
+			HorizontalContentAlignment="Center"
+			VerticalAlignment="Center"
+			VerticalContentAlignment="Center"
+			LabelName="分离"
+			WidthLevel="Small9"
+		    IsVisible="{Binding SelectedMarkMode, Converter={StaticResource MarkModeToIsVisibleConverter}}"
+			ViewModel="{Binding IsSeparatedViewModel}" />
+			 
+		<custom:ToggleSwitchControl 
+			Grid.Row="1"  Grid.Column="0"
+			LabelName="使用角度"
+			WidthLevel="Small9"
+			 IsVisible="{Binding SelectedMarkMode, Converter={StaticResource MarkModeToIsVisibleConverter}}"
+			ViewModel="{Binding IsUseAnglesViewModel}" /> 
+			
+		<!--是否为放置基准-开关按钮数据模型-开关按钮数据模型 AutoSkipWhenNotFoundViewModel -->
+		<custom:ToggleSwitchControl
+		Grid.Row="1"  Grid.Column="1"
+		HorizontalAlignment="Left"
+		HorizontalContentAlignment="Center"
+		VerticalAlignment="Center"
+		VerticalContentAlignment="Center"
+		LabelName="放置基准"
+		WidthLevel="Small9"
+		 IsVisible="{Binding SelectedMarkMode, Converter={StaticResource MarkModeToIsVisibleConverter}}"
+		ViewModel="{Binding IsPlacementReferenceViewModel}" />
+
+
+	</Grid>
+
+ </StackPanel>
+	
+</UserControl>

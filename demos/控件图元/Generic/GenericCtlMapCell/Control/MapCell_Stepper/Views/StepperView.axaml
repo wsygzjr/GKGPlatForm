@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="300"
+             d:DesignHeight="30"
+             xmlns:local="clr-namespace:GKG.Map.MapCell.Generic.Stepper.ViewModels"
+             x:Class="GKG.Map.MapCell.Generic.Stepper.Views.StepperView"
+             x:DataType="local:StepperViewModel"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+
+    <Border x:Name="BackBorder">
+        <Grid x:Name="MainGrid" ColumnDefinitions="Auto,*">
+            <TextBlock x:Name="LabelText"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Margin="0,0,5,0" />
+            <NumericUpDown x:Name="Stepper"
+                           Grid.Column="1"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           HorizontalContentAlignment="Stretch"
+                           VerticalContentAlignment="Center" />
+        </Grid>
+    </Border>
+
+</UserControl>

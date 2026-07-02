@@ -1,0 +1,81 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.TrajectorySequence"
+              xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:TrajectorySequenceModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.PointWorkAreaCfgView">
+
+
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
+                                          RowSpacing="0"  HorizontalAlignment="Left"    >
+                 
+                                    <custom:TextBlockControl
+                                            Grid.Row="0"  Grid.Column="0" 
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center" 
+			                                LabelName="序号"
+			                                WidthLevel="Small7"  
+			                                ViewModel="{Binding SerialNumberViewModel}"
+			                                /> 
+
+                                              <!-- 类型 -->  
+                                    <custom:ComboxControl   Grid.Row="0"  Grid.Column="1"  
+					                        LabelName="类型"
+					                        WidthLevel="Small7"   IsEnabled="False"
+					                        ViewModel="{Binding CalculateTrajectoryTypeModel  , Mode=TwoWay }" 
+					                        />  
+
+                                                 <!-- 绑定到 IsDispensingViewModel.IsChecked（双向同步） --> 
+                                      <custom:ToggleSwitchControl 
+                                             Grid.Row="1"  Grid.Column="0"  
+					                        LabelName="是否点胶"
+					                        WidthLevel="Small7" 
+					                        ViewModel="{Binding IsDispensingViewModel, Mode=TwoWay}" />
+              
+                                               <!--绑定到 SelectedStyleModel（下拉数据源+选中项）-->  
+                                    <custom:ComboxControl   Grid.Row="1"  Grid.Column="1"  
+					                        LabelName="样式"
+					                        WidthLevel="Small7"  
+					                        ViewModel="{Binding SelectedStyleModel  , Mode=TwoWay }" 
+					                        /> 
+
+                                       <!--重量单位-->  
+                                    <custom:ComboxControl   Grid.Row="2"  Grid.Column="0"  
+				                            LabelName="重量单位"   WidthLevel="Small7" 
+				                            ViewModel="{Binding WeightUnitModel , Mode=TwoWay }" 
+				                            /> 
+
+                                        <!--重量-->  
+                                    <custom:NumericControl Grid.Row="2"  Grid.Column="1" 
+                                            ViewModel="{Binding WeightViewModel, Mode=TwoWay}" 
+					                        LabelName="重量"  WidthLevel="Small7"  />  
+                                                
+                                <!-- X -->
+                                    <custom:NumericControl
+                                            Grid.Row="3"  Grid.Column="0"  
+			                                LabelName="X(mm)" 
+			                                WidthLevel="Small7"  
+			                                ViewModel="{Binding PointTrajectoryCfgViewModel.XViewModel}"
+			                                /> 
+       
+                                            <custom:NumericControl
+                                        Grid.Row="3"  Grid.Column="1"  
+			                            LabelName="Y(mm)"
+			                            WidthLevel="Small7"  
+			                            ViewModel="{Binding PointTrajectoryCfgViewModel.YViewModel }"
+			                            />
+                                            <!-- Z --> 
+                                            <custom:NumericControl
+                                        Grid.Row="4"  Grid.Column="0"  
+			                            LabelName="Z(mm)"
+			                            WidthLevel="Small7"  
+			                            ViewModel="{Binding PointTrajectoryCfgViewModel.ZViewModel }"
+			                            />  
+                                </Grid>  
+
+</UserControl>

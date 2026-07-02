@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+              xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:ClampWorkAreaViewModel"
+              x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.ClampWorkAreaView">
+
+
+    
+    <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"   Width="876"  Height="610" HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+             
+			<TextBlock Text="抓边编程设置"  Classes="TextBlockWorkAreaViewTitle" ></TextBlock> 
+
+                 
+            <!--   视图模型 -->  
+            <Grid    RowDefinitions="Auto,Auto,auto" ColumnDefinitions="Auto"
+                RowSpacing="0"   Height="80" Width="580" Margin="0"  HorizontalAlignment="Left" VerticalAlignment="Center" > 
+                  <!--  --><!-- 坐标表头 --><!--
+                    <gkgUI:PositionTeachHeaderView    Grid.Row="0"  Grid.Column="0"  
+                        Margin="0" Height="35"    HorizontalAlignment="Left" VerticalAlignment="Center" />   
+                    --><!-- 坐标数据 --><!--
+                    <gkgUI:PositionTeachView    Grid.Row="1"  Grid.Column="0" 
+                        DataContext="{Binding InitalPositionViewModel}" 
+                        Margin="0" Height="50"  HorizontalAlignment="Left" VerticalAlignment="Center" />   -->
+                <Button Grid.Row="2"  Grid.Column="0"
+                    Content="抓边指令弹窗"  Classes="btnSave" Width="120"
+                    Command="{Binding ClampWindowCommand}" 
+                    Cursor="Hand"> 
+                </Button>
+            </Grid>
+
+            </StackPanel>
+            </Border>
+</UserControl>

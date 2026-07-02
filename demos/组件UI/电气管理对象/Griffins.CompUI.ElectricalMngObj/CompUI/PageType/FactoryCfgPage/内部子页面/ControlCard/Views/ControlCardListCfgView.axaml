@@ -1,0 +1,112 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:convert="clr-namespace:Griffins.CompUI.ElectricalMngObj.Converters"
+             xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.ViewModels"
+             xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" 
+             d:DesignHeight="450"
+             x:DataType="vm:ControlCardListViewModel"
+             x:Class="Griffins.CompUI.ElectricalMngObj.FactoryCfgPage.Views.ControlCardListCfgView">
+
+    <UserControl.Resources>
+		<convert:ListCountToBoolConverter x:Key="ListCountToBoolConverter"/> 
+		<convert:IODeviceIDToNameConverter x:Key="IODeviceIDToNameConverter"/> 
+		<convert:IODeviceModelToNameConverter x:Key="IODeviceModelToNameConverter"/>        
+	</UserControl.Resources>
+
+    <!-- 用DockPanel实现“操作栏+列表”布局 -->
+    <DockPanel Margin="10" LastChildFill="True" Height="840">
+        <!-- 1. 顶部操作菜单（添加按钮） -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="8" Margin="0 0 0 10">
+            <Button 
+                Content="添加" 
+                Command="{Binding AddCommand}" 
+                Classes="DataGrid_btnAddStyle"  />
+        </StackPanel>
+
+        <!-- 2. 运控卡列表（带编辑/删除按钮） -->
+        <DataGrid  Name="IoDeviceDataGrid"
+            ItemsSource="{Binding ControlCardList}" 
+            AutoGenerateColumns="False"
+            BorderBrush="LightGray"
+            BorderThickness="2"
+            IsReadOnly="False" 
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedControlCard, Mode=TwoWay}"  Classes="StyleDataGrid" > 
+
+            <DataGrid.Columns>
+                <!-- 运控卡ID列 -->
+                <DataGridTextColumn 
+                    Header="运控卡ID" 
+                    Binding="{Binding CadID, Mode=TwoWay}" 
+                    Width="185"
+                    IsReadOnly="True"/>  <!-- 仅ID列设为只读 -->
+          
+                    <!-- 序号（可选，展示更多信息） -->
+              <!--  <DataGridTextColumn 
+                    Header="序号" 
+                    Binding="{Binding SerialNumber}" 
+                    Width="100"
+                    IsReadOnly="True"/> -->
+ 
+                    
+           <DataGridTextColumn Header="控制卡种类" Width="150" IsReadOnly="True">
+                <DataGridTextColumn.Binding>
+                    <MultiBinding Converter="{StaticResource IODeviceIDToNameConverter}"> 
+                        <Binding Path="ControlCardKindModel.ItemsSource" Mode="OneWay" />
+                        <Binding Path="SelectedControlCardKind" Mode="OneWay" /> 
+                    </MultiBinding>
+                </DataGridTextColumn.Binding>
+            </DataGridTextColumn>
+
+           <DataGridTextColumn Header="控制卡类型" Width="150" IsReadOnly="True">
+                <DataGridTextColumn.Binding>
+                    <MultiBinding Converter="{StaticResource IODeviceModelToNameConverter}"> 
+                        <Binding Path="ControlCardTypeModel.ItemsSource" Mode="OneWay" />
+                        <Binding Path="SelectedControlCardType" Mode="OneWay" /> 
+                    </MultiBinding>
+                </DataGridTextColumn.Binding>
+            </DataGridTextColumn>
+                    
+                <!-- 轴数列（可选，展示更多信息） -->
+                <DataGridTextColumn 
+                    Header="轴数" 
+                    Binding="{Binding AxisCount}" 
+                    Width="75"
+                    IsReadOnly="True"    /> 
+                
+                <!-- 操作列（编辑+删除按钮） -->
+                <DataGridTemplateColumn 
+                    Header="操作" 
+                    Width="115" 
+                    IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                     <!-- 定义表头样式，设置文本居中 --> 
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="vm:ControlCardViewModel">
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="5 0">
+                                <!-- 编辑按钮：绑定ViewModel的EditCommand，传递当前行数据 -->
+                                <Button 
+                                    Content="编辑" 
+                                    Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"  
+                                    Classes="btnEdit_DataGrid" />
+
+                                <!-- 删除按钮：绑定ViewModel的DeleteCommand，传递当前行数据 + 禁用控制 -->
+                                <Button 
+                                    Content="删除" 
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}" 
+                                     Classes="DataGrid_btnDeleteStyle"  >
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

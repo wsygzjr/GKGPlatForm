@@ -1,0 +1,126 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.ViewModels"
+        xmlns:custom="clr-namespace:GKG.UI;assembly=GKG.UI"
+        mc:Ignorable="d"
+        x:DataType="vm:ControlCardEditWindowViewModel"
+        x:Class="Griffins.CompUI.EletronicManager.CompUI_EletronicManager.PageType.ElectricalMngPage.ControlCard.Views.ControlCardEditWindow"
+        Title="运控卡编辑"
+        Width="700"
+        Height="700"
+        MinWidth="660"
+        MinHeight="660">
+
+    <Window.Styles>
+        <Style Selector="custom|TextInputControl Border.borderName">
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Margin" Value="2,1" />
+        </Style>
+        <Style Selector="custom|TextInputControl TextBox#TextBox1">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Foreground" Value="#111111" />
+            <Setter Property="Background" Value="#FFFFFF" />
+        </Style>
+        <Style Selector="custom|ComboxControl Border.borderName">
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Margin" Value="2,1" />
+        </Style>
+        <Style Selector="custom|ComboxControl ComboBox#ComboBox1">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="#111111" />
+        </Style>
+        <Style Selector="Button.btnCancel">
+            <Setter Property="Background" Value="#FFFFFF" />
+            <Setter Property="Foreground" Value="#5C5F63" />
+            <Setter Property="BorderBrush" Value="#E0E3E9" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="Button.btnSave">
+            <Setter Property="Background" Value="#1C5ED6" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="BorderBrush" Value="#1C5ED6" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </Window.Styles>
+
+    <Grid Background="#F1F4F8">
+        <Border Width="620"
+                Margin="20"
+                Padding="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#FFFFFF"
+                BorderBrush="#E0E3E9"
+                BorderThickness="1"
+                CornerRadius="6">
+            <StackPanel Spacing="12">
+                <custom:TextInputControl LabelName="运控卡类型"
+                                         WidthLevel="Medium"
+                                         ViewModel="{Binding EditCopy.MotionControlInterfaceTypeViewModel}" />
+
+                <custom:ComboxControl LabelName="卡种类"
+                                      WidthLevel="Medium"
+                                      ViewModel="{Binding EditCopy.ControlCardTypeModel}" />
+
+                <custom:TextInputControl LabelName="卡名称"
+                                         WidthLevel="Medium"
+                                         ViewModel="{Binding EditCopy.MotionCardNameViewModel, Mode=TwoWay}" />
+
+                <custom:TextInputControl LabelName="卡数量"
+                                         WidthLevel="Medium"
+                                         ViewModel="{Binding EditCopy.CardCountViewModel, Mode=TwoWay}" />
+
+                <custom:TextInputControl LabelName="状态量数"
+                                         WidthLevel="Medium"
+                                         IsEnabled="False"
+                                         ViewModel="{Binding EditCopy.StateChannelCountInputViewModel, Mode=TwoWay}" />
+
+                <custom:TextInputControl LabelName="模拟量数"
+                                         WidthLevel="Medium"
+                                         IsEnabled="False"
+                                         ViewModel="{Binding EditCopy.AnalogChannelCountInputViewModel, Mode=TwoWay}" />
+
+                <custom:TextInputControl LabelName="轴数"
+                                         WidthLevel="Medium"
+                                         IsEnabled="False"
+                                         ViewModel="{Binding EditCopy.SupportAxisCountViewModel, Mode=TwoWay}" />
+
+                <custom:TextInputControl LabelName="支持通道数"
+                                         WidthLevel="Medium"
+                                         ViewModel="{Binding EditCopy.SupportChannelCountViewModel, Mode=TwoWay}"
+                                         IsVisible="False" />
+
+                <StackPanel Orientation="Horizontal"
+                            Spacing="12"
+                            HorizontalAlignment="Center"
+                            Margin="0,6,0,0">
+                    <Button Content="取消"
+                            MinWidth="108"
+                            Height="36"
+                            Command="{Binding CancelCommand}"
+                            Classes="btnCancel" />
+
+                    <Button Content="保存"
+                            MinWidth="108"
+                            Height="36"
+                            Command="{Binding SaveCommand}"
+                            Classes="btnSave"
+                            Cursor="Hand" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

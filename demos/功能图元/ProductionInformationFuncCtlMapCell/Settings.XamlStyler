@@ -1,0 +1,10 @@
+{
+    "StylerRules": {
+        "AttributeTolerance": 1,
+        "MaxAttributeCharLength": 0,
+        "PutEndingBracketOnNewLine": true,
+        "KeepFirstAttributeOnSameLine": false,
+        "RemoveDesignTimeReferences": false,
+        "FormatOnSave": true
+    }
+}

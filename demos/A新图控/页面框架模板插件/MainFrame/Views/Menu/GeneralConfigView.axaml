@@ -1,0 +1,76 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vmcfg="clr-namespace:MainFrame.ViewModels;assembly=MainFrame"
+             x:DataType="vmcfg:GeneralConfigViewModel"
+             x:Class="MainFrameView.Views.ConfigViews.GeneralConfigView">
+
+  <!-- 主布局容器 -->
+  <Border BorderThickness="1"
+          BorderBrush="LightGray">
+      <Grid RowDefinitions="Auto, Auto, Auto"
+        ColumnDefinitions="150, *"
+       >
+    <!-- 最小化按钮图标配置 -->
+    <TextBlock Grid.Row="0" Grid.Column="0" 
+               Text="最小化图标:" 
+               VerticalAlignment="Center"
+               FontSize="14"/>
+    <StackPanel Grid.Row="0" Grid.Column="1" 
+                Orientation="Horizontal" 
+                Spacing="10"
+                VerticalAlignment="Center">
+      <Border Width="30" Height="30" 
+              BorderBrush="Gray" 
+              BorderThickness="1"
+              CornerRadius="4">
+        <Image Source="{Binding MinimizeIconBitmap}"
+               Stretch="Uniform"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+      </Border>
+      <Button Content="选择图标"
+              Command="{Binding SelectMinimizeIconCommand}"
+              Width="100"
+              Height="30"/>
+    </StackPanel>
+
+    <!-- 关闭按钮图标配置 -->
+    <TextBlock Grid.Row="1" Grid.Column="0" 
+               Text="关闭图标:" 
+               VerticalAlignment="Center"
+               FontSize="14"/>
+    <StackPanel Grid.Row="1" Grid.Column="1" 
+                Orientation="Horizontal" 
+                Spacing="10"
+                VerticalAlignment="Center">
+      <Border Width="30" Height="30" 
+              BorderBrush="Gray" 
+              BorderThickness="1"
+              CornerRadius="4">
+        <Image Source="{Binding CloseIconBitmap}"
+               Stretch="Uniform"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+      </Border>
+      <Button Content="选择图标"
+              Command="{Binding SelectCloseIconCommand}"
+              Width="100"
+              Height="30"/>
+    </StackPanel>
+
+    <!-- 最小化按钮启用状态 -->
+    <TextBlock Grid.Row="2" Grid.Column="0" 
+               Text="启用最小化按钮:" 
+               VerticalAlignment="Center"
+               FontSize="14"/>
+    <CheckBox Grid.Row="2" Grid.Column="1" 
+              IsChecked="{Binding IsMinimizeButtonEnabled}"
+              VerticalAlignment="Center"/>
+   
+
+  </Grid>
+  </Border>
+</UserControl>

@@ -1,0 +1,153 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.ViewModel"
+		xmlns:conv="using:GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.Converter"
+		x:Class="GKG.Map.AuxiliaryFunctionsFuncCtlMapCell.View.GlueTimerManageDialogView"
+		Title="胶水管理"
+		Width="1200" Height="550"
+		WindowStartupLocation="CenterOwner"
+		ShowInTaskbar="False"
+		CanResize="False">
+
+	<Window.Resources>
+		<conv:ScaleToColorConverter x:Key="ScaleToColorConverter"/>
+	</Window.Resources>
+
+	<Window.Styles>
+		<Style Selector="Button.BlueBtn">
+			<Setter Property="Background" Value="#5B9BD5"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="Button.BlueBtn:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="#4A88C5"/>
+		</Style>
+
+		<Style Selector="TextBlock.GridText">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="FontSize" Value="15"/>
+		</Style>
+
+		<Style Selector="DataGridColumnHeader">
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="Background" Value="#F0F0F0"/>
+	</Style>
+	</Window.Styles>
+
+	<Grid RowDefinitions="60, *, 70" Margin="10">
+
+		<Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+			<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center" Margin="10,0">
+				<Button Classes="BlueBtn" Content="➕ 添加" Width="80" Height="40" Command="{Binding AddGlueItemCommand}"/>
+				<Button Classes="BlueBtn" Content="➖ 删除" Width="100" Height="40" Command="{Binding DeleteGlueItemCommand}"/>
+			</StackPanel>
+
+			<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0">
+				<Button Classes="BlueBtn" Content="🔄 重置所有" Width="120" Height="40" Command="{Binding ResetAllGlueItemCommand}"/>
+			</StackPanel>
+		</Grid>
+
+		<DataGrid Grid.Row="1" ItemsSource="{Binding GlueTimeItems}" SelectedIndex="{Binding SelectedIndex}"
+				  AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False"
+				  RowHeight="50" ColumnHeaderHeight="45" BorderBrush="#CCCCCC" BorderThickness="1"
+				  GridLinesVisibility="All">
+			<DataGrid.Columns>
+
+				<DataGridTemplateColumn Header="名字" Width="*">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding GlueName}" VerticalAlignment="Center" Margin="5"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="时间设置" Width="Auto">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding TimeSet}" VerticalAlignment="Center" Margin="5" HorizontalContentAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="单位" Width="Auto">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding UnitSet}" Classes="GridText"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="开始时间" Width="180">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding Start, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"
+									 VerticalAlignment="Center" Margin="5" HorizontalContentAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="已用" Width="Auto">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Used}" Classes="GridText"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="剩余" Width="Auto">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Remain}" Classes="GridText" Foreground="#5B9BD5" FontWeight="Bold"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="比例" Width="150">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Grid Margin="10,0" VerticalAlignment="Center">
+								<ProgressBar Minimum="0" Maximum="1" Value="{Binding Scale}" Height="20"
+											 Foreground="{Binding Scale, Converter={StaticResource ScaleToColorConverter}}"/>
+								<TextBlock Text="{Binding Scale, StringFormat={}{0:P1}}"
+										   HorizontalAlignment="Center" VerticalAlignment="Center"
+										   FontSize="12" Foreground="Black" FontWeight="Bold"/>
+							</Grid>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="重置" Width="120">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button Classes="BlueBtn" Content="重置" Width="70" Height="30" FontSize="14"
+									Command="{Binding $parent[Window].DataContext.ResetGlueItemCommand}"
+									CommandParameter="{Binding}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="启用" Width="Auto">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<CheckBox IsChecked="{Binding IsEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="20" Margin="0,0,10,0">
+			<Button Classes="BlueBtn" Content="确定" Width="120" Height="45" Command="{Binding OKCommand}"/>
+			<Button Classes="BlueBtn" Content="取消" Width="120" Height="45" Command="{Binding CancelCommand}" Background="#999999"/>
+		</StackPanel>
+
+	</Grid>
+</Window>

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<OutputPath>F:\Griffins7.1\Bin\Share\ImeIOT\SubMM</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GF_Gereric" Version="7.1.0" />
+    <PackageReference Include="GKG" Version="1.0.0" />
+    <PackageReference Include="GKG.Vision" Version="1.0.0" />
+    <PackageReference Include="Griffins" Version="7.1.0" />
+    <PackageReference Include="Griffins.ImeIOT" Version="7.1.0" />
+    <PackageReference Include="Newtonsoft.JsonG" Version="7.1.0" />
+  </ItemGroup>
+
+</Project>

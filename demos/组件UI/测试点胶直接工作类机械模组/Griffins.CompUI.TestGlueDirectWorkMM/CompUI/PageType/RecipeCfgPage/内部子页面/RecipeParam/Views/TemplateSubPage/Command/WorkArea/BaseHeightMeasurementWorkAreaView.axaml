@@ -1,0 +1,196 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:BaseHeightMeasurementWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.Converters" 
+             xmlns:common="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.CompUI.PageType;assembly=Griffins.CompUI.TestGlueDirectWorkMM"
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.BaseHeightMeasurementWorkAreaView"> 
+	
+    
+
+	  <UserControl.Resources>
+		<convert:MeasurementModeToIsVisibleConverter x:Key="MeasurementModeToIsVisibleConverter"/>   
+        <!-- 索引转换器：将0开始的AlternationIndex转为1开始的序号 -->
+        <convert:IndexOffsetConverter x:Key="IndexOffsetConverter" Offset="1" />
+	</UserControl.Resources>
+
+   <!--基准版测高工作区-->
+  <Border  Classes="border" >
+        <StackPanel Orientation="Vertical"   Width="860"  Height="290" HorizontalAlignment="Left"  VerticalAlignment="Top"   >  
+        
+			<TextBlock Text="基准版测高设置"  Classes="TextBlockWorkAreaViewTitle" TextAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Center" ></TextBlock> 
+
+           <StackPanel Orientation="Horizontal"   Width="860"  HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+                 <custom:ComboxControl 
+		            HorizontalAlignment="Left"
+		            HorizontalContentAlignment="Center"
+		            VerticalAlignment="Center"
+		            VerticalContentAlignment="Center"
+		            LabelName="测高模式"
+		            WidthLevel="Small"
+		            ViewModel="{Binding MeasurementModeViewModel  }" />  
+                    
+		            <custom:NumericControl 
+			            HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName="三点偏差（mm）"
+		                WidthLevel="Small" 
+		                ViewModel="{Binding ThreePointDeviationViewModel }"
+		                IsVisible="{Binding MeasurementMode, Converter={StaticResource MeasurementModeToIsVisibleConverter}}"
+		                /> 
+
+                     <!-- 测高值（mm）  --> 
+               <custom:TextBlockControl 
+			    LabelName="测试值(mm)"
+			    WidthLevel="Small"  
+			    ViewModel="{Binding TestValueLabelViewModel}"
+			    />  
+           </StackPanel>
+                 
+            <!-- 位置  视图模型  -->  
+            <DataGrid    ItemsSource="{Binding MeasurementHeightPositionViewModels }"     
+                AutoGenerateColumns="False"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                IsReadOnly="False" 
+                SelectionMode="Extended"
+                RowHeight="40"  Width="860"  Height="160"
+                CanUserResizeColumns="True" VerticalAlignment="Top" 
+                CanUserSortColumns="True"  HorizontalAlignment="Left"  Margin="0,2,2,2"   Classes="StyleDataGrid"  > 
+      
+                    <DataGrid.Columns>  
+                        <!-- 1. 点位名称（只读） -->
+                        <DataGridTextColumn 
+                                Header="点位名称" 
+                                Binding="{Binding HightShowName}" 
+                                Width="95"
+                                IsReadOnly="True"  /> 
+
+                        <DataGridTemplateColumn 
+                            Header="X" 
+                            Width="165"  
+                            IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                <!-- 定义表头样式，设置文本居中 --> 
+                            <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="common:BasePositionViewModel">
+                                        <NumericUpDown 
+                                        Value="{Binding XViewModel.Value, Mode=TwoWay}"
+                                        Minimum="{Binding XViewModel.Minimum}"
+                                        Increment="{Binding XViewModel.Increment}"
+                                        HorizontalAlignment="Stretch"  Width="160"   Classes="DataGrid_NumericUpDownStyle" />   
+                                    </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate> 
+                        </DataGridTemplateColumn> 
+
+                        <DataGridTemplateColumn 
+                            Header="Y" 
+                            Width="165"  
+                            IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                <!-- 定义表头样式，设置文本居中 --> 
+                            <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="common:BasePositionViewModel">
+                                        <NumericUpDown 
+                                        Value="{Binding YViewModel.Value, Mode=TwoWay}"
+                                        Minimum="{Binding YViewModel.Minimum}"
+                                        Increment="{Binding YViewModel.Increment}"
+                                        HorizontalAlignment="Stretch"  Width="160"   Classes="DataGrid_NumericUpDownStyle" />   
+                                    </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate> 
+                        </DataGridTemplateColumn>  
+                                
+                        <DataGridTemplateColumn 
+                            Header="Z" 
+                            Width="165"  
+                            IsReadOnly="True">  <!-- 模板列设为只读，避免单元格编辑冲突 -->
+                                <!-- 定义表头样式，设置文本居中 --> 
+                            <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate DataType="common:BasePositionViewModel">
+                                        <NumericUpDown 
+                                        Value="{Binding ZViewModel.Value, Mode=TwoWay}"
+                                        Minimum="{Binding ZViewModel.Minimum}"
+                                        Increment="{Binding ZViewModel.Increment}"
+                                        HorizontalAlignment="Stretch"  Width="160"   Classes="DataGrid_NumericUpDownStyle" />   
+                                    </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate> 
+                        </DataGridTemplateColumn> 
+                        <!-- 操作列（删除按钮） -->
+                        <DataGridTemplateColumn 
+                            Header="操作" 
+                            Width="250" 
+                            IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="common:BasePositionViewModel">
+                                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="5 0">
+                                            <Button  Grid.Row="0"  Grid.Column="3"   Width="62"
+                                        Content="教导" 
+                                        Command="{Binding TeachCommand}"    />
+             
+                                        <Button   Grid.Row="0"  Grid.Column="4"   Width="62"
+                                        Content="{Binding MoveBtText}"   
+                                        Command="{Binding MoveCommand}"     > 
+                                        </Button> 
+                                                        
+                                        <Button   Grid.Row="0"  Grid.Column="4"   Width="62"
+                                        Content="{Binding MoveBtText}"   
+                                        Command="{Binding MoveCommand}"     > 
+                                        </Button> 
+                                                         
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns> 
+            </DataGrid> 
+        
+            <StackPanel Orientation="Horizontal"   >
+            
+		            <custom:NumericControl
+			            Grid.Row="2"  Grid.Column="0" 
+			            HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName="下限（mm）"
+		                WidthLevel="Small" 
+		                ViewModel="{Binding LowerLimitViewModel }"
+		                /> 
+
+                  <custom:NumericControl
+			            Grid.Row="2"  Grid.Column="0" 
+			            HorizontalAlignment="Left"
+		                HorizontalContentAlignment="Center"
+		                VerticalAlignment="Center"
+		                VerticalContentAlignment="Center"
+		                LabelName="上限（mm）"
+		                WidthLevel="Small" 
+		                ViewModel="{Binding UpperLimitViewModel }"
+		                /> 
+                 	<!-- 只用于防呆  -->
+					<custom:ToggleSwitchControl 
+						Grid.Row="1"  Grid.Column="1"  Grid.ColumnSpan="2"
+								HorizontalAlignment="Left"
+						HorizontalContentAlignment="Center"
+						VerticalAlignment="Center"
+						VerticalContentAlignment="Center"
+						LabelName="只用于防呆"
+						WidthLevel="Small9" 
+						ViewModel="{Binding IsOnlyForFoolproofViewModel}" />
+		 
+            </StackPanel>
+        </StackPanel>
+      
+
+    </Border>
+      
+</UserControl>

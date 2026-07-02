@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:ui="clr-namespace:Griffins.UI;assembly=Griffins.UI2"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.RecipeCfgPage.ViewModels.TemplateSubPage.Command"
+             xmlns:vm1="using:DispensingPageType.Models.RecipeParamCfgPage"
+             xmlns:gkgUI="clr-namespace:Griffins.UI.General;assembly=PageTypeSimple"   
+             xmlns:views="clr-namespace:DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation"
+             x:DataType="vm:LiftNeedleWorkAreaViewModel"
+             xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   
+             xmlns:convert="clr-namespace:DispensingPageType.Converters" 
+             x:Class="DispensingPageType.Views.RecipeParamCfgPage.ParametersAndCalculation.LiftNeedleWorkAreaView">
+	
+   <Border  Classes="border" HorizontalAlignment="Left" >
+        <StackPanel Orientation="Vertical"   Width="876"  Height="610" HorizontalAlignment="Left"  VerticalAlignment="Top"   >
+             
+			<TextBlock Text="抬针设置"  Classes="TextBlockWorkAreaViewTitle" ></TextBlock> 
+
+		    <custom:NumericControl
+			    Grid.Row="2"  Grid.Column="0" 
+			    HorizontalAlignment="Left"
+		        HorizontalContentAlignment="Center"
+		        VerticalAlignment="Center"
+		        VerticalContentAlignment="Center"
+		        LabelName="抬针高度"
+		        WidthLevel="Small" 
+		        ViewModel="{Binding HeightViewModel }"
+		        /> 
+
+
+        </StackPanel>
+      
+
+  </Border>
+
+
+
+</UserControl>

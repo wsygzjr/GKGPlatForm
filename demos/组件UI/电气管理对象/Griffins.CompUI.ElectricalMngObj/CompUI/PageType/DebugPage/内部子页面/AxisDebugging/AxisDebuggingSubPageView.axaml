@@ -1,0 +1,19 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.ElectricalMngObj.DebuggingPage"
+             x:DataType="vm:AxisDebuggingSubPageViewModel"
+             x:Class="DispensingPageType.Views.DebuggingPage.AxisDebugging.AxisDebuggingSubPageView">
+
+      <Border BorderThickness="2"
+            BorderBrush="Blue" >
+        <Grid RowDefinitions="auto,auto">
+            <StackPanel Orientation="Horizontal" Spacing="0" VerticalAlignment="Center" Grid.Row="0">
+                <TextBlock Text="触发：" Width="60" VerticalAlignment="Center" />
+                <Button Content="执行命令" Command="{Binding ButtonClickCommand}" ></Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,41 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:views="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views"
+			 xmlns:vm="clr-namespace:Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.ViewModels.OffsetCalibration"
+             x:DataType="vm:DegreevalvePositionViewModel"
+                xmlns:custom="clr-namespace:Griffins.UI;assembly=Griffins.UI2"   x:Class="Griffins.CompUI.TestGlueDirectWorkMM.InitCfgPage.Views.ZeroDegreevalvePositionView">
+
+    <!--0度阀位置选项卡-->
+	<StackPanel Orientation="Vertical"   > 
+         <!--xyz坐标位置-->
+         <views:PositionView     DataContext="{Binding }"    Margin="0"/> 
+
+         <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*"
+              RowSpacing="0"  HorizontalAlignment="Center"   >
+              
+            <!-- 出胶点数 -->
+             <custom:NumericControl
+            Grid.Row="0"  Grid.Column="0"  
+                    HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+			LabelName="出胶点数:"
+			WidthLevel="Small1"  
+			ViewModel="{Binding NumberOfDispensingPointsViewModel}"
+			/>
+               <!-- 出胶 -->
+            <Button Content="出胶"  Grid.Row="1"  Grid.Column="0" 
+                    Command="{Binding DischargeRubberCommand}"
+                Classes="btn"  />
+             
+           <!-- 一键出胶 -->
+           <Button Content="一键出胶"   Grid.Row="2"  Grid.Column="0" 
+                   Command="{Binding OneClickDischargeRubberCommand}"
+                Classes="btn"  />
+        </Grid>
+
+    </StackPanel>
+
+</UserControl>
