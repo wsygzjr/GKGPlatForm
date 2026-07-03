@@ -12,6 +12,7 @@ namespace GKG.MM
     public class RunModeList :List<string>, IGriffinsBaseValue
     {
         public static readonly Guid Object_ID = new Guid("{137DE180-713B-488A-876B-06E272F263CA}");
+        public const string Object_IDStr = "{137DE180-713B-488A-876B-06E272F263CA}";
 
         [JsonIgnore]
         bool IGriffinsBaseValue.IsObject_Byte => false;

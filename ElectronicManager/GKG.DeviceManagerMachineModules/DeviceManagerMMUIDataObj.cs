@@ -53,8 +53,8 @@ namespace GKG.MM
             {
                 runModeList.Add(runMode);
             }
-            _deviceManagerStatus.RunModeList["RunModeList"] = runModeList;
-            _deviceManagerStatus.FormulaNumberList["FormulaNumberList"] = new FormulaNumberList();
+            _deviceManagerStatus.RunModeList = runModeList;
+            _deviceManagerStatus.FormulaNumberList = new FormulaNumberList();
         }
 
         event ImePropValChangedEventHandler uIDataObjPropValChangedEvent;
@@ -102,12 +102,12 @@ namespace GKG.MM
                     case SvrForMMProcessCmd.CmdID_GetAllFormulaNumberes:
                         svrObjCallForMMProcessClient.ExecCmd(SvrForMMProcessCmd.CmdID_GetAllFormulaNumberes, JsonObjConvert.ToJSon(new SvrForMMProcessCmd.GetAllFormulaNumberes_Param() { MTNo = 1 }), out result, out errorMsg);
                         var AllFormulaNumberes = JsonObjConvert.FromJSon<SvrForMMProcessCmd.GetAllFormulaNumberes_Response>(result);
-                        _deviceManagerStatus.FormulaNumberList["FormulaNumberList"].Clear();
+                        _deviceManagerStatus.FormulaNumberList.Clear();
                         foreach (var formulaNumber in AllFormulaNumberes.FormulaNumberes)
                         {
-                            _deviceManagerStatus.FormulaNumberList["FormulaNumberList"].Add(formulaNumber.ToString());
+                            _deviceManagerStatus.FormulaNumberList.Add(formulaNumber.ToString());
                         }
-                        rtn["Result"] = ((IGriffinsBaseValue)_deviceManagerStatus.FormulaNumberList["FormulaNumberList"]).ToBaseValue();
+                        rtn["Result"] = ((IGriffinsBaseValue)_deviceManagerStatus.FormulaNumberList).ToBaseValue();
                         break;
                     case DeviceManagerMachineModulesConst.SetExecMode:
                         {
@@ -235,12 +235,12 @@ namespace GKG.MM
             {
                 svrObjCallForMMProcessClient.ExecCmd(SvrForMMProcessCmd.CmdID_GetAllFormulaNumberes, JsonObjConvert.ToJSon(new SvrForMMProcessCmd.GetAllFormulaNumberes_Param() { MTNo = 1 }), out result, out errorMsg);
                 var AllFormulaNumberes = JsonObjConvert.FromJSon<SvrForMMProcessCmd.GetAllFormulaNumberes_Response>(result);
-                _deviceManagerStatus.FormulaNumberList["FormulaNumberList"].Clear();
+                _deviceManagerStatus.FormulaNumberList.Clear();
                 foreach (var formulaNumber in AllFormulaNumberes.FormulaNumberes)
                 {
-                    _deviceManagerStatus.FormulaNumberList["FormulaNumberList"].Add(formulaNumber.ToString());
+                    _deviceManagerStatus.FormulaNumberList.Add(formulaNumber.ToString());
                 }
-                allUIDataObjPropValues.Add(new GFBaseTypePropValue(new MPPropertyID(nameof(DeviceManagerStatus.FormulaNumberList)), ((IGriffinsBaseValue)_deviceManagerStatus.FormulaNumberList["FormulaNumberList"]).ToBaseValue()));
+                allUIDataObjPropValues.Add(new GFBaseTypePropValue(new MPPropertyID(nameof(DeviceManagerStatus.FormulaNumberList)), ((IGriffinsBaseValue)_deviceManagerStatus.FormulaNumberList).ToBaseValue()));
 
                 svrObjCallForMMProcessClient.ExecCmd(SvrForMMProcessCmd.CmdID_GetCurFormulaNumber, JsonObjConvert.ToJSon(new SvrForMMProcessCmd.GetCurFormulaNumber_Param() { MTNo = 1 }), out result, out errorMsg);
                 SvrForMMProcessCmd.GetCurFormulaNumber_Response response = JsonObjConvert.FromJSon<SvrForMMProcessCmd.GetCurFormulaNumber_Response>(result);
@@ -265,7 +265,7 @@ namespace GKG.MM
             }
             _deviceManagerStatus.ExecMode = ImeExecMode.Continuous;
             //allUIDataObjPropValues.Add(new GFBaseTypePropValue(new MPPropertyID(nameof(DeviceManagerStatus.ImeRunMode)), new GriffinsBaseValue(imeRunModeDic[_deviceManagerStatus.ImeRunMode])));
-            allUIDataObjPropValues.Add(new GFBaseTypePropValue(new MPPropertyID(nameof(DeviceManagerStatus.RunModeList)), ((IGriffinsBaseValue)_deviceManagerStatus.RunModeList["RunModeList"]).ToBaseValue()));
+            allUIDataObjPropValues.Add(new GFBaseTypePropValue(new MPPropertyID(nameof(DeviceManagerStatus.RunModeList)), ((IGriffinsBaseValue)_deviceManagerStatus.RunModeList).ToBaseValue()));
             allUIDataObjPropValues.Add(new GFBaseTypePropValue(new MPPropertyID(nameof(DeviceManagerStatus.ExecMode)), new GriffinsBaseValue(_deviceManagerStatus.ExecMode)));
             return allUIDataObjPropValues;
         }

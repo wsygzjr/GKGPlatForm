@@ -1293,7 +1293,7 @@ namespace GKG
                             : MaterialStatus.Disable
                     });
                 }
-                result.SlotStatusList.Add("SlotStatusList", slotStatuses);
+                result.SlotStatusList= slotStatuses;
                 result.IsEmpty = !storageDevice.ReadStateIO(materialBoxIndex, 0);
                 result.MaterialBoxCylinderStatus = (storageDevice.GetCylinderPosType(materialBoxIndex, 0) == ECylinderPosType.Stretch);
                 return result;

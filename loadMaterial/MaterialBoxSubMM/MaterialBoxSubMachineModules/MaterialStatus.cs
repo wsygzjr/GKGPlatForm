@@ -52,6 +52,7 @@ namespace GKG.MM
     {
         [JsonIgnore]
         public static readonly Guid Object_ID = new Guid("{3B0DA5A7-7943-42F6-9EEC-A849F51791B5}");
+        public const string Object_IDStr = "{3B0DA5A7-7943-42F6-9EEC-A849F51791B5}";
         bool IGriffinsBaseValue.IsObject_Byte => false;
 
         Guid IGriffinsBaseValue.GetObject_ID()
@@ -111,9 +112,9 @@ namespace GKG.MM
         /// <summary>
         /// 料槽状态列表：每个槽位的状态，顺序对应槽位编号；当料盒未检测到或检测异常时，列表可为空或包含默认状态。
         /// </summary>
-        private Dictionary<string, SlotStatuses> _slotStatusList = new Dictionary<string, SlotStatuses>();
-        [GFProp(GfPropReadWrite.ReadOnly, GFPropertyEditKind.Assignment, GriffinsValueRangeDefineMode.None, "料槽状态列表", GriffinsBaseDataType.Object_Bytes, GFBaseTypePropValueListDict.Object_IDStr)]
-        public Dictionary<string, SlotStatuses> SlotStatusList
+        private SlotStatuses _slotStatusList = new SlotStatuses();
+        [GFProp(GfPropReadWrite.ReadOnly, GFPropertyEditKind.Assignment, GriffinsValueRangeDefineMode.None, "料槽状态列表", GriffinsBaseDataType.Object_Json, SlotStatuses.Object_IDStr)]
+        public SlotStatuses SlotStatusList
         {
             get => _slotStatusList;
             set

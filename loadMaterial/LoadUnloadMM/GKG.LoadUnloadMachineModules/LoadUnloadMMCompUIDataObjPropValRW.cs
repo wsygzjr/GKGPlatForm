@@ -251,7 +251,7 @@ namespace GKG.MM
                             ),
                             new GriffinsBaseValue(MaterialBox.Value.MaterialBoxCylinderStatus));
                     }
-                    if (latestMaterialContainerStatus == null || MaterialBox.Value.SlotStatusList["SlotStatusList"] != latestMaterialContainerStatus.MaterialContainers[materialContainer.Key].MaterialBoxes[MaterialBox.Key].SlotStatusList["SlotStatusList"])
+                    if (latestMaterialContainerStatus == null || MaterialBox.Value.SlotStatusList != latestMaterialContainerStatus.MaterialContainers[materialContainer.Key].MaterialBoxes[MaterialBox.Key].SlotStatusList)
                     {
                         InvokeUIDataObjPropValChangedEvent(new ObjInstPropPath(
                             new string[] {
@@ -261,7 +261,7 @@ namespace GKG.MM
                             MaterialBox.Value.Name),
                             nameof(MaterialBoxStatus.SlotStatusList) }
                             ),
-                            ((IGriffinsBaseValue)MaterialBox.Value.SlotStatusList["SlotStatusList"]).ToBaseValue());
+                            ((IGriffinsBaseValue)MaterialBox.Value.SlotStatusList).ToBaseValue());
                     }
                 }
 

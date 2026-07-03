@@ -13,6 +13,7 @@ namespace GKG.MM
     public class FormulaNumberList : List<string>, IGriffinsBaseValue
     {
         public static readonly Guid Object_ID = new Guid("{0B21B444-815F-47DD-8B14-D75AAB23993B}");
+        public const string Object_IDStr = "{0B21B444-815F-47DD-8B14-D75AAB23993B}";
 
         [JsonIgnore]
         bool IGriffinsBaseValue.IsObject_Byte => false;

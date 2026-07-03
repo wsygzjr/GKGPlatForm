@@ -17,15 +17,15 @@ namespace GKG.MM
             }
         }
 
-        private Dictionary<string, RunModeList> _runModeList = new Dictionary<string, RunModeList>();
+        private RunModeList _runModeList = new RunModeList();
         //{
         //    { ImeRunMode.WorkMode.ToString(),ImeRunMode.WorkMode.ToString() }, 
         //    { ImeRunMode.ConfigMode.ToString(), ImeRunMode.ConfigMode.ToString() },
         //    { ImeRunMode.AgingMode.ToString(), ImeRunMode.AgingMode.ToString() } 
         //};
-        [GFProp(GfPropReadWrite.ReadOnly, GFPropertyEditKind.Assignment, GriffinsValueRangeDefineMode.None, "运行模式列表", GriffinsBaseDataType.Object_Bytes, GFBaseTypePropValueListDict.Object_IDStr)]
+        [GFProp(GfPropReadWrite.ReadOnly, GFPropertyEditKind.Assignment, GriffinsValueRangeDefineMode.None, "运行模式列表", GriffinsBaseDataType.Object_Json, RunModeList.Object_IDStr)]
 
-        public Dictionary<string, RunModeList> RunModeList
+        public RunModeList RunModeList
         {
             get => _runModeList;
             set
@@ -47,9 +47,9 @@ namespace GKG.MM
             }
         }
 
-        private Dictionary<string, FormulaNumberList> _formulaNumberList = new Dictionary<string, FormulaNumberList>();
-        [GFProp(GfPropReadWrite.ReadOnly, GFPropertyEditKind.Assignment, GriffinsValueRangeDefineMode.None, "配方名称列表", GriffinsBaseDataType.Object_Bytes, GFBaseTypePropValueListDict.Object_IDStr)]
-        public Dictionary<string, FormulaNumberList> FormulaNumberList
+        private FormulaNumberList _formulaNumberList = new FormulaNumberList();
+        [GFProp(GfPropReadWrite.ReadOnly, GFPropertyEditKind.Assignment, GriffinsValueRangeDefineMode.None, "配方名称列表", GriffinsBaseDataType.Object_Json, FormulaNumberList.Object_IDStr)]
+        public FormulaNumberList FormulaNumberList
         {
             get => _formulaNumberList;
             set
