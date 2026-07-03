@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.MotionControl", "GKG.MotionControl\GKG.MotionControl.csproj", "{8A999155-28D0-41BC-8860-31A04EEAF5D0}"
 EndProject
@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.MotionCalculator", "GKG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.ElectronicControl.Zmotion", "GKG.MotionControl.Zmotion\GKG.ElectronicControl.Zmotion.csproj", "{739B0B4B-FA51-1FDD-BE22-A822E08B8A9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.ShareMemRPCLite", "GKG.ShareMemRPCLite\GKG.ShareMemRPCLite.csproj", "{591BA745-DC1C-B367-8F99-2E72846AEEDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GKG.ShareMemRPCLite", "ShareMemRPCLite\GKG.ShareMemRPCLite.csproj", "{B2A95CE3-5AE5-4E08-9B1A-E56EBD0A61B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,10 +119,10 @@ Global
 		{739B0B4B-FA51-1FDD-BE22-A822E08B8A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{739B0B4B-FA51-1FDD-BE22-A822E08B8A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{739B0B4B-FA51-1FDD-BE22-A822E08B8A9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{591BA745-DC1C-B367-8F99-2E72846AEEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{591BA745-DC1C-B367-8F99-2E72846AEEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{591BA745-DC1C-B367-8F99-2E72846AEEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{591BA745-DC1C-B367-8F99-2E72846AEEDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A95CE3-5AE5-4E08-9B1A-E56EBD0A61B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A95CE3-5AE5-4E08-9B1A-E56EBD0A61B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A95CE3-5AE5-4E08-9B1A-E56EBD0A61B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A95CE3-5AE5-4E08-9B1A-E56EBD0A61B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
