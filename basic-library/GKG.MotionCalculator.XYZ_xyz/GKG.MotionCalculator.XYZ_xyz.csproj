@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\MotionCalculator</OutputPath>
+	  <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	  <Private>False</Private>
+  </PropertyGroup>
+
+  <Target Name="DeployMotionCalculatorPlugin" AfterTargets="Build">
+    <MakeDir Directories="$(MotionCalculatorPluginDeployPath)" />
+    <ItemGroup>
+      <MotionCalculatorDeployFiles Include="$(OutputPath)**\*.*" Exclude="$(OutputPath)ref\**\*.*;$(OutputPath)*.deps.json;$(OutputPath)*.runtimeconfig.json" />
+    </ItemGroup>
+    <Copy SourceFiles="@(MotionCalculatorDeployFiles)" DestinationFiles="@(MotionCalculatorDeployFiles->'$(MotionCalculatorPluginDeployPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="GKG.MotionCalculator" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

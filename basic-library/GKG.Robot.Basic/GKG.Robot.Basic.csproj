@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Bin\Share\Robot</OutputPath>
+	  <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	  <Private>False</Private>
+  </PropertyGroup>
+
+  <Target Name="DeployRobotPlugin" AfterTargets="Build">
+    <MakeDir Directories="$(RobotPluginDeployPath)" />
+    <ItemGroup>
+      <RobotDeployFiles Include="$(OutputPath)**\*.*" Exclude="$(OutputPath)ref\**\*.*;$(OutputPath)*.deps.json;$(OutputPath)*.runtimeconfig.json" />
+    </ItemGroup>
+    <Copy SourceFiles="@(RobotDeployFiles)" DestinationFiles="@(RobotDeployFiles->'$(RobotPluginDeployPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="GKG.Robot" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
