@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>F:\GriffinsLocalpackages\Griffins</PackageOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <OutputPath>F:\Griffins7.1\Dlls</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GF_Gereric" Version="7.1.0" />
+    <PackageReference Include="GKG" Version="1.0.0" />
+    <PackageReference Include="GKG.Maths" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.JsonG" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="PlaneCalculator.cs" />
+    <Compile Remove="StraightAxisCalculator.cs" />
+    <Compile Remove="XYZ_xyzCalculator.cs" />
+    <Compile Remove="Builtin\**\*.cs" />
+  </ItemGroup>
+
+  <Target Name="DeployMotionCalculatorPlugin" AfterTargets="Build">
+    <MakeDir Directories="$(MotionCalculatorPluginDeployPath)" />
+    <ItemGroup>
+      <MotionCalculatorDeployFiles Include="$(OutputPath)**\*.*" Exclude="$(OutputPath)ref\**\*.*;$(OutputPath)*.deps.json;$(OutputPath)*.runtimeconfig.json" />
+    </ItemGroup>
+    <Copy SourceFiles="@(MotionCalculatorDeployFiles)" DestinationFiles="@(MotionCalculatorDeployFiles->'$(MotionCalculatorPluginDeployPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>
